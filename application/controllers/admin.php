@@ -122,6 +122,12 @@ class Admin extends CI_Controller
 			$data['email']       = $this->input->post('email');
 			$data['class_id']    = $this->input->post('class_id');
 
+            $data['cod_regional']    = $this->input->post('cod_regional');
+            $data['nom_regional']    = $this->input->post('nom_regional');
+            $data['cod_departamento']    = $this->input->post('cod_departamento');
+            $data['nom_departamento']    = $this->input->post('nom_departamento');
+            
+
             $this->db->insert('student', $data);
 
             $student_id = mysql_insert_id();
@@ -156,6 +162,11 @@ class Admin extends CI_Controller
 			$data['phone']       = $this->input->post('phone');
 			$data['email']       = $this->input->post('email');
 			$data['class_id']    = $this->input->post('class_id');
+            
+            $data['cod_regional']    = $this->input->post('cod_regional');
+            $data['nom_regional']    = $this->input->post('nom_regional');
+            $data['cod_departamento']    = $this->input->post('cod_departamento');
+            $data['nom_departamento']    = $this->input->post('nom_departamento');
             
 
             $this->db->where('student_id', $param3);

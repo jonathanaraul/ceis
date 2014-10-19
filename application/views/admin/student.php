@@ -145,14 +145,14 @@ function mostrarTmilitar(valor){
 		else
 			$('#divTienehijos').css('display', 'block');
 	}  
-		function mostrarTipoingresoSena(valor){
-		if(valor != 'convenio_sena')
-			$('#divconvenio_sena').css('display', 'none');
-		else
-			$('#divconvenio_sena').css('display', 'block');
-	}  
-	
-	
+    function mostrarTipoingresoSena(valor){
+    if(valor != 'convenio_sena')
+      $('.divconvenio_sena').css('display', 'none');
+    else
+      $('.divconvenio_sena').css('display', 'block');
+  }  
+  
+  
     
     
     </script>
@@ -293,16 +293,31 @@ function mostrarTmilitar(valor){
               </div>
             </div>
             
-            
-              <div class="control-group" id="divconvenio_sena" style="display: none;">
-              <label class="control-label"><?php echo get_phrase('Nombre_convenio');?></label>
+            <div class="control-group divconvenio_sena" sstyle="display: none;">
+              <label class="control-label"><?php echo get_phrase('codigo_regional');?></label>
               <div class="controls">
-       
-       
-       aqui aparecen campos nuevo
-       
+                <input type="text" class="" name="cod_regional"/>
               </div>
-            </div>   
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_regional');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_regional"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('codigo_departamento');?></label>
+              <div class="controls">
+                <input type="text" class="" name="cod_departamento"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_departamento');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_departamento"/>
+              </div>
+            </div>
+
             <div class="control-group" id="divTipoingreso" style="display: none;">
               <label class="control-label"><?php echo get_phrase('empresa');?></label>
               <div class="controls">
