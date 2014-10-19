@@ -100,9 +100,9 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 
-$db['default']['username'] = 'ceiscomc_ceisc';
+$db['default']['username'] = 'root';
 
-$db['default']['password'] = 'ceiscomc_ceisc';
+$db['default']['password'] = '';
 
 $db['default']['database'] = 'ceiscomc_ceisc';
 
