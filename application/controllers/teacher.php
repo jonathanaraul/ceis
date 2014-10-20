@@ -5,8 +5,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 
-
-/*	
+/*
 
  *	@author : Joyonto Roy
 
@@ -21,14 +20,10 @@ if (!defined('BASEPATH'))
  */
 
 
-
 class Teacher extends CI_Controller
 
 {
 
-    
-
-    
 
     function __construct()
 
@@ -36,7 +31,7 @@ class Teacher extends CI_Controller
 
         parent::__construct();
 
-		$this->load->database();
+        $this->load->database();
 
         /*cache control*/
 
@@ -50,7 +45,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /***default functin, redirects to login page if no admin logged in yet***/
 
@@ -68,7 +62,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /***ADMIN DASHBOARD***/
 
@@ -80,7 +73,7 @@ class Teacher extends CI_Controller
 
             redirect(base_url(), 'refresh');
 
-        $page_data['page_name']  = 'dashboard';
+        $page_data['page_name'] = 'dashboard';
 
         $page_data['page_title'] = get_phrase('teacher_dashboard');
 
@@ -88,15 +81,12 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
-    
+
+
 
     /*ENTRY OF A NEW STUDENT*/
 
-    
-
-    
 
     /****MANAGE STUDENTS CLASSWISE*****/
 
@@ -110,32 +100,32 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['name']        = $this->input->post('name');
-			//$data['apellido']        = $this->input->post('apellido');
+            $data['name'] = $this->input->post('name');
+            //$data['apellido']        = $this->input->post('apellido');
 
-            $data['birthday']    = $this->input->post('birthday');
+            $data['birthday'] = $this->input->post('birthday');
 
-            $data['sex']         = $this->input->post('sex');
+            $data['sex'] = $this->input->post('sex');
 
-            $data['religion']    = $this->input->post('religion');
+            $data['religion'] = $this->input->post('religion');
 
             $data['blood_group'] = $this->input->post('blood_group');
 
-            $data['address']     = $this->input->post('address');
+            $data['address'] = $this->input->post('address');
 
-            $data['phone']       = $this->input->post('phone');
+            $data['phone'] = $this->input->post('phone');
 
-            $data['email']       = $this->input->post('email');
+            $data['email'] = $this->input->post('email');
 
             $data['father_name'] = $this->input->post('father_name');
 
             $data['mother_name'] = $this->input->post('mother_name');
 
-            $data['class_id']    = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
-            $data['roll']        = $this->input->post('roll');
+            $data['roll'] = $this->input->post('roll');
 
-            $data['password']    = rand(1000000, 10000000);
+            $data['password'] = rand(1000000, 10000000);
 
             $this->db->insert('student', $data);
 
@@ -151,32 +141,31 @@ class Teacher extends CI_Controller
 
         if ($param2 == 'do_update') {
 
-            $data['name']        = $this->input->post('name');
-			 //$data['apellido']        = $this->input->post('apellido');
+            $data['name'] = $this->input->post('name');
+            //$data['apellido']        = $this->input->post('apellido');
 
-            $data['birthday']    = $this->input->post('birthday');
+            $data['birthday'] = $this->input->post('birthday');
 
-            $data['sex']         = $this->input->post('sex');
+            $data['sex'] = $this->input->post('sex');
 
-            $data['religion']    = $this->input->post('religion');
+            $data['religion'] = $this->input->post('religion');
 
             $data['blood_group'] = $this->input->post('blood_group');
 
-            $data['address']     = $this->input->post('address');
+            $data['address'] = $this->input->post('address');
 
-            $data['phone']       = $this->input->post('phone');
+            $data['phone'] = $this->input->post('phone');
 
-            $data['email']       = $this->input->post('email');
+            $data['email'] = $this->input->post('email');
 
             $data['father_name'] = $this->input->post('father_name');
 
             $data['mother_name'] = $this->input->post('mother_name');
 
-            $data['class_id']    = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
-            $data['roll']        = $this->input->post('roll');
+            $data['roll'] = $this->input->post('roll');
 
-            
 
             $this->db->where('student_id', $param3);
 
@@ -196,13 +185,13 @@ class Teacher extends CI_Controller
 
         } else if ($param2 == 'personal_profile') {
 
-            $page_data['personal_profile']   = true;
+            $page_data['personal_profile'] = true;
 
             $page_data['current_student_id'] = $param3;
 
         } else if ($param2 == 'academic_result') {
 
-            $page_data['academic_result']    = true;
+            $page_data['academic_result'] = true;
 
             $page_data['current_student_id'] = $param3;
 
@@ -218,15 +207,15 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['class_id']   = $param1;
+        $page_data['class_id'] = $param1;
 
-        $page_data['students']   = $this->db->get_where('student', array(
+        $page_data['students'] = $this->db->get_where('student', array(
 
             'class_id' => $param1
 
         ))->result_array();
 
-        $page_data['page_name']  = 'student';
+        $page_data['page_name'] = 'student';
 
         $page_data['page_title'] = get_phrase('manage_student');
 
@@ -234,7 +223,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /****MANAGE TEACHERS*****/
 
@@ -246,19 +234,18 @@ class Teacher extends CI_Controller
 
             redirect(base_url(), 'refresh');
 
-        
 
         if ($param1 == 'personal_profile') {
 
-            $page_data['personal_profile']   = true;
+            $page_data['personal_profile'] = true;
 
             $page_data['current_teacher_id'] = $param2;
 
         }
 
-        $page_data['teachers']   = $this->db->get('teacher')->result_array();
+        $page_data['teachers'] = $this->db->get('teacher')->result_array();
 
-        $page_data['page_name']  = 'teacher';
+        $page_data['page_name'] = 'teacher';
 
         $page_data['page_title'] = get_phrase('teacher_list');
 
@@ -266,11 +253,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
-
-    
-
-    
 
     /****MANAGE SUBJECTS*****/
 
@@ -284,9 +266,9 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['name']       = $this->input->post('name');
+            $data['name'] = $this->input->post('name');
 
-            $data['class_id']   = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
             $data['teacher_id'] = $this->input->post('teacher_id');
 
@@ -298,13 +280,12 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['name']       = $this->input->post('name');
+            $data['name'] = $this->input->post('name');
 
-            $data['class_id']   = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
             $data['teacher_id'] = $this->input->post('teacher_id');
 
-            
 
             $this->db->where('subject_id', $param2);
 
@@ -332,9 +313,9 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['subjects']   = $this->db->get('subject')->result_array();
+        $page_data['subjects'] = $this->db->get('subject')->result_array();
 
-        $page_data['page_name']  = 'subject';
+        $page_data['page_name'] = 'subject';
 
         $page_data['page_title'] = get_phrase('manage_subject');
 
@@ -342,11 +323,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
-
-    
-
-    
 
     /****MANAGE EXAM MARKS*****/
 
@@ -358,17 +334,15 @@ class Teacher extends CI_Controller
 
             redirect(base_url(), 'refresh');
 
-        
 
         if ($this->input->post('operation') == 'selection') {
 
-            $page_data['exam_id']    = $this->input->post('exam_id');
+            $page_data['exam_id'] = $this->input->post('exam_id');
 
-            $page_data['class_id']   = $this->input->post('class_id');
+            $page_data['class_id'] = $this->input->post('class_id');
 
             $page_data['subject_id'] = $this->input->post('subject_id');
 
-            
 
             if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0 && $page_data['subject_id'] > 0) {
 
@@ -388,35 +362,31 @@ class Teacher extends CI_Controller
 
             $data['mark_obtained'] = $this->input->post('mark_obtained');
 
-            $data['attendance']    = $this->input->post('attendance');
+            $data['attendance'] = $this->input->post('attendance');
 
-            $data['comment']       = $this->input->post('comment');
+            $data['comment'] = $this->input->post('comment');
 
-            
 
             $this->db->where('mark_id', $this->input->post('mark_id'));
 
             $this->db->update('mark', $data);
 
-            
 
             redirect(base_url() . 'index.php?teacher/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
 
         }
 
-        $page_data['exam_id']    = $exam_id;
+        $page_data['exam_id'] = $exam_id;
 
-        $page_data['class_id']   = $class_id;
+        $page_data['class_id'] = $class_id;
 
         $page_data['subject_id'] = $subject_id;
 
-        
 
         $page_data['page_info'] = 'Exam marks';
 
-        
 
-        $page_data['page_name']  = 'marks';
+        $page_data['page_name'] = 'marks';
 
         $page_data['page_title'] = get_phrase('manage_exam_marks');
 
@@ -424,7 +394,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /*****BACKUP / RESTORE / DELETE DATA PAGE**********/
 
@@ -436,7 +405,6 @@ class Teacher extends CI_Controller
 
             redirect(base_url(), 'refresh');
 
-        
 
         if ($operation == 'create') {
 
@@ -464,11 +432,10 @@ class Teacher extends CI_Controller
 
         }
 
-        
 
-        $page_data['page_info']  = 'Create backup / restore from backup';
+        $page_data['page_info'] = 'Create backup / restore from backup';
 
-        $page_data['page_name']  = 'backup_restore';
+        $page_data['page_name'] = 'backup_restore';
 
         $page_data['page_title'] = get_phrase('manage_backup_restore');
 
@@ -476,7 +443,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
 
@@ -490,24 +456,23 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'update_profile_info') {
 
-            $data['name']        = $this->input->post('name');
-			 //$data['apellido']        = $this->input->post('apellido');
+            $data['name'] = $this->input->post('name');
+            //$data['apellido']        = $this->input->post('apellido');
 
-            $data['birthday']    = $this->input->post('birthday');
+            $data['birthday'] = $this->input->post('birthday');
 
-            $data['sex']         = $this->input->post('sex');
+            $data['sex'] = $this->input->post('sex');
 
-            $data['religion']    = $this->input->post('religion');
+            $data['religion'] = $this->input->post('religion');
 
             $data['blood_group'] = $this->input->post('blood_group');
 
-            $data['address']     = $this->input->post('address');
+            $data['address'] = $this->input->post('address');
 
-            $data['phone']       = $this->input->post('phone');
+            $data['phone'] = $this->input->post('phone');
 
-            $data['email']       = $this->input->post('email');
+            $data['email'] = $this->input->post('email');
 
-            
 
             $this->db->where('teacher_id', $this->session->userdata('teacher_id'));
 
@@ -521,13 +486,12 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'change_password') {
 
-            $data['password']             = $this->input->post('password');
+            $data['password'] = $this->input->post('password');
 
-            $data['new_password']         = $this->input->post('new_password');
+            $data['new_password'] = $this->input->post('new_password');
 
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
-            
 
             $current_password = $this->db->get_where('teacher', array(
 
@@ -557,11 +521,11 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['page_name']  = 'manage_profile';
+        $page_data['page_name'] = 'manage_profile';
 
         $page_data['page_title'] = get_phrase('manage_profile');
 
-        $page_data['edit_data']  = $this->db->get_where('teacher', array(
+        $page_data['edit_data'] = $this->db->get_where('teacher', array(
 
             'teacher_id' => $this->session->userdata('teacher_id')
 
@@ -571,7 +535,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
 
     /**********MANAGING CLASS ROUTINE******************/
 
@@ -585,15 +548,15 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['class_id']   = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
             $data['subject_id'] = $this->input->post('subject_id');
 
             $data['time_start'] = $this->input->post('time_start');
 
-            $data['time_end']   = $this->input->post('time_end');
+            $data['time_end'] = $this->input->post('time_end');
 
-            $data['day']        = $this->input->post('day');
+            $data['day'] = $this->input->post('day');
 
             $this->db->insert('class_routine', $data);
 
@@ -603,17 +566,16 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'edit' && $param2 == 'do_update') {
 
-            $data['class_id']   = $this->input->post('class_id');
+            $data['class_id'] = $this->input->post('class_id');
 
             $data['subject_id'] = $this->input->post('subject_id');
 
             $data['time_start'] = $this->input->post('time_start');
 
-            $data['time_end']   = $this->input->post('time_end');
+            $data['time_end'] = $this->input->post('time_end');
 
-            $data['day']        = $this->input->post('day');
+            $data['day'] = $this->input->post('day');
 
-            
 
             $this->db->where('class_routine_id', $param3);
 
@@ -641,7 +603,7 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['page_name']  = 'class_routine';
+        $page_data['page_name'] = 'class_routine';
 
         $page_data['page_title'] = get_phrase('manage_class_routine');
 
@@ -649,9 +611,6 @@ class Teacher extends CI_Controller
 
     }
 
-    
-
-    
 
     /**********MANAGE LIBRARY / BOOKS********************/
 
@@ -663,17 +622,15 @@ class Teacher extends CI_Controller
 
             redirect('login', 'refresh');
 
-        
 
-        $page_data['books']      = $this->db->get('book')->result_array();
+        $page_data['books'] = $this->db->get('book')->result_array();
 
-        $page_data['page_name']  = 'book';
+        $page_data['page_name'] = 'book';
 
         $page_data['page_title'] = get_phrase('manage_library_books');
 
         $this->load->view('index', $page_data);
 
-        
 
     }
 
@@ -687,21 +644,18 @@ class Teacher extends CI_Controller
 
             redirect('login', 'refresh');
 
-        
 
         $page_data['transports'] = $this->db->get('transport')->result_array();
 
-        $page_data['page_name']  = 'transport';
+        $page_data['page_name'] = 'transport';
 
         $page_data['page_title'] = get_phrase('manage_transport');
 
         $this->load->view('index', $page_data);
 
-        
 
     }
 
-    
 
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
@@ -713,13 +667,12 @@ class Teacher extends CI_Controller
 
             redirect(base_url(), 'refresh');
 
-        
 
         if ($param1 == 'create') {
 
-            $data['notice_title']     = $this->input->post('notice_title');
+            $data['notice_title'] = $this->input->post('notice_title');
 
-            $data['notice']           = $this->input->post('notice');
+            $data['notice'] = $this->input->post('notice');
 
             $data['create_timestamp'] = strtotime($this->input->post('create_timestamp'));
 
@@ -731,9 +684,9 @@ class Teacher extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['notice_title']     = $this->input->post('notice_title');
+            $data['notice_title'] = $this->input->post('notice_title');
 
-            $data['notice']           = $this->input->post('notice');
+            $data['notice'] = $this->input->post('notice');
 
             $data['create_timestamp'] = strtotime($this->input->post('create_timestamp'));
 
@@ -765,19 +718,16 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['page_name']  = 'noticeboard';
+        $page_data['page_name'] = 'noticeboard';
 
         $page_data['page_title'] = get_phrase('manage_noticeboard');
 
-        $page_data['notices']    = $this->db->get('noticeboard')->result_array();
+        $page_data['notices'] = $this->db->get('noticeboard')->result_array();
 
         $this->load->view('index', $page_data);
 
     }
 
-    
-
-    
 
     /**********MANAGE DOCUMENT / home work FOR A SPECIFIC CLASS or ALL*******************/
 
@@ -795,9 +745,9 @@ class Teacher extends CI_Controller
 
             $data['document_name'] = $this->input->post('document_name');
 
-            $data['file_name']     = $_FILES["userfile"]["name"];
+            $data['file_name'] = $_FILES["userfile"]["name"];
 
-            $data['file_size']     = $_FILES["userfile"]["size"];
+            $data['file_size'] = $_FILES["userfile"]["size"];
 
             $this->db->insert('document', $data);
 
@@ -815,17 +765,16 @@ class Teacher extends CI_Controller
 
         }
 
-        $page_data['page_name']  = 'manage_document';
+        $page_data['page_name'] = 'manage_document';
 
         $page_data['page_title'] = get_phrase('manage_documents');
 
-        $page_data['documents']  = $this->db->get('document')->result_array();
+        $page_data['documents'] = $this->db->get('document')->result_array();
 
         $this->load->view('index', $page_data);
 
     }
 
-    
 
 }
 

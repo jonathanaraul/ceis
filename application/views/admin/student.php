@@ -105,7 +105,8 @@
                                 <td><?php echo $row['address']; ?></td>
                                 <td><?php echo $row['email']; ?></td>
                                 <td><?php echo $row['phone']; ?></td>
-                                <td align="center" class="span5"><a data-toggle="modal" href="#modal-form"
+                                <td align="center" class="span5">
+                                    <a data-toggle="modal" href="#modal-form"
                                                                     onclick="modal('student_profile',<?php echo $row['student_id']; ?>)"
                                                                     class="btn btn-default btn-small"> <i
                                             class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a> <a
@@ -264,6 +265,25 @@
         </div>
     </div>
 
+    <div class="control-group" id="divTipoingreso" style="display: none;">
+        <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
+
+        <div class="controls">
+            <select name="empresa" class="uniform" style="width:100%;">
+                <option value="0">-- Seleccione Uno --</option>
+                <?php
+                $empresas = $this->db->get('empresas')->result_array();
+                foreach ($empresas as $row2):
+                    ?>
+                    <option value="<?php echo $row2['empresas_id']; ?>"
+                        <?php if ($row['empresas_id'] == $row2['empresas_id']) echo 'selected'; ?>> <?php echo $row2['nombre_empresas']; ?> </option>
+                <?php
+                endforeach;
+                ?>
+            </select>
+        </div>
+    </div>
+
     <div class="control-group">
         <label class="control-label"><?php echo get_phrase('convenio'); ?></label>
 
@@ -375,26 +395,6 @@
             <input type="text" class="" name="cod_dep_dom"/>
         </div>
     </div>
-
-    <div class="control-group" id="divTipoingreso" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
-
-        <div class="controls">
-            <select name="empresa" class="uniform" style="width:100%;">
-                <option value="0">-- Seleccione Uno --</option>
-                <?php
-                $empresas = $this->db->get('empresas')->result_array();
-                foreach ($empresas as $row2):
-                    ?>
-                    <option value="<?php echo $row2['empresas_id']; ?>"
-                        <?php if ($row['empresas_id'] == $row2['empresas_id']) echo 'selected'; ?>> <?php echo $row2['nombre_empresas']; ?> </option>
-                <?php
-                endforeach;
-                ?>
-            </select>
-        </div>
-    </div>
-
 
     <div class="control-group">
         <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
