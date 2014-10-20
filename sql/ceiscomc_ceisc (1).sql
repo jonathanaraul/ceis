@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-10-2014 a las 23:31:14
+-- Tiempo de generación: 20-10-2014 a las 01:01:12
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=450 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=469 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -700,7 +700,26 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (446, 'convenio_sena', ''),
 (447, 'Recepción', ''),
 (448, 'convenio_sena', ''),
-(449, 'convenio_sena', '');
+(449, 'convenio_sena', ''),
+(450, 'convenio_sena', ''),
+(451, 'convenio_sena', ''),
+(452, 'convenio_sena', ''),
+(453, 'codigo_municipio', ''),
+(454, 'nombre_municipio', ''),
+(455, 'empresa_gremio', ''),
+(456, 'linea_formacion', ''),
+(457, 'codigo_ocupacion', ''),
+(458, 'nombre_ocupacion', ''),
+(459, 'codigo_curso', ''),
+(460, 'nombre_sector_economico', ''),
+(461, 'nombre_subsector_economico', ''),
+(462, 'cod_dep_dom', ''),
+(463, 'convenio_sena', ''),
+(464, 'convenio_sena', ''),
+(465, 'convenio_sena', ''),
+(466, 'convenio_sena', ''),
+(467, 'convenio_sena', ''),
+(468, 'convenio_sena', '');
 
 -- --------------------------------------------------------
 
@@ -834,23 +853,33 @@ CREATE TABLE IF NOT EXISTS `student` (
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `class_id` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `cod_regional` int(11) DEFAULT NULL,
+  `cod_regional` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_regional` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_departamento` int(11) DEFAULT NULL,
+  `cod_departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cod_municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nom_municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emp_gremio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lin_formacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cod_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nom_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cod_curso` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nom_sector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nom_subsector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cod_dep_dom` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sena` tinyint(2) NOT NULL,
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `student`
 --
 
-INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `lexpedicion`, `fchaexp`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`) VALUES
-(1, 'CC', 1143124464, 'soled', '09/10/2014', 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL),
-(2, 'CC', 32323232, '2', '09/02/2014', 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL),
-(3, 'CC', 1129509228, 'Barranquilla', '05/18/2006', 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL),
-(4, 'CC', 1140834339, 'Barranquilla', '', 'CINDY', 'PAOLA', 'GONZALEZ', 'OSORIO', '', 'female', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '3', NULL, NULL, NULL, NULL),
-(6, 'CC', 33, 'maracay', '10/13/2014', 'jonathan', 'jesus', 'Araul', 'Trejo', '10/13/2014', 'masculino', 'Soltero', 'no', '0', '3', 'becado', '0', 'sta ines', '33', 'jonathan.araul@gmail.com', '3', 2, 'nombre', 4, 'nombre departamento');
+INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `lexpedicion`, `fchaexp`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`) VALUES
+(1, 'CC', 1143124464, 'soled', '09/10/2014', 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(2, 'CC', 32323232, '2', '09/02/2014', 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(3, 'CC', 1129509228, 'Barranquilla', '05/18/2006', 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(4, 'CC', 1140834339, 'Barranquilla', '', 'CINDY', 'PAOLA', 'GONZALEZ', 'OSORIO', '', 'female', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
