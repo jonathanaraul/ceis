@@ -389,10 +389,10 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><?php echo get_phrase('prueba'); ?></label>
+        <label class="control-label"><?php echo get_phrase('caracterizacion'); ?></label>
 
         <div class="controls">
-            <select name="estado_civil" class="uniform" style="width:100%;">
+            <select name="caracterizacion" class="uniform" style="width:100%;">
                 <option value="0">-- Seleccione Uno --</option>
                 <option value="NINGUNA"><?php echo get_phrase('Ninguna'); ?></option>
                 <option value="INDIGENAS DESPLAZADOS POR LA VIOLENCIA"><?php echo get_phrase('INDIGENAS_DESPLAZADOS_POR_LA VIOLENCIA'); ?></option>
