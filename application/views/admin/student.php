@@ -568,6 +568,17 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label"><?php echo get_phrase('Documentacion'); ?></label>
+        <input type="checkbox" name="cedula" value="1"><?php echo get_phrase('Cedula'); ?>
+        <input type="checkbox" name="lib_militar" value="2"><?php echo get_phrase('Libreta_Militar'); ?><br>
+        <input type="checkbox" name="cert_est" value="3"><?php echo get_phrase('Certificado_de_Estudios'); ?>
+        <input type="checkbox" name="foto" value="4"><?php echo get_phrase('Foto'); ?>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><?php echo get_phrase('talla_camisa'); ?></label>
+        <input type="text"  name="talla_camisa" value="">
+    </div>
+    <div class="control-group">
         <label class="control-label"></label>
 
         <div class="controls" style="width:210px;"><img id="blah" src="<?php echo base_url(); ?>uploads/user.jpg"
