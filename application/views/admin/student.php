@@ -388,6 +388,44 @@
             <input type="text" class="" name="nom_subsector_eco"/>
         </div>
     </div>
+    <div class="control-group">
+        <label class="control-label"><?php echo get_phrase('prueba'); ?></label>
+
+        <div class="controls">
+            <select name="estado_civil" class="uniform" style="width:100%;">
+                <option value="0">-- Seleccione Uno --</option>
+                <option value="NINGUNA"><?php echo get_phrase('Ninguna'); ?></option>
+                <option value="INDIGENAS DESPLAZADOS POR LA VIOLENCIA"><?php echo get_phrase('INDIGENAS_DESPLAZADOS_POR_LA VIOLENCIA'); ?></option>
+                <option value="INDIGENAS DESPLAZADOS POR LA VIOLENCIA CABEZA DE FAMILIA"><?php echo get_phrase('INDIGENAS_DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA'); ?></option>
+                <option value="DESPLAZADOS POR LA VIOLENCIA "><?php echo get_phrase('DESPLAZADOS_POR_LA_VIOLENCIA '); ?></option>
+                <option value="DESPLAZADOS POR LA VIOLENCIA CABEZA DE FAMILIA "><?php echo get_phrase('DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA'); ?></option>
+                <option value="AFROCOLOMBIANOS DESPLAZADOS POR LA VIOLENCIA"><?php echo get_phrase('AFROCOLOMBIANOS_DESPLAZADOS_POR_LA_VIOLENCIA'); ?></option>
+                <option value="DESPLAZADOS DISCAPACITADOS"><?php echo get_phrase('DESPLAZADOS_DISCAPACITADOS'); ?></option>
+                <option value="DESPLAZADOS POR FENOMENOS NATURALES "><?php echo get_phrase('DESPLAZADOS_POR_FENOMENOS_NATURALES '); ?></option>
+                <option value="CABEZA DE FAMILIA"><?php echo get_phrase('CABEZA_DE_FAMILIA'); ?></option>
+                <option value="INDIGENAS"><?php echo get_phrase('INDIGENAS'); ?></option>
+                <option value="INPEC"><?php echo get_phrase('INPEC'); ?></option>
+                <option value="JOVENES VULNERABLES"><?php echo get_phrase('JOVENES_VULNERABLES'); ?></option>
+                <option value="ADOLESCENTE EN CONFLICTO CON LA LEY PENAL"><?php echo get_phrase('ADOLESCENTE_EN_CONFLICTO_CON_LA_LEY_PENAL'); ?></option>
+                <option value="MUJER CABEZA DE FAMILIA"><?php echo get_phrase('MUJER_CABEZA_DE_FAMILIA'); ?></option>
+                <option value="NEGRITUDES"><?php echo get_phrase('NEGRITUDES'); ?></option>
+                <option value="PROC REINTEGRACION"><?php echo get_phrase('PROC_REINTEGRACION'); ?></option>
+                <option value="ADOLESCENTE DESVINCULADO DE GRUPOS ARMADOS ORGANIZADOS"><?php echo get_phrase('ADOLESCENTE_DESVINCULADO_DE_GRUPOS_ARMADOS_ORGANIZADOS'); ?></option>
+                <option value="ADOLESCENTE TRABAJADOR"><?php echo get_phrase('ADOLESCENTE_TRABAJADORo'); ?></option>
+                <option value="ARTESANOS"><?php echo get_phrase('ARTESANOS'); ?></option>
+                <option value="MICROEMPRESAS"><?php echo get_phrase('MICROEMPRESAS'); ?></option>
+                <option value="EMPRENDEDORES"><?php echo get_phrase('EMPRENDEDORES'); ?></option>
+                <option value="REMITIDOS POR EL CIE"><?php echo get_phrase('REMITIDOS_POR_EL_CIE'); ?></option>
+                <option value="REMITIDOS POR EL PAL"><?php echo get_phrase('REMITIDOS_POR_EL_PAL'); ?></option>
+                <option value="SOLDADOS CAMPESINOS"><?php echo get_phrase('SOLDADOS_CAMPESINOS'); ?></option>
+                <option value="SOBREVIVIENTES MINAS ANTIPERSONALES"><?php echo get_phrase('SOBREVIVIENTES_MINAS_ANTIPERSONALES'); ?></option>
+                <option value="AFROCOLOMBIANOS"><?php echo get_phrase('AFROCOLOMBIANOS'); ?></option>
+                <option value="PALENQUEROS"><?php echo get_phrase('PALENQUEROS'); ?></option>
+                <option value="RAIZALES"><?php echo get_phrase('RAIZALES'); ?></option>
+                <option value="ROM"><?php echo get_phrase('ROM'); ?></option>
+            </select>
+        </div>
+    </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('cod_dep_dom'); ?></label>
 
