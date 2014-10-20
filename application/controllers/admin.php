@@ -103,8 +103,6 @@ class Admin extends CI_Controller
         if ($param1 == 'create') {
             $data['documento']   = $this->input->post('documento');
             $data['ndocumento']  = $this->input->post('ndocumento');
-            $data['lexpedicion'] = $this->input->post('lexpedicion');
-            $data['fchaexp']     = $this->input->post('fchaexp');
             $data['name']        = $this->input->post('name');
             $data['snombre']     = $this->input->post('snombre');
             $data['papellido']   = $this->input->post('papellido');
@@ -121,6 +119,11 @@ class Admin extends CI_Controller
 			$data['phone']       = $this->input->post('phone');
 			$data['email']       = $this->input->post('email');
 			$data['class_id']    = $this->input->post('class_id');
+
+            $data['barrio']       = $this->input->post('barrio');
+            $data['departamento']       = $this->input->post('departamento');
+            $data['municipio']       = $this->input->post('municipio');
+            $data['email']       = $this->input->post('email');
 
             $convenio   = $this->input->post('convenio');
             if($convenio=='convenio_sena'){
@@ -175,8 +178,6 @@ class Admin extends CI_Controller
 
             $data['documento']   = $this->input->post('documento');
             $data['ndocumento']  = $this->input->post('ndocumento');
-            $data['lexpedicion'] = $this->input->post('lexpedicion');
-            $data['fchaexp']     = $this->input->post('fchaexp');
             $data['name']        = $this->input->post('name');
             $data['snombre']     = $this->input->post('snombre');
             $data['papellido']   = $this->input->post('papellido');
@@ -192,6 +193,12 @@ class Admin extends CI_Controller
 			$data['address']     = $this->input->post('address');
 			$data['phone']       = $this->input->post('phone');
 			$data['email']       = $this->input->post('email');
+
+            $data['barrio']       = $this->input->post('barrio');
+            $data['departamento']       = $this->input->post('departamento');
+            $data['municipio']       = $this->input->post('municipio');
+            $data['email']       = $this->input->post('email');
+
 			$data['class_id']    = $this->input->post('class_id');
             
             $convenio   = $this->input->post('convenio');

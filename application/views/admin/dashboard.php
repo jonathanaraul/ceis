@@ -1,231 +1,224 @@
-	<div class="container-fluid padded">
+<div class="container-fluid padded">
 
-		<div class="row-fluid">
+<div class="row-fluid">
 
-			<div class="span30">
+    <div class="span30">
 
-				<!-- find me in partials/action_nav_normal -->
+        <!-- find me in partials/action_nav_normal -->
 
-				<!--big normal buttons-->
+        <!--big normal buttons-->
 
-				<div class="action-nav-normal">
+        <div class="action-nav-normal">
 
-					<div class="row-fluid">
+            <div class="row-fluid">
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/student">
+                    <a href="<?php echo base_url(); ?>index.php?admin/student">
 
-                            <img src="<?php echo base_url();?>template/images/icons/user.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
-							<span><?php echo get_phrase('manage_student');?></span>
+                        <span><?php echo get_phrase('manage_student'); ?></span>
 
-                            <span class="label label-blue"><?php echo $this->db->count_all_results('student');?></span>
+                        <span class="label label-blue"><?php echo $this->db->count_all_results('student'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/teacher">
+                    <a href="<?php echo base_url(); ?>index.php?admin/teacher">
 
-							<img src="<?php echo base_url();?>template/images/icons/teacher.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/teacher.png"/>
 
-							<span><?php echo get_phrase('manage_teacher');?></span>
+                        <span><?php echo get_phrase('manage_teacher'); ?></span>
 
-                            <span class="label label-blue"><?php echo $this->db->count_all_results('teacher');?></span>
+                        <span class="label label-blue"><?php echo $this->db->count_all_results('teacher'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/marks">
+                    <a href="<?php echo base_url(); ?>index.php?admin/marks">
 
-							<img src="<?php echo base_url();?>template/images/icons/marks.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
 
-							<span><?php echo get_phrase('marks-attendance');?></span>
+                        <span><?php echo get_phrase('marks-attendance'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/class_routine">
+                    <a href="<?php echo base_url(); ?>index.php?admin/class_routine">
 
-							<img src="<?php echo base_url();?>template/images/icons/routine.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/routine.png"/>
 
-							<span><?php echo get_phrase('class_routine');?></span>
+                        <span><?php echo get_phrase('class_routine'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/invoice">
+                    <a href="<?php echo base_url(); ?>index.php?admin/invoice">
 
-							<img src="<?php echo base_url();?>template/images/icons/payment.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/payment.png"/>
 
-							<span><?php echo get_phrase('payment');?></span>
+                        <span><?php echo get_phrase('payment'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-						<div class="span2 action-nav-button">
+                <div class="span2 action-nav-button">
 
-							<a href="<?php echo base_url();?>index.php?admin/book">
+                    <a href="<?php echo base_url(); ?>index.php?admin/book">
 
-							<img src="<?php echo base_url();?>template/images/icons/book.png" />
+                        <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
 
-							<span><?php echo get_phrase('library');?></span>
+                        <span><?php echo get_phrase('library'); ?></span>
 
-							</a>
+                    </a>
 
-						</div>
+                </div>
 
-                    </div>
+            </div>
 
 
-				</div>
+        </div>
 
-			</div>
+    </div>
 
-            <!---DASHBOARD MENU BAR ENDS HERE-->
+    <!---DASHBOARD MENU BAR ENDS HERE-->
 
-       </div>
+</div>
 
-       
 
-		<div class="row-fluid">
+<div class="row-fluid">
 
-            <div class="span6">
+    <div class="span6">
 
-				<div class="box">
+        <div class="box">
 
-					<div class="box-header">
+            <div class="box-header">
 
-						<div class="title">
+                <div class="title">
 
-                        	<i class="icon-calendar"></i>
+                    <i class="icon-calendar"></i>
 
-							<?php echo get_phrase('calendar_schedule');?>
+                    <?php echo get_phrase('calendar_schedule'); ?>
 
-						</div>
+                </div>
 
-					</div>
+            </div>
 
-					<div class="box-content">
+            <div class="box-content">
 
-						<div id="calendar2">
+                <div id="calendar2">
 
-						</div>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+    </div>
 
-            <!---CALENDAR ENDS-->
+    <!---CALENDAR ENDS-->
 
-            
 
-            <!---TO DO LIST STARTS-->
+    <!---TO DO LIST STARTS-->
 
-			<div class="span6">
+    <div class="span6">
 
-				<div class="box">
+        <div class="box">
 
-					<div class="box-header">
+            <div class="box-header">
 
 						<span class="title">
 
                         	<i class="icon-reorder"></i>
 
-                            <?php echo get_phrase('noticeboard');?>
+                            <?php echo get_phrase('noticeboard'); ?>
 
                         </span>
 
-					</div>
+            </div>
 
-					<div class="box-content scrollable" style="max-height: 500px; overflow-y: auto">
+            <div class="box-content scrollable" style="max-height: 500px; overflow-y: auto">
 
-                    
 
-                    	<?php 
+                <?php
 
-						$notices	=	$this->db->get('noticeboard')->result_array();
+                $notices = $this->db->get('noticeboard')->result_array();
 
-						foreach($notices as $row):
+                foreach ($notices as $row):
 
-						?>
+                    ?>
 
-						<div class="box-section news with-icons">
+                    <div class="box-section news with-icons">
 
-							<div class="avatar blue">
+                        <div class="avatar blue">
 
-								<i class="icon-tag icon-2x"></i>
+                            <i class="icon-tag icon-2x"></i>
 
-							</div>
+                        </div>
 
-							<div class="news-time">
+                        <div class="news-time">
 
-								<span><?php echo date('d',$row['create_timestamp']);?></span> <?php echo date('M',$row['create_timestamp']);?>
+                            <span><?php echo date('d', $row['create_timestamp']); ?></span> <?php echo date('M', $row['create_timestamp']); ?>
 
-							</div>
+                        </div>
 
-							<div class="news-content">
+                        <div class="news-content">
 
-								<div class="news-title">
+                            <div class="news-title">
 
-									<?php echo $row['notice_title'];?>
+                                <?php echo $row['notice_title']; ?>
 
-								</div>
+                            </div>
 
-								<div class="news-text">
+                            <div class="news-text">
 
-									 <?php echo $row['notice'];?>
+                                <?php echo $row['notice']; ?>
 
-								</div>
+                            </div>
 
-							</div>
+                        </div>
 
-						</div>
+                    </div>
 
-						<?php endforeach;?>
+                <?php endforeach; ?>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+    </div>
 
-            <!---TO DO LIST ENDS-->
+    <!---TO DO LIST ENDS-->
 
-       </div>
+</div>
 
-   </div>
+</div>
 
-   
 
-  
+<script>
 
-  <script>
-
-  $(document).ready(function() {
+    $(document).ready(function () {
 
 
 
-    // page is now ready, initialize the calendar...
+        // page is now ready, initialize the calendar...
 
 
-
-    $("#calendar2").fullCalendar({
+        $("#calendar2").fullCalendar({
 
             header: {
 
@@ -243,50 +236,49 @@
 
             /*drop: function (e, t) {
 
-                var n, r;
+             var n, r;
 
-                r = $(this).data("eventObject"), n = $.extend({}, r), n.start = e, n.allDay = t, $("#calendar").fullCalendar("renderEvent", n, !0);
+             r = $(this).data("eventObject"), n = $.extend({}, r), n.start = e, n.allDay = t, $("#calendar").fullCalendar("renderEvent", n, !0);
 
-                if ($("#drop-remove").is(":checked")) return $(this).remove()
+             if ($("#drop-remove").is(":checked")) return $(this).remove()
 
-            },
+             },
 
-			
 
-			nulled by Vokey*/
+
+             nulled by Vokey*/
 
             events: [
 
-			<?php 
+                <?php
 
-			$notices	=	$this->db->get('noticeboard')->result_array();
+                $notices	=	$this->db->get('noticeboard')->result_array();
 
-			foreach($notices as $row):
+                foreach($notices as $row):
 
-			?>
+                ?>
 
-			{
+                {
 
-                title: "<?php echo $row['notice_title'];?>",
+                    title: "<?php echo $row['notice_title'];?>",
 
-                start: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>),
+                    start: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>),
 
-				end:	new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>) 
+                    end: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>)
 
-            },
+                },
 
-			<?php 
+                <?php
 
-			endforeach
+                endforeach
 
-			?>
+                ?>
 
-			]
+            ]
 
         })
 
 
+    });
 
-});
-
-  </script>
+</script>

@@ -1,425 +1,396 @@
-
 </head>
 <body>
 
 
+<div class="sidebar-background">
 
-<div class="sidebar-background" >
+    <div class="primary-sidebar-background">
 
-	<div class="primary-sidebar-background">
-
-	</div>
+    </div>
 
 </div>
 
-<div class="primary-sidebar" >
+<div class="primary-sidebar">
 
-	<!-- Main nav -->
+<!-- Main nav -->
 
 
+<ul class="nav nav-collapse collapse nav-collapse-primary">
 
-	<ul class="nav nav-collapse collapse nav-collapse-primary">
 
-    
+<!------dashboard----->
 
-        
+<li class="<?php if ($page_name == 'dashboard') echo 'dark-nav active'; ?>">
 
-        <!------dashboard----->
+    <span class="glow"></span>
 
-		<li class="<?php if($page_name == 'dashboard')echo 'dark-nav active';?>">
+    <a href="<?php echo base_url(); ?>index.php?admin/dashboard" rel="tooltip" data-placement="right"
 
-			<span class="glow"></span>
+       data-original-title="<?php echo get_phrase('dashboard_help'); ?>">
 
-				<a href="<?php echo base_url();?>index.php?admin/dashboard" rel="tooltip" data-placement="right" 
+        <!--<i class="icon-desktop icon-1x"></i>-->
 
-                	data-original-title="<?php echo get_phrase('dashboard_help');?>">
+        <img src="<?php echo base_url(); ?>template/images/icons/home.png"/>
 
-					<!--<i class="icon-desktop icon-1x"></i>-->
+        <span><?php echo get_phrase('dashboard'); ?></span>
 
-                    <img src="<?php echo base_url();?>template/images/icons/home.png" />
+    </a>
 
-					<span><?php echo get_phrase('dashboard');?></span>
+</li>
 
-				</a>
 
-		</li>
+<!------student----->
 
-        
+<li class="<?php if ($page_name == 'student') echo 'dark-nav active'; ?>">
 
-        <!------student----->
+    <span class="glow"></span>
 
-		<li class="<?php if($page_name == 'student')echo 'dark-nav active';?>">
+    <a href="<?php echo base_url(); ?>index.php?admin/student" rel="tooltip" data-placement="right"
 
-			<span class="glow"></span>
+       data-original-title="<?php echo get_phrase('student_help'); ?>">
 
-				<a href="<?php echo base_url();?>index.php?admin/student" rel="tooltip" data-placement="right" 
+        <!--<i class="icon-user icon-1x"></i>-->
 
-                	data-original-title="<?php echo get_phrase('student_help');?>">
+        <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
-					<!--<i class="icon-user icon-1x"></i>-->
+        <span><?php echo get_phrase('student'); ?></span>
 
-                    <img src="<?php echo base_url();?>template/images/icons/user.png" />
+    </a>
 
-					<span><?php echo get_phrase('student');?></span>
+</li>
 
-				</a>
 
-		</li>
+<!------teacher----->
 
-        
+<li class="<?php if ($page_name == 'teacher') echo 'dark-nav active'; ?>">
 
-        <!------teacher----->
+    <span class="glow"></span>
 
-		<li class="<?php if($page_name == 'teacher')echo 'dark-nav active';?>">
+    <a href="<?php echo base_url(); ?>index.php?admin/teacher" rel="tooltip" data-placement="right"
 
-			<span class="glow"></span>
+       data-original-title="<?php echo get_phrase('teacher_help'); ?>">
 
-				<a href="<?php echo base_url();?>index.php?admin/teacher" rel="tooltip" data-placement="right" 
+        <!--<i class="icon-user icon-1x"></i>-->
 
-                	data-original-title="<?php echo get_phrase('teacher_help');?>">
+        <img src="<?php echo base_url(); ?>template/images/icons/teacher.png"/>
 
-					<!--<i class="icon-user icon-1x"></i>-->
+        <span><?php echo get_phrase('teacher'); ?></span>
 
-                    <img src="<?php echo base_url();?>template/images/icons/teacher.png" />
+    </a>
 
-					<span><?php echo get_phrase('teacher');?></span>
+</li>
 
-				</a>
 
-		</li>
+<!------subject----->
 
-        
+<li class="<?php if ($page_name == 'subject') echo 'dark-nav active'; ?>">
 
+    <span class="glow"></span>
 
-        <!------subject----->
+    <a href="<?php echo base_url(); ?>index.php?admin/subject" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'subject')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('subject_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-tasks icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/subject" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
 
-                	data-original-title="<?php echo get_phrase('subject_help');?>">
+        <span><?php echo get_phrase('subject'); ?></span>
 
-					<!--<i class="icon-tasks icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/subject.png" />
+</li>
 
-					<span><?php echo get_phrase('subject');?></span>
 
-				</a>
+<!------classes----->
 
-		</li>
+<li class="<?php if ($page_name == 'class') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------classes----->
+    <a href="<?php echo base_url(); ?>index.php?admin/classes" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'class')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('class_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-sitemap icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/classes" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/class.png"/>
 
-                	data-original-title="<?php echo get_phrase('class_help');?>">
+        <span><?php echo get_phrase('class'); ?></span>
 
-					<!--<i class="icon-sitemap icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/class.png" />
+</li>
 
-					<span><?php echo get_phrase('class');?></span>
 
-				</a>
+<!------exam----->
 
-		</li>
+<li class="<?php if ($page_name == 'exam') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------exam----->
+    <a href="<?php echo base_url(); ?>index.php?admin/exam" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'exam')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('exam_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-paste icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/exam" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
 
-                	data-original-title="<?php echo get_phrase('exam_help');?>">
+        <span><?php echo get_phrase('exam'); ?></span>
 
-					<!--<i class="icon-paste icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/exam.png" />
+</li>
 
-					<span><?php echo get_phrase('exam');?></span>
 
-				</a>
+<!------marks----->
 
-		</li>
+<li class="<?php if ($page_name == 'marks') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------marks----->
+    <a href="<?php echo base_url(); ?>index.php?admin/marks" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'marks')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('marks_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-pencil icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/marks" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
 
-                	data-original-title="<?php echo get_phrase('marks_help');?>">
+        <span><?php echo get_phrase('marks-attendance'); ?></span>
 
-					<!--<i class="icon-pencil icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/marks.png" />
+</li>
 
-					<span><?php echo get_phrase('marks-attendance');?></span>
 
-				</a>
+<!------grade----->
 
-		</li>
+<li class="<?php if ($page_name == 'grade') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------grade----->
+    <a href="<?php echo base_url(); ?>index.php?admin/grade" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'grade')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('grade_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-list-ol icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/grade" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
 
-                	data-original-title="<?php echo get_phrase('grade_help');?>">
+        <span><?php echo get_phrase('exam-grade'); ?></span>
 
-					<!--<i class="icon-list-ol icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/grade.png" />
+</li>
 
-					<span><?php echo get_phrase('exam-grade');?></span>
 
-				</a>
+<!------class routine----->
 
-		</li>
+<li class="<?php if ($page_name == 'class_routine') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------class routine----->
+    <a href="<?php echo base_url(); ?>index.php?admin/class_routine" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'class_routine')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('class_routine_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-indent-right icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/class_routine" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/routine.png"/>
 
-                	data-original-title="<?php echo get_phrase('class_routine_help');?>">
+        <span><?php echo get_phrase('class_routine'); ?></span>
 
-					<!--<i class="icon-indent-right icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/routine.png" />
+</li>
 
-					<span><?php echo get_phrase('class_routine');?></span>
 
-				</a>
+<!------invoice----->
 
-		</li>
+<li class="<?php if ($page_name == 'invoice') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------invoice----->
+    <a href="<?php echo base_url(); ?>index.php?admin/invoice" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'invoice')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('invoice_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-money icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/invoice" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/payment.png"/>
 
-                	data-original-title="<?php echo get_phrase('invoice_help');?>">
+        <span><?php echo get_phrase('payment'); ?></span>
 
-					<!--<i class="icon-money icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/payment.png" />
+</li>
 
-					<span><?php echo get_phrase('payment');?></span>
 
-				</a>
+<!------book----->
 
-		</li>
+<li class="<?php if ($page_name == 'book') echo 'dark-nav active'; ?>">
 
-        
+    <span class="glow"></span>
 
-        <!------book----->
+    <a href="<?php echo base_url(); ?>index.php?admin/book" rel="tooltip" data-placement="right"
 
-		<li class="<?php if($page_name == 'book')echo 'dark-nav active';?>">
+       data-original-title="<?php echo get_phrase('book_help'); ?>">
 
-			<span class="glow"></span>
+        <!--<i class="icon-book icon-1x"></i>-->
 
-				<a href="<?php echo base_url();?>index.php?admin/book" rel="tooltip" data-placement="right" 
+        <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
 
-                	data-original-title="<?php echo get_phrase('book_help');?>">
+        <span><?php echo get_phrase('library'); ?></span>
 
-					<!--<i class="icon-book icon-1x"></i>-->
+    </a>
 
-                    <img src="<?php echo base_url();?>template/images/icons/book.png" />
+</li>
 
-					<span><?php echo get_phrase('library');?></span>
 
-				</a>
+<!------Empresas----->
 
-		</li>
+<li class="<?php if ($page_name == 'empresas') echo 'dark-nav active'; ?>">
 
-        
- <!------Empresas----->
-       
-	<li class="<?php if($page_name == 'empresas')echo 'dark-nav active';?>">
+    <span class="glow"></span>
 
-			<span class="glow"></span>
+    <a href="<?php echo base_url(); ?>index.php?admin/empresas" rel="tooltip" data-placement="right"
 
-				<a href="<?php echo base_url();?>index.php?admin/empresas" rel="tooltip" data-placement="right" 
+       data-original-title="<?php echo get_phrase('empresas'); ?>">
 
-                	data-original-title="<?php echo get_phrase('empresas');?>">
+        <!--<i class="icon-book icon-1x"></i>-->
 
-					<!--<i class="icon-book icon-1x"></i>-->
+        <img src="<?php echo base_url(); ?>template/images/icons/dormitory.png"/>
 
-                    <img src="<?php echo base_url();?>template/images/icons/dormitory.png" />
+        <span><?php echo get_phrase('empresas'); ?></span>
 
-					<span><?php echo get_phrase('empresas');?></span>
+    </a>
 
-				</a>
+</li>
 
-		</li>
 
-        
+<!------noticeboard----->
 
-        <!------noticeboard----->
+<li class="<?php if ($page_name == 'noticeboard') echo 'dark-nav active'; ?>">
 
-		<li class="<?php if($page_name == 'noticeboard')echo 'dark-nav active';?>">
+    <span class="glow"></span>
 
-			<span class="glow"></span>
+    <a href="<?php echo base_url(); ?>index.php?admin/noticeboard" rel="tooltip" data-placement="right"
 
-				<a href="<?php echo base_url();?>index.php?admin/noticeboard" rel="tooltip" data-placement="right" 
+       data-original-title="<?php echo get_phrase('noticeboard_help'); ?>">
 
-                	data-original-title="<?php echo get_phrase('noticeboard_help');?>">
+        <!--<i class="icon-columns icon-1x"></i>-->
 
-					<!--<i class="icon-columns icon-1x"></i>-->
+        <img src="<?php echo base_url(); ?>template/images/icons/noticeboard.png"/>
 
-                    <img src="<?php echo base_url();?>template/images/icons/noticeboard.png" />
+        <span><?php echo get_phrase('noticeboard-event'); ?></span>
 
-					<span><?php echo get_phrase('noticeboard-event');?></span>
+    </a>
 
-				</a>
+</li>
 
-		</li>
 
-        
+<!------system settings------>
 
+<li class="dark-nav <?php if ($page_name == 'system_settings' ||
 
+    $page_name == 'manage_language' ||
 
-		
+    $page_name == 'backup_restore'
+) echo 'active';?>">
 
+    <span class="glow"></span>
 
+    <a class="accordion-toggle  " data-toggle="collapse" href="#settings_submenu" rel="tooltip" data-placement="right"
 
-        
+       data-original-title="<?php echo get_phrase('bed_ward_help'); ?>">
 
-        <!------system settings------>
+        <!--<i class="icon-wrench icon-1x"></i>-->
 
-		<li class="dark-nav <?php if(	$page_name == 'system_settings' 		|| 
+        <img src="<?php echo base_url(); ?>template/images/icons/settings.png"/>
 
-										$page_name == 'manage_language' 		|| 
+        <span><?php echo get_phrase('settings'); ?><i class="icon-caret-down"></i></span>
 
-										$page_name == 'backup_restore' )echo 'active';?>">
+    </a>
 
-			<span class="glow"></span>
 
-            <a class="accordion-toggle  " data-toggle="collapse" href="#settings_submenu" rel="tooltip" data-placement="right" 
+    <ul id="settings_submenu" class="collapse <?php if ($page_name == 'system_settings' ||
 
-                data-original-title="<?php echo get_phrase('bed_ward_help');?>">
+        $page_name == 'manage_language' ||
 
-                <!--<i class="icon-wrench icon-1x"></i>-->
+        $page_name == 'backup_restore'
+    ) echo 'in';?>">
 
-                <img src="<?php echo base_url();?>template/images/icons/settings.png" />
+        <li class="<?php if ($page_name == 'system_settings') echo 'active'; ?>">
 
-                <span><?php echo get_phrase('settings');?><i class="icon-caret-down"></i></span>
+            <a href="<?php echo base_url(); ?>index.php?admin/system_settings">
+
+                <!--<i class="icon-h-sign"></i>-->
+
+                <img src="<?php echo base_url(); ?>template/images/icons/system_settings.png"/>
+
+                <?php echo get_phrase('system_settings'); ?>
 
             </a>
 
-            
+        </li>
 
-            <ul id="settings_submenu" class="collapse <?php if(	$page_name == 'system_settings' 		|| 
+        <li class="<?php if ($page_name == 'manage_language') echo 'active'; ?>">
 
-																$page_name == 'manage_language' 		|| 
+            <a href="<?php echo base_url(); ?>index.php?admin/manage_language">
 
-																$page_name == 'backup_restore' )echo 'in';?>">
+                <!--<i class="icon-globe"></i>-->
 
-                <li class="<?php if($page_name == 'system_settings')echo 'active';?>">
+                <img src="<?php echo base_url(); ?>template/images/icons/language.png"/>
 
-                  <a href="<?php echo base_url();?>index.php?admin/system_settings">
+                <?php echo get_phrase('manage_language'); ?>
 
-                  		<!--<i class="icon-h-sign"></i>-->
+            </a>
 
-                  		<img src="<?php echo base_url();?>template/images/icons/system_settings.png" />
+        </li>
 
-                    	<?php echo get_phrase('system_settings');?>
+        <li class="<?php if ($page_name == 'backup_restore') echo 'active'; ?>">
 
-                  </a>
+            <a href="<?php echo base_url(); ?>index.php?admin/backup_restore">
 
-                </li>
+                <!--<i class="icon-download-alt"></i>-->
 
-                <li class="<?php if($page_name == 'manage_language')echo 'active';?>">
+                <img src="<?php echo base_url(); ?>template/images/icons/backup.png"/>
 
-                  <a href="<?php echo base_url();?>index.php?admin/manage_language">
+                <?php echo get_phrase('backup_restore'); ?>
 
-                      	<!--<i class="icon-globe"></i>-->
+            </a>
 
-                    	<img src="<?php echo base_url();?>template/images/icons/language.png" />
+        </li>
 
-						<?php echo get_phrase('manage_language');?>
+    </ul>
 
-                  </a>
-
-                </li>
-
-                <li class="<?php if($page_name == 'backup_restore')echo 'active';?>">
-
-                  <a href="<?php echo base_url();?>index.php?admin/backup_restore">
-
-                      	<!--<i class="icon-download-alt"></i>-->
-
-                    	<img src="<?php echo base_url();?>template/images/icons/backup.png" />
-
-						<?php echo get_phrase('backup_restore');?>
-
-                  </a>
-
-                </li>
-
-            </ul>
-
-		</li>
+</li>
 
 
+<!------manage own profile--->
 
-		<!------manage own profile--->
+<li class="<?php if ($page_name == 'manage_profile') echo 'dark-nav active'; ?>">
 
-		<li class="<?php if($page_name == 'manage_profile')echo 'dark-nav active';?>">
+    <span class="glow"></span>
 
-			<span class="glow"></span>
+    <a href="<?php echo base_url(); ?>index.php?admin/manage_profile" rel="tooltip" data-placement="right"
 
-				<a href="<?php echo base_url();?>index.php?admin/manage_profile" rel="tooltip" data-placement="right" 
+       data-original-title="<?php echo get_phrase('profile_help'); ?>">
 
-                	data-original-title="<?php echo get_phrase('profile_help');?>">
+        <!--<i class="icon-lock icon-1x"></i>-->
 
-					<!--<i class="icon-lock icon-1x"></i>-->
+        <img src="<?php echo base_url(); ?>template/images/icons/profile.png"/>
 
-                    <img src="<?php echo base_url();?>template/images/icons/profile.png" />
+        <span><?php echo get_phrase('profile'); ?></span>
 
-					<span><?php echo get_phrase('profile');?></span>
+    </a>
 
-				</a>
+</li>
 
-		</li>
 
-		
+</ul>
 
-	</ul>
-
-	
 
 </div>

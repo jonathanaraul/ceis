@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-10-2014 a las 01:01:12
+-- Tiempo de generación: 20-10-2014 a las 05:36:30
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=469 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=517 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -719,7 +719,55 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (465, 'convenio_sena', ''),
 (466, 'convenio_sena', ''),
 (467, 'convenio_sena', ''),
-(468, 'convenio_sena', '');
+(468, 'convenio_sena', ''),
+(469, 'Recepción', ''),
+(470, 'convenio_sena', ''),
+(471, 'convenio_sena', ''),
+(472, 'convenio_sena', ''),
+(473, 'Barrio', ''),
+(474, 'departamento', ''),
+(475, 'Municipio', ''),
+(476, 'convenio_sena', ''),
+(477, 'Direccion de residencia', ''),
+(478, 'convenio_sena', ''),
+(479, 'telefono_residencia', ''),
+(480, 'convenio_sena', ''),
+(481, 'convenio_sena', ''),
+(482, 'Amazonas', ''),
+(483, 'Antioquia', ''),
+(484, 'Arauca', ''),
+(485, 'Atlantico', ''),
+(486, 'Bolivar', ''),
+(487, 'Boyaca', ''),
+(488, 'Caldas', ''),
+(489, 'Caqueta', ''),
+(490, 'Casanare', ''),
+(491, 'Cauca', ''),
+(492, 'Cesar', ''),
+(493, 'Choco', ''),
+(494, 'Cordoba', ''),
+(495, 'Cundinamarca', ''),
+(496, 'Guainia', ''),
+(497, 'Guaviare', ''),
+(498, 'Huila', ''),
+(499, 'La Guajira', ''),
+(500, 'Magdalena', ''),
+(501, 'Meta', ''),
+(502, 'Nariño', ''),
+(503, 'Norte de Santander', ''),
+(504, 'Putumayo', ''),
+(505, 'Quindio', ''),
+(506, 'Risaralda', ''),
+(507, 'San Andres y Providencia', ''),
+(508, 'Santander', ''),
+(509, 'Sucre', ''),
+(510, 'Tolima', ''),
+(511, 'Valle del Cauca', ''),
+(512, 'Vaupes', ''),
+(513, 'Vichada', ''),
+(514, 'convenio_sena', ''),
+(515, 'convenio_sena', ''),
+(516, 'convenio_sena', '');
 
 -- --------------------------------------------------------
 
@@ -835,8 +883,6 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `documento` longtext COLLATE utf8_unicode_ci NOT NULL,
   `ndocumento` int(18) NOT NULL,
-  `lexpedicion` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `fchaexp` longtext COLLATE utf8_unicode_ci NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `snombre` longtext COLLATE utf8_unicode_ci NOT NULL,
   `papellido` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -868,18 +914,21 @@ CREATE TABLE IF NOT EXISTS `student` (
   `nom_subsector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cod_dep_dom` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sena` tinyint(2) NOT NULL,
+  `barrio` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `student`
 --
 
-INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `lexpedicion`, `fchaexp`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`) VALUES
-(1, 'CC', 1143124464, 'soled', '09/10/2014', 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(2, 'CC', 32323232, '2', '09/02/2014', 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(3, 'CC', 1129509228, 'Barranquilla', '05/18/2006', 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(4, 'CC', 1140834339, 'Barranquilla', '', 'CINDY', 'PAOLA', 'GONZALEZ', 'OSORIO', '', 'female', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`, `barrio`, `departamento`, `municipio`) VALUES
+(1, 'CC', 1143124464, 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+(2, 'CC', 32323232, 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+(3, 'CC', 1129509228, 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+(4, 'CC', 1140834339, 'CINDY', 'PAOLA', 'GONZALEZ', 'OSORIO', '', 'female', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

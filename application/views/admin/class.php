@@ -1,260 +1,272 @@
 <div class="box">
 
-	<div class="box-header">
+<div class="box-header">
 
-    
 
-    	<!------CONTROL TABS START------->
+    <!------CONTROL TABS START------->
 
-		<ul class="nav nav-tabs nav-tabs-left">
+    <ul class="nav nav-tabs nav-tabs-left">
 
-			<li class="active">
+        <li class="active">
 
-            	<a href="#list" data-toggle="tab"><i class="icon-align-justify"></i> 
+            <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
 
-					<?php echo get_phrase('class_list');?>
+                <?php echo get_phrase('class_list'); ?>
 
-                    	</a></li>
+            </a></li>
 
-			<li>
+        <li>
 
-            	<a href="#add" data-toggle="tab"><i class="icon-plus"></i>
+            <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
 
-					<?php echo get_phrase('add_class');?>
+                <?php echo get_phrase('add_class'); ?>
 
-                    	</a></li>
+            </a></li>
 
-		</ul>
+    </ul>
 
-    	<!------CONTROL TABS END------->
+    <!------CONTROL TABS END------->
 
-        
 
-	</div>
+</div>
 
-	<div class="box-content padded">
+<div class="box-content padded">
 
-		<div class="tab-content">
+<div class="tab-content">
 
-            <!----TABLE LISTING STARTS--->
+<!----TABLE LISTING STARTS--->
 
-            <div class="tab-pane box <?php if(!isset($edit_data))echo 'active';?>" id="list">
+<div class="tab-pane box <?php if (!isset($edit_data)) echo 'active'; ?>" id="list">
 
-				
 
-                <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
+    <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
 
-                	<thead>
+        <thead>
 
-                		<tr>
+        <tr>
 
-                    		<th><div>#</div></th>
+            <th>
+                <div>#</div>
+            </th>
 
-                    		<th><div><?php echo get_phrase('class_name');?></div></th>
+            <th>
+                <div><?php echo get_phrase('class_name'); ?></div>
+            </th>
 
-                    		<th><div><?php echo get_phrase('fecha_de_inicio');?></div></th>
+            <th>
+                <div><?php echo get_phrase('fecha_de_inicio'); ?></div>
+            </th>
 
-                    		<th><div><?php echo get_phrase('fecha_de_fin');?></div></th>
-                            <th><div><?php echo get_phrase('hora_de_inicio');?></div></th>
+            <th>
+                <div><?php echo get_phrase('fecha_de_fin'); ?></div>
+            </th>
+            <th>
+                <div><?php echo get_phrase('hora_de_inicio'); ?></div>
+            </th>
 
-                    		<th><div><?php echo get_phrase('hora_de_fin');?></div></th>
-                            <th><div><?php echo get_phrase('cupo');?></div></th>
-                            <th><div><?php echo get_phrase('opciones');?></div></th>
+            <th>
+                <div><?php echo get_phrase('hora_de_fin'); ?></div>
+            </th>
+            <th>
+                <div><?php echo get_phrase('cupo'); ?></div>
+            </th>
+            <th>
+                <div><?php echo get_phrase('opciones'); ?></div>
+            </th>
 
-						</tr>
+        </tr>
 
-					</thead>
+        </thead>
 
-                    <tbody>
+        <tbody>
 
-                    	<?php $count = 1;foreach($classes as $row):?>
+        <?php $count = 1;
+        foreach ($classes as $row): ?>
 
-                        <tr>
+            <tr>
 
-                            <td><?php echo $count++;?></td>
+                <td><?php echo $count++; ?></td>
 
-							<td><?php echo $row['name'];?></td>
+                <td><?php echo $row['name']; ?></td>
 
-							<td><?php echo $row['fcha_inicio'];?></td>
-                            
-                            <td><?php echo $row['fcha_fin'];?></td>
+                <td><?php echo $row['fcha_inicio']; ?></td>
 
-							<td><?php echo $row['hora_inicio'];?></td>
-                            <td><?php echo $row['hora_fin'];?></td>
-                             <td><?php echo $row['cupo'];?></td>
+                <td><?php echo $row['fcha_fin']; ?></td>
 
+                <td><?php echo $row['hora_inicio']; ?></td>
+                <td><?php echo $row['hora_fin']; ?></td>
+                <td><?php echo $row['cupo']; ?></td>
 
-							
 
-							<td align="center">
+                <td align="center">
 
-                            	<a data-toggle="modal" href="#modal-form" onclick="modal('edit_class',<?php echo $row['class_id'];?>)" class="btn btn-gray btn-small">
+                    <a data-toggle="modal" href="#modal-form"
+                       onclick="modal('edit_class',<?php echo $row['class_id']; ?>)" class="btn btn-gray btn-small">
 
-                                		<i class="icon-wrench"></i> <?php echo get_phrase('edit');?>
+                        <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
 
-                                </a>
+                    </a>
 
-                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>index.php?admin/classes/delete/<?php echo $row['class_id'];?>')" class="btn btn-red btn-small">
+                    <a data-toggle="modal" href="#modal-delete"
+                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/classes/delete/<?php echo $row['class_id']; ?>')"
+                       class="btn btn-red btn-small">
 
-                                		<i class="icon-trash"></i> <?php echo get_phrase('delete');?>
+                        <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
 
-                                </a>
+                    </a>
 
-        					</td>
+                </td>
 
-                        </tr>
+            </tr>
 
-                        <?php endforeach;?>
+        <?php endforeach; ?>
 
-                    </tbody>
+        </tbody>
 
-                </table>
+    </table>
 
-			</div>
+</div>
 
-            <!----TABLE LISTING ENDS--->
+<!----TABLE LISTING ENDS--->
 
-            
 
-            
+<!----CREATION FORM STARTS---->
 
-			<!----CREATION FORM STARTS---->
+<div class="tab-pane box" id="add" style="padding: 5px">
 
-			<div class="tab-pane box" id="add" style="padding: 5px">
+    <div class="box-content">
 
-                <div class="box-content">
+        <?php echo form_open('admin/classes/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
-                	<?php echo form_open('admin/classes/create' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
+        <div class="padded">
 
-                        <div class="padded">
+            <div class="control-group">
 
-                            <div class="control-group">
+                <label class="control-label"><?php echo get_phrase('name'); ?></label>
 
-                                <label class="control-label"><?php echo get_phrase('name');?></label>
+                <div class="controls">
 
-                                <div class="controls">
+                    <input type="text" class="validate[required]" name="name"/>
 
-                                    <input type="text" class="validate[required]" name="name"/>
+                </div>
 
-                                </div>
+            </div>
+            <!--no guarda  -->
+            <div class="control-group">
 
-                            </div>
-<!--no guarda  -->                 <div class="control-group">
+                <label class="control-label"><?php echo get_phrase('fecha_inicio'); ?></label>
 
-                                <label class="control-label"><?php echo get_phrase('fecha_inicio');?></label>
+                <div class="controls">
 
-                                <div class="controls">
+                    <input type="text" class="datepicker fill-up" name="fcha_inicio"/>
 
-                                    <input type="text" class="datepicker fill-up" name="fcha_inicio"/>
+                </div>
 
-                                </div>
+            </div>
 
-                            </div>
-                            
-                               <div class="control-group">
+            <div class="control-group">
 
-                                <label class="control-label"><?php echo get_phrase('fecha_fin');?></label>
+                <label class="control-label"><?php echo get_phrase('fecha_fin'); ?></label>
 
-                                <div class="controls">
+                <div class="controls">
 
-                                    <input type="text" class="datepicker fill-up" name="fcha_fin"/>
+                    <input type="text" class="datepicker fill-up" name="fcha_fin"/>
 
-                                </div>
+                </div>
 
-                            </div>
-                            
-                            
-                              <div class="control-group">
+            </div>
 
-                                <label class="control-label"><?php echo get_phrase('cupo_disponible');?></label>
 
-                                <div class="controls">
+            <div class="control-group">
 
-                                    <input type="text" class="validate[required]" name="cupo"/>
+                <label class="control-label"><?php echo get_phrase('cupo_disponible'); ?></label>
 
-                                </div>
+                <div class="controls">
 
-                            </div>
-                            
-                             <div class="control-group">
+                    <input type="text" class="validate[required]" name="cupo"/>
 
-                                <label class="control-label"><?php echo get_phrase('starting_time');?></label>
+                </div>
 
-                                <div class="controls">
+            </div>
 
-                                    <select name="hora_inicio" class="uniform" style="width:100%;">
+            <div class="control-group">
 
-										<?php for($i = 0; $i <= 12 ; $i++):?>
+                <label class="control-label"><?php echo get_phrase('starting_time'); ?></label>
 
-                                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                <div class="controls">
 
-                                        <?php endfor;?>
+                    <select name="hora_inicio" class="uniform" style="width:100%;">
 
-                                    </select>
+                        <?php for ($i = 0; $i <= 12; $i++): ?>
 
-                                    <select name="starting_ampm" class="uniform" style="width:100%">
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 
-                                    	<option value="1">am</option>
+                        <?php endfor; ?>
 
-                                    	<option value="2">pm</option>
+                    </select>
 
-                                    </select>
+                    <select name="starting_ampm" class="uniform" style="width:100%">
 
-                                </div>
+                        <option value="1">am</option>
 
-                            </div>
+                        <option value="2">pm</option>
 
-                            <div class="control-group">
+                    </select>
 
-                                <label class="control-label"><?php echo get_phrase('ending_time');?></label>
+                </div>
 
-                                <div class="controls">
+            </div>
 
-                                    <select name="hora_fin" class="uniform" style="width:100%;">
+            <div class="control-group">
 
-										<?php for($i = 0; $i <= 12 ; $i++):?>
+                <label class="control-label"><?php echo get_phrase('ending_time'); ?></label>
 
-                                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                <div class="controls">
 
-                                        <?php endfor;?>
+                    <select name="hora_fin" class="uniform" style="width:100%;">
 
-                                    </select>
+                        <?php for ($i = 0; $i <= 12; $i++): ?>
 
-                                    <select name="ending_ampm" class="uniform" style="width:100%">
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 
-                                    	<option value="1">am</option>
+                        <?php endfor; ?>
 
-                                    	<option value="2">pm</option>
+                    </select>
 
-                                    </select>
+                    <select name="ending_ampm" class="uniform" style="width:100%">
 
-                                </div>
+                        <option value="1">am</option>
 
-                            </div>
+                        <option value="2">pm</option>
 
-<!--aqui no ha guardado nada -->
-                           
+                    </select>
 
-                        </div>
+                </div>
 
-                        <div class="form-actions">
+            </div>
 
-                            <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_class');?></button>
+            <!--aqui no ha guardado nada -->
 
-                        </div>
 
-                    </form>                
+        </div>
 
-                </div>                
+        <div class="form-actions">
 
-			</div>
+            <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_class'); ?></button>
 
-			<!----CREATION FORM ENDS--->
+        </div>
 
-            
+        </form>
 
-		</div>
+    </div>
 
-	</div>
+</div>
+
+<!----CREATION FORM ENDS--->
+
+
+</div>
+
+</div>
 
 </div>
