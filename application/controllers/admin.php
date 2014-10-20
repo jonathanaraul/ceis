@@ -122,11 +122,42 @@ class Admin extends CI_Controller
 			$data['email']       = $this->input->post('email');
 			$data['class_id']    = $this->input->post('class_id');
 
-            $data['cod_regional']    = $this->input->post('cod_regional');
-            $data['nom_regional']    = $this->input->post('nom_regional');
-            $data['cod_departamento']    = $this->input->post('cod_departamento');
-            $data['nom_departamento']    = $this->input->post('nom_departamento');
-            
+            $convenio   = $this->input->post('convenio');
+            if($convenio=='convenio_sena'){
+                $data['sena']    = 1;
+                $data['cod_regional']    = $this->input->post('cod_regional');
+                $data['nom_regional']    = $this->input->post('nom_regional');
+                $data['cod_departamento']    = $this->input->post('cod_departamento');
+                $data['nom_departamento']    = $this->input->post('nom_departamento');
+                $data['cod_municipio']    = $this->input->post('cod_municipio');         
+                $data['nom_municipio']    = $this->input->post('nom_municipio');         
+                $data['emp_gremio']    = $this->input->post('emp_gremio');         
+                $data['lin_formacion']    = $this->input->post('lin_formacion');         
+                $data['cod_ocupacion']    = $this->input->post('cod_ocupacion');            
+                $data['nom_ocupacion']    = $this->input->post('nom_ocupacion');         
+                $data['cod_curso']    = $this->input->post('cod_curso');         
+                $data['nom_sector_eco']    = $this->input->post('nom_sector_eco');         
+                $data['nom_subsector_eco']    = $this->input->post('nom_subsector_eco');         
+                $data['cod_dep_dom']    = $this->input->post('cod_dep_dom');
+
+            }
+            else{
+                $data['sena']    = 0;
+                $data['cod_regional']    = null;
+                $data['nom_regional']    = null;
+                $data['cod_departamento']    = null;
+                $data['nom_departamento']    = null;
+                $data['cod_municipio']    = null;        
+                $data['nom_municipio']    = null;      
+                $data['emp_gremio']    = null;      
+                $data['lin_formacion']    = null;        
+                $data['cod_ocupacion']    = null;          
+                $data['nom_ocupacion']    = null;        
+                $data['cod_curso']    = null;      
+                $data['nom_sector_eco']    = null;  
+                $data['nom_subsector_eco']    = null;        
+                $data['cod_dep_dom']    = null;
+            }
 
             $this->db->insert('student', $data);
 
@@ -163,11 +194,41 @@ class Admin extends CI_Controller
 			$data['email']       = $this->input->post('email');
 			$data['class_id']    = $this->input->post('class_id');
             
-            $data['cod_regional']    = $this->input->post('cod_regional');
-            $data['nom_regional']    = $this->input->post('nom_regional');
-            $data['cod_departamento']    = $this->input->post('cod_departamento');
-            $data['nom_departamento']    = $this->input->post('nom_departamento');
-            
+            $convenio   = $this->input->post('convenio');
+            if($convenio=='convenio_sena'){
+                $data['sena']    = 1;
+                $data['cod_regional']    = $this->input->post('cod_regional');
+                $data['nom_regional']    = $this->input->post('nom_regional');
+                $data['cod_departamento']    = $this->input->post('cod_departamento');
+                $data['nom_departamento']    = $this->input->post('nom_departamento');
+                $data['cod_municipio']    = $this->input->post('cod_municipio');         
+                $data['nom_municipio']    = $this->input->post('nom_municipio');         
+                $data['emp_gremio']    = $this->input->post('emp_gremio');         
+                $data['lin_formacion']    = $this->input->post('lin_formacion');         
+                $data['cod_ocupacion']    = $this->input->post('cod_ocupacion');            
+                $data['nom_ocupacion']    = $this->input->post('nom_ocupacion');         
+                $data['cod_curso']    = $this->input->post('cod_curso');         
+                $data['nom_sector_eco']    = $this->input->post('nom_sector_eco');         
+                $data['nom_subsector_eco']    = $this->input->post('nom_subsector_eco');         
+                $data['cod_dep_dom']    = $this->input->post('cod_dep_dom');
+            }
+            else{
+                $data['sena']    = 0;
+                $data['cod_regional']    = null;
+                $data['nom_regional']    = null;
+                $data['cod_departamento']    = null;
+                $data['nom_departamento']    = null;
+                $data['cod_municipio']    = null;        
+                $data['nom_municipio']    = null;      
+                $data['emp_gremio']    = null;      
+                $data['lin_formacion']    = null;        
+                $data['cod_ocupacion']    = null;          
+                $data['nom_ocupacion']    = null;        
+                $data['cod_curso']    = null;      
+                $data['nom_sector_eco']    = null;  
+                $data['nom_subsector_eco']    = null;        
+                $data['cod_dep_dom']    = null;
+            }
 
             $this->db->where('student_id', $param3);
 

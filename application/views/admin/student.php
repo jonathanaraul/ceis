@@ -293,7 +293,7 @@ function mostrarTmilitar(valor){
               </div>
             </div>
             
-            <div class="control-group divconvenio_sena" sstyle="display: none;">
+            <div class="control-group divconvenio_sena" style="display: none;">
               <label class="control-label"><?php echo get_phrase('codigo_regional');?></label>
               <div class="controls">
                 <input type="text" class="" name="cod_regional"/>
@@ -315,6 +315,66 @@ function mostrarTmilitar(valor){
               <label class="control-label"><?php echo get_phrase('nombre_departamento');?></label>
               <div class="controls">
                 <input type="text" class="" name="nom_departamento"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('codigo_municipio');?></label>
+              <div class="controls">
+                <input type="text" class="" name="cod_municipio"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_municipio');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_municipio"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('empresa_gremio');?></label>
+              <div class="controls">
+                <input type="text" class="" name="emp_gremio"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('linea_formacion');?></label>
+              <div class="controls">
+                <input type="text" class="" name="lin_formacion"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('codigo_ocupacion');?></label>
+              <div class="controls">
+                <input type="text" class="" name="cod_ocupacion"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_ocupacion');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_ocupacion"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('codigo_curso');?></label>
+              <div class="controls">
+                <input type="text" class="" name="cod_curso"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_sector_economico');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_sector_eco"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('nombre_subsector_economico');?></label>
+              <div class="controls">
+                <input type="text" class="" name="nom_subsector_eco"/>
+              </div>
+            </div>
+            <div class="control-group divconvenio_sena" style="display: none;">
+              <label class="control-label"><?php echo get_phrase('cod_dep_dom');?></label>
+              <div class="controls">
+                <input type="text" class="" name="cod_dep_dom"/>
               </div>
             </div>
 
