@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 20, 2014 at 07:09 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Servidor: localhost
+-- Tiempo de generación: 21-10-2014 a las 07:40:38
+-- Versión del servidor: 5.6.12-log
+-- Versión de PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ceiscomc_ceisc`
+-- Base de datos: `ceiscomc_ceisc`
 --
+CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Estructura de tabla para la tabla `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-`admin_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `level` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `level` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `admin`
+-- Volcado de datos para la tabla `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `name`, `email`, `password`, `level`) VALUES
@@ -48,37 +51,39 @@ INSERT INTO `admin` (`admin_id`, `name`, `email`, `password`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Estructura de tabla para la tabla `book`
 --
 
 CREATE TABLE IF NOT EXISTS `book` (
-`book_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `author` longtext COLLATE utf8_unicode_ci NOT NULL,
   `class_id` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `price` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `price` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Estructura de tabla para la tabla `class`
 --
 
 CREATE TABLE IF NOT EXISTS `class` (
-`class_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `fcha_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `fcha_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `cupo` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `cupo` int(11) NOT NULL,
+  PRIMARY KEY (`class_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `class`
+-- Volcado de datos para la tabla `class`
 --
 
 INSERT INTO `class` (`class_id`, `name`, `fcha_inicio`, `fcha_fin`, `hora_inicio`, `hora_fin`, `cupo`) VALUES
@@ -88,20 +93,21 @@ INSERT INTO `class` (`class_id`, `name`, `fcha_inicio`, `fcha_fin`, `hora_inicio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class_routine`
+-- Estructura de tabla para la tabla `class_routine`
 --
 
 CREATE TABLE IF NOT EXISTS `class_routine` (
-`class_routine_id` int(11) NOT NULL,
+  `class_routine_id` int(11) NOT NULL AUTO_INCREMENT,
   `class_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `time_start` int(11) NOT NULL,
   `time_end` int(11) NOT NULL,
-  `day` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `day` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`class_routine_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `class_routine`
+-- Volcado de datos para la tabla `class_routine`
 --
 
 INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time_start`, `time_end`, `day`) VALUES
@@ -110,16 +116,17 @@ INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departamento`
+-- Estructura de tabla para la tabla `departamento`
 --
 
 CREATE TABLE IF NOT EXISTS `departamento` (
-`id` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
--- Dumping data for table `departamento`
+-- Volcado de datos para la tabla `departamento`
 --
 
 INSERT INTO `departamento` (`id`, `nombre`) VALUES
@@ -159,44 +166,47 @@ INSERT INTO `departamento` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dormitory`
+-- Estructura de tabla para la tabla `dormitory`
 --
 
 CREATE TABLE IF NOT EXISTS `dormitory` (
-`dormitory_id` int(11) NOT NULL,
+  `dormitory_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `number_of_room` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`dormitory_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `email_template`
+-- Estructura de tabla para la tabla `email_template`
 --
 
 CREATE TABLE IF NOT EXISTS `email_template` (
-`email_template_id` int(11) NOT NULL,
+  `email_template_id` int(11) NOT NULL AUTO_INCREMENT,
   `task` longtext COLLATE utf8_unicode_ci NOT NULL,
   `subject` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `body` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `body` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`email_template_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresas`
+-- Estructura de tabla para la tabla `empresas`
 --
 
 CREATE TABLE IF NOT EXISTS `empresas` (
-`empresas_id` int(11) NOT NULL,
+  `empresas_id` int(11) NOT NULL AUTO_INCREMENT,
   `nit_empresas` int(11) NOT NULL,
   `nombre_empresas` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `contacto_empresa` int(13) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `contacto_empresa` int(13) NOT NULL,
+  PRIMARY KEY (`empresas_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `empresas`
+-- Volcado de datos para la tabla `empresas`
 --
 
 INSERT INTO `empresas` (`empresas_id`, `nit_empresas`, `nombre_empresas`, `contacto_empresa`) VALUES
@@ -206,18 +216,19 @@ INSERT INTO `empresas` (`empresas_id`, `nit_empresas`, `nombre_empresas`, `conta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exam`
+-- Estructura de tabla para la tabla `exam`
 --
 
 CREATE TABLE IF NOT EXISTS `exam` (
-`exam_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `date` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`exam_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `exam`
+-- Volcado de datos para la tabla `exam`
 --
 
 INSERT INTO `exam` (`exam_id`, `name`, `date`, `comment`) VALUES
@@ -226,20 +237,21 @@ INSERT INTO `exam` (`exam_id`, `name`, `date`, `comment`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grade`
+-- Estructura de tabla para la tabla `grade`
 --
 
 CREATE TABLE IF NOT EXISTS `grade` (
-`grade_id` int(11) NOT NULL,
+  `grade_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `grade_point` longtext COLLATE utf8_unicode_ci NOT NULL,
   `mark_from` int(11) NOT NULL,
   `mark_upto` int(11) NOT NULL,
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`grade_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `grade`
+-- Volcado de datos para la tabla `grade`
 --
 
 INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`, `comment`) VALUES
@@ -248,11 +260,11 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoice`
+-- Estructura de tabla para la tabla `invoice`
 --
 
 CREATE TABLE IF NOT EXISTS `invoice` (
-`invoice_id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `title` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -261,11 +273,12 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `payment_timestamp` longtext COLLATE utf8_unicode_ci NOT NULL,
   `payment_method` longtext COLLATE utf8_unicode_ci NOT NULL,
   `payment_details` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `status` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'paid or unpaid'
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'paid or unpaid',
+  PRIMARY KEY (`invoice_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `invoice`
+-- Volcado de datos para la tabla `invoice`
 --
 
 INSERT INTO `invoice` (`invoice_id`, `student_id`, `title`, `description`, `amount`, `creation_timestamp`, `payment_timestamp`, `payment_method`, `payment_details`, `status`) VALUES
@@ -274,17 +287,18 @@ INSERT INTO `invoice` (`invoice_id`, `student_id`, `title`, `description`, `amou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language`
+-- Estructura de tabla para la tabla `language`
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-`phrase_id` int(11) NOT NULL,
+  `phrase_id` int(11) NOT NULL AUTO_INCREMENT,
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `english` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=596 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `english` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`phrase_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=610 ;
 
 --
--- Dumping data for table `language`
+-- Volcado de datos para la tabla `language`
 --
 
 INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
@@ -809,89 +823,103 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (519, 'Recepción', ''),
 (520, 'convenio_sena', ''),
 (521, 'convenio_sena', ''),
-(522, 'Recepción', ''),
-(523, 'convenio_sena', ''),
+(522, 'convenio_sena', ''),
+(523, 'Recepción', ''),
 (524, 'convenio_sena', ''),
-(525, 'convenio_sena', ''),
-(526, 'prueba', ''),
-(527, 'Ninguna', ''),
-(528, 'INDIGENAS_DESPLAZADOS_POR_LA VIOLENCIA', ''),
-(529, 'convenio_sena', ''),
-(530, 'INDIGENAS_DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA', ''),
-(531, 'DESPLAZADOS_POR_LA_VIOLENCIA ', ''),
-(532, 'DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA', ''),
-(533, 'AFROCOLOMBIANOS_DESPLAZADOS_POR_LA_VIOLENCIA', ''),
-(534, 'DESPLAZADOS_DISCAPACITADOS', ''),
-(535, 'DESPLAZADOS_POR_FENOMENOS_NATURALES ', ''),
-(536, 'CABEZA_DE_FAMILIA', ''),
-(537, 'INDIGENAS', ''),
-(538, 'INPEC', ''),
-(539, 'JOVENES_VULNERABLES', ''),
-(540, 'ADOLESCENTE_EN_CONFLICTO_CON_LA_LEY_PENAL', ''),
-(541, 'MUJER_CABEZA_DE_FAMILIA', ''),
-(542, 'NEGRITUDES', ''),
-(543, 'PROC_REINTEGRACION', ''),
-(544, 'ADOLESCENTE_DESVINCULADO_DE_GRUPOS_ARMADOS_ORGANIZADOS', ''),
-(545, 'ADOLESCENTE_TRABAJADORo', ''),
-(546, 'ARTESANOS', ''),
-(547, 'MICROEMPRESAS', ''),
-(548, 'EMPRENDEDORES', ''),
-(549, 'REMITIDOS_POR_EL_CIE', ''),
-(550, 'REMITIDOS_POR_EL_PAL', ''),
-(551, 'SOLDADOS_CAMPESINOS', ''),
-(552, 'SOBREVIVIENTES_MINAS_ANTIPERSONALES', ''),
-(553, 'AFROCOLOMBIANOS', ''),
-(554, 'PALENQUEROS', ''),
-(555, 'RAIZALES', ''),
-(556, 'ROM', ''),
+(525, 'prueba', ''),
+(526, 'Ninguna', ''),
+(527, 'INDIGENAS_DESPLAZADOS_POR_LA VIOLENCIA', ''),
+(528, 'INDIGENAS_DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA', ''),
+(529, 'DESPLAZADOS_POR_LA_VIOLENCIA ', ''),
+(530, 'DESPLAZADOS_POR_LA_VIOLENCIA_CABEZA_DE_FAMILIA', ''),
+(531, 'AFROCOLOMBIANOS_DESPLAZADOS_POR_LA_VIOLENCIA', ''),
+(532, 'DESPLAZADOS_DISCAPACITADOS', ''),
+(533, 'DESPLAZADOS_POR_FENOMENOS_NATURALES ', ''),
+(534, 'CABEZA_DE_FAMILIA', ''),
+(535, 'INDIGENAS', ''),
+(536, 'INPEC', ''),
+(537, 'JOVENES_VULNERABLES', ''),
+(538, 'ADOLESCENTE_EN_CONFLICTO_CON_LA_LEY_PENAL', ''),
+(539, 'MUJER_CABEZA_DE_FAMILIA', ''),
+(540, 'NEGRITUDES', ''),
+(541, 'PROC_REINTEGRACION', ''),
+(542, 'ADOLESCENTE_DESVINCULADO_DE_GRUPOS_ARMADOS_ORGANIZADOS', ''),
+(543, 'ADOLESCENTE_TRABAJADORo', ''),
+(544, 'ARTESANOS', ''),
+(545, 'MICROEMPRESAS', ''),
+(546, 'EMPRENDEDORES', ''),
+(547, 'REMITIDOS_POR_EL_CIE', ''),
+(548, 'REMITIDOS_POR_EL_PAL', ''),
+(549, 'SOLDADOS_CAMPESINOS', ''),
+(550, 'SOBREVIVIENTES_MINAS_ANTIPERSONALES', ''),
+(551, 'AFROCOLOMBIANOS', ''),
+(552, 'PALENQUEROS', ''),
+(553, 'RAIZALES', ''),
+(554, 'ROM', ''),
+(555, 'convenio_sena', ''),
+(556, 'caracterizacion', ''),
 (557, 'convenio_sena', ''),
-(558, 'caracterizacion', ''),
-(559, 'convenio_sena', ''),
-(560, 'SENA EMPRESAS/SENA GREMIO', ''),
-(561, 'ALTA GERENCIA/SENA GREMIO', ''),
+(558, 'SENA EMPRESAS/SENA GREMIO', ''),
+(559, 'ALTA GERENCIA/SENA GREMIO', ''),
+(560, 'convenio_sena', ''),
+(561, 'convenio_sena', ''),
 (562, 'convenio_sena', ''),
 (563, 'convenio_sena', ''),
-(564, 'Documentacion', ''),
+(564, 'particular', ''),
 (565, 'convenio_sena', ''),
-(566, 'LM', ''),
+(566, 'convenio_sena', ''),
 (567, 'convenio_sena', ''),
-(568, 'Cedula', ''),
-(569, 'Libreta_Militar', ''),
-(570, 'Certificado_de_Estudios', ''),
-(571, 'Foto', ''),
-(572, 'convenio_sena', ''),
-(573, 'Cedula', ''),
-(574, 'talla_camisa', ''),
-(575, 'convenio_sena', ''),
-(576, 'Cedula', ''),
-(577, 'convenio_sena', ''),
-(578, 'Cedula', ''),
+(568, 'convenio_sena', ''),
+(569, 'convenio_sena', ''),
+(570, 'convenio_sena', ''),
+(571, 'convenio_sena', ''),
+(572, 'Barranquilla', ''),
+(573, 'Cartagena', ''),
+(574, 'Santa Marta', ''),
+(575, 'Valledupar', ''),
+(576, 'convenio_sena', ''),
+(577, 'empresa_y_o_gremio', ''),
+(578, 'convenio_sena', ''),
 (579, 'convenio_sena', ''),
-(580, 'Cedula', ''),
-(581, 'convenio_sena', ''),
-(582, 'Cedula', ''),
-(583, 'convenio_sena', ''),
-(584, 'Cedula', ''),
-(585, 'convenio_sena', ''),
-(586, 'Cedula', ''),
-(587, 'convenio_sena', ''),
-(588, 'Cedula', ''),
-(589, 'convenio_sena', ''),
-(590, 'Cedula', ''),
-(591, 'Certif_de_Est', ''),
+(580, 'Documentacion', ''),
+(581, 'Cedula', ''),
+(582, 'Libreta_Militar', ''),
+(583, 'Certificado_de_Estudios', ''),
+(584, 'Foto', ''),
+(585, 'talla_camisa', ''),
+(586, 'convenio_sena', ''),
+(587, 'Cedula', ''),
+(588, 'convenio_sena', ''),
+(589, 'Cedula', ''),
+(590, 'convenio_sena', ''),
+(591, 'Cedula', ''),
 (592, 'convenio_sena', ''),
 (593, 'Cedula', ''),
 (594, 'convenio_sena', ''),
-(595, 'Cedula', '');
+(595, 'Cedula', ''),
+(596, 'convenio_sena', ''),
+(597, 'Cedula', ''),
+(598, 'convenio_sena', ''),
+(599, 'Cedula', ''),
+(600, 'convenio_sena', ''),
+(601, 'Cedula', ''),
+(602, 'convenio_sena', ''),
+(603, 'Cedula', ''),
+(604, 'convenio_sena', ''),
+(605, 'Cedula', ''),
+(606, 'convenio_sena', ''),
+(607, 'Cedula', ''),
+(608, 'convenio_sena', ''),
+(609, 'Cedula', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mark`
+-- Estructura de tabla para la tabla `mark`
 --
 
 CREATE TABLE IF NOT EXISTS `mark` (
-`mark_id` int(11) NOT NULL,
+  `mark_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -899,23 +927,26 @@ CREATE TABLE IF NOT EXISTS `mark` (
   `mark_obtained` int(11) NOT NULL DEFAULT '0',
   `mark_total` int(11) NOT NULL DEFAULT '100',
   `attendance` int(11) NOT NULL DEFAULT '0',
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`mark_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `municipio`
+-- Estructura de tabla para la tabla `municipio`
 --
 
 CREATE TABLE IF NOT EXISTS `municipio` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `departamento` int(11) NOT NULL,
-  `nombre` varchar(300) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1077 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `nombre` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `departamento` (`departamento`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1077 ;
 
 --
--- Dumping data for table `municipio`
+-- Volcado de datos para la tabla `municipio`
 --
 
 INSERT INTO `municipio` (`id`, `departamento`, `nombre`) VALUES
@@ -1999,18 +2030,19 @@ INSERT INTO `municipio` (`id`, `departamento`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noticeboard`
+-- Estructura de tabla para la tabla `noticeboard`
 --
 
 CREATE TABLE IF NOT EXISTS `noticeboard` (
-`notice_id` int(11) NOT NULL,
+  `notice_id` int(11) NOT NULL AUTO_INCREMENT,
   `notice_title` longtext COLLATE utf8_unicode_ci NOT NULL,
   `notice` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `create_timestamp` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `create_timestamp` int(11) NOT NULL,
+  PRIMARY KEY (`notice_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `noticeboard`
+-- Volcado de datos para la tabla `noticeboard`
 --
 
 INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timestamp`) VALUES
@@ -2019,11 +2051,11 @@ INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timest
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parent`
+-- Estructura de tabla para la tabla `parent`
 --
 
 CREATE TABLE IF NOT EXISTS `parent` (
-`parent_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -2031,17 +2063,18 @@ CREATE TABLE IF NOT EXISTS `parent` (
   `relation_with_student` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `profession` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `profession` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`parent_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Estructura de tabla para la tabla `payment`
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
-`payment_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
   `payment_type` longtext COLLATE utf8_unicode_ci NOT NULL,
   `transaction_id` longtext COLLATE utf8_unicode_ci NOT NULL,
   `invoice_id` int(11) NOT NULL,
@@ -2049,23 +2082,25 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `method` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `amount` int(11) NOT NULL,
-  `timestamp` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `timestamp` int(11) NOT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Estructura de tabla para la tabla `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
-`settings_id` int(11) NOT NULL,
+  `settings_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`settings_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `settings`
+-- Volcado de datos para la tabla `settings`
 --
 
 INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
@@ -2080,11 +2115,11 @@ INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Estructura de tabla para la tabla `student`
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-`student_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `documento` longtext COLLATE utf8_unicode_ci NOT NULL,
   `ndocumento` int(18) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -2122,38 +2157,29 @@ CREATE TABLE IF NOT EXISTS `student` (
   `departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `caracterizacion` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `check_lib_militar` tinyint(2) DEFAULT NULL,
-  `check_cedula` tinyint(2) DEFAULT NULL,
-  `check_cert_est` tinyint(2) DEFAULT NULL,
-  `check_foto` tinyint(2) DEFAULT NULL,
-  `talla_camisa` int(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`, `check_lib_militar`, `check_cedula`, `check_cert_est`, `check_foto`, `talla_camisa`) VALUES
-(1, 'CC', 1143124464, 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'CC', 32323232, 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'CC', 1129509228, 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'CC', 1140834339, 'CINDY', 'PAOLA', 'GONZALEZ', 'OSORIO', '', 'female', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+  `check_lib_militar` tinyint(2) NOT NULL,
+  `check_cedula` tinyint(2) NOT NULL,
+  `check_cert_est` tinyint(2) NOT NULL,
+  `check_foto` tinyint(2) NOT NULL,
+  `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Estructura de tabla para la tabla `subject`
 --
 
 CREATE TABLE IF NOT EXISTS `subject` (
-`subject_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `class_id` int(11) NOT NULL,
-  `teacher_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `teacher_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`subject_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `subject`
+-- Volcado de datos para la tabla `subject`
 --
 
 INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
@@ -2166,11 +2192,11 @@ INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher`
+-- Estructura de tabla para la tabla `teacher`
 --
 
 CREATE TABLE IF NOT EXISTS `teacher` (
-`teacher_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `snombre` longtext COLLATE utf8_unicode_ci NOT NULL,
   `papellido` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -2180,282 +2206,34 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `password` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`teacher_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transport`
+-- Estructura de tabla para la tabla `transport`
 --
 
 CREATE TABLE IF NOT EXISTS `transport` (
-`transport_id` int(11) NOT NULL,
+  `transport_id` int(11) NOT NULL AUTO_INCREMENT,
   `route_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `number_of_vehicle` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `route_fare` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `route_fare` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`transport_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Indexes for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
- ADD PRIMARY KEY (`admin_id`);
-
---
--- Indexes for table `book`
---
-ALTER TABLE `book`
- ADD PRIMARY KEY (`book_id`);
-
---
--- Indexes for table `class`
---
-ALTER TABLE `class`
- ADD PRIMARY KEY (`class_id`);
-
---
--- Indexes for table `class_routine`
---
-ALTER TABLE `class_routine`
- ADD PRIMARY KEY (`class_routine_id`);
-
---
--- Indexes for table `departamento`
---
-ALTER TABLE `departamento`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `dormitory`
---
-ALTER TABLE `dormitory`
- ADD PRIMARY KEY (`dormitory_id`);
-
---
--- Indexes for table `email_template`
---
-ALTER TABLE `email_template`
- ADD PRIMARY KEY (`email_template_id`);
-
---
--- Indexes for table `empresas`
---
-ALTER TABLE `empresas`
- ADD PRIMARY KEY (`empresas_id`);
-
---
--- Indexes for table `exam`
---
-ALTER TABLE `exam`
- ADD PRIMARY KEY (`exam_id`);
-
---
--- Indexes for table `grade`
---
-ALTER TABLE `grade`
- ADD PRIMARY KEY (`grade_id`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
- ADD PRIMARY KEY (`invoice_id`);
-
---
--- Indexes for table `language`
---
-ALTER TABLE `language`
- ADD PRIMARY KEY (`phrase_id`);
-
---
--- Indexes for table `mark`
---
-ALTER TABLE `mark`
- ADD PRIMARY KEY (`mark_id`);
-
---
--- Indexes for table `municipio`
+-- Filtros para la tabla `municipio`
 --
 ALTER TABLE `municipio`
- ADD PRIMARY KEY (`id`), ADD KEY `departamento` (`departamento`);
-
---
--- Indexes for table `noticeboard`
---
-ALTER TABLE `noticeboard`
- ADD PRIMARY KEY (`notice_id`);
-
---
--- Indexes for table `parent`
---
-ALTER TABLE `parent`
- ADD PRIMARY KEY (`parent_id`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
- ADD PRIMARY KEY (`payment_id`);
-
---
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
- ADD PRIMARY KEY (`settings_id`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
- ADD PRIMARY KEY (`student_id`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
- ADD PRIMARY KEY (`subject_id`);
-
---
--- Indexes for table `teacher`
---
-ALTER TABLE `teacher`
- ADD PRIMARY KEY (`teacher_id`);
-
---
--- Indexes for table `transport`
---
-ALTER TABLE `transport`
- ADD PRIMARY KEY (`transport_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `book`
---
-ALTER TABLE `book`
-MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `class`
---
-ALTER TABLE `class`
-MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `class_routine`
---
-ALTER TABLE `class_routine`
-MODIFY `class_routine_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `departamento`
---
-ALTER TABLE `departamento`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
---
--- AUTO_INCREMENT for table `dormitory`
---
-ALTER TABLE `dormitory`
-MODIFY `dormitory_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `email_template`
---
-ALTER TABLE `email_template`
-MODIFY `email_template_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `empresas`
---
-ALTER TABLE `empresas`
-MODIFY `empresas_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `exam`
---
-ALTER TABLE `exam`
-MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `grade`
---
-ALTER TABLE `grade`
-MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `invoice`
---
-ALTER TABLE `invoice`
-MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `language`
---
-ALTER TABLE `language`
-MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=596;
---
--- AUTO_INCREMENT for table `mark`
---
-ALTER TABLE `mark`
-MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `municipio`
---
-ALTER TABLE `municipio`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1077;
---
--- AUTO_INCREMENT for table `noticeboard`
---
-ALTER TABLE `noticeboard`
-MODIFY `notice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `parent`
---
-ALTER TABLE `parent`
-MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `teacher`
---
-ALTER TABLE `teacher`
-MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `transport`
---
-ALTER TABLE `transport`
-MODIFY `transport_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `municipio`
---
-ALTER TABLE `municipio`
-ADD CONSTRAINT `municipio_ibfk_1` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `municipio_ibfk_1` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

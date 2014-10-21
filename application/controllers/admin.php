@@ -108,10 +108,12 @@ class Admin extends CI_Controller
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
-            $data['check_cedula'] = $this->input->post('check_cedula');
-            $data['check_lib_militar'] = $this->input->post('check_lib_militar');
-            $data['check_cert_est'] = $this->input->post('check_cert_est');
-            $data['check_foto'] = $this->input->post('check_foto');
+
+            if($this->input->post('check_cedula')=='on')$data['check_cedula'] = 1;
+            if($this->input->post('check_lib_militar')=='on')$data['check_lib_militar'] = 1;
+            if($this->input->post('check_cert_est')=='on')$data['check_cert_est'] = 1;
+            if($this->input->post('check_foto')=='on')$data['check_foto'] = 1;
+
             $data['talla_camisa'] = $this->input->post('talla_camisa');
             $data['class_id'] = $this->input->post('class_id');
 
@@ -183,10 +185,12 @@ class Admin extends CI_Controller
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
-            $data['check_cedula'] = $this->input->post('check_cedula');
-            $data['check_lib_militar'] = $this->input->post('check_lib_militar');
-            $data['check_cert_est'] = $this->input->post('check_cert_est');
-            $data['check_foto'] = $this->input->post('check_foto');
+
+            if($this->input->post('check_cedula')=='on')$data['check_cedula'] = 1;
+            if($this->input->post('check_lib_militar')=='on')$data['check_lib_militar'] = 1;
+            if($this->input->post('check_cert_est')=='on')$data['check_cert_est'] = 1;
+            if($this->input->post('check_foto')=='on')$data['check_foto'] = 1;
+
             $data['talla_camisa'] = $this->input->post('talla_camisa');
 
             $data['barrio'] = $this->input->post('barrio');
