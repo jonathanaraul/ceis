@@ -108,6 +108,10 @@ class Admin extends CI_Controller
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
+            $data['check_cedula'] = $this->input->post('check_cedula');
+            $data['check_lib_militar'] = $this->input->post('check_lib_militar');
+            $data['check_cert_est'] = $this->input->post('check_cert_est');
+            $data['check_foto'] = $this->input->post('check_foto');
             $data['class_id'] = $this->input->post('class_id');
 
             $data['barrio'] = $this->input->post('barrio');
@@ -178,6 +182,10 @@ class Admin extends CI_Controller
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
+            $data['check_cedula'] = $this->input->post('check_cedula');
+            $data['check_lib_militar'] = $this->input->post('check_lib_militar');
+            $data['check_cert_est'] = $this->input->post('check_cert_est');
+            $data['check_foto'] = $this->input->post('check_foto');
 
             $data['barrio'] = $this->input->post('barrio');
             $data['departamento'] = $this->input->post('departamento');
