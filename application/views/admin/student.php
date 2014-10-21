@@ -30,7 +30,7 @@
                     <option value="<?php echo $row['class_id']; ?>"
 
                         <?php if ($class_id == $row['class_id']) echo 'selected'; ?>>
-                        Class <?php echo $row['name']; ?></option>
+                         <?php echo $row['name'], $row['fcha_inicio']; ?></option>
                 <?php
 
                 endforeach;
