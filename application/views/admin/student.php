@@ -669,10 +669,10 @@
         <label class="control-label"><?php echo get_phrase('Documentacion'); ?></label>
 
         <div class="controls">
-            <input type="checkbox" name="cedula" value="1"><?php echo get_phrase('Cedula'); ?></br>
-            <input type="checkbox" name="lib_militar" value="2"><?php echo get_phrase('Libreta_Militar'); ?></br>
-            <input type="checkbox" name="cert_est" value="3"><?php echo get_phrase('Certificado_de_Estudios'); ?></br>
-            <input type="checkbox" name="foto" value="4"><?php echo get_phrase('Foto'); ?></br>
+            <input type="checkbox" name="check_cedula" ><?php echo get_phrase('Cedula'); ?></br>
+            <input type="checkbox" name="check_lib_militar" ><?php echo get_phrase('Libreta_Militar'); ?></br>
+            <input type="checkbox" name="check_cert_est" ><?php echo get_phrase('Certificado_de_Estudios'); ?></br>
+            <input type="checkbox" name="check_foto" ><?php echo get_phrase('Foto'); ?></br>
         </div>
         <div class="control-group">
             <label class="control-label"><?php echo get_phrase('talla_camisa'); ?></label>
