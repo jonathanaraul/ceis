@@ -199,7 +199,87 @@
             else
                 $('.divconvenio_sena').css('display', 'block');
         }
-
+        function mostrarCodRegional(valor) {
+            if (valor == 'Atlantico'){
+                $('#cod_regional').val(8);
+                $('#cod_regional').attr('disabled','');
+                $('#label-codigo-regional-sena').html('Codigo Regional');
+            }
+            else if(valor == 'Bolivar'){
+                $('#cod_regional').val(13);
+                $('#cod_regional').attr('disabled','');
+                $('#label-codigo-regional-sena').html('Codigo Regional');
+            }
+            else if(valor == 'Magdalena'){
+                $('#cod_regional').val(47);
+                $('#cod_regional').attr('disabled','');
+                $('#label-codigo-regional-sena').html('Codigo Regional');
+            }
+            else if(valor == 'Cesar'){
+                $('#cod_regional').val(20);
+                $('#cod_regional').attr('disabled','');
+                $('#label-codigo-regional-sena').html('Codigo Regional');
+            }
+            else if(valor == 'otro'){
+                $('#cod_regional').val('');
+                $('#cod_regional').attr('disabled',false);
+                $('#label-codigo-regional-sena').html('Codigo Regional ¿Cual?');
+            }
+        }
+        function mostrarCodDepartamento(valor) {
+            if (valor == 'Atlantico'){
+                $('#cod_departamento').val(8);
+                $('#cod_departamento').attr('disabled','');
+                $('#label-codigo-departamento-sena').html('Codigo Departamento');
+            }
+            else if(valor == 'Bolivar'){
+                $('#cod_departamento').val(13);
+                $('#cod_departamento').attr('disabled','');
+                $('#label-codigo-departamento-sena').html('Codigo Departamento');
+            }
+            else if(valor == 'Magdalena'){
+                $('#cod_departamento').val(47);
+                $('#cod_departamento').attr('disabled','');
+                $('#label-codigo-departamento-sena').html('Codigo Departamento');
+            }
+            else if(valor == 'Cesar'){
+                $('#cod_departamento').val(20);
+                $('#cod_departamento').attr('disabled','');
+                $('#label-codigo-departamento-sena').html('Codigo Departamento');
+            }
+            else if(valor == 'otro'){
+                $('#cod_departamento').val('');
+                $('#cod_departamento').attr('disabled',false);
+                $('#label-codigo-departamento-sena').html('Codigo Departamento ¿Cual?');
+            }
+        }
+        function mostrarCodMunicipio(valor) {
+            if (valor == 'Barranquilla'){
+                $('#cod_municipio').val(1);
+                $('#cod_municipio').attr('disabled','');
+                $('#label-codigo-municipio-sena').html('Codigo Municipio');
+            }
+            else if(valor == 'Cartagena'){
+                $('#cod_municipio').val(1);
+                $('#cod_municipio').attr('disabled','');
+                $('#label-codigo-municipio-sena').html('Codigo Municipio');
+            }
+            else if(valor == 'Santa Marta'){
+                $('#cod_municipio').val(1);
+                $('#cod_municipio').attr('disabled','');
+                $('#label-codigo-municipio-sena').html('Codigo Municipio');
+            }
+            else if(valor == 'Valledupar'){
+                $('#cod_municipio').val(1);
+                $('#cod_municipio').attr('disabled','');
+                $('#label-codigo-municipio-sena').html('Codigo Municipio');
+            }
+            else if(valor == 'otro'){
+                $('#cod_municipio').val('');
+                $('#cod_municipio').attr('disabled',false);
+                $('#label-codigo-municipio-sena').html('Codigo Municipio ¿Cual?');
+            }
+        }
 
     </script>
     <div class="padded">
@@ -257,9 +337,9 @@
         <div class="controls">
             <select name="tipodeingreso" class="uniform" style="width:100%;" onchange="mostrarTipoingreso(this.value);">
                 <option value="0">-- Seleccione Uno --</option>
+                <option value="particular"><?php echo get_phrase('particular'); ?></option>
                 <option value="becado"><?php echo get_phrase('becado'); ?></option>
                 <option value="empresa"><?php echo get_phrase('empresa'); ?></option>
-
                 <option value="otro"><?php echo get_phrase('otro'); ?></option>
             </select>
         </div>
@@ -300,47 +380,65 @@
         <label class="control-label"><?php echo get_phrase('nombre_regional'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_regional"/>
+            <select name="nom_regional" class="uniform" style="width:100%;" onchange="mostrarCodRegional(this.value);">
+                <option value="Atlantico"><?php echo get_phrase('Atlantico'); ?></option>
+                <option value="Bolivar"><?php echo get_phrase('Bolivar'); ?></option>
+                <option value="Magdalena"><?php echo get_phrase('Magdalena'); ?></option>
+                <option value="Cesar"><?php echo get_phrase('Cesar'); ?></option>
+                <option value="otro"><?php echo get_phrase('otro'); ?></option>
+            </select>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_regional'); ?></label>
+        <label class="control-label" id="label-codigo-regional-sena"><?php echo get_phrase('codigo_regional'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="cod_regional"/>
+            <input type="text" class="" name="cod_regional" id="cod_regional" value="8" disabled/>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_departamento'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_departamento"/>
+            <select name="nom_departamento" class="uniform" style="width:100%;" onchange="mostrarCodDepartamento(this.value);">
+                <option value="Atlantico"><?php echo get_phrase('Atlantico'); ?></option>
+                <option value="Bolivar"><?php echo get_phrase('Bolivar'); ?></option>
+                <option value="Magdalena"><?php echo get_phrase('Magdalena'); ?></option>
+                <option value="Cesar"><?php echo get_phrase('Cesar'); ?></option>
+                <option value="otro"><?php echo get_phrase('otro'); ?></option>
+            </select>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_departamento'); ?></label>
+        <label class="control-label" id="label-codigo-departamento-sena"><?php echo get_phrase('codigo_departamento'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="cod_departamento"/>
+            <input type="text" class="" name="cod_departamento" id="cod_departamento" value="8" disabled/>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_municipio'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_municipio"/>
+            <select name="nom_municipio" class="uniform" style="width:100%;" onchange="mostrarCodMunicipio(this.value);">
+                <option value="Barranquilla"><?php echo get_phrase('Barranquilla'); ?></option>
+                <option value="Cartagena"><?php echo get_phrase('Cartagena'); ?></option>
+                <option value="Santa Marta"><?php echo get_phrase('Santa Marta'); ?></option>
+                <option value="Valledupar"><?php echo get_phrase('Valledupar'); ?></option>
+                <option value="otro"><?php echo get_phrase('otro'); ?></option>
+            </select>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_municipio'); ?></label>
+        <label class="control-label"  id="label-codigo-municipio-sena"><?php echo get_phrase('codigo_municipio'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="cod_municipio"/>
+            <input type="text" class="" name="cod_municipio" id="cod_municipio" value="1" disabled/>
         </div>
     </div>
 
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('empresa_gremio'); ?></label>
+        <label class="control-label"><?php echo get_phrase('empresa_y_o_gremio'); ?></label>
 
         <div class="controls">
             <input type="text" class="" name="emp_gremio"/>
