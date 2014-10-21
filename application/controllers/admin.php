@@ -128,13 +128,14 @@ class Admin extends CI_Controller
                 $data['cod_regional'] = $this->input->post('cod_regional');
                 $data['nom_regional'] = $this->input->post('nom_regional');
                 $data['cod_departamento'] = $this->input->post('cod_departamento');
+
                 $data['nom_departamento'] = $this->input->post('nom_departamento');
                 $data['cod_municipio'] = $this->input->post('cod_municipio');
                 $data['nom_municipio'] = $this->input->post('nom_municipio');
                 $data['emp_gremio'] = $this->input->post('emp_gremio');
                 $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = $this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = $this->input->post('nom_subsector_eco');
+                $data['nom_sector_eco'] = 'SERVICIOS';//$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA';//$this->input->post('nom_subsector_eco');
                 $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;
@@ -211,8 +212,8 @@ class Admin extends CI_Controller
                 $data['nom_municipio'] = $this->input->post('nom_municipio');
                 $data['emp_gremio'] = $this->input->post('emp_gremio');
                 $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = $this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = $this->input->post('nom_subsector_eco');
+                $data['nom_sector_eco'] = 'SERVICIOS';//$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA';//$this->input->post('nom_subsector_eco');
                 $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;

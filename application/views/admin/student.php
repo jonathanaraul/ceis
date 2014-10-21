@@ -458,14 +458,14 @@
         <label class="control-label"><?php echo get_phrase('nombre_sector_economico'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_sector_eco" value="SERVICIOS" disabled/>
+            <input type="text" class="" name="nom_sector_eco" value="SERVICIOS" />
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_subsector_economico'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_subsector_eco" value="VIGILANCIA" disabled/>
+            <input type="text" class="" name="nom_subsector_eco" value="VIGILANCIA" />
         </div>
     </div>
 

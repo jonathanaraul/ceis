@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-10-2014 a las 07:40:38
+-- Tiempo de generación: 21-10-2014 a las 07:56:22
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
-CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -295,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=610 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=614 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -910,7 +908,11 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (606, 'convenio_sena', ''),
 (607, 'Cedula', ''),
 (608, 'convenio_sena', ''),
-(609, 'Cedula', '');
+(609, 'Cedula', ''),
+(610, 'convenio_sena', ''),
+(611, 'Cedula', ''),
+(612, 'convenio_sena', ''),
+(613, 'Cedula', '');
 
 -- --------------------------------------------------------
 
@@ -2146,12 +2148,8 @@ CREATE TABLE IF NOT EXISTS `student` (
   `nom_municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `emp_gremio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lin_formacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nom_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_curso` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_sector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_subsector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_dep_dom` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sena` tinyint(2) NOT NULL,
   `barrio` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
