@@ -388,7 +388,7 @@
             <input type="text" class="" name="nom_subsector_eco"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('prueba'); ?></label>
 
         <div class="controls">

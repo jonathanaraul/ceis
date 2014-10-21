@@ -2082,14 +2082,14 @@ CREATE TABLE IF NOT EXISTS `student` (
   `barrio` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prueba` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL
+  `caracterizacion` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`, `barrio`, `departamento`, `municipio`, `prueba`) VALUES
+INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `cod_ocupacion`, `nom_ocupacion`, `cod_curso`, `nom_sector_eco`, `nom_subsector_eco`, `cod_dep_dom`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`) VALUES
 (1, 'CC', 1143124464, 'fredy', 'saul', 'teheran', 'tovar', '09/18/2014', 'masculino', 'Soltero', 'no', '0', '1143124464', 'empresa', '2', 'CRA35#69D-93', '3008544984', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL),
 (2, 'CC', 32323232, 'fredy saul teheran tovar', 'fredy', 'tovar', 'kdkdkdk', '', '0', '0', '0', '0', '', '0', '0', 'CRA35#69D-93', '573007870715', 'fredyteheran91@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL),
 (3, 'CC', 1129509228, 'Alan', 'Luis', 'Pedraza', 'Teheran', '04/12/1988', 'male', 'Soltero', '0', '0', '0', '0', '0', '', '', '', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL),
