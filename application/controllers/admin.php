@@ -132,7 +132,7 @@ class Admin extends CI_Controller
                 $data['nom_sector_eco'] = $this->input->post('nom_sector_eco');
                 $data['nom_subsector_eco'] = $this->input->post('nom_subsector_eco');
                 $data['cod_dep_dom'] = $this->input->post('cod_dep_dom');
-                $datâ['caractarizacion'] = $this->input->post('caracterizacion')
+                $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;
                 $data['cod_regional'] = null;
@@ -207,7 +207,7 @@ class Admin extends CI_Controller
                 $data['nom_sector_eco'] = $this->input->post('nom_sector_eco');
                 $data['nom_subsector_eco'] = $this->input->post('nom_subsector_eco');
                 $data['cod_dep_dom'] = $this->input->post('cod_dep_dom');
-                $datâ['caractarizacion'] = $this->input->post('caracterizacion')
+                $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;
                 $data['cod_regional'] = null;
