@@ -497,7 +497,6 @@
 
         <div class="controls">
             <select name="departamento" class="uniform" style="width:100%;">
-                <option value="0">-- Seleccione Uno --</option>
                 <?php
                 $elements = $this->db->get('departamento')->result_array();
                 foreach ($elements as $element):
