@@ -2072,18 +2072,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   `nom_municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `emp_gremio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lin_formacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nom_ocupacion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_curso` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_sector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_subsector_eco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cod_dep_dom` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `caracterizacion` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sena` tinyint(2) NOT NULL,
   `barrio` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `municipio` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `caracterizacion` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `departamento` int(11) NOT NULL,
+  `municipio` int(11) NOT NULL
+
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`

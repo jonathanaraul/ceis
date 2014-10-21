@@ -296,14 +296,6 @@
             </select>
         </div>
     </div>
-
-    <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_regional'); ?></label>
-
-        <div class="controls">
-            <input type="text" class="" name="cod_regional"/>
-        </div>
-    </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_regional'); ?></label>
 
@@ -312,10 +304,10 @@
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_departamento'); ?></label>
+        <label class="control-label"><?php echo get_phrase('codigo_regional'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="cod_departamento"/>
+            <input type="text" class="" name="cod_regional"/>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
@@ -326,10 +318,10 @@
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_municipio'); ?></label>
+        <label class="control-label"><?php echo get_phrase('codigo_departamento'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="cod_municipio"/>
+            <input type="text" class="" name="cod_departamento"/>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
@@ -339,6 +331,14 @@
             <input type="text" class="" name="nom_municipio"/>
         </div>
     </div>
+    <div class="control-group divconvenio_sena" style="display: none;">
+        <label class="control-label"><?php echo get_phrase('codigo_municipio'); ?></label>
+
+        <div class="controls">
+            <input type="text" class="" name="cod_municipio"/>
+        </div>
+    </div>
+
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('empresa_gremio'); ?></label>
 
@@ -350,42 +350,24 @@
         <label class="control-label"><?php echo get_phrase('linea_formacion'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="lin_formacion"/>
-        </div>
-    </div>
-    <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_ocupacion'); ?></label>
-
-        <div class="controls">
-            <input type="text" class="" name="cod_ocupacion"/>
-        </div>
-    </div>
-    <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('nombre_ocupacion'); ?></label>
-
-        <div class="controls">
-            <input type="text" class="" name="nom_ocupacion"/>
-        </div>
-    </div>
-    <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('codigo_curso'); ?></label>
-
-        <div class="controls">
-            <input type="text" class="" name="cod_curso"/>
+            <select name="lin_formacion" class="uniform" style="width:100%;">
+                <option value="SENA EMPRESAS/SENA GREMIO"><?php echo get_phrase('SENA EMPRESAS/SENA GREMIO'); ?></option>
+                <option value="ALTA GERENCIA/SENA GREMIO"><?php echo get_phrase('ALTA GERENCIA/SENA GREMIO'); ?></option>
+            </select>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_sector_economico'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_sector_eco"/>
+            <input type="text" class="" name="nom_sector_eco" value="SERVICIOS" disabled/>
         </div>
     </div>
     <div class="control-group divconvenio_sena" style="display: none;">
         <label class="control-label"><?php echo get_phrase('nombre_subsector_economico'); ?></label>
 
         <div class="controls">
-            <input type="text" class="" name="nom_subsector_eco"/>
+            <input type="text" class="" name="nom_subsector_eco" value="VIGILANCIA" disabled/>
         </div>
     </div>
 
@@ -425,13 +407,6 @@
                 <option value="RAIZALES"><?php echo get_phrase('RAIZALES'); ?></option>
                 <option value="ROM"><?php echo get_phrase('ROM'); ?></option>
             </select>
-        </div>
-    </div>
-    <div class="control-group divconvenio_sena" style="display: none;">
-        <label class="control-label"><?php echo get_phrase('cod_dep_dom'); ?></label>
-
-        <div class="controls">
-            <input type="text" class="" name="cod_dep_dom"/>
         </div>
     </div>
 
@@ -523,38 +498,14 @@
         <div class="controls">
             <select name="departamento" class="uniform" style="width:100%;">
                 <option value="0">-- Seleccione Uno --</option>
-                <option value="Amazonas"><?php echo get_phrase('Amazonas'); ?></option>
-                <option value="Antioquia"><?php echo get_phrase('Antioquia'); ?></option>
-                <option value="Arauca"><?php echo get_phrase('Arauca'); ?></option>
-                <option value="Atlantico"><?php echo get_phrase('Atlantico'); ?></option>
-                <option value="Bolivar"><?php echo get_phrase('Bolivar'); ?></option>
-                <option value="Boyaca"><?php echo get_phrase('Boyaca'); ?></option>
-                <option value="Caldas"><?php echo get_phrase('Caldas'); ?></option>
-                <option value="Caqueta"><?php echo get_phrase('Caqueta'); ?></option>
-                <option value="Casanare"><?php echo get_phrase('Casanare'); ?></option>
-                <option value="Cauca"><?php echo get_phrase('Cauca'); ?></option>
-                <option value="Cesar"><?php echo get_phrase('Cesar'); ?></option>
-                <option value="Choco"><?php echo get_phrase('Choco'); ?></option>
-                <option value="Cordoba"><?php echo get_phrase('Cordoba'); ?></option>
-                <option value="Cundinamarca"><?php echo get_phrase('Cundinamarca'); ?></option>
-                <option value="Guainia"><?php echo get_phrase('Guainia'); ?></option>
-                <option value="Guaviare"><?php echo get_phrase('Guaviare'); ?></option>
-                <option value="Huila"><?php echo get_phrase('Huila'); ?></option>
-                <option value="La Guajira"><?php echo get_phrase('La Guajira'); ?></option>
-                <option value="Magdalena"><?php echo get_phrase('Magdalena'); ?></option>
-                <option value="Meta"><?php echo get_phrase('Meta'); ?></option>
-                <option value="Nariño"><?php echo get_phrase('Nariño'); ?></option>
-                <option value="Norte de Santander"><?php echo get_phrase('Norte de Santander'); ?></option>
-                <option value="Putumayo"><?php echo get_phrase('Putumayo'); ?></option>
-                <option value="Quindio"><?php echo get_phrase('Quindio'); ?></option>
-                <option value="Risaralda"><?php echo get_phrase('Risaralda'); ?></option>
-                <option value="San Andres y Providencia"><?php echo get_phrase('San Andres y Providencia'); ?></option>
-                <option value="Santander"><?php echo get_phrase('Santander'); ?></option>
-                <option value="Sucre"><?php echo get_phrase('Sucre'); ?></option>
-                <option value="Tolima"><?php echo get_phrase('Tolima'); ?></option>
-                <option value="Valle del Cauca"><?php echo get_phrase('Valle del Cauca'); ?></option>
-                <option value="Vaupes"><?php echo get_phrase('Vaupes'); ?></option>
-                <option value="Vichada"><?php echo get_phrase('Vichada'); ?></option>
+                <?php
+                $elements = $this->db->get('departamento')->result_array();
+                foreach ($elements as $element):
+                    ?>
+                    <option value="<?php echo $element['id']; ?>" > <?php echo $element['nombre']; ?> </option>
+                <?php
+                endforeach;
+                ?>
             </select>
         </div>
     </div>
