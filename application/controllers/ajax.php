@@ -8,13 +8,30 @@
 class ajax extends CI_Controller
 
 {
+    function __construct()
+
+    {
+
+        parent::__construct();
+
+        $this->load->database();
+
+    }
 
      function obtenMunicipios()
 
     {
         $departamento = $this->input->post('departamento');
-        echo 'el id del departamento con el que se buscaran municipios  es'.$departamento;
-        exit;
+
+        $elements = $this->db->get_where('municipio', array('departamento' => $departamento))->result_array();
+
+        $cadena = '';
+
+        foreach ($elements as $element){
+           $cadena .= '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
+
+        }
+        echo $cadena;
 
     }
 }

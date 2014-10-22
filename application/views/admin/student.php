@@ -291,7 +291,7 @@
 
         function ajaxMunicipios(valor){
             $('#municipios').empty();
-            $('#municipios').prev().remove();
+            $('#municipios').prev().html('');
 
             $.post('<?php echo site_url()?>ajax/obtenMunicipios',
                 {'departamento': valor },
