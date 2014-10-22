@@ -113,15 +113,9 @@
                                     <a data-toggle="modal" href="#modal-form"
                                                                     onclick="modal('student_profile',<?php echo $row['student_id']; ?>)"
                                                                     class="btn btn-default btn-small"> <i
-                                            class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a> <a
-                                        data-toggle="modal" href="#modal-form"
-                                        onclick="modal('student_academic_result',<?php echo $row['student_id']; ?>)"
-                                        class="btn btn-default btn-small"> <i
-                                            class="icon-file-alt"></i> <?php echo get_phrase('marksheet'); ?> </a> <a
-                                        data-toggle="modal" href="#modal-form"
-                                        onclick="modal('student_id_card',<?php echo $row['student_id']; ?>)"
-                                        class="btn btn-default btn-small"> <i
-                                            class="icon-credit-card"></i> <?php echo get_phrase('id_card'); ?> </a> <a
+                                            class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a>
+
+                                    <a
                                         data-toggle="modal" href="#modal-form"
                                         onclick="modal('edit_student',<?php echo $row['student_id']; ?>,<?php echo $class_id; ?>)"
                                         class="btn btn-gray btn-small"> <i
