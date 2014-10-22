@@ -289,6 +289,12 @@
             }
         }
 
+        function ajaxMunicipios(valor){
+            $('#municipios').empty();
+            $('#municipios').prev().remove();
+            console.log('debio borrar');
+        }
+
     </script>
     <div class="padded">
     <div class="control-group">
@@ -612,7 +618,7 @@
         <label class="control-label"><?php echo get_phrase('departamento'); ?></label>
 
         <div class="controls">
-            <select name="departamento" class="uniform" style="width:100%;">
+            <select name="departamento" class="uniform" style="width:100%;"  onchange="ajaxMunicipios(this.value);">
                 <?php
                 $elements = $this->db->get('departamento')->result_array();
                 foreach ($elements as $element):
@@ -628,7 +634,7 @@
         <label class="control-label"><?php echo get_phrase('Municipio'); ?></label>
 
         <div class="controls">
-            <select name="municipio" class="uniform" style="width:100%;">
+            <select name="municipio" class="uniform" style="width:100%;" id="municipios">
                 <?php
                 $elements = $this->db->get_where('municipio', array('departamento' => 1))->result_array();
                 foreach ($elements as $element):
