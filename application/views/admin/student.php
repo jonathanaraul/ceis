@@ -75,6 +75,9 @@
                                 <div><?php echo get_phrase('photo'); ?></div>
                             </th>
                             <th>
+                                <div><?php echo get_phrase('cedula'); ?></div>
+                            </th>
+                            <th>
                                 <div><?php echo get_phrase('student_name'); ?></div>
                             </th>
                             <th class="span3">
@@ -101,6 +104,7 @@
                                             src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>"
                                             class="avatar-medium"/></div>
                                 </td>
+                                <td><?php echo $row['ndocumento']; ?></td>
                                 <td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
                                 <td><?php echo $row['address']; ?></td>
                                 <td><?php echo $row['email']; ?></td>
@@ -121,7 +125,7 @@
                                         data-toggle="modal" href="#modal-form"
                                         onclick="modal('edit_student',<?php echo $row['student_id']; ?>,<?php echo $class_id; ?>)"
                                         class="btn btn-gray btn-small"> <i
-                                            class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> </a> <a
+                                            class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a> <a
                                         data-toggle="modal" href="#modal-delete"
                                         onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/delete/<?php echo $row['student_id']; ?>')"
                                         class="btn btn-red btn-small"> <i
