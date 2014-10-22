@@ -104,6 +104,7 @@ class Admin extends CI_Controller
             $data['ndehijos'] = $this->input->post('ndehijos');
             $data['nlibmilitar'] = $this->input->post('nlibmilitar');
             $data['tipodeingreso'] = $this->input->post('tipodeingreso');
+            if($this->input->post('helpertipodeingreso') != '')$data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
             $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
@@ -182,6 +183,7 @@ class Admin extends CI_Controller
             $data['ndehijos'] = $this->input->post('ndehijos');
             $data['nlibmilitar'] = $this->input->post('nlibmilitar');
             $data['tipodeingreso'] = $this->input->post('tipodeingreso');
+            if($this->input->post('helpertipodeingreso') != '')$data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
             $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
