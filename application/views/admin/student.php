@@ -182,10 +182,18 @@
                 $('#divtMilitar').css('display', 'block');
         }
         function mostrarTipoingreso(valor) {
-            if (valor != 'empresa')
+            if(valor=='otro'){
+                $('#divHelpertipodeingreso').css('display', 'block');
                 $('#divTipoingreso').css('display', 'none');
-            else
+            }
+            else if (valor == 'empresa'){
+                $('#divHelpertipodeingreso').css('display', 'none');
                 $('#divTipoingreso').css('display', 'block');
+            }
+            else{
+                $('#divHelpertipodeingreso').css('display', 'none');
+                $('#divTipoingreso').css('display', 'none');
+            }
         }
         function mostrarTieneHijos(valor) {
             if (valor != 'si')
@@ -345,7 +353,7 @@
         </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" id="divHelpertipodeingreso" style="display: none;">
         <label class="control-label"><?php echo get_phrase('¿Cual tipo de ingreso?'); ?></label>
 
         <div class="controls">
