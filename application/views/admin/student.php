@@ -345,6 +345,14 @@
         </div>
     </div>
 
+    <div class="control-group">
+        <label class="control-label"><?php echo get_phrase('¿Cual tipo de ingreso?'); ?></label>
+
+        <div class="controls">
+            <input type="text" class="" name="helpertipodeingreso"/>
+        </div>
+    </div>
+
     <div class="control-group" id="divTipoingreso" style="display: none;">
         <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
 
@@ -363,6 +371,8 @@
             </select>
         </div>
     </div>
+
+
 
     <div class="control-group">
         <label class="control-label"><?php echo get_phrase('convenio'); ?></label>
