@@ -146,8 +146,16 @@
 
                 <div class="controls">
 
-                    <input type="text" class="validate[required]" name="name"/>
-
+                    <select name="name" class="uniform" style="width:100%;">
+                        <?php
+                        $elements = $this->db->get('class_name')->result_array();
+                        foreach ($elements as $element):
+                            ?>
+                            <option value="<?php echo $element['id']; ?>" > <?php echo $element['nombre']; ?> </option>
+                        <?php
+                        endforeach;
+                        ?>
+                    </select>
                 </div>
 
             </div>
