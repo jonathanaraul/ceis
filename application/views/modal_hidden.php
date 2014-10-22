@@ -7,7 +7,7 @@
 	</div>
     <div class="modal-body" id="modal-body">loading data..</div>
     <div class="modal-footer">
-        <button class="btn btn-gray" onclick="custom_print('frame1')">Print</button>
+        <button  id="miboton"class="btn btn-gray" onclick="custom_print('frame1')">Print</button>
         <button class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 </div>
@@ -31,6 +31,9 @@ function modal(param1 ,param2 ,param3)
 		'<iframe id="frame1" src="<?php echo base_url();?>index.php?modal/popup/'+param1+'/'+param2+'/'+param3+'" width="100%" height="400" frameborder="0"></iframe>';
 
 	document.getElementById('modal-tablesLabel').innerHTML = param1.replace("_"," ");
+    if (param1 == 'student_profile') {
+        document.getElementById('miboton').style.display = 'none';
+    }
 }
 
 function modal_delete(param1)

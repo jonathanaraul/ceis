@@ -17,7 +17,7 @@
             <div class="avatar">
 
                 <img id="blah" class="avatar-large"
-                     src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>" height="100"/>
+                     src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>" height="100" width="100"/>
 
             </div>
 

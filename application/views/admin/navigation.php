@@ -123,25 +123,7 @@
 </li>
 
 
-<!------exam----->
 
-<li class="<?php if ($page_name == 'exam') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?admin/exam" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('exam_help'); ?>">
-
-        <!--<i class="icon-paste icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
-
-        <span><?php echo get_phrase('exam'); ?></span>
-
-    </a>
-
-</li>
 
 
 <!------marks----->
