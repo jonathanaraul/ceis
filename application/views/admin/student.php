@@ -292,7 +292,12 @@
         function ajaxMunicipios(valor){
             $('#municipios').empty();
             $('#municipios').prev().remove();
-            console.log('debio borrar');
+
+            $.post('<?php echo site_url()?>ajax/obtenMunicipios',
+                {'departamento': valor },
+                function(data){
+                    $('#municipios').html(data);
+                });
         }
 
     </script>
