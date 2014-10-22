@@ -148,12 +148,8 @@ class Admin extends CI_Controller
                 $data['nom_municipio'] = null;
                 $data['emp_gremio'] = null;
                 $data['lin_formacion'] = null;
-                $data['cod_ocupacion'] = null;
-                $data['nom_ocupacion'] = null;
-                $data['cod_curso'] = null;
                 $data['nom_sector_eco'] = null;
                 $data['nom_subsector_eco'] = null;
-                $data['cod_dep_dom'] = null;
             }
 
             $this->db->insert('student', $data);
@@ -227,12 +223,8 @@ class Admin extends CI_Controller
                 $data['nom_municipio'] = null;
                 $data['emp_gremio'] = null;
                 $data['lin_formacion'] = null;
-                $data['cod_ocupacion'] = null;
-                $data['nom_ocupacion'] = null;
-                $data['cod_curso'] = null;
                 $data['nom_sector_eco'] = null;
                 $data['nom_subsector_eco'] = null;
-                $data['cod_dep_dom'] = null;
             }
 
             $this->db->where('student_id', $param3);
