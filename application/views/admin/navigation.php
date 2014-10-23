@@ -256,6 +256,26 @@
 
 </li>
 
+<!------rss----->
+
+<li class="<?php if ($page_name == 'rss') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/rss" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('rss'); ?>">
+
+        <!--<i class="icon-columns icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
+
+        <span><?php echo get_phrase('RSS'); ?></span>
+
+    </a>
+
+</li>
+
 
 <!------system settings------>
 
