@@ -149,23 +149,7 @@
 
 <!------grade----->
 
-<li class="<?php if ($page_name == 'grade') echo 'dark-nav active'; ?>">
 
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?admin/grade" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('grade_help'); ?>">
-
-        <!--<i class="icon-list-ol icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
-
-        <span><?php echo get_phrase('exam-grade'); ?></span>
-
-    </a>
-
-</li>
 
 
 <!------class routine----->
