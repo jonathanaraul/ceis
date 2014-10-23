@@ -119,11 +119,15 @@
                                         data-toggle="modal" href="#modal-form"
                                         onclick="modal('edit_student',<?php echo $row['student_id']; ?>,<?php echo $class_id; ?>)"
                                         class="btn btn-gray btn-small"> <i
-                                            class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a> <a
+                                            class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
+                                    <?php  if($this->session->userdata('admin_id')==4) { ?>
+                                    <a
                                         data-toggle="modal" href="#modal-delete"
                                         onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/delete/<?php echo $row['student_id']; ?>')"
                                         class="btn btn-red btn-small"> <i
                                             class="icon-trash"></i> <?php echo get_phrase('delete'); ?> </a>
+                                    <?php } ?>
+
                                     <!--<a href="<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/personal_profile/<?php echo $row['student_id']; ?>"
 
                                              class="btn btn-gray">
