@@ -54,6 +54,10 @@
             </th>
 
             <th>
+                <div>Sección</div>
+            </th>
+
+            <th>
                 <div><?php echo get_phrase('fecha_de_inicio'); ?></div>
             </th>
 
@@ -88,6 +92,8 @@
                 <td><?php echo $count++; ?></td>
 
                 <td><?php echo $row['name']; ?></td>
+
+                <td><?php echo $row['seccion']; ?></td>
 
                 <td><?php echo $row['fcha_inicio']; ?></td>
 
@@ -151,10 +157,26 @@
                         $elements = $this->db->get('class_name')->result_array();
                         foreach ($elements as $element):
                             ?>
-                            <option value="<?php echo $element['id']; ?>" > <?php echo $element['nombre']; ?> </option>
+                            <option value="<?php echo $element['nombre']; ?>" > <?php echo $element['nombre']; ?> </option>
                         <?php
                         endforeach;
                         ?>
+                    </select>
+                </div>
+
+            </div>
+            <div class="control-group">
+
+                <label class="control-label">Sección</label>
+
+                <div class="controls">
+
+                    <select name="seccion" class="uniform" style="width:100%;">
+                        <option value="A" > A </option>
+                        <option value="B" > B </option>
+                        <option value="C" > C </option>
+                        <option value="D" > D </option>
+                        <option value="E" > E </option>
                     </select>
                 </div>
 

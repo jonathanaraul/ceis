@@ -646,6 +646,8 @@ class Admin extends CI_Controller
 
             $data['name'] = $this->input->post('name');
 
+            $data['seccion'] = $this->input->post('seccion');
+
             $data['fcha_inicio'] = $this->input->post('fcha_inicio');
 
             $data['fcha_fin'] = $this->input->post('fcha_fin');
@@ -664,6 +666,7 @@ class Admin extends CI_Controller
         if ($param1 == 'do_update') {
 
             $data['name'] = $this->input->post('name');
+            $data['seccion'] = $this->input->post('seccion');
             $data['fcha_inicio'] = $this->input->post('fcha_inicio');
 
             $data['fcha_fin'] = $this->input->post('fcha_fin');
