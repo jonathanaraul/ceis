@@ -1391,7 +1391,73 @@ class Admin extends CI_Controller
 
     }
 
+    /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
+    function rss($param1 = '', $param2 = '', $param3 = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+
+        if ($param1 == 'create') {
+
+            $data['url'] = $this->input->post('url');
+
+            $data['name'] = $this->input->post('name');
+
+            $this->db->insert('rss', $data);
+
+            redirect(base_url() . 'index.php?admin/rss/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['url'] = $this->input->post('url');
+
+            $data['name'] = $this->input->post('name');
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('rss', $data);
+
+            $this->session->set_flashdata('flash_message', get_phrase('rss_updated'));
+
+            redirect(base_url() . 'index.php?admin/rss/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('rss', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('rss');
+
+            redirect(base_url() . 'index.php?admin/rss/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'rss';
+
+        $page_data['page_title'] = get_phrase('Gestion de RSS');
+
+        $page_data['rss'] = $this->db->get('rss')->result_array();
+
+        $this->load->view('index', $page_data);
+
+    }
     /*****SITE/SYSTEM SETTINGS*********/
 
     function system_settings($param1 = '', $param2 = '', $param3 = '')
