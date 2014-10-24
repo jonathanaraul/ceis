@@ -59,6 +59,24 @@
 
 </li>
 
+<!-- inscripciones -->
+<li class="<?php if ($page_name == 'inscripcion') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/inscripcion" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('Inscripciones/Preinscripciones'); ?>">
+
+        <!--<i class="icon-columns icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
+
+        <span><?php echo get_phrase('Inscripciones'); ?></span>
+
+    </a>
+
+</li>
 
 <!------teacher----->
 
@@ -256,7 +274,7 @@
 
 </li>
 
-<!------rss----->
+<!-- rss -->
 
 <li class="<?php if ($page_name == 'rss') echo 'dark-nav active'; ?>">
 
@@ -275,6 +293,7 @@
     </a>
 
 </li>
+
 
 
 <!------system settings------>

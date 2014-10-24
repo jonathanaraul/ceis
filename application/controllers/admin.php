@@ -34,6 +34,8 @@ class Admin extends CI_Controller
         parent::__construct();
 
         $this->load->database();
+        $this->load->model('inscripcion_model');
+
 
         /*cache control*/
 
@@ -1454,6 +1456,79 @@ class Admin extends CI_Controller
         $page_data['page_title'] = get_phrase('Gestion de RSS');
 
         $page_data['rss'] = $this->db->get('rss')->result_array();
+
+        $this->load->view('index', $page_data);
+
+    }
+
+
+ /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
+
+    function inscripcion($param1 = '', $param2 = '', $param3 = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+
+        if ($param1 == 'create') {
+
+            $data['estudiante'] = $this->input->post('estudiante');
+
+            $data['curso'] = $this->input->post('curso');
+
+            $data['status'] = $this->input->post('status');
+
+            $this->db->insert('hs_inscripcion', $data);
+
+            redirect(base_url() . 'index.php?admin/inscripcion/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['estudiante'] = $this->input->post('estudiante');
+
+            $data['curso'] = $this->input->post('curso');
+
+            $data['status'] = $this->input->post('status');
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_inscripcion', $data);
+
+            $this->session->set_flashdata('flash_message', get_phrase('Registro procesado'));
+
+            redirect(base_url() . 'index.php?admin/inscripcion/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_inscripcion', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_inscripcion');
+
+            redirect(base_url() . 'index.php?admin/inscripcion/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'inscripcion';
+
+        $page_data['page_title'] = get_phrase('Inscripciones/Preinscripciones');
+
+        $page_data['hs_inscripcion'] = $this->db->get('hs_inscripcion')->result_array();
 
         $this->load->view('index', $page_data);
 

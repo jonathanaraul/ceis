@@ -2,18 +2,18 @@
 
     <div class="box">
     <div class="box-header">
-        <!------CONTROL TABS START------->
+        <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active"><a href="#list" data-toggle="tab"><i
                         class="icon-align-justify"></i> <?php echo get_phrase('student_list'); ?> </a></li>
             <li><a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('add_student'); ?> </a>
             </li>
         </ul>
-        <!------CONTROL TABS END------->
+        <!--CONTROL TABS END-->
     </div>
     <div class="box-content">
     <div class="tab-content">
-    <!----TABLE LISTING STARTS--->
+    <!--TABLE LISTING STARTS-->
     <div class="tab-pane  active" id="list">
         <center>
             <br/>

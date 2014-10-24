@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-10-2014 a las 07:56:22
+-- Tiempo de generación: 24-10-2014 a las 08:18:22
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
+CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -72,21 +74,132 @@ CREATE TABLE IF NOT EXISTS `book` (
 CREATE TABLE IF NOT EXISTS `class` (
   `class_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `seccion` varchar(11) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `fcha_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `fcha_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
   `cupo` int(11) NOT NULL,
   PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `class`
 --
 
-INSERT INTO `class` (`class_id`, `name`, `fcha_inicio`, `fcha_fin`, `hora_inicio`, `hora_fin`, `cupo`) VALUES
-(3, 'Fundamentacion en Escolta', '09/15/2014', '09/19/2014', '7', '9', 35),
-(4, 'Reentrenamiento Vigilancia', '10/20/2014', '10/31/2014', '7', '6', 25);
+INSERT INTO `class` (`class_id`, `name`, `seccion`, `fcha_inicio`, `fcha_fin`, `hora_inicio`, `hora_fin`, `cupo`) VALUES
+(3, 'Fundamentacion en Escolta', 'A', '09/15/2014', '09/19/2014', '7', '9', 35),
+(4, 'Reentrenamiento Vigilancia', 'D', '10/20/2014', '10/31/2014', '7', '6', 25),
+(6, 'FUNDAMENTACION VIGILANCIA', 'C', '10/30/2014', '10/31/2014', '13', '15', 25);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `class_name`
+--
+
+CREATE TABLE IF NOT EXISTS `class_name` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(400) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=92 ;
+
+--
+-- Volcado de datos para la tabla `class_name`
+--
+
+INSERT INTO `class_name` (`id`, `nombre`) VALUES
+(1, 'FUNDAMENTACION VIGILANCIA'),
+(2, 'REENTRENAMIENTO VIGILANCIA'),
+(3, 'ESPECIALIZACION VIGILANCIA AEROPORTUARIA'),
+(4, 'ESPECIALIZACION VIGILANCIA SECTOR FINANCIERO'),
+(5, 'ESPECIALIZACION VIGILANCIA COMERCIAL'),
+(6, 'ESPECIALIZACION VIGILANCIA EDUCATIVA'),
+(7, 'ESPECIALIZACION VIGILANCIA EVENTOS PUBLICOS'),
+(8, 'ESPECIALIZACION VIGILANCIA HOSPITALARIA'),
+(9, 'ESPECIALIZACION VIGILANCIA PORTUARIA'),
+(10, 'ESPECIALIZACION VIGILANCIA INDUSTRIAL'),
+(11, 'ESPECIALIZACION VIGILANCIA RESIDENCIAL'),
+(12, 'ESPECIALIZACION VIGILANCIA PETROLERA'),
+(13, 'ESPECIALIZACION VIGILANCIA TURISTICA'),
+(14, 'ESPECIALIZACION VIGILANCIA ENTIDADES OFICIALES'),
+(15, 'ESPECIALIZACION VIGILANCIA MINERA'),
+(16, 'ESPECIALIZACION VIGILANCIA GRANDES SUPERFICIES'),
+(17, 'ESPECIALIZACION VIGILANCIA TRANSPORTE MASIVO'),
+(18, 'PROFUNDIZACION VIGILANCIA AEROPORTUARIA'),
+(19, 'PROFUNDIZACION VIGILANCIA SECTOR FINANCIERO'),
+(20, 'PROFUNDIZACION VIGILANCIA COMERCIAL'),
+(21, 'PROFUNDIZACION VIGILANCIA EDUCATIVA'),
+(22, 'PROFUNDIZACION VIGILANCIA EVENTOS PUBLICOS'),
+(23, 'PROFUNDIZACION VIGILANCIA HOSPITALARIA'),
+(24, 'PROFUNDIZACION VIGILANCIA PORTUARIA'),
+(25, 'PROFUNDIZACION VIGILANCIA INDUSTRIAL'),
+(26, 'PROFUNDIZACION VIGILANCIA RESIDENCIAL'),
+(27, 'PROFUNDIZACION VIGILANCIA PETROLERA'),
+(28, 'PROFUNDIZACION VIGILANCIA TURISTICA'),
+(29, 'PROFUNDIZACION VIGILANCIA ENTIDADES OFICIALES'),
+(30, 'PROFUNDIZACION VIGILANCIA MINERA'),
+(31, 'PROFUNDIZACION VIGILANCIA GRANDES SUPERFICIES'),
+(32, 'PROFUNDIZACION VIGILANCIA TRANSPORTE MASIVO'),
+(33, 'FUNDAMENTACION ESCOLTAS'),
+(34, 'REENTRENAMIENTO ESCOLTAS'),
+(35, 'ESPECIALIZACION ESCOLTA PERSONAS'),
+(36, 'ESPECIALIZACION ESCOLTA MERCANCIAS'),
+(37, 'ESPECIALIZACION ESCOLTA MANEJO DEFENSIVO'),
+(38, 'ESPECIALIZACION ESCOLTA TRANSPORTE'),
+(39, 'ESPECIALIZACION ESCOLTA PROTECCION A DIGNATARIOS'),
+(40, 'PROFUNDIZACION ESCOLTA PERSONAS'),
+(41, 'PROFUNDIZACION ESCOLTA MERCANCIAS'),
+(42, 'PROFUNDIZACION ESCOLTA MANEJO DEFENSIVO'),
+(43, 'PROFUNDIZACION ESCOLTA TRANSPORTE'),
+(44, 'PROFUNDIZACION ESCOLTA PROTECCION A DIGNATARIOS'),
+(45, 'FUNDAMENTACION SUPERVISORES'),
+(46, 'REENTRENAMIENTO SUPERVISORES'),
+(47, 'ESPECIALIZACION SUPERVISORES AEROPORTUARIA'),
+(48, 'ESPECIALIZACION SUPERVISORES SECTOR FINANCIERO'),
+(49, 'ESPECIALIZACION SUPERVISORES COMERCIAL'),
+(50, 'ESPECIALIZACION SUPERVISORES EDUCATIVA'),
+(51, 'ESPECIALIZACION SUPERVISORES EVENTOS PUBLICOS'),
+(52, 'ESPECIALIZACION SUPERVISORES HOSPITALARIA'),
+(53, 'ESPECIALIZACION SUPERVISORES PORTUARIA'),
+(54, 'ESPECIALIZACION SUPERVISORES INDUSTRIAL'),
+(55, 'ESPECIALIZACION SUPERVISORES RESIDENCIAL'),
+(56, 'ESPECIALIZACION SUPERVISORES MEDIOS TECNOLOGICOS'),
+(57, 'ESPECIALIZACION SUPERVISORES PETROLERA'),
+(58, 'ESPECIALIZACION SUPERVISORES TURISTICA'),
+(59, 'ESPECIALIZACION SUPERVISORES ENTIDADES OFICIALES'),
+(60, 'ESPECIALIZACION SUPERVISORES MINERA'),
+(61, 'ESPECIALIZACION SUPERVISORES GRANDES SUPERFICIES'),
+(62, 'ESPECIALIZACION SUPERVISORES TRANSPORTE MASIVO'),
+(63, 'PROFUNDIZACION SUPERVISORES AEROPORTUARIA'),
+(64, 'PROFUNDIZACION SUPERVISORES SECTOR FINANCIERO'),
+(65, 'PROFUNDIZACION SUPERVISORES COMERCIAL'),
+(66, 'PROFUNDIZACION SUPERVISORES EDUCATIVA'),
+(67, 'PROFUNDIZACION SUPERVISORES EVENTOS PUBLICOS'),
+(68, 'PROFUNDIZACION SUPERVISORES HOSPITALARIA'),
+(69, 'PROFUNDIZACION SUPERVISORES PORTUARIA'),
+(70, 'PROFUNDIZACION SUPERVISORES INDUSTRIAL'),
+(71, 'PROFUNDIZACION SUPERVISORES RESIDENCIAL'),
+(72, 'PROFUNDIZACION SUPERVISORES MEDIOS TECNOLOGICOS'),
+(73, 'PROFUNDIZACION SUPERVISORES PETROLERA'),
+(74, 'PROFUNDIZACION SUPERVISORES TURISTICA'),
+(75, 'PROFUNDIZACION SUPERVISORES ENTIDADES OFICIALES'),
+(76, 'PROFUNDIZACION SUPERVISORES MINERA'),
+(77, 'PROFUNDIZACION SUPERVISORES GRANDES SUPERFICIES'),
+(78, 'PROFUNDIZACION SUPERVISORES TRANSPORTE MASIVO'),
+(79, 'FUNDAMENTACION MEDIOS TECNOLOGICOS'),
+(80, 'REENTRENAMIENTO MEDIOS TECNOLOGICOS'),
+(81, 'ESPECIALIZACION MEDIOS TECNOLOGICOS COORDINADOR'),
+(82, 'ESPECIALIZACION MEDIOS TECNOLOGICOS INSTALADOR'),
+(83, 'PROFUNDIZACION MEDIOS TECNOLOGICOS COORDINADOR'),
+(84, 'PROFUNDIZACION MEDIOS TECNOLOGICOS INSTALADOR'),
+(85, 'SEMINARIO ADMINISTRACION DE SERVICIOS DE V.S.P.'),
+(86, 'SEMINARIO JEFES DE RECURSOS HUMANOS'),
+(87, 'SEMINARIO JEFES DE OPERACION DE EMPRESA DE V.S.P.'),
+(88, 'SEMINARIO ESPECTACULOS PUBLICOS'),
+(89, 'SEMINARIO JEFES DE SEGURIDAD DE DEPARTAMENTOS'),
+(90, 'SEMINARIO COORDINADORES DE MEDIOS TECNOLOGICOS'),
+(91, 'SEMINARIO INSTALADORES DE EQUIPOS PARA LA VIGILANCIA Y S.P.');
 
 -- --------------------------------------------------------
 
@@ -258,6 +371,48 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_inscripcion`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_inscripcion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `estudiante` int(11) NOT NULL,
+  `curso` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `curso` (`curso`),
+  KEY `estudiante` (`estudiante`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `hs_inscripcion`
+--
+
+INSERT INTO `hs_inscripcion` (`id`, `estudiante`, `curso`, `status`, `create_at`) VALUES
+(1, 1, 3, 1, '2014-10-24 07:13:14'),
+(2, 1, 3, 1, '2014-10-24 07:15:45'),
+(6, 6, 4, 0, '2014-10-24 07:35:04'),
+(7, 4, 4, 1, '2014-10-24 08:06:41');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hs_periodo`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_periodo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_periodo` varchar(30) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `duracion` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `invoice`
 --
 
@@ -293,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=614 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=889 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -912,7 +1067,282 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (610, 'convenio_sena', ''),
 (611, 'Cedula', ''),
 (612, 'convenio_sena', ''),
-(613, 'Cedula', '');
+(613, 'Cedula', ''),
+(614, 'convenio_sena', ''),
+(615, 'Cedula', ''),
+(616, 'Recepción', ''),
+(617, 'convenio_sena', ''),
+(618, 'Cedula', ''),
+(619, '¿Cual tipo de ingreso?', ''),
+(620, 'convenio_sena', ''),
+(621, 'Cedula', ''),
+(622, 'convenio_sena', ''),
+(623, 'Cedula', ''),
+(624, 'convenio_sena', ''),
+(625, 'Cedula', ''),
+(626, 'convenio_sena', ''),
+(627, 'Cedula', ''),
+(628, 'convenio_sena', ''),
+(629, 'Cedula', ''),
+(630, 'convenio_sena', ''),
+(631, 'Cedula', ''),
+(632, 'convenio_sena', ''),
+(633, 'Cedula', ''),
+(634, 'convenio_sena', ''),
+(635, 'Cedula', ''),
+(636, 'convenio_sena', ''),
+(637, 'Cedula', ''),
+(638, 'convenio_sena', ''),
+(639, 'Cedula', ''),
+(640, 'convenio_sena', ''),
+(641, 'Cedula', ''),
+(642, 'convenio_sena', ''),
+(643, 'Cedula', ''),
+(644, 'convenio_sena', ''),
+(645, 'Cedula', ''),
+(646, 'convenio_sena', ''),
+(647, 'Cedula', ''),
+(648, 'convenio_sena', ''),
+(649, 'Cedula', ''),
+(650, 'convenio_sena', ''),
+(651, 'Cedula', ''),
+(652, 'convenio_sena', ''),
+(653, 'Cedula', ''),
+(654, 'convenio_sena', ''),
+(655, 'Cedula', ''),
+(656, 'convenio_sena', ''),
+(657, 'Cedula', ''),
+(658, 'convenio_sena', ''),
+(659, 'Cedula', ''),
+(660, 'convenio_sena', ''),
+(661, 'Cedula', ''),
+(662, 'convenio_sena', ''),
+(663, 'Cedula', ''),
+(664, 'convenio_sena', ''),
+(665, 'Cedula', ''),
+(666, 'convenio_sena', ''),
+(667, 'Cedula', ''),
+(668, 'convenio_sena', ''),
+(669, 'Cedula', ''),
+(670, 'convenio_sena', ''),
+(671, 'Cedula', ''),
+(672, 'convenio_sena', ''),
+(673, 'Cedula', ''),
+(674, 'convenio_sena', ''),
+(675, 'Cedula', ''),
+(676, 'convenio_sena', ''),
+(677, 'Cedula', ''),
+(678, 'convenio_sena', ''),
+(679, 'Cedula', ''),
+(680, 'convenio_sena', ''),
+(681, 'Cedula', ''),
+(682, 'convenio_sena', ''),
+(683, 'Cedula', ''),
+(684, 'convenio_sena', ''),
+(685, 'Cedula', ''),
+(686, 'convenio_sena', ''),
+(687, 'Cedula', ''),
+(688, 'convenio_sena', ''),
+(689, 'Cedula', ''),
+(690, 'convenio_sena', ''),
+(691, 'Cedula', ''),
+(692, 'convenio_sena', ''),
+(693, 'Cedula', ''),
+(694, 'convenio_sena', ''),
+(695, 'Cedula', ''),
+(696, 'convenio_sena', ''),
+(697, 'Cedula', ''),
+(698, 'update', ''),
+(699, 'convenio_sena', ''),
+(700, 'Cedula', ''),
+(701, 'convenio_sena', ''),
+(702, 'Cedula', ''),
+(703, 'actualizar', ''),
+(704, 'convenio_sena', ''),
+(705, 'Cedula', ''),
+(706, 'convenio_sena', ''),
+(707, 'Cedula', ''),
+(708, 'convenio_sena', ''),
+(709, 'Cedula', ''),
+(710, 'convenio_sena', ''),
+(711, 'Cedula', ''),
+(712, 'Union_Libre', ''),
+(713, 'Union_Libre', ''),
+(714, 'Union_Libre', ''),
+(715, 'Union_Libre', ''),
+(716, 'Union_Libre', ''),
+(717, 'Union_Libre', ''),
+(718, 'Union_Libre', ''),
+(719, 'Union_Libre', ''),
+(720, 'Union_Libre', ''),
+(721, 'Union_Libre', ''),
+(722, 'Union_Libre', ''),
+(723, 'Union_Libre', ''),
+(724, 'Union_Libre', ''),
+(725, 'Union_Libre', ''),
+(726, 'Union_Libre', ''),
+(727, 'Union_Libre', ''),
+(728, 'Union_Libre', ''),
+(729, 'Union_Libre', ''),
+(730, 'Union_Libre', ''),
+(731, 'Union_Libre', ''),
+(732, 'Union_Libre', ''),
+(733, 'Union_Libre', ''),
+(734, 'Union_Libre', ''),
+(735, 'Union_Libre', ''),
+(736, 'convenio_sena', ''),
+(737, 'Cedula', ''),
+(738, 'convenio_sena', ''),
+(739, 'Cedula', ''),
+(740, 'convenio_sena', ''),
+(741, 'Cedula', ''),
+(742, 'convenio_sena', ''),
+(743, 'Cedula', ''),
+(744, 'convenio_sena', ''),
+(745, 'Cedula', ''),
+(746, 'convenio_sena', ''),
+(747, 'Cedula', ''),
+(748, 'convenio_sena', ''),
+(749, 'Cedula', ''),
+(750, 'convenio_sena', ''),
+(751, 'Cedula', ''),
+(752, 'convenio_sena', ''),
+(753, 'Cedula', ''),
+(754, 'convenio_sena', ''),
+(755, 'Cedula', ''),
+(756, 'Recepción', ''),
+(757, 'convenio_sena', ''),
+(758, 'Cedula', ''),
+(759, 'Union_Libre', ''),
+(760, 'Union_Libre', ''),
+(761, 'Union_Libre', ''),
+(762, 'Union_Libre', ''),
+(763, 'Union_Libre', ''),
+(764, 'Union_Libre', ''),
+(765, 'Union_Libre', ''),
+(766, 'Union_Libre', ''),
+(767, 'Union_Libre', ''),
+(768, 'Union_Libre', ''),
+(769, 'Union_Libre', ''),
+(770, 'Union_Libre', ''),
+(771, 'convenio_sena', ''),
+(772, 'Cedula', ''),
+(773, 'convenio_sena', ''),
+(774, 'Cedula', ''),
+(775, 'convenio_sena', ''),
+(776, 'Cedula', ''),
+(777, 'convenio_sena', ''),
+(778, 'Cedula', ''),
+(779, 'Recepción', ''),
+(780, 'convenio_sena', ''),
+(781, 'Cedula', ''),
+(782, 'convenio_sena', ''),
+(783, 'Cedula', ''),
+(784, 'convenio_sena', ''),
+(785, 'Cedula', ''),
+(786, 'convenio_sena', ''),
+(787, 'Cedula', ''),
+(788, 'convenio_sena', ''),
+(789, 'Cedula', ''),
+(790, 'rss', ''),
+(791, 'RSS', ''),
+(792, 'Gestion de RSS', ''),
+(793, 'RSS', ''),
+(794, 'rss_list', ''),
+(795, 'add_rss', ''),
+(796, 'url', ''),
+(797, 'RSS', ''),
+(798, 'RSS', ''),
+(799, 'RSS', ''),
+(800, 'RSS', ''),
+(801, 'RSS', ''),
+(802, 'RSS', ''),
+(803, 'RSS', ''),
+(804, 'RSS', ''),
+(805, 'RSS', ''),
+(806, 'RSS', ''),
+(807, 'RSS', ''),
+(808, 'RSS', ''),
+(809, 'RSS', ''),
+(810, 'RSS', ''),
+(811, 'convenio_sena', ''),
+(812, 'Cedula', ''),
+(813, 'RSS', ''),
+(814, 'RSS', ''),
+(815, 'Recepción', ''),
+(816, 'RSS', ''),
+(817, 'RSS', ''),
+(818, 'RSS', ''),
+(819, 'convenio_sena', ''),
+(820, 'Cedula', ''),
+(821, 'RSS', ''),
+(822, 'RSS', ''),
+(823, 'RSS', ''),
+(824, 'Inscripciones/Preinscripciones', ''),
+(825, 'Inscripciones', ''),
+(826, 'RSS', ''),
+(827, 'RSS', ''),
+(828, 'RSS', ''),
+(829, 'Inscripcion_list', ''),
+(830, 'add_inscripcion', ''),
+(831, 'estudiante', ''),
+(832, 'RSS', ''),
+(833, 'RSS', ''),
+(834, 'fecha', ''),
+(835, 'RSS', ''),
+(836, 'RSS', ''),
+(837, 'RSS', ''),
+(838, 'RSS', ''),
+(839, 'RSS', ''),
+(840, 'RSS', ''),
+(841, 'RSS', ''),
+(842, 'RSS', ''),
+(843, 'RSS', ''),
+(844, 'RSS', ''),
+(845, 'RSS', ''),
+(846, 'RSS', ''),
+(847, 'RSS', ''),
+(848, 'RSS', ''),
+(849, 'RSS', ''),
+(850, 'RSS', ''),
+(851, 'RSS', ''),
+(852, 'RSS', ''),
+(853, 'RSS', ''),
+(854, 'RSS', ''),
+(855, 'RSS', ''),
+(856, 'RSS', ''),
+(857, 'RSS', ''),
+(858, 'RSS', ''),
+(859, 'RSS', ''),
+(860, 'RSS', ''),
+(861, 'RSS', ''),
+(862, 'RSS', ''),
+(863, 'RSS', ''),
+(864, 'RSS', ''),
+(865, 'RSS', ''),
+(866, 'RSS', ''),
+(867, 'RSS', ''),
+(868, 'RSS', ''),
+(869, 'RSS', ''),
+(870, 'RSS', ''),
+(871, 'RSS', ''),
+(872, 'RSS', ''),
+(873, 'RSS', ''),
+(874, 'RSS', ''),
+(875, 'RSS', ''),
+(876, 'RSS', ''),
+(877, 'RSS', ''),
+(878, 'RSS', ''),
+(879, 'RSS', ''),
+(880, 'RSS', ''),
+(881, 'convenio_sena', ''),
+(882, 'Cedula', ''),
+(883, 'RSS', ''),
+(884, 'RSS', ''),
+(885, 'RSS', ''),
+(886, 'RSS', ''),
+(887, 'RSS', ''),
+(888, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -2041,14 +2471,20 @@ CREATE TABLE IF NOT EXISTS `noticeboard` (
   `notice` longtext COLLATE utf8_unicode_ci NOT NULL,
   `create_timestamp` int(11) NOT NULL,
   PRIMARY KEY (`notice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `noticeboard`
 --
 
 INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timestamp`) VALUES
-(1, 'Bienvenidos al Software academico CEIS', 'Este software ha sido diseñado para mejorar y optimizar el proceso de registro y gestión de estudiantes en la academia.', 1410933600);
+(1, 'Bienvenidos al Software academico CEIS', 'Este software ha sido diseñado para mejorar y optimizar el proceso de registro y gestión de estudiantes en la academia.', 1410933600),
+(4, 'MATRICULATE e inicia nuestros cursos y especializaciones', 'CEIS te ofrece especializaciones en Vigilancia: Residencial, Entidades Oficiales, Sector Financiero, Industrial, Hospitalaria, Comercial y Cursos de seguridad como vigilancia , escolta , surpervisor y medios tecnologicos .', 0),
+(3, 'Términos y condiciones del sorteo moto y televisor', '1. Por tu matricula en cualquiera de nuestros cursos en los ciclos de vigilancia, escolta, supervisor y medios tecnológicos, realizados a partir del 13 de Enero de 2014 hasta el 9 de Junio de 2014 (1er sorteo) y 1 de diciembre de 2014 (2do sorteo), reclama una boleta para participar en el sorteo de un televisor de 50” y una moto bóxer modelo 2014. Fecha del 1er sorteo: 10 de Junio de 2014: 1 Televisor de 50” Fecha de cierre de urna: 9 de junio de 2014 a las 9pm Fecha del 2do sorteo: 2 de diciembre de 2014: 1 moto Boxer modelo 2014 Fecha de cierre de urna: 1 de diciembre de 2014 a las 9pm\r\n\r\n2. Las boletas enmendadas no serán validas.\r\n\r\n3. Los datos con los que se debe diligenciar el desprendible de la boleta, deben coincidir con la información contenida en el sistema académico de CEIS LTDA, de igual forma debe llenarse el desprendible con letra clara, legible y debe diligenciarse completamente.\r\n\r\n4. Deposite en la urna únicamente la boleta diligenciada con todos sus datos.\r\n\r\n5. La boleta que salga favorecida en el 1er sorteo ofertado por CEIS LTDA, no participara en los sorteos que se realicen posteriormente.\r\n\r\n6. Solo participan y son validos, los desprendibles del sorteo actual. Absténgase de introducir en la urna desprendibles de otros sorteos o sorteos anteriores.\r\n\r\n7. Para verificación de la boleta seleccionada, el dueño de la misma, deberá presentar a la administración el original de su cédula, cédula de extranjería, pasaporte o cualquier documento de identificación provisional o definitiva, entregado o certificado por la registraduría nacional del estado civil en Colombia.\r\n\r\n8. Los premios serán entregados únicamente a la persona natural indicada en el desprendible de la boleta seleccionada y luego de certificar el cumplimiento de todos y cada uno de los requisitos contenidos en el presente documento.\r\n\r\n9. El ganador de cada uno de los premios tiene 30 días calendarios para reclamar el premio exhibiendo los requisitos exigidos en el presente documento, de lo contrario CEIS podrá acumular el premio o en su defecto señalar una nueva fecha para su ejecución.\r\n\r\n10. Los impuestos por ganancia ocasional discriminados en el estatuto tributario y valores adicionales inherentes a los premios serán asumidos en su totalidad por el ganador de los mismos.\r\n\r\n11. Los Ganadores tienen un lapso de tiempo de 30 días calendarios, siguientes a la ejecución del sorteo, para retirar el televisor y la moto ofertados, previo lleno de los requisitos correspondientes, transcurrido el lapso de tiempo enunciado.\r\n\r\n12. Será responsabilidad del ganador el pago de los impuestos que se generen por el registro de propiedad del automotor.\r\n\r\n13.No podrá participar en los sorteos descritos en el presente documento los empleados y funcionarios adscritos a CEIS LTDA.\r\n\r\n14. Los problemas e inconvenientes presentados por las garantías de los productos  entregados deberán ser asumidos por los productores de los mismos tal como lo preceptúa la Ley 1480 de 2011.', 0),
+(5, '[PROGRAMATE] Como Operador de Medios Tecnológicos', 'Estudia en CEIS Operador de Medios Tecnológicos, Inicia Lunes 19 de Mayo 6pm Inscribete y Gana Tv de 50″', 0),
+(6, 'Estudiando en CEIS podrás Ganar un TV de 50″ o una Moto 0Km', 'Si en el 2014 has realizado alguno de nuestros cursos ¿Que esperas para reclamar tu boleta?… Si aún no has realizado ningún curso en CEIS, Matriculate Ya! y pordrás ver el mundial en un Televisor de 50″ o Ganar una Moto Boxer en Diciembre!… Entre Más Cursos Realices Más oportunidades tienes de ganar!', 0),
+(7, 'Programación Cursos Mes de Febrero', 'Conozca a continuación la programación de los cursos ofertados por CEIS para el mes de Febrero.', 0),
+(8, 'Bienvenidos a CEIS', 'Bienvenido a WordPress. Esta es tu primera entrada. Edítala o bórrala, ¡y comienza a publicar!.', 0);
 
 -- --------------------------------------------------------
 
@@ -2091,6 +2527,28 @@ CREATE TABLE IF NOT EXISTS `payment` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `rss`
+--
+
+CREATE TABLE IF NOT EXISTS `rss` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) NOT NULL,
+  `url` varchar(300) NOT NULL,
+  `create_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `rss`
+--
+
+INSERT INTO `rss` (`id`, `name`, `url`, `create_timestamp`) VALUES
+(1, 'CEIS Noticias', 'http://www.ceis.com.co/feed/', '2014-10-23 04:30:00'),
+(4, 'Genbeta', 'http://feeds.weblogssl.com/genbetadev?format=xml', '2014-10-23 05:28:06');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `settings`
 --
 
@@ -2121,7 +2579,7 @@ INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `student_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `documento` longtext COLLATE utf8_unicode_ci NOT NULL,
   `ndocumento` int(18) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -2159,8 +2617,21 @@ CREATE TABLE IF NOT EXISTS `student` (
   `check_cedula` tinyint(2) NOT NULL,
   `check_cert_est` tinyint(2) NOT NULL,
   `check_foto` tinyint(2) NOT NULL,
-  `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `student`
+--
+
+INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `nom_sector_eco`, `nom_subsector_eco`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`, `check_lib_militar`, `check_cedula`, `check_cert_est`, `check_foto`, `talla_camisa`) VALUES
+(1, 'CC', 2345, 'jose', 'luis', 'perez', 'marquez', '10/14/2014', 'masculino', 'Separado', 'no', '0', '2345', 'particular', '0', 'barrio', '45', 'jonathan.araul@gmail.com', '4', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'miempresa', 'ALTA GERENCIA/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'barrio', '2', '20', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, ''),
+(2, 'CC', 22447886, 'jose', 'raul', 'hernandez', 'padron', '01/25/1992', 'masculino', 'Soltero', 'no', '0', '234234', 'particular', '0', 'las cocuizas', '123324234323', 'correoprueba@gmail.com', '3', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'ninguna', 'SENA EMPRESAS/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'los bloques', '1', '2', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, '16'),
+(3, 'CC', 22447886, 'juan', 'raul', 'hernandez', 'padron', '10/10/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'la calle tal', '1231232131', 'elmejor159@hotmail.com', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'el barrio tal', '14', '495', NULL, 0, 1, 0, 0, '16'),
+(4, 'CC', 22447886, 'jose', 'raul', 'lopez', 'ramirez', '10/03/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'las cocuizas', '675676575', 'prueba@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'los bloques', '1', '2', NULL, 0, 1, 0, 0, '14'),
+(5, 'CC', 2131312, 'carlos', 'david', 'arreaza', 'colmenares', '10/30/2014', 'masculino', 'Soltero', 'no', '0', '34543535', 'becado', '0', 'plaza piar', '123123132', 'prueba2@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'peligroso', '13', '466', NULL, 0, 1, 0, 0, '16'),
+(6, 'CC', 11991682, 'shack', 'adams', 'oneil', 'doge', '10/13/2014', 'masculino', 'casado', 'no', '0', '4554645654', 'becado', '0', 'las terrazas', '678987978979', 'prueba3@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'mas peligroso', '14', '497', NULL, 0, 1, 0, 0, '18');
 
 -- --------------------------------------------------------
 
@@ -2226,6 +2697,13 @@ CREATE TABLE IF NOT EXISTS `transport` (
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `hs_inscripcion`
+--
+ALTER TABLE `hs_inscripcion`
+  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `municipio`
