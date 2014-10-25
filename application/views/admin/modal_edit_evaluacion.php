@@ -55,10 +55,49 @@
 
                     <div class="controls">
 
-                        <input type="text" class="validate[required]" name="fecha" value="<?php echo $row['fecha']; ?>"/>
+                        <?php $fecha= strtotime($row['fecha']);
+                              $date= date('m/d/Y',$fecha);
+                        ?>
+
+                        <input type="text" class="datepicker fill-up" name="fecha"
+                               value="<?php echo $date; ?>"/>
 
                     </div>
 
+                </div>
+                <div class="control-group">           
+                    <label class="control-label"><?php echo get_phrase('hora'); ?></label>
+                    <div class="controls">
+                        <select name="hora" class="uniform" style="width:100%;">
+
+                            <?php for ($i = 0; $i <= 12; $i++): 
+                                if($i<10){?>
+                                    <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php }else{ ?>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php } ?>
+                            <?php endfor; ?>
+
+                        </select>
+                        <select name="min" class="uniform" style="width:100%;">
+
+                            <?php for ($i = 0; $i <= 60; $i++): ?>
+                                <?php if ($i<10){?>
+                                    <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php }else{ ?>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php } ?>
+                            <?php endfor; ?>
+
+                        </select>
+                       <select name="ampm" class="uniform" style="width:100%">
+
+                            <option value="1">am</option>
+
+                            <option value="2">pm</option>
+
+                        </select>
+                    </div>                    
                 </div>
 
 

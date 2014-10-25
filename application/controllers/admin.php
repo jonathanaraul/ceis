@@ -1471,13 +1471,13 @@ class Admin extends CI_Controller
 
             $data['nombre_periodo'] = $this->input->post('nombre_periodo');
 
-            $f_ini= strtotime($this->input->post('fecha_inicio'));
-            $date1= date('Y-m-d',$f_ini);
-            $data['fecha_inicio']= $date1;
+            $date_ini= date_create($this->input->post('fecha_inicio'));
+            $fecha_ini= date_format($date_ini, 'Y/m/d');
+            $data['fecha_inicio']= $fecha_ini;
 
-            $f_fin= strtotime($this->input->post('fecha_fin'));
-            $date2= date('Y-m-d',$f_fin);
-            $data['fecha_fin']= $date2;
+            $date_fin= date_create($this->input->post('fecha_fin'));
+            $fecha_fin= date_format($date_fin, 'Y/m/d');
+            $data['fecha_fin']= $fecha_fin;
 
             $data['duracion'] = $this->input->post('duracion');
 
@@ -1491,9 +1491,13 @@ class Admin extends CI_Controller
 
             $data['nombre_periodo'] = $this->input->post('nombre_periodo');
 
-            $data['fecha_inicio'] = $this->input->post('fecha_inicio');
+            $date_ini= date_create($this->input->post('fecha_inicio'));
+            $fecha_ini= date_format($date_ini,'Y/m/d');
+            $data['fecha_inicio']= $fecha_ini;
 
-            $data['fecha_fin'] = $this->input->post('fecha_fin');
+            $date_fin= date_create($this->input->post('fecha_fin'));
+            $fecha_fin= date_format($date_fin,'Y/m/d');
+            $data['fecha_fin']= $fecha_fin;
 
             $data['duracion'] = $this->input->post('duracion');
 
@@ -1551,7 +1555,14 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = $this->input->post('fecha');
+            $date= date_create($this->input->post('fecha'));
+            $fecha= date_format($date, 'Y/m/d');
+            $data['fecha']= $fecha;
+
+            $hora= $this->input->post('hora') + (12 * ($this->input->post('ampm') - 1));
+            $min= $this->input->post('min');
+            $time= $hora.":".$min.":00";
+            $data['hora'] = $time;
 
             $this->db->insert('hs_evaluaciones', $data);
 
@@ -1567,7 +1578,14 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = $this->input->post('fecha');
+            $date= date_create($this->input->post('fecha'));
+            $fecha= date_format($date, 'Y/m/d');
+            $data['fecha']= $fecha;
+
+            $hora= $this->input->post('hora') + (12 * ($this->input->post('ampm') - 1));
+            $min= $this->input->post('min');
+            $time= $hora.":".$min.":00";
+            $data['hora'] = $time;
 
             $this->db->where('id', $param2);
 
@@ -1591,7 +1609,7 @@ class Admin extends CI_Controller
 
             $this->db->delete('hs_evaluaciones');
 
-            redirect(base_url() . 'index.php?admin/ealuaciones/', 'refresh');
+            redirect(base_url() . 'index.php?admin/evaluaciones/', 'refresh');
 
         }
 

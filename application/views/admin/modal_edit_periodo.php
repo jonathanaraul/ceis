@@ -24,8 +24,12 @@
 
                     <div class="controls">
 
+                        <?php $f_ini= strtotime($row['fecha_inicio']);
+                              $date_ini= date('m/d/Y',$f_ini);
+                        ?>
+
                         <input type="text" class="datepicker fill-up" name="fecha_inicio"
-                               value="<?php echo $row['fecha_inicio']; ?>"/>
+                               value="<?php echo $date_ini; ?>"/>
 
                     </div>
 
@@ -36,8 +40,12 @@
 
                     <div class="controls">
 
+                        <?php $f_fin= strtotime($row['fecha_fin']);
+                              $date_fin= date('m/d/Y',$f_fin);
+                        ?>
+
                         <input type="text" class="datepicker fill-up" name="fecha_fin"
-                               value="<?php echo $row['fecha_fin']; ?>"/>
+                               value="<?php echo $date_fin; ?>"/>
 
                     </div>
 

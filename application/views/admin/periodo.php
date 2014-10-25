@@ -48,9 +48,19 @@
                         <tr>
                             <td><?php echo $count++; ?></td>
                             <td><?php echo $row['nombre_periodo']; ?></td>
-                            <td><?php echo $row['fecha_inicio']; ?></td>
+                            <td>
+                                <?php $f_ini= date_create($row['fecha_inicio']);
+                                      $date_ini= date_format($f_ini, 'd/m/Y');
+                                      echo $date_ini; 
+                                ?>
+                            </td>
 
-                            <td><?php echo $row['fecha_fin']; ?></td>
+                            <td>
+                                <?php $f_fin= date_create($row['fecha_fin']);
+                                      $date_fin= date_format($f_fin, 'd/m/Y');
+                                      echo $date_fin; 
+                                ?>                                
+                            </td>
                             <td><?php echo $row['duracion']; ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"

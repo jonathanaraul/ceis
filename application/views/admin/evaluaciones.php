@@ -38,6 +38,9 @@
                             <div><?php echo get_phrase('fecha'); ?></div>
                         </th>
                         <th>
+                            <div><?php echo get_phrase('hora'); ?></div>
+                        </th>
+                        <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
                     </tr>
@@ -50,7 +53,13 @@
                             <td><?php echo $row['nombre']; ?></td>
                             <td><?php echo $this->crud_model->get_subject_name_by_id($row['materia']); ?></td>
                             <td><?php echo $row['ponderacion']; ?></td>
-                            <td><?php echo $row['fecha']; ?></td>
+                            <td><?php 
+                                    $fecha= date_create($row['fecha']);
+                                    $date= date_format($fecha, 'd/m/Y');
+                                    echo $date; 
+                                ?>
+                            </td>
+                            <td><?php echo $row['hora']; ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('edit_evaluacion',<?php echo $row['id']; ?>)"
@@ -111,8 +120,42 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha'); ?></label>
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="fecha"/>
+                                <input type="text" class="datepicker fill-up" name="fecha"/>
                             </div>
+                        </div>
+                        <div class="control-group">           
+                            <label class="control-label"><?php echo get_phrase('hora'); ?></label>
+                            <div class="controls">
+                                <select name="hora" class="uniform" style="width:100%;">
+
+                                    <?php for ($i = 0; $i <= 12; $i++): 
+                                        if($i<10){?>
+                                            <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php }else{ ?>
+                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php } ?>
+                                    <?php endfor; ?>
+
+                                </select>
+                                <select name="min" class="uniform" style="width:100%;">
+
+                                    <?php for ($i = 0; $i <= 60; $i++): ?>
+                                        <?php if ($i<10){?>
+                                            <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php }else{ ?>
+                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php } ?>
+                                    <?php endfor; ?>
+
+                                </select>
+                               <select name="ampm" class="uniform" style="width:100%">
+
+                                    <option value="1">am</option>
+
+                                    <option value="2">pm</option>
+
+                                </select>
+                            </div>                    
                         </div>
                     </div>
                     <div class="form-actions">
