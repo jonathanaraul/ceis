@@ -98,6 +98,25 @@
 
 </li>
 
+<!------Periods----->
+
+<li class="<?php if ($page_name == 'periodo') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/periodo" rel="tooltip" data-placement="right"
+
+       data-original-title="Ayuda de Periodo">
+
+        <!--<i class="icon-user icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
+
+        <span><?php echo get_phrase('Periodo'); ?></span>
+
+    </a>
+
+</li>
 
 <!------subject----->
 

@@ -1461,6 +1461,153 @@ class Admin extends CI_Controller
 
     }
 
+    /***CRUD periodo**/
+
+        function periodo($param1 = '', $param2 = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+        if ($param1 == 'create') {
+
+            $data['nombre_periodo'] = $this->input->post('nombre_periodo');
+
+            $f_ini= strtotime($this->input->post('fecha_inicio'));
+            $date1= date('Y-m-d',$f_ini);
+            $data['fecha_inicio']= $date1;
+
+            $f_fin= strtotime($this->input->post('fecha_fin'));
+            $date2= date('Y-m-d',$f_fin);
+            $data['fecha_fin']= $date2;
+
+            $data['duracion'] = $this->input->post('duracion');
+
+            $this->db->insert('hs_periodo', $data);
+
+            redirect(base_url() . 'index.php?admin/periodo/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['nombre_periodo'] = $this->input->post('nombre_periodo');
+
+            $data['fecha_inicio'] = $this->input->post('fecha_inicio');
+
+            $data['fecha_fin'] = $this->input->post('fecha_fin');
+
+            $data['duracion'] = $this->input->post('duracion');
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_periodo', $data);
+
+            redirect(base_url() . 'index.php?admin/periodo/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_periodo', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_periodo');
+
+            redirect(base_url() . 'index.php?admin/periodo/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'periodo';
+
+        $page_data['page_title'] = get_phrase('Gestionar Periodos');
+
+        $page_data['periodo'] = $this->db->get('hs_periodo')->result_array();
+
+        $this->load->view('index', $page_data);
+
+    }
+
+    /***CRUD evaluaciones**/
+
+        function evaluaciones($param1 = '', $param2 = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+        if ($param1 == 'create') {
+
+            $data['nombre'] = $this->input->post('nombre');
+
+            $data['materia'] = $this->input->post('materia');
+
+            $data['ponderacion'] = $this->input->post('ponderacion');
+
+            $data['fecha'] = $this->input->post('fecha');
+
+            $this->db->insert('hs_evaluaciones', $data);
+
+            redirect(base_url() . 'index.php?admin/evaluaciones/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['nombre'] = $this->input->post('nombre');
+
+            $data['materia'] = $this->input->post('materia');
+
+            $data['ponderacion'] = $this->input->post('ponderacion');
+
+            $data['fecha'] = $this->input->post('fecha');
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_evaluaciones', $data);
+
+            redirect(base_url() . 'index.php?admin/evaluaciones/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_evaluaciones', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_evaluaciones');
+
+            redirect(base_url() . 'index.php?admin/ealuaciones/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'evaluaciones';
+
+        $page_data['page_title'] = get_phrase('Gestionar Evaluaciones');
+
+        $page_data['evaluaciones'] = $this->db->get('hs_evaluaciones')->result_array();
+
+        $this->load->view('index', $page_data);
+
+    }
 
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
