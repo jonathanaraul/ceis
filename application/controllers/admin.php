@@ -494,9 +494,9 @@ class Admin extends CI_Controller
     }
 
 
-    /****MANAGE SUBJECTS*****/
+    /****GESTIONAR MATERIAS*****/
 
-    function subject($param1 = '', $param2 = '')
+    function materias($param1 = '', $param2 = '')
 
     {
 
@@ -506,38 +506,34 @@ class Admin extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['name'] = $this->input->post('name');
+            $data['nombre'] = $this->input->post('nombre');
 
-            $data['class_id'] = $this->input->post('class_id');
+            $data['curso'] = $this->input->post('curso');
 
-            $data['teacher_id'] = $this->input->post('teacher_id');
+            $this->db->insert('hs_materias', $data);
 
-            $this->db->insert('subject', $data);
-
-            redirect(base_url() . 'index.php?admin/subject/', 'refresh');
+            redirect(base_url() . 'index.php?admin/materias/', 'refresh');
 
         }
 
         if ($param1 == 'do_update') {
 
-            $data['name'] = $this->input->post('name');
+            $data['nombre'] = $this->input->post('nombre');
 
-            $data['class_id'] = $this->input->post('class_id');
-
-            $data['teacher_id'] = $this->input->post('teacher_id');
+            $data['curso'] = $this->input->post('curso');
 
 
-            $this->db->where('subject_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->update('subject', $data);
+            $this->db->update('hs_materias', $data);
 
-            redirect(base_url() . 'index.php?admin/subject/', 'refresh');
+            redirect(base_url() . 'index.php?admin/materias/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
-            $page_data['edit_data'] = $this->db->get_where('subject', array(
+            $page_data['edit_data'] = $this->db->get_where('hs_materias', array(
 
-                'subject_id' => $param2
+                'id' => $param2
 
             ))->result_array();
 
@@ -545,19 +541,19 @@ class Admin extends CI_Controller
 
         if ($param1 == 'delete') {
 
-            $this->db->where('subject_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->delete('subject');
+            $this->db->delete('hs_materias');
 
-            redirect(base_url() . 'index.php?admin/subject/', 'refresh');
+            redirect(base_url() . 'index.php?admin/materias/', 'refresh');
 
         }
 
-        $page_data['subjects'] = $this->db->get('subject')->result_array();
+        $page_data['materias'] = $this->db->get('hs_materias')->result_array();
 
-        $page_data['page_name'] = 'subject';
+        $page_data['page_name'] = 'materias';
 
-        $page_data['page_title'] = get_phrase('manage_subject');
+        $page_data['page_title'] = get_phrase('gestionar_materias');
 
         $this->load->view('index', $page_data);
 

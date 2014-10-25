@@ -24,13 +24,10 @@
                     <thead>
                     <tr>
                         <th>
-                            <div><?php echo get_phrase('class'); ?></div>
-                        </th>
-                        <th>
                             <div><?php echo get_phrase('subject_name'); ?></div>
                         </th>
                         <th>
-                            <div><?php echo get_phrase('teacher'); ?></div>
+                            <div><?php echo get_phrase('class'); ?></div>
                         </th>
                         <th>
                             <div><?php echo get_phrase('options'); ?></div>
@@ -39,19 +36,18 @@
                     </thead>
                     <tbody>
                     <?php $count = 1;
-                    foreach ($subjects as $row): ?>
+                    foreach ($materias as $row): ?>
                         <tr>
-                            <td><?php echo $this->crud_model->get_type_name_by_id('class', $row['class_id']); ?></td>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $this->crud_model->get_type_name_by_id('teacher', $row['teacher_id']); ?></td>
+                            <td><?php echo $row['nombre']; ?></td>
+                            <td><?php echo $this->crud_model->get_class_name($row['curso']); ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_subject',<?php echo $row['subject_id']; ?>)"
+                                   onclick="modal('edit_materia',<?php echo $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/subject/delete/<?php echo $row['subject_id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/materias/delete/<?php echo $row['id']; ?>')"
                                    class="btn btn-red btn-small">
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
@@ -67,23 +63,23 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/subject/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('admin/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('name'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="name"/>
+                                <input type="text" class="validate[required]" name="nombre"/>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('class'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('curso'); ?></label>
 
                             <div class="controls">
-                                <select name="department_id" class="uniform" style="width:100%;">
+                                <select name="curso" class="uniform" style="width:100%;">
                                     <?php
-                                    $classes = $this->db->get('class')->result_array();
-                                    foreach ($classes as $row):
+                                    $cursos = $this->db->get('class')->result_array();
+                                    foreach ($cursos as $row):
                                         ?>
                                         <option
                                             value="<?php echo $row['class_id']; ?>"><?php echo $row['name']; ?></option>
@@ -93,26 +89,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('teacher'); ?></label>
-
-                            <div class="controls">
-                                <select name="department_id" class="uniform" style="width:100%;">
-                                    <?php
-                                    $teachers = $this->db->get('teacher')->result_array();
-                                    foreach ($teachers as $row):
-                                        ?>
-                                        <option
-                                            value="<?php echo $row['teacher_id']; ?>"><?php echo $row['name']; ?></option>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_subject'); ?></button>
+                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('agregar_materia'); ?></button>
                     </div>
                     </form>
                 </div>

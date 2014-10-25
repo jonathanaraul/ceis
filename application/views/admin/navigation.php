@@ -120,19 +120,19 @@
 
 <!------subject----->
 
-<li class="<?php if ($page_name == 'subject') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'materias') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?admin/subject" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?admin/materias" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('subject_help'); ?>">
+       data-original-title="<?php echo get_phrase('ayuda_de_materias'); ?>">
 
         <!--<i class="icon-tasks icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
 
-        <span><?php echo get_phrase('subject'); ?></span>
+        <span><?php echo get_phrase('materias'); ?></span>
 
     </a>
 
