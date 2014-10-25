@@ -98,7 +98,7 @@ class Crud_model extends CI_Model {
 
 	
 
-	//////////SUBJECT/////////////
+	//////////MATERIAS/////////////
 
 	function get_subjects()
 
@@ -130,13 +130,13 @@ class Crud_model extends CI_Model {
 
 	}
 
-	function get_subject_name_by_id($subject_id)
+	function get_subject_name_by_id($materia_id)
 
 	{
 
-		$query	=	$this->db->get_where('subject' , array('subject_id' => $subject_id))->row();
+		$query	=	$this->db->get_where('hs_materias' , array('id' => $materia_id))->row();
 
-		return $query->name;
+		return $query->nombre;
 
 	}
 
@@ -297,8 +297,6 @@ function get_empresas()
 		}
 
 	}
-
-
 
 	function create_log($data)
 

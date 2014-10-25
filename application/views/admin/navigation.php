@@ -98,7 +98,7 @@
 
 </li>
 
-<!------Periods----->
+<!------Periodo----->
 
 <li class="<?php if ($page_name == 'periodo') echo 'dark-nav active'; ?>">
 
@@ -154,6 +154,26 @@
         <img src="<?php echo base_url(); ?>template/images/icons/class.png"/>
 
         <span><?php echo get_phrase('class'); ?></span>
+
+    </a>
+
+</li>
+
+<!------Evaluaciones----->
+
+<li class="<?php if ($page_name == 'evaluaciones') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/evaluaciones" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('Ayuda Evaluaciones'); ?>">
+
+        <!--<i class="icon-money icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
+
+        <span><?php echo get_phrase('evaluaciones'); ?></span>
 
     </a>
 
