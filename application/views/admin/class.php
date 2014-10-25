@@ -157,7 +157,8 @@
                         $elements = $this->db->get('class_name')->result_array();
                         foreach ($elements as $element):
                             ?>
-                            <option value="<?php echo $element['nombre']; ?>" > <?php echo $element['nombre']; ?> </option>
+                            <option
+                                value="<?php echo $element['nombre']; ?>"> <?php echo $element['nombre']; ?> </option>
                         <?php
                         endforeach;
                         ?>
@@ -172,11 +173,11 @@
                 <div class="controls">
 
                     <select name="seccion" class="uniform" style="width:100%;">
-                        <option value="A" > A </option>
-                        <option value="B" > B </option>
-                        <option value="C" > C </option>
-                        <option value="D" > D </option>
-                        <option value="E" > E </option>
+                        <option value="A"> A</option>
+                        <option value="B"> B</option>
+                        <option value="C"> C</option>
+                        <option value="D"> D</option>
+                        <option value="E"> E</option>
                     </select>
                 </div>
 

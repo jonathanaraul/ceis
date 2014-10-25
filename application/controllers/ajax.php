@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: jonathan.araul
@@ -18,7 +19,7 @@ class ajax extends CI_Controller
 
     }
 
-     function obtenMunicipios()
+    function obtenMunicipios()
 
     {
         $departamento = $this->input->post('departamento');
@@ -27,8 +28,8 @@ class ajax extends CI_Controller
 
         $cadena = '';
 
-        foreach ($elements as $element){
-           $cadena .= '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
+        foreach ($elements as $element) {
+            $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
 
         }
         echo $cadena;

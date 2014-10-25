@@ -141,9 +141,6 @@
 </li>
 
 
-
-
-
 <!------marks----->
 
 <li class="<?php if ($page_name == 'marks') echo 'dark-nav active'; ?>">
@@ -166,8 +163,6 @@
 
 
 <!------grade----->
-
-
 
 
 <!------class routine----->
@@ -293,7 +288,6 @@
     </a>
 
 </li>
-
 
 
 <!------system settings------>

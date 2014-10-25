@@ -106,16 +106,16 @@ class Admin extends CI_Controller
             $data['ndehijos'] = $this->input->post('ndehijos');
             $data['nlibmilitar'] = $this->input->post('nlibmilitar');
             $data['tipodeingreso'] = $this->input->post('tipodeingreso');
-            if($this->input->post('helpertipodeingreso') != '')$data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
             $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
 
-            if($this->input->post('check_cedula')=='on')$data['check_cedula'] = 1;
-            if($this->input->post('check_lib_militar')=='on')$data['check_lib_militar'] = 1;
-            if($this->input->post('check_cert_est')=='on')$data['check_cert_est'] = 1;
-            if($this->input->post('check_foto')=='on')$data['check_foto'] = 1;
+            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
+            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
+            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
+            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
 
             $data['talla_camisa'] = $this->input->post('talla_camisa');
             $data['class_id'] = $this->input->post('class_id');
@@ -137,8 +137,8 @@ class Admin extends CI_Controller
                 $data['nom_municipio'] = $this->input->post('nom_municipio');
                 $data['emp_gremio'] = $this->input->post('emp_gremio');
                 $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = 'SERVICIOS';//$this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = 'VIGILANCIA';//$this->input->post('nom_subsector_eco');
+                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
                 $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;
@@ -181,16 +181,16 @@ class Admin extends CI_Controller
             $data['ndehijos'] = $this->input->post('ndehijos');
             $data['nlibmilitar'] = $this->input->post('nlibmilitar');
             $data['tipodeingreso'] = $this->input->post('tipodeingreso');
-            if($this->input->post('helpertipodeingreso') != '')$data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
             $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['email'] = $this->input->post('email');
 
-            if($this->input->post('check_cedula')=='on')$data['check_cedula'] = 1;
-            if($this->input->post('check_lib_militar')=='on')$data['check_lib_militar'] = 1;
-            if($this->input->post('check_cert_est')=='on')$data['check_cert_est'] = 1;
-            if($this->input->post('check_foto')=='on')$data['check_foto'] = 1;
+            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
+            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
+            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
+            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
 
             $data['talla_camisa'] = $this->input->post('talla_camisa');
 
@@ -212,8 +212,8 @@ class Admin extends CI_Controller
                 $data['nom_municipio'] = $this->input->post('nom_municipio');
                 $data['emp_gremio'] = $this->input->post('emp_gremio');
                 $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = 'SERVICIOS';//$this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = 'VIGILANCIA';//$this->input->post('nom_subsector_eco');
+                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
                 $data['caracterizacion'] = $this->input->post('caracterizacion');
             } else {
                 $data['sena'] = 0;
@@ -1462,7 +1462,7 @@ class Admin extends CI_Controller
     }
 
 
- /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
+    /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
     function inscripcion($param1 = '', $param2 = '', $param3 = '')
 
@@ -1533,6 +1533,7 @@ class Admin extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
+
     /*****SITE/SYSTEM SETTINGS*********/
 
     function system_settings($param1 = '', $param2 = '', $param3 = '')
