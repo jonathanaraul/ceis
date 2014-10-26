@@ -31,9 +31,9 @@
                                 <option value="0"><?= 'Seleccionar curso' ?></option>
                                 <?php
                                 $classes = $this->db->get('hs_cursos')->result_array();
-                                foreach ($classes as $row){
-                                    echo '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
-                                 }
+                                foreach ($classes as $row) {
+                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                }
                                 ?>
                             </select>
                         </td>
@@ -49,9 +49,8 @@
                             </select>
                         </td>
                         <td>
-                            <input type="hidden" name="operation" value="selection"/>
-                            <input type="submit" value="<?php echo get_phrase('manage_marks'); ?>"
-                                   class="btn btn-normal btn-gray"/>
+                            <input type="button" class="btn btn-normal btn-gray" value="Gestionar Notas"
+                                   onclick="gestionarNotas(this.value)">
                         </td>
                     </tr>
                 </table>
@@ -60,6 +59,14 @@
 
 
             <br/><br/>
+            <div id="loader" style="display: none">
+                <p style="text-align: center">
+                    <img src="<?php echo base_url();?>template/images/loader.gif">
+                </p>
+            </div>
+            <div id="asistencias" style="background-color:  #eaebef;padding: 7px 11px;display: none">
+
+            </div>
 
 
             <?php if ($exam_id > 0 && $class_id > 0 && $subject_id > 0): ?>
@@ -110,7 +117,6 @@
                                 <td>
                                     <input type="number" value="<?php echo $row2['mark_obtained']; ?>"
                                            name="mark_obtained"/>
-
                                 </td>
                                 <td>
                                     <input type="number" value="<?php echo $row2['attendance']; ?>" name="attendance"/>
@@ -119,14 +125,8 @@
                                     <textarea name="comment"><?php echo $row2['comment']; ?></textarea>
                                 </td>
                                 <td>
-                                    <input type="hidden" name="mark_id" value="<?php echo $row2['mark_id']; ?>"/>
-
-                                    <input type="hidden" name="exam_id" value="<?php echo $exam_id; ?>"/>
-                                    <input type="hidden" name="class_id" value="<?php echo $class_id; ?>"/>
-                                    <input type="hidden" name="subject_id" value="<?php echo $subject_id; ?>"/>
-
-                                    <input type="hidden" name="operation" value="update"/>
-                                    <button type="submit" class="btn btn-normal btn-gray"> Update</button>
+                                    <input type="button" class="btn btn-normal btn-gray" value="Gestionar Notas"
+                                           onclick="javascript:void(0)">
                                 </td>
                             </tr>
                             </form>
@@ -146,11 +146,38 @@
 </div>
 
 <script type="text/javascript">
+
+    function gestionarNotas(valor) {
+
+        var curso = $('#cursos').val();
+        var materia = $('#materias').val();
+        var evaluacion = $('#evaluaciones').val();
+
+        if (curso <= 0 || materia <= 0 || evaluacion <= 0) {
+            alert('Debe llenar los tres campos');
+            return false;
+        }
+
+        $('#asistencias').empty();
+
+        $('#loader').css('display','block');
+        var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
+
+        $.post('<?php echo site_url()?>ajax/obtenAsistencias',
+            data,
+            function (data) {
+
+                $('#asistencias').html(data);
+                $('#loader').css('display','none');
+                $('#asistencias').css('display','block');
+            });
+    }
+
     function ajaxMaterias(valor) {
         $('#materias').empty();
         $('#materias').prev().html('');
 
-        if(valor==0){
+        if (valor == 0) {
             $('#evaluaciones').empty();
             $('#evaluaciones').prev().html('');
             $('#evaluaciones').html('<option value="0">Seleccionar evaluacion</option>');
@@ -172,18 +199,6 @@
                 $('#evaluaciones').html(data);
             });
     }
-    function show_subjects(class_id) {
-        for (i = 0; i <= 100; i++) {
 
-            try {
-                document.getElementById('subject_id_' + i).style.display = 'none';
-                document.getElementById('subject_id_' + i).setAttribute("name", "temp");
-            }
-            catch (err) {
-            }
-        }
-        document.getElementById('subject_id_' + class_id).style.display = 'block';
-        document.getElementById('subject_id_' + class_id).setAttribute("name", "subject_id");
-    }
 
 </script>

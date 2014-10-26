@@ -180,8 +180,24 @@ class Crud_model extends CI_Model {
             return $row['nombre'];
 
     }
-
-
+    function get_hs_student_cedula_by_id($id){
+        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['ndocumento']);
+    }
+    function get_hs_student_nombre_by_id($id){
+        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['snombre']);
+    }
+    function get_hs_student_apellido_by_id($id){
+        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['snombre']);
+    }
     function get_class_name_numeric($class_id)
 
 	{
