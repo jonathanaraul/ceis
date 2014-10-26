@@ -199,29 +199,6 @@
 
 </li>
 
-<!------marks----->
-
-<li class="<?php if ($page_name == 'marks') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?admin/marks" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('marks_help'); ?>">
-
-        <!--<i class="icon-pencil icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
-
-        <span><?php echo get_phrase('marks-attendance'); ?></span>
-
-    </a>
-
-</li>
-
-
-<!------grade----->
-
 
 <!------class routine----->
 
