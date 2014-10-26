@@ -58,9 +58,9 @@
                             <td>
 
                                 <?php
-                                $this->db->select('name, seccion');
-                                $query = $this->db->get_where('class', array('class_id' => $row['curso']))->result_array();
-                                echo $query[0]['name'] . ' ' . $query[0]['seccion'];
+                                $this->db->select('nombre, seccion');
+                                $query = $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
+                                echo $query[0]['nombre'] . ' ' . $query[0]['seccion'];
                                 ?>
                             </td>
                             <td><?php if ($row['status'] == 0) echo 'Preinscrito'; else echo 'Inscrito' ?></td>
@@ -115,11 +115,11 @@
                             <div class="controls">
                                 <select name="curso" class="uniform" style="width:100%;">
                                     <?php
-                                    $objects = $this->db->get('class')->result_array();
+                                    $objects = $this->db->get('hs_cursos')->result_array();
                                     foreach ($objects as $object):
                                         ?>
-                                        <option value="<?php echo $object['class_id']; ?>">
-                                            <?php echo $object['name'] . ' ' . $object['seccion']; ?> </option>
+                                        <option value="<?php echo $object['id']; ?>">
+                                            <?php echo $object['nombre'] . ' ' . $object['seccion']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>
