@@ -90,9 +90,9 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('hs_materias', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_class') {
+        } else if ($param1 == 'edit_curso') {
 
-            $page_data['edit_data'] = $this->db->get_where('class', array('class_id' => $param2))->result_array();
+            $page_data['edit_data'] = $this->db->get_where('hs_cursos', array('id' => $param2))->result_array();
 
         } else if ($param1 == 'edit_periodo') {
 
