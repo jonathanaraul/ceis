@@ -85,7 +85,7 @@
 
                 <td><?= $row['seccion']; ?></td>
 
-                <td><?= $row['periodo']; ?></td>
+                <td><?php echo  $this->get_hs_periodo_nombre_periodo($row['periodo']); ?></td>
 
                 <td><?= $row['cupo']; ?></td>
 
