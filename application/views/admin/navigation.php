@@ -199,6 +199,26 @@
 
 </li>
 
+<!------Asistencias----->
+
+<li class="<?php if ($page_name == 'asistencias') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/asistencias" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('asistencias'); ?>">
+
+        <!--<i class="icon-pencil icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/noticeboard.png"/>
+
+        <span><?= Asistencias; ?></span>
+
+    </a>
+
+</li>
+
 
 <!------class routine----->
 
