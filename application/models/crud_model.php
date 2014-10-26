@@ -142,6 +142,17 @@ class Crud_model extends CI_Model {
 
 	////////////CLASS///////////
 
+	function get_hs_periodo_nombre_periodo($periodo_id){
+		$query	=	$this->db->get_where('hs_periodo' , array('id' => $periodo_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+			return $row['nombre_periodo'];
+
+	}
+
 	function get_class_name($class_id)
 
 	{
