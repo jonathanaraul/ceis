@@ -27,8 +27,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="class_id" >
-                                <option value=""><?= 'Seleccionar curso' ?></option>
+                            <select name="cursos" id="cursos" onchange="ajaxMaterias(this.value);">
+                                <option value="0"><?= 'Seleccionar curso' ?></option>
                                 <?php
                                 $classes = $this->db->get('hs_cursos')->result_array();
                                 foreach ($classes as $row){
@@ -38,13 +38,13 @@
                             </select>
                         </td>
                         <td>
-                            <select name="class_id" >
-                                <option value=""><?= 'Seleccionar materia' ?></option>
+                            <select name="materias" id="materias" onchange="ajaxEvaluaciones(this.value);">
+                                <option value="0"><?= 'Seleccionar materia' ?></option>
                             </select>
                         </td>
                         <td>
-                            <select name="class_id" >
-                                <option value=""><?= 'Seleccionar evaluacion' ?></option>
+                            <select name="evaluaciones" id="evaluaciones">
+                                <option value="0"><?= 'Seleccionar evaluacion' ?></option>
                                 ?>
                             </select>
                         </td>
@@ -146,6 +146,32 @@
 </div>
 
 <script type="text/javascript">
+    function ajaxMaterias(valor) {
+        $('#materias').empty();
+        $('#materias').prev().html('');
+
+        if(valor==0){
+            $('#evaluaciones').empty();
+            $('#evaluaciones').prev().html('');
+            $('#evaluaciones').html('<option value="0">Seleccionar evaluacion</option>');
+        }
+
+        $.post('<?php echo site_url()?>ajax/obtenMaterias',
+            {'curso': valor },
+            function (data) {
+                $('#materias').html(data);
+            });
+    }
+    function ajaxEvaluaciones(valor) {
+        $('#evaluaciones').empty();
+        $('#evaluaciones').prev().html('');
+
+        $.post('<?php echo site_url()?>ajax/obtenEvaluaciones',
+            {'materia': valor },
+            function (data) {
+                $('#evaluaciones').html(data);
+            });
+    }
     function show_subjects(class_id) {
         for (i = 0; i <= 100; i++) {
 

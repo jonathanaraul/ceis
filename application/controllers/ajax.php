@@ -35,4 +35,38 @@ class ajax extends CI_Controller
         echo $cadena;
 
     }
+
+    function obtenMaterias()
+
+    {
+        $curso = $this->input->post('curso');
+
+        $elements = $this->db->get_where('hs_materias', array('curso' => $curso))->result_array();
+
+        $cadena = '<option value="0">Seleccionar materia</option>';
+
+        foreach ($elements as $element) {
+            $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+
+        }
+        echo $cadena;
+
+    }
+
+    function obtenEvaluaciones()
+
+    {
+        $materia= $this->input->post('materia');
+
+        $elements = $this->db->get_where('hs_evaluaciones', array('materia' => $materia))->result_array();
+
+        $cadena = '<option value="0">Seleccionar evaluacion</option>';
+
+        foreach ($elements as $element) {
+            $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+
+        }
+        echo $cadena;
+
+    }
 }
