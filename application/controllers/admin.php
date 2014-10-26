@@ -630,89 +630,6 @@ class Admin extends CI_Controller
 
     }
 
-
-    /****MANAGE CURSOS*****/
-
-    function classes($param1 = '', $param2 = '')
-
-    {
-
-        if ($this->session->userdata('admin_login') != 1)
-
-            redirect(base_url(), 'refresh');
-
-        if ($param1 == 'create') {
-
-            $data['name'] = $this->input->post('name');
-
-            $data['seccion'] = $this->input->post('seccion');
-
-            $data['fcha_inicio'] = $this->input->post('fcha_inicio');
-
-            $data['fcha_fin'] = $this->input->post('fcha_fin');
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
-
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
-
-            $data['cupo'] = $this->input->post('cupo');
-
-            $this->db->insert('class', $data);
-
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
-
-        }
-
-        if ($param1 == 'do_update') {
-
-            $data['name'] = $this->input->post('name');
-            $data['seccion'] = $this->input->post('seccion');
-            $data['fcha_inicio'] = $this->input->post('fcha_inicio');
-
-            $data['fcha_fin'] = $this->input->post('fcha_fin');
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
-
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
-
-            $data['cupo'] = $this->input->post('cupo');
-
-
-            $this->db->where('class_id', $param2);
-
-            $this->db->update('class', $data);
-
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
-
-        } else if ($param1 == 'edit') {
-
-            $page_data['edit_data'] = $this->db->get_where('class', array(
-
-                'class_id' => $param2
-
-            ))->result_array();
-
-        }
-
-        if ($param1 == 'delete') {
-
-            $this->db->where('class_id', $param2);
-
-            $this->db->delete('class');
-
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
-
-        }
-
-        $page_data['classes'] = $this->db->get('class')->result_array();
-
-        $page_data['page_name'] = 'class';
-
-        $page_data['page_title'] = get_phrase('manage_class');
-
-        $this->load->view('index', $page_data);
-
-    }
-
-
     /****MANAGE CURSOS*****/
 
     function cursos($param1 = '', $param2 = '')
@@ -725,69 +642,47 @@ class Admin extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['name'] = $this->input->post('name');
-
+            $data['nombre'] = $this->input->post('nombre');
             $data['seccion'] = $this->input->post('seccion');
-
-            $data['fcha_inicio'] = $this->input->post('fcha_inicio');
-
-            $data['fcha_fin'] = $this->input->post('fcha_fin');
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
-
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
-
+            $data['periodo'] = $this->input->post('periodo');
             $data['cupo'] = $this->input->post('cupo');
 
-            $this->db->insert('class', $data);
+            $this->db->insert('hs_cursos', $data);
 
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
+            redirect(base_url() . 'index.php?admin/cursos/', 'refresh');
 
         }
 
         if ($param1 == 'do_update') {
 
-            $data['name'] = $this->input->post('name');
+            $data['nombre'] = $this->input->post('nombre');
             $data['seccion'] = $this->input->post('seccion');
-            $data['fcha_inicio'] = $this->input->post('fcha_inicio');
-
-            $data['fcha_fin'] = $this->input->post('fcha_fin');
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
-
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
-
+            $data['periodo'] = $this->input->post('periodo');
             $data['cupo'] = $this->input->post('cupo');
 
+            $this->db->where('id', $param2);
+            $this->db->update('hs_cursos', $data);
 
-            $this->db->where('class_id', $param2);
-
-            $this->db->update('class', $data);
-
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
+            redirect(base_url() . 'index.php?admin/cursos/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
-            $page_data['edit_data'] = $this->db->get_where('class', array(
-
-                'class_id' => $param2
-
+            $page_data['edit_data'] = $this->db->get_where('hs_cursos', array(
+                'id' => $param2
             ))->result_array();
 
         }
 
         if ($param1 == 'delete') {
 
-            $this->db->where('class_id', $param2);
+            $this->db->where('id', $param2);
+            $this->db->delete('hs_cursos');
 
-            $this->db->delete('class');
-
-            redirect(base_url() . 'index.php?admin/classes/', 'refresh');
-
+            redirect(base_url() . 'index.php?admin/cursos/', 'refresh');
         }
 
-        $page_data['classes'] = $this->db->get('hs_cursos')->result_array();
-
+        $page_data['cursos'] = $this->db->get('hs_cursos')->result_array();
         $page_data['page_name'] = 'cursos';
-
         $page_data['page_title'] = get_phrase('manage_class');
 
         $this->load->view('index', $page_data);

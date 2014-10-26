@@ -75,7 +75,7 @@
         <tbody>
 
         <?php $count = 1;
-        foreach ($classes as $row): ?>
+        foreach ($cursos as $row): ?>
 
             <tr>
 
@@ -85,7 +85,7 @@
 
                 <td><?= $row['seccion']; ?></td>
 
-                <td><?= $this->crud_model->get_hs_periodo_nombre_periodo($row['periodo']); ?></td>
+                <td><?= $row['periodo']; ?></td>
 
                 <td><?= $row['cupo']; ?></td>
 
@@ -93,14 +93,14 @@
                 <td align="center">
 
                     <a data-toggle="modal" href="#modal-form"
-                       onclick="modal('edit_class',<?php echo $row['id']; ?>)" class="btn btn-gray btn-small">
+                       onclick="modal('edit_cursos',<?php echo $row['id']; ?>)" class="btn btn-gray btn-small">
 
                         <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
 
                     </a>
 
                     <a data-toggle="modal" href="#modal-delete"
-                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/classes/delete/<?php echo $row['class_id']; ?>')"
+                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/cursos/delete/<?php echo $row['id']; ?>')"
                        class="btn btn-red btn-small">
 
                         <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
@@ -128,7 +128,7 @@
 
     <div class="box-content">
 
-        <?php echo form_open('admin/classes/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+        <?php echo form_open('admin/cursos/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
         <div class="padded">
 
@@ -160,7 +160,7 @@
             <div class="control-group">
                 <label class="control-label"><?= 'Periodo' ?></label>
                 <div class="controls">
-                    <select name="nombre" class="uniform" style="width:100%;">
+                    <select name="periodo" class="uniform" style="width:100%;">
                         <?php
                         $elements = $this->db->get('hs_periodo')->result_array();
                         foreach ($elements as $element){
@@ -178,24 +178,13 @@
             </div>
             <!--aqui no ha guardado nada -->
         </div>
-
         <div class="form-actions">
-
             <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_class'); ?></button>
-
         </div>
-
         </form>
-
     </div>
-
 </div>
-
 <!----CREATION FORM ENDS--->
-
-
 </div>
-
 </div>
-
 </div>
