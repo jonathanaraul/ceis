@@ -782,7 +782,75 @@ class Admin extends CI_Controller
 
     }
 
+    /****MANAGE EXAM MARKS*****/
 
+    function notas($exam_id = '', $class_id = '', $subject_id = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+
+        if ($this->input->post('operation') == 'selection') {
+
+            $page_data['exam_id'] = $this->input->post('exam_id');
+
+            $page_data['class_id'] = $this->input->post('class_id');
+
+            $page_data['subject_id'] = $this->input->post('subject_id');
+
+
+            if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0 && $page_data['subject_id'] > 0) {
+
+                redirect(base_url() . 'index.php?admin/marks/' . $page_data['exam_id'] . '/' . $page_data['class_id'] . '/' . $page_data['subject_id'], 'refresh');
+
+            } else {
+
+                $this->session->set_flashdata('mark_message', 'Choose exam, class and subject');
+
+                redirect(base_url() . 'index.php?admin/notas/', 'refresh');
+
+            }
+
+        }
+
+        if ($this->input->post('operation') == 'update') {
+
+            $data['mark_obtained'] = $this->input->post('mark_obtained');
+
+            $data['attendance'] = $this->input->post('attendance');
+
+            $data['comment'] = $this->input->post('comment');
+
+
+            $this->db->where('mark_id', $this->input->post('mark_id'));
+
+            $this->db->update('mark', $data);
+
+
+            redirect(base_url() . 'index.php?admin/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
+
+        }
+
+        $page_data['exam_id'] = $exam_id;
+
+        $page_data['class_id'] = $class_id;
+
+        $page_data['subject_id'] = $subject_id;
+
+
+        $page_data['page_info'] = 'Exam marks';
+
+
+        $page_data['page_name'] = 'notas';
+
+        $page_data['page_title'] = get_phrase('manage_exam_marks');
+
+        $this->load->view('index', $page_data);
+
+    }
     /****MANAGE EXAM MARKS*****/
 
     function marks($exam_id = '', $class_id = '', $subject_id = '')

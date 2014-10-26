@@ -179,6 +179,25 @@
 
 </li>
 
+<!------notas----->
+
+<li class="<?php if ($page_name == 'notas') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/notas" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('Notas'); ?>">
+
+        <!--<i class="icon-pencil icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
+
+        <span><?= Notas; ?></span>
+
+    </a>
+
+</li>
 
 <!------marks----->
 
