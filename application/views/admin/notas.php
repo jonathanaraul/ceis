@@ -27,68 +27,25 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="class_id" class="" onchange="show_subjects(this.value)" style="float:left;">
-                                <option value=""><?php echo get_phrase('select_a_class'); ?></option>
+                            <select name="class_id" >
+                                <option value=""><?= 'Seleccionar curso' ?></option>
                                 <?php
                                 $classes = $this->db->get('class')->result_array();
-                                foreach ($classes as $row):
-                                    ?>
-                                    <option value="<?php echo $row['class_id']; ?>"
-                                        <?php if ($class_id == $row['class_id']) echo 'selected'; ?>>
-                                        Class <?php echo $row['name']; ?></option>
-                                <?php
-                                endforeach;
+                                foreach ($classes as $row){
+                                    echo '<option value="'.$row['class_id'].'">'.$row['name'].'</option>';
+                                 }
                                 ?>
                             </select>
                         </td>
                         <td>
-                            <select name="exam_id" class="" style="float:left;">
-                                <option value=""><?php echo get_phrase('select_an_exam'); ?></option>
-                                <?php
-                                $exams = $this->db->get('exam')->result_array();
-                                foreach ($exams as $row):
-                                    ?>
-                                    <option value="<?php echo $row['exam_id']; ?>"
-                                        <?php if ($exam_id == $row['exam_id']) echo 'selected'; ?>>
-                                        <?php echo get_phrase('class'); ?> <?php echo $row['name']; ?></option>
-                                <?php
-                                endforeach;
-                                ?>
+                            <select name="class_id" >
+                                <option value=""><?= 'Seleccionar materia' ?></option>
                             </select>
                         </td>
-
                         <td>
-                            <!-----SELECT SUBJECT ACCORDING TO SELECTED CLASS--------->
-                            <?php
-                            $classes = $this->crud_model->get_classes();
-                            foreach ($classes as $row): ?>
-
-                                <select
-                                    name="<?php if ($class_id == $row['class_id']) echo 'subject_id'; else echo 'temp'; ?>"
-                                    id="subject_id_<?php echo $row['class_id']; ?>"
-                                    style="display:<?php if ($class_id == $row['class_id']) echo 'block'; else echo 'none'; ?>;"
-                                    class="" style="float:left;">
-
-                                    <option value="">Subject of class <?php echo $row['name']; ?></option>
-
-                                    <?php
-                                    $subjects = $this->crud_model->get_subjects_by_class($row['class_id']);
-                                    foreach ($subjects as $row2): ?>
-                                        <option value="<?php echo $row2['subject_id']; ?>"
-                                            <?php if (isset($subject_id) && $subject_id == $row2['subject_id'])
-                                                echo 'selected="selected"';?>><?php echo $row2['name']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-
-
-                                </select>
-                            <?php endforeach; ?>
-
-
-                            <select name="temp" id="subject_id_0"
-                                    style="display:<?php if (isset($subject_id) && $subject_id > 0) echo 'none'; else echo 'block'; ?>;"
-                                    class="" style="float:left;">
-                                <option value="">Select a class first</option>
+                            <select name="class_id" >
+                                <option value=""><?= 'Seleccionar evaluacion' ?></option>
+                                ?>
                             </select>
                         </td>
                         <td>
