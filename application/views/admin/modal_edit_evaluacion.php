@@ -1,9 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
-
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
             <?php echo form_open('admin/evaluaciones/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
-
             <div class="padded">
 
                 <div class="control-group">
@@ -59,8 +57,7 @@
                               $date= date('m/d/Y',$fecha);
                         ?>
 
-                        <input type="text" class="datepicker fill-up" name="fecha"
-                               value="<?php echo $date; ?>"/>
+                        <input type="text" class="datepicker fill-up" name="fecha" value="<?php echo $date; ?>"/>
 
                     </div>
 
@@ -69,38 +66,36 @@
                     <label class="control-label"><?php echo get_phrase('hora'); ?></label>
                     <div class="controls">
                         <select name="hora" class="uniform" style="width:100%;">
-
-                            <?php for ($i = 0; $i <= 12; $i++): 
-                                if($i<10){?>
-                                    <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php }else{ ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php } ?>
-                            <?php endfor; ?>
-
-                        </select>
-                        <select name="min" class="uniform" style="width:100%;">
-
-                            <?php for ($i = 0; $i <= 60; $i++): ?>
-                                <?php if ($i<10){?>
-                                    <option value="0<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php }else{ ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php } ?>
-                            <?php endfor; ?>
-
-                        </select>
-                       <select name="ampm" class="uniform" style="width:100%">
-
-                            <option value="1">am</option>
-
-                            <option value="2">pm</option>
-
+                            <?php for ($i = 0; $i < 24; $i++){
+                                $hora = ($i<10) ? '0'.$i : $i;
+                                if(intval($hora)<12){
+                                    if(intval($hora)==0)$hora = '12';
+                                    $hora .= ' AM';
+                                }
+                                else{
+                                    if(intval($hora)>12){
+                                        $hora = intval($hora) -12;
+                                        $hora = ($hora<10) ? '0'.$hora : $hora;
+                                    };
+                                    $hora .= ' PM';}
+                                echo '<option value="'.$i.'">'.$hora.'</option>';
+                                }
+                            ?>
                         </select>
                     </div>                    
                 </div>
-
-
+                <div class="control-group">
+                    <label class="control-label"><?php echo get_phrase('minuto'); ?></label>
+                    <div class="controls">
+                        <select name="minuto" class="uniform" style="width:100%;">
+                            <?php for ($i = 0; $i < 60; $i++){
+                                $minuto = ($i<10) ? '0'.$i : $i;
+                                echo '<option value="'.$i.'">'.$minuto.'</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="form-actions">

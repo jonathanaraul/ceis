@@ -606,6 +606,25 @@ if ( ! function_exists('timezones'))
 	}
 }
 
+if ( ! function_exists('convertToDatetime'))
+{
+    function convertToDatetime($fecha,$hora,$minuto) {
+        $fecha = explode("/", $fecha);
+        $date = new \DateTime();
+        $date -> setDate($fecha[2] , $fecha[0],$fecha[1]);
+        $date -> setTime($hora,$minuto);
 
+        return $date->format('Y-m-d H:i:s');
+    }
+}
+
+if ( ! function_exists('formatDate'))
+{
+    function formatDate($date){
+
+        $fecha= date_create($date);
+        return date_format($fecha, 'Y/m/d');
+    }
+}
 /* End of file date_helper.php */
 /* Location: ./system/helpers/date_helper.php */

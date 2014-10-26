@@ -35,6 +35,7 @@ class Admin extends CI_Controller
 
         $this->load->database();
         $this->load->model('inscripcion_model');
+        $this->load->helper('date');
 
 
         /*cache control*/
@@ -1471,13 +1472,9 @@ class Admin extends CI_Controller
 
             $data['nombre_periodo'] = $this->input->post('nombre_periodo');
 
-            $date_ini= date_create($this->input->post('fecha_inicio'));
-            $fecha_ini= date_format($date_ini, 'Y/m/d');
-            $data['fecha_inicio']= $fecha_ini;
+            $data['fecha_inicio']= formatDate($this->input->post('fecha_inicio'));
 
-            $date_fin= date_create($this->input->post('fecha_fin'));
-            $fecha_fin= date_format($date_fin, 'Y/m/d');
-            $data['fecha_fin']= $fecha_fin;
+            $data['fecha_fin']= formatDate($this->input->post('fecha_fin'));
 
             $data['duracion'] = $this->input->post('duracion');
 
@@ -1491,13 +1488,9 @@ class Admin extends CI_Controller
 
             $data['nombre_periodo'] = $this->input->post('nombre_periodo');
 
-            $date_ini= date_create($this->input->post('fecha_inicio'));
-            $fecha_ini= date_format($date_ini,'Y/m/d');
-            $data['fecha_inicio']= $fecha_ini;
+            $data['fecha_inicio']= formatDate($this->input->post('fecha_inicio'));
 
-            $date_fin= date_create($this->input->post('fecha_fin'));
-            $fecha_fin= date_format($date_fin,'Y/m/d');
-            $data['fecha_fin']= $fecha_fin;
+            $data['fecha_fin']= formatDate($this->input->post('fecha_fin'));
 
             $data['duracion'] = $this->input->post('duracion');
 
@@ -1555,7 +1548,7 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = self::convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
+            $data['fecha'] = convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
 
             $this->db->insert('hs_evaluaciones', $data);
 
@@ -1571,7 +1564,7 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = self::convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
+            $data['fecha'] = convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
 
             $this->db->where('id', $param2);
 
@@ -1969,15 +1962,6 @@ class Admin extends CI_Controller
 
         $this->load->view('index', $page_data);
 
-    }
-
-    function convertToDatetime($fecha,$hora,$minuto) {
-        $fecha = explode("/", $fecha);
-        $date = new \DateTime();
-        $date -> setDate($fecha[2] , $fecha[0],$fecha[1]);
-        $date -> setTime($hora,$minuto);
-
-        return $date->format('Y-m-d H:i:s');
     }
 }
 
