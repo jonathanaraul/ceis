@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-10-2014 a las 07:28:47
+-- Tiempo de generación: 26-10-2014 a las 07:35:01
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -409,7 +409,20 @@ CREATE TABLE IF NOT EXISTS `hs_evaluaciones` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `materia` (`materia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `hs_evaluaciones`
+--
+
+INSERT INTO `hs_evaluaciones` (`id`, `nombre`, `materia`, `ponderacion`, `fecha`) VALUES
+(4, 'Conceptos basicos de traslados', 2, 10, '2014-10-08 00:00:00'),
+(5, 'Conceptos basicos de municiones', 3, 10, '2014-10-31 13:00:00'),
+(6, 'Tipos de armamento', 3, 10, '2014-10-28 14:00:00'),
+(7, 'Tacticas basicas', 4, 10, '2014-11-05 14:00:00'),
+(8, 'Metodos de inmovilizacion del oponente', 4, 10, '2014-10-28 15:00:00'),
+(9, 'Parametros de seguridad', 5, 10, '2014-10-28 08:00:00'),
+(10, 'Deteccion de parametros anormales', 5, 10, '2014-11-05 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -523,7 +536,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1238 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1262 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -1766,7 +1779,31 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1234, 'Periodo', ''),
 (1235, 'RSS', ''),
 (1236, 'Periodo', ''),
-(1237, 'RSS', '');
+(1237, 'RSS', ''),
+(1238, 'Periodo', ''),
+(1239, 'RSS', ''),
+(1240, 'ponderacion', ''),
+(1241, 'Periodo', ''),
+(1242, 'RSS', ''),
+(1243, 'ponderacion', ''),
+(1244, 'Periodo', ''),
+(1245, 'RSS', ''),
+(1246, 'ponderacion', ''),
+(1247, 'Periodo', ''),
+(1248, 'RSS', ''),
+(1249, 'ponderacion', ''),
+(1250, 'Periodo', ''),
+(1251, 'RSS', ''),
+(1252, 'ponderacion', ''),
+(1253, 'Periodo', ''),
+(1254, 'RSS', ''),
+(1255, 'ponderacion', ''),
+(1256, 'Periodo', ''),
+(1257, 'RSS', ''),
+(1258, 'ponderacion', ''),
+(1259, 'Periodo', ''),
+(1260, 'RSS', ''),
+(1261, 'ponderacion', '');
 
 -- --------------------------------------------------------
 
