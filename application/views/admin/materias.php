@@ -39,7 +39,7 @@
                     foreach ($materias as $row): ?>
                         <tr>
                             <td><?php echo $row['nombre']; ?></td>
-                            <td><?php echo $this->crud_model->get_class_name($row['curso']); ?></td>
+                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']); ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('edit_materia',<?php echo $row['id']; ?>)"

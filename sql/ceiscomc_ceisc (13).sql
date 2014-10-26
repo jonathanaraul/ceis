@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-10-2014 a las 07:12:43
+-- Tiempo de generación: 26-10-2014 a las 07:28:47
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -459,8 +459,8 @@ CREATE TABLE IF NOT EXISTS `hs_materias` (
 INSERT INTO `hs_materias` (`id`, `nombre`, `curso`) VALUES
 (2, 'Logistica', 1),
 (3, 'Manejo de armas', 1),
-(4, 'Defensa personal', 2),
-(5, 'Traslado de personal', 2);
+(4, 'Defensa personal', 5),
+(5, 'Traslado de personal', 5);
 
 -- --------------------------------------------------------
 
@@ -523,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1208 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1238 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -1736,7 +1736,37 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1204, 'Periodo', ''),
 (1205, 'RSS', ''),
 (1206, 'Periodo', ''),
-(1207, 'RSS', '');
+(1207, 'RSS', ''),
+(1208, 'Periodo', ''),
+(1209, 'RSS', ''),
+(1210, 'Periodo', ''),
+(1211, 'RSS', ''),
+(1212, 'Periodo', ''),
+(1213, 'RSS', ''),
+(1214, 'Periodo', ''),
+(1215, 'RSS', ''),
+(1216, 'Periodo', ''),
+(1217, 'RSS', ''),
+(1218, 'Periodo', ''),
+(1219, 'RSS', ''),
+(1220, 'gestionar_asistencias', ''),
+(1221, 'Periodo', ''),
+(1222, 'RSS', ''),
+(1223, 'Periodo', ''),
+(1224, 'RSS', ''),
+(1225, 'Periodo', ''),
+(1226, 'RSS', ''),
+(1227, 'Periodo', ''),
+(1228, 'RSS', ''),
+(1229, 'ponderacion', ''),
+(1230, 'Periodo', ''),
+(1231, 'RSS', ''),
+(1232, 'Periodo', ''),
+(1233, 'RSS', ''),
+(1234, 'Periodo', ''),
+(1235, 'RSS', ''),
+(1236, 'Periodo', ''),
+(1237, 'RSS', '');
 
 -- --------------------------------------------------------
 

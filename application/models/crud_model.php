@@ -167,9 +167,22 @@ class Crud_model extends CI_Model {
 
 	}
 
-	
+    function get_hs_cursos_nombre($class_id)
 
-	function get_class_name_numeric($class_id)
+    {
+
+        $query	=	$this->db->get_where('hs_cursos' , array('id' => $class_id));
+
+        $res	=	$query->result_array();
+
+        foreach($res as $row)
+
+            return $row['nombre'];
+
+    }
+
+
+    function get_class_name_numeric($class_id)
 
 	{
 

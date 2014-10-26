@@ -30,9 +30,9 @@
                             <select name="class_id" >
                                 <option value=""><?= 'Seleccionar curso' ?></option>
                                 <?php
-                                $classes = $this->db->get('class')->result_array();
+                                $classes = $this->db->get('hs_cursos')->result_array();
                                 foreach ($classes as $row){
-                                    echo '<option value="'.$row['class_id'].'">'.$row['name'].'</option>';
+                                    echo '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
                                  }
                                 ?>
                             </select>
