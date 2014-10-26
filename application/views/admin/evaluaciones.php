@@ -50,7 +50,7 @@
                             <td><?php echo $row['nombre']; ?></td>
                             <td><?php echo $this->crud_model->get_subject_name_by_id($row['materia']); ?></td>
                             <td><?php echo $row['ponderacion']; ?></td>
-                            <td><?php echo $row['fecha']; ?></td>
+                            <td><?php echo $row['fecha'] ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('edit_evaluacion',<?php echo $row['id']; ?>)"
@@ -112,6 +112,40 @@
                             <label class="control-label"><?php echo get_phrase('fecha'); ?></label>
                             <div class="controls">
                                 <input type="text" class="datepicker fill-up" name="fecha"/>
+                            </div>
+                        </div>
+                        <div class="control-group">           
+                            <label class="control-label"><?php echo get_phrase('hora'); ?></label>
+                            <div class="controls">
+                                <select name="hora" class="uniform" style="width:100%;">
+                                    <?php for ($i = 0; $i < 24; $i++){
+                                        $hora = ($i<10) ? '0'.$i : $i;
+                                        if(intval($hora)<12){
+                                            if(intval($hora)==0)$hora = '12';
+                                            $hora .= ' AM';
+                                        }
+                                        else{
+                                            if(intval($hora)>12){
+                                                $hora = intval($hora) -12;
+                                                $hora = ($hora<10) ? '0'.$hora : $hora;
+                                            };
+                                            $hora .= ' PM';}
+                                        echo '<option value="'.$i.'">'.$hora.'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>                    
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('minuto'); ?></label>
+                            <div class="controls">
+                                <select name="minuto" class="uniform" style="width:100%;">
+                                    <?php for ($i = 0; $i < 60; $i++){
+                                        $minuto = ($i<10) ? '0'.$i : $i;
+                                        echo '<option value="'.$i.'">'.$minuto.'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
