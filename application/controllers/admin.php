@@ -781,9 +781,9 @@ class Admin extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-    /****MANAGE EXAM MARKS*****/
+    /****GESTIONAR ASISTENCIAS*****/
 
-    function marks($exam_id = '', $class_id = '', $subject_id = '')
+    function asistencias($exam_id = '', $class_id = '', $subject_id = '')
 
     {
 
@@ -809,7 +809,7 @@ class Admin extends CI_Controller
 
                 $this->session->set_flashdata('mark_message', 'Choose exam, class and subject');
 
-                redirect(base_url() . 'index.php?admin/marks/', 'refresh');
+                redirect(base_url() . 'index.php?admin/notas/', 'refresh');
 
             }
 
@@ -840,16 +840,17 @@ class Admin extends CI_Controller
         $page_data['subject_id'] = $subject_id;
 
 
-        $page_data['page_info'] = 'Exam marks';
+        $page_data['page_info'] = 'Asistencias';
 
 
-        $page_data['page_name'] = 'marks';
+        $page_data['page_name'] = 'asistencias';
 
-        $page_data['page_title'] = get_phrase('manage_exam_marks');
+        $page_data['page_title'] = get_phrase('gestionar_asistencias');
 
         $this->load->view('index', $page_data);
 
     }
+
 
 
     /****MANAGE GRADES*****/
