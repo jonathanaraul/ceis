@@ -1551,7 +1551,7 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = $this->input->post('fecha');
+            $data['fecha'] = self::convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
 
             $this->db->insert('hs_evaluaciones', $data);
 
@@ -1567,7 +1567,7 @@ class Admin extends CI_Controller
 
             $data['ponderacion'] = $this->input->post('ponderacion');
 
-            $data['fecha'] = $this->input->post('fecha');
+            $data['fecha'] = self::convertToDatetime($this->input->post('fecha'),$this->input->post('hora'),$this->input->post('minuto'));
 
             $this->db->where('id', $param2);
 
@@ -1604,7 +1604,6 @@ class Admin extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
     function inscripcion($param1 = '', $param2 = '', $param3 = '')
@@ -1968,6 +1967,13 @@ class Admin extends CI_Controller
 
     }
 
+    function convertToDatetime($fecha,$hora,$minuto) {
+        $fecha = explode("/", $fecha);
+        $date = new \DateTime();
+        $date -> setDate($fecha[2] , $fecha[0],$fecha[1]);
+        $date -> setTime($hora,$minuto);
 
+        return $date->format('Y-m-d H:i:s');
+    }
 }
 

@@ -111,7 +111,7 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha'); ?></label>
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="fecha"/>
+                                <input type="text" class="datepicker fill-up" name="fecha"/>
                             </div>
                         </div>
                     </div>
