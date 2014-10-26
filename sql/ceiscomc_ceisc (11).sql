@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-10-2014 a las 08:18:22
+-- Tiempo de generación: 26-10-2014 a las 06:25:38
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -371,6 +371,46 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_cursos`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_cursos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(500) NOT NULL,
+  `periodo` int(11) NOT NULL,
+  `seccion` varchar(10) NOT NULL,
+  `cupo` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `periodo` (`periodo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `hs_cursos`
+--
+
+INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`) VALUES
+(1, 'FUNDAMENTACION VIGILANCIA', 1, 'A', 50),
+(2, 'REENTRENAMIENTO VIGILANCIA', 1, 'A', 50);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hs_evaluaciones`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_evaluaciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `materia` int(11) NOT NULL,
+  `ponderacion` float NOT NULL,
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `materia` (`materia`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hs_inscripcion`
 --
 
@@ -398,6 +438,30 @@ INSERT INTO `hs_inscripcion` (`id`, `estudiante`, `curso`, `status`, `create_at`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_materias`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_materias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(300) NOT NULL,
+  `curso` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curso` (`curso`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `hs_materias`
+--
+
+INSERT INTO `hs_materias` (`id`, `nombre`, `curso`) VALUES
+(2, 'Logistica', 1),
+(3, 'Manejo de armas', 1),
+(4, 'Defensa personal', 2),
+(5, 'Traslado de personal', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hs_periodo`
 --
 
@@ -408,7 +472,15 @@ CREATE TABLE IF NOT EXISTS `hs_periodo` (
   `fecha_fin` date NOT NULL,
   `duracion` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `hs_periodo`
+--
+
+INSERT INTO `hs_periodo` (`id`, `nombre_periodo`, `fecha_inicio`, `fecha_fin`, `duracion`) VALUES
+(1, '1 er semestre del 2014', '2014-01-01', '2014-07-01', '6 meses'),
+(2, '2 do semestre del 2014', '2014-07-01', '2014-12-15', '6 meses');
 
 -- --------------------------------------------------------
 
@@ -448,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=889 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1153 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -1342,7 +1414,271 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (885, 'RSS', ''),
 (886, 'RSS', ''),
 (887, 'RSS', ''),
-(888, 'RSS', '');
+(888, 'RSS', ''),
+(889, 'Recepción', ''),
+(890, 'RSS', ''),
+(891, 'RSS', ''),
+(892, 'RSS', ''),
+(893, 'RSS', ''),
+(894, 'RSS', ''),
+(895, 'RSS', ''),
+(896, 'RSS', ''),
+(897, 'RSS', ''),
+(898, 'RSS', ''),
+(899, 'RSS', ''),
+(900, 'RSS', ''),
+(901, 'RSS', ''),
+(902, 'periodo', ''),
+(903, 'RSS', ''),
+(904, 'RSS', ''),
+(905, 'RSS', ''),
+(906, 'RSS', ''),
+(907, 'RSS', ''),
+(908, 'Recepción', ''),
+(909, 'Periodo', ''),
+(910, 'RSS', ''),
+(911, 'Recepción', ''),
+(912, 'Periodo', ''),
+(913, 'ayuda_de_materias', ''),
+(914, 'materias', ''),
+(915, 'Ayuda Evaluaciones', ''),
+(916, 'evaluaciones', ''),
+(917, 'RSS', ''),
+(918, 'Gestionar Evaluaciones', ''),
+(919, 'Periodo', ''),
+(920, 'RSS', ''),
+(921, 'lista_de_evaluaciones', ''),
+(922, 'agregar_evaluación', ''),
+(923, 'materia', ''),
+(924, 'ponderación', ''),
+(925, 'ponderacion', ''),
+(926, 'gestionar_materias', ''),
+(927, 'Periodo', ''),
+(928, 'RSS', ''),
+(929, 'agregar_materia', ''),
+(930, 'Periodo', ''),
+(931, 'RSS', ''),
+(932, 'Periodo', ''),
+(933, 'RSS', ''),
+(934, 'Periodo', ''),
+(935, 'RSS', ''),
+(936, 'ponderacion', ''),
+(937, 'Periodo', ''),
+(938, 'Periodo', ''),
+(939, 'RSS', ''),
+(940, 'RSS', ''),
+(941, 'Periodo', ''),
+(942, 'RSS', ''),
+(943, 'convenio_sena', ''),
+(944, 'Cedula', ''),
+(945, 'Periodo', ''),
+(946, 'RSS', ''),
+(947, 'ponderacion', ''),
+(948, 'Periodo', ''),
+(949, 'RSS', ''),
+(950, 'Periodo', ''),
+(951, 'RSS', ''),
+(952, 'ponderacion', ''),
+(953, 'Periodo', ''),
+(954, 'RSS', ''),
+(955, 'Periodo', ''),
+(956, 'RSS', ''),
+(957, 'ponderacion', ''),
+(958, 'Periodo', ''),
+(959, 'RSS', ''),
+(960, 'ponderacion', ''),
+(961, 'Periodo', ''),
+(962, 'RSS', ''),
+(963, 'ponderacion', ''),
+(964, 'Periodo', ''),
+(965, 'RSS', ''),
+(966, 'ponderacion', ''),
+(967, 'Periodo', ''),
+(968, 'RSS', ''),
+(969, 'ponderacion', ''),
+(970, 'Periodo', ''),
+(971, 'RSS', ''),
+(972, 'ponderacion', ''),
+(973, 'Periodo', ''),
+(974, 'RSS', ''),
+(975, 'ponderacion', ''),
+(976, 'Periodo', ''),
+(977, 'RSS', ''),
+(978, 'ponderacion', ''),
+(979, 'Periodo', ''),
+(980, 'RSS', ''),
+(981, 'ponderacion', ''),
+(982, 'Periodo', ''),
+(983, 'RSS', ''),
+(984, 'ponderacion', ''),
+(985, 'Periodo', ''),
+(986, 'RSS', ''),
+(987, 'ponderacion', ''),
+(988, 'Periodo', ''),
+(989, 'RSS', ''),
+(990, 'ponderacion', ''),
+(991, 'Periodo', ''),
+(992, 'RSS', ''),
+(993, 'ponderacion', ''),
+(994, 'Periodo', ''),
+(995, 'RSS', ''),
+(996, 'ponderacion', ''),
+(997, 'Periodo', ''),
+(998, 'RSS', ''),
+(999, 'ponderacion', ''),
+(1000, 'Periodo', ''),
+(1001, 'RSS', ''),
+(1002, 'ponderacion', ''),
+(1003, 'Periodo', ''),
+(1004, 'RSS', ''),
+(1005, 'ponderacion', ''),
+(1006, 'Periodo', ''),
+(1007, 'RSS', ''),
+(1008, 'ponderacion', ''),
+(1009, 'Periodo', ''),
+(1010, 'RSS', ''),
+(1011, 'ponderacion', ''),
+(1012, 'Periodo', ''),
+(1013, 'RSS', ''),
+(1014, 'ponderacion', ''),
+(1015, 'Periodo', ''),
+(1016, 'RSS', ''),
+(1017, 'ponderacion', ''),
+(1018, 'Periodo', ''),
+(1019, 'RSS', ''),
+(1020, 'ponderacion', ''),
+(1021, 'Periodo', ''),
+(1022, 'RSS', ''),
+(1023, 'ponderacion', ''),
+(1024, 'Periodo', ''),
+(1025, 'RSS', ''),
+(1026, 'ponderacion', ''),
+(1027, 'Periodo', ''),
+(1028, 'RSS', ''),
+(1029, 'ponderacion', ''),
+(1030, 'Periodo', ''),
+(1031, 'RSS', ''),
+(1032, 'ponderacion', ''),
+(1033, 'Periodo', ''),
+(1034, 'RSS', ''),
+(1035, 'ponderacion', ''),
+(1036, 'Periodo', ''),
+(1037, 'RSS', ''),
+(1038, 'ponderacion', ''),
+(1039, 'Periodo', ''),
+(1040, 'RSS', ''),
+(1041, 'ponderacion', ''),
+(1042, 'Periodo', ''),
+(1043, 'RSS', ''),
+(1044, 'ponderacion', ''),
+(1045, 'Periodo', ''),
+(1046, 'RSS', ''),
+(1047, 'ponderacion', ''),
+(1048, 'hora', ''),
+(1049, 'minuto', ''),
+(1050, 'Periodo', ''),
+(1051, 'RSS', ''),
+(1052, 'Periodo', ''),
+(1053, 'RSS', ''),
+(1054, 'Periodo', ''),
+(1055, 'RSS', ''),
+(1056, 'ponderacion', ''),
+(1057, 'Periodo', ''),
+(1058, 'RSS', ''),
+(1059, 'ponderacion', ''),
+(1060, 'Periodo', ''),
+(1061, 'RSS', ''),
+(1062, 'ponderacion', ''),
+(1063, 'Periodo', ''),
+(1064, 'RSS', ''),
+(1065, 'ponderacion', ''),
+(1066, 'Periodo', ''),
+(1067, 'RSS', ''),
+(1068, 'ponderacion', ''),
+(1069, 'Periodo', ''),
+(1070, 'RSS', ''),
+(1071, 'Periodo', ''),
+(1072, 'RSS', ''),
+(1073, 'ponderacion', ''),
+(1074, 'Periodo', ''),
+(1075, 'RSS', ''),
+(1076, 'ponderacion', ''),
+(1077, 'Periodo', ''),
+(1078, 'RSS', ''),
+(1079, 'ponderacion', ''),
+(1080, 'Periodo', ''),
+(1081, 'RSS', ''),
+(1082, 'ponderacion', ''),
+(1083, 'Periodo', ''),
+(1084, 'RSS', ''),
+(1085, 'ponderacion', ''),
+(1086, 'Periodo', ''),
+(1087, 'RSS', ''),
+(1088, 'ponderacion', ''),
+(1089, 'Periodo', ''),
+(1090, 'RSS', ''),
+(1091, 'ponderacion', ''),
+(1092, 'Recepción', ''),
+(1093, 'Periodo', ''),
+(1094, 'RSS', ''),
+(1095, 'Periodo', ''),
+(1096, 'RSS', ''),
+(1097, 'Periodo', ''),
+(1098, 'Notas', ''),
+(1099, 'RSS', ''),
+(1100, 'Periodo', ''),
+(1101, 'RSS', ''),
+(1102, 'Periodo', ''),
+(1103, 'RSS', ''),
+(1104, 'Periodo', ''),
+(1105, 'RSS', ''),
+(1106, 'Periodo', ''),
+(1107, 'RSS', ''),
+(1108, 'Periodo', ''),
+(1109, 'RSS', ''),
+(1110, 'Periodo', ''),
+(1111, 'RSS', ''),
+(1112, 'Periodo', ''),
+(1113, 'RSS', ''),
+(1114, 'Periodo', ''),
+(1115, 'RSS', ''),
+(1116, 'Periodo', ''),
+(1117, 'RSS', ''),
+(1118, 'Periodo', ''),
+(1119, 'RSS', ''),
+(1120, 'convenio_sena', ''),
+(1121, 'Cedula', ''),
+(1122, 'Periodo', ''),
+(1123, 'RSS', ''),
+(1124, 'Periodo', ''),
+(1125, 'RSS', ''),
+(1126, 'Periodo', ''),
+(1127, 'RSS', ''),
+(1128, 'Periodo', ''),
+(1129, 'RSS', ''),
+(1130, 'Periodo', ''),
+(1131, 'RSS', ''),
+(1132, 'Periodo', ''),
+(1133, 'RSS', ''),
+(1134, 'Gestionar Periodos', ''),
+(1135, 'Periodo', ''),
+(1136, 'RSS', ''),
+(1137, 'Lista de Períodos', ''),
+(1138, 'Agregar Período', ''),
+(1139, 'duration', ''),
+(1140, 'Duración', ''),
+(1141, 'Periodo', ''),
+(1142, 'RSS', ''),
+(1143, 'Periodo', ''),
+(1144, 'RSS', ''),
+(1145, 'Periodo', ''),
+(1146, 'RSS', ''),
+(1147, 'Periodo', ''),
+(1148, 'RSS', ''),
+(1149, 'Periodo', ''),
+(1150, 'RSS', ''),
+(1151, 'Periodo', ''),
+(1152, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -2699,11 +3035,29 @@ CREATE TABLE IF NOT EXISTS `transport` (
 --
 
 --
+-- Filtros para la tabla `hs_cursos`
+--
+ALTER TABLE `hs_cursos`
+  ADD CONSTRAINT `hs_cursos_ibfk_1` FOREIGN KEY (`periodo`) REFERENCES `hs_periodo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `hs_evaluaciones`
+--
+ALTER TABLE `hs_evaluaciones`
+  ADD CONSTRAINT `hs_evaluaciones_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `hs_inscripcion`
 --
 ALTER TABLE `hs_inscripcion`
   ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `hs_materias`
+--
+ALTER TABLE `hs_materias`
+  ADD CONSTRAINT `hs_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `municipio`
