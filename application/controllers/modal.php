@@ -102,6 +102,10 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('hs_evaluaciones', array('id' => $param2))->result_array();
 
+        } else if ($param1 == 'edit_inscripcion') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_inscripcion', array('id' => $param2))->result_array();
+
         }else if ($param1 == 'edit_exam') {
 
             $page_data['edit_data'] = $this->db->get_where('exam', array('exam_id' => $param2))->result_array();
