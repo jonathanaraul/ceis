@@ -98,10 +98,19 @@
 
                 <td><?= $row['cupo']; ?></td>
 
-                <td><?= $row['fecha_ini']; ?></td>
+                <td>
+                 <?php $f_ini= date_create($row['fecha_ini']);
+                       $date_ini= date_format($f_ini, 'd/m/Y');
+                       echo $date_ini; 
+                 ?>
+                </td>
 
-                <td><?= $row['fecha_cul']; ?></td>
-
+                <td>
+                <?php $f_cul= date_create($row['fecha_cul']);
+                      $date_cul= date_format($f_cul, 'd/m/Y');
+                      echo $date_cul; 
+                ?> 
+                </td>
 
                 <td align="center">
 
