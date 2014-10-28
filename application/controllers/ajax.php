@@ -88,10 +88,11 @@ class ajax extends CI_Controller
     {
         $curso = $this->input->post('curso');
         $materia = $this->input->post('materia');
-        $evaluacion = $this->input->post('evaluacion');
+        $fecha = $this->input->post('fecha');
 
-        $dato['elements'] = $this->db->get_where('hs_asistencias', array('curso' => $curso,'materia' => $materia, 'evaluacion'=> $evaluacion))
-                                     ->result_array();
+        //$dato['elements'] = $this->db->get_where('hs_asistencias', array('curso' => $curso,'materia' => $materia, 'evaluacion'=> $evaluacion))
+                                     //->result_array();
+        $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso,'status' => 1))->result_array();
 
         $this->load->view('admin/lista_asistencias', $dato);
     }

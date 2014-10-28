@@ -19,19 +19,18 @@
             <td>    
                 <?= $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']); ?>
             </td>
-            <?php if($element['presente']==1){ ?>
-                <td>
-                    <input type="checkbox" checked name="presente"value="1" disabled>
-                </td>
-            <?php }else{ ?>
-                <td>
-                    <input type="checkbox" name="presente" value="0" disabled>
-                </td>
-            <?php } ?>               
+
+            <td>
+                <input type="checkbox" checked name="presente"value="1">
+            </td>
+                      
         </tr>
     <?php
     }
     ?>
-
+    <tr>
+     <td colspan="4"><p style="text-align:center" ><button class="btn btn-normal btn-gray" style="width: 100%;
+margin-top: 20px;">Actualizar</button></p></td>
+    </tr>
     </tbody>
 </table>
