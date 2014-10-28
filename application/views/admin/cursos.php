@@ -214,3 +214,36 @@
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+
+    function gestionarNotas(valor) {
+
+        var curso = $('#cursos').val();
+        var materia = $('#materias').val();
+        var evaluacion = $('#evaluaciones').val();
+
+        if (curso <= 0 || materia <= 0 || evaluacion <= 0) {
+            alert('Debe llenar los tres campos');
+            return false;
+        }
+
+        $('#asistencias').empty();
+
+        $('#loader').css('display','block');
+        var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
+
+        $.post('<?php echo site_url()?>ajax/obtenAsistencias',
+            data,
+            function (data) {
+
+                $('#asistencias').html(data);
+                $('#loader').css('display','none');
+                $('#asistencias').css('display','block');
+            });
+    }
+
+
+
+
+</script>
