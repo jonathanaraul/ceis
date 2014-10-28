@@ -449,6 +449,7 @@ class Teacher extends CI_Controller
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
 
     {
+		$this->load->library('encrypt');
 
         if ($this->session->userdata('teacher_login') != 1)
 
@@ -462,10 +463,6 @@ class Teacher extends CI_Controller
             $data['birthday'] = $this->input->post('birthday');
 
             $data['sex'] = $this->input->post('sex');
-
-            $data['religion'] = $this->input->post('religion');
-
-            $data['blood_group'] = $this->input->post('blood_group');
 
             $data['address'] = $this->input->post('address');
 
@@ -488,8 +485,9 @@ class Teacher extends CI_Controller
 
             $data['password'] = $this->input->post('password');
 
-            $data['new_password'] = $this->input->post('new_password');
 
+            $data['new_password'] = $this->input->post('new_password');
+			$encrypted_string = $this->encrypt->encode($data['new_password']);
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
 
@@ -505,7 +503,7 @@ class Teacher extends CI_Controller
 
                 $this->db->update('teacher', array(
 
-                    'password' => $data['new_password']
+                    'password' => $encrypted_string
 
                 ));
 

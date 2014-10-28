@@ -350,6 +350,8 @@
 <li class="dark-nav <?php if ($page_name == 'system_settings' ||
 
     $page_name == 'manage_language' ||
+   
+    $page_name == 'manage_users' ||
 
     $page_name == 'backup_restore'
 ) echo 'active';?>">
@@ -372,6 +374,8 @@
     <ul id="settings_submenu" class="collapse <?php if ($page_name == 'system_settings' ||
 
         $page_name == 'manage_language' ||
+        
+        $page_name == 'manage_users' ||
 
         $page_name == 'backup_restore'
     ) echo 'in';?>">
@@ -399,6 +403,20 @@
                 <img src="<?php echo base_url(); ?>template/images/icons/language.png"/>
 
                 <?php echo get_phrase('manage_language'); ?>
+
+            </a>
+
+        </li>
+        
+        <li class="<?php if ($page_name == 'manage_users') echo 'active'; ?>">
+
+            <a href="<?php echo base_url(); ?>index.php?admin/manage_users">
+
+                <!--<i class="icon-download-alt"></i>-->
+
+                <img src="<?php echo base_url(); ?>template/images/icons/users.png"/>
+
+                <?php echo get_phrase('manejo_de_usuarios'); ?>
 
             </a>
 
