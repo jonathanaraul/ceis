@@ -111,3 +111,6 @@
     </div>
 
 </div>
+<script type="text/javascript">
+$('select[name=materia]').val('<?php echo $row['materia'];?>');
+</script>

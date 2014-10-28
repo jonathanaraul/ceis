@@ -68,7 +68,7 @@
 
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-    $('#nombre_curso > option[value="<?php $row['nombre']?>"]').attr('selected', 'selected');
-});
+$('select[name=nombre]').val('<?php echo $row['nombre']; ?>');
+$('select[name=seccion]').val('<?php echo $row['seccion']; ?>');
+$('select[name=periodo]').val('<?php echo $row['periodo']; ?>');
 </script>

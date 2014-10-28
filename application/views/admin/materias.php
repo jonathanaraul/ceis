@@ -78,11 +78,11 @@
                             <div class="controls">
                                 <select name="curso" class="uniform" style="width:100%;">
                                     <?php
-                                    $cursos = $this->db->get('class')->result_array();
+                                    $cursos = $this->db->get('hs_cursos')->result_array();
                                     foreach ($cursos as $row):
                                         ?>
                                         <option
-                                            value="<?php echo $row['class_id']; ?>"><?php echo $row['name']; ?></option>
+                                            value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                                     <?php
                                     endforeach;
                                     ?>

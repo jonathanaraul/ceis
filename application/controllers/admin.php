@@ -645,6 +645,8 @@ class Admin extends CI_Controller
             $data['nombre'] = $this->input->post('nombre');
             $data['seccion'] = $this->input->post('seccion');
             $data['periodo'] = $this->input->post('periodo');
+            $data['fecha_ini'] = $this->input->post('fecha_ini');
+            $data['fecha_cul'] = $this->input->post('fecha_cul');
             $data['cupo'] = $this->input->post('cupo');
 
             $this->db->insert('hs_cursos', $data);

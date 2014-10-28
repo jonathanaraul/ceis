@@ -64,6 +64,15 @@
             <th>
                 <div>Cupo</div>
             </th>
+
+            <th>
+                <div>Fecha de inicio</div>
+            </th>
+
+            <th>
+                <div>Fecha de Culminacion</div>
+            </th>
+
             <th>
                 <div><?php echo get_phrase('opciones'); ?></div>
             </th>
@@ -88,6 +97,10 @@
                 <td><?php echo  $this->crud_model->get_hs_periodo_nombre_periodo($row['periodo']); ?></td>
 
                 <td><?= $row['cupo']; ?></td>
+
+                <td><?= $row['fecha_ini']; ?></td>
+
+                <td><?= $row['fecha_cul']; ?></td>
 
 
                 <td align="center">
@@ -170,6 +183,19 @@
                     </select>
                 </div>
             </div>
+            <div class="control-group">
+            <label class="control-label"><?= 'Fecha de Inicio' ?></label>
+                <div class="controls">
+                <input type="text" class="datepicker fill-up" name="fecha_ini"/>
+                </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label"><?= 'Fecha de Culminación' ?></label>
+                <div class="controls">
+                <input type="text" class="datepicker fill-up" name="fecha_cul"/>
+                </div>
+            </div>
+
             <div class="control-group">
                 <label class="control-label"><?= 'Cupo Disponible' ?></label>
                 <div class="controls">
