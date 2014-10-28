@@ -264,6 +264,8 @@ class Student extends CI_Controller
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
     {
+		$this->load->library('encrypt');
+		
         if ($this->session->userdata('student_login') != 1)
             redirect(base_url() . 'index.php?login', 'refresh');
         if ($param1 == 'update_profile_info') {
@@ -284,6 +286,8 @@ class Student extends CI_Controller
         if ($param1 == 'change_password') {
             $data['password'] = $this->input->post('password');
             $data['new_password'] = $this->input->post('new_password');
+            $encrypted_string = $this->encrypt->encode($data['new_password']);
+           
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
             $current_password = $this->db->get_where('student', array(
@@ -292,7 +296,7 @@ class Student extends CI_Controller
             if ($current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
                 $this->db->where('student_id', $this->session->userdata('student_id'));
                 $this->db->update('student', array(
-                    'password' => $data['new_password']
+                    'password' => $encrypted_string
                 ));
                 $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
             } else {

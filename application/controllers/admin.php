@@ -1813,6 +1813,30 @@ class Admin extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
+    
+    /*****USERS SETTINGS*********/
+	 function manage_users($param1 = '', $param2 = '', $param3 = '')
+
+    {
+		if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url() . 'index.php?login', 'refresh');
+
+        $student_profile = $this->db->get_where('student', array(
+            'student_id' => $this->session->userdata('student_id')
+        ))->row();
+        $student_class_id = $student_profile->class_id;
+       
+
+        $page_data['page_name'] = 'manage_users';
+
+        $page_data['page_title'] = get_phrase('manejo_de_usuarios');
+
+       // $page_data['settings'] = $this->db->get('settings')->result_array();
+
+        $this->load->view('index', $page_data);
+
+    }
 
 
     /*****BACKUP / RESTORE / DELETE DATA PAGE**********/
@@ -1869,6 +1893,8 @@ class Admin extends CI_Controller
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
 
     {
+		$this->load->library('encrypt');
+		
 
         if ($this->session->userdata('admin_login') != 1)
 
@@ -1896,6 +1922,7 @@ class Admin extends CI_Controller
             $data['password'] = $this->input->post('password');
 
             $data['new_password'] = $this->input->post('new_password');
+            $encrypted_string = $this->encrypt->encode($data['new_password']);
 
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
@@ -1912,7 +1939,7 @@ class Admin extends CI_Controller
 
                 $this->db->update('admin', array(
 
-                    'password' => $data['new_password']
+                    'password' => $encrypted_string
 
                 ));
 

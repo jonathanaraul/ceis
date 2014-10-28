@@ -198,6 +198,32 @@ class Crud_model extends CI_Model {
         foreach($res as $row)
             return ucfirst($row['papellido']);
     }
+    function get_hs_asistencias_presente($estudiante,$materia,$fecha){
+
+        $query	=	$this->db->get_where('hs_asistencias' , array('estudiante' => $estudiante,'materia'=>$materia,'fecha'=>$fecha));
+        $res	=	$query->result_array();
+        if(count($res)>0){
+            //echo 'presente'.$res['presente'];
+            //if($res['presente']=='1') return true;
+
+            foreach($res as $row)
+                if($row['presente']=='1') return true;
+        }
+        return false;
+    }
+    function get_hs_notas_puntuacion($estudiante,$materia,$evaluacion){
+
+        $query	=	$this->db->get_where('hs_notas' , array('estudiante' => $estudiante,'materia'=>$materia,'evaluacion'=>$evaluacion));
+        $res	=	$query->result_array();
+        if(count($res)>0){
+            //echo 'presente'.$res['presente'];
+            //if($res['presente']=='1') return true;
+
+            foreach($res as $row)
+                return $row['puntuacion'];
+        }
+        return 0;
+    }
     function get_class_name_numeric($class_id)
 
 	{
