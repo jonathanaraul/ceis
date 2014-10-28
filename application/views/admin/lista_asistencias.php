@@ -1,6 +1,6 @@
 <table border="0" cellspacing="0" cellpadding="0" class="table table-normal box">
     <thead>
-    <th style="width: 25%">Cedula <?= $materia?></th>
+    <th style="width: 25%">Cedula</th>
     <th style="width: 25%">Nombre</th>
     <th style="width: 25%">Apellido</th>
     <th style="width: 25%">Asistencia</th>

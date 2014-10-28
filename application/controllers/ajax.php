@@ -71,16 +71,72 @@ class ajax extends CI_Controller
     }
 
 
-    function obtenAsistencias()
+    function listarNotas()
 
     {
         $curso = $this->input->post('curso');
         $materia = $this->input->post('materia');
         $evaluacion = $this->input->post('evaluacion');
 
+        $dato['materia']= $materia;
+        $dato['evaluacion']= $evaluacion;
+
         $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
 
-        $this->load->view('asistencia-listado', $dato);
+        $this->load->view('admin/lista_notas', $dato);
+    }
+    function guardarNotas()
+    {
+        $variables = $this->input->post();
+        $variables = explode('&', $variables["data"]);
+
+
+
+        for ($i = 0; $i < count($variables); $i++) {
+
+            if ($i == 0) {
+                $evaluacion = explode('=', $variables[$i]);
+                $evaluacion = $evaluacion[1];
+            } else if ($i == 1) {
+                $curso = explode('=', $variables[$i]);
+                $curso = $curso[1];
+
+            } else if ($i == 2) {
+                $materia = explode('=', $variables[$i]);
+                $materia = $materia[1];
+            } else {
+
+                $helper = explode('_', $variables[$i]);
+                $helper = $helper[1];
+                $helper = explode('=', $helper);
+
+                $estudiante = $helper[0];
+                $puntuacion = intval($helper[1]);
+
+                $existe = $this->db->get_where('hs_notas', array('evaluacion' => $evaluacion,'estudiante' => $estudiante, 'materia' => $materia, 'curso' => $curso))->result_array();
+
+                if (count($existe) > 0) {
+                    //Actualizar asistencia
+
+                    $data = array(
+                        'puntuacion' => $puntuacion,
+                    );
+                    $this->db->where('id', $existe[0]['id']);
+                    $this->db->update('hs_notas', $data);
+                } else {
+                    //Insertar asistencia
+                    $data = array(
+                        'curso' => $curso,
+                        'materia' => $materia,
+                        'estudiante' => $estudiante,
+                        'puntuacion' => $puntuacion,
+                        'evaluacion' => $evaluacion,
+                    );
+
+                    $this->db->insert('hs_notas', $data);
+                }
+            }
+        }
     }
 
     function listarAsistencias()
@@ -92,8 +148,6 @@ class ajax extends CI_Controller
         $fecha = explode('/', $fecha);
         $fecha = $fecha[2] . '-' . $fecha[0] . '-' . $fecha[1];
 
-
-
         $dato['materia']= $materia;
         $dato['fecha']= $fecha;
 
@@ -103,9 +157,7 @@ class ajax extends CI_Controller
     }
 
     function guardarAsistencias()
-
     {
-
         $variables = $this->input->post();
         $variables = explode('&', $variables["data"]);
 
@@ -157,8 +209,6 @@ class ajax extends CI_Controller
                 }
             }
         }
-
-
     }
 
 }

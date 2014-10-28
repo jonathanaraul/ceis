@@ -4,7 +4,6 @@
     <th style="width: 25%">Nombre</th>
     <th style="width: 25%">Apellido</th>
     <th style="width: 25%">Puntuacion</th>
-    <th style="width: 25%">Asistencia</th>
     </thead>
     <tbody>
     <?php
@@ -21,15 +20,15 @@
                 <?= $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']); ?>
             </td>
             <td>
-                <input type="number" value="0" min="0" max="10" name="nota_estudiante_<?= $element['estudiante']?>">
-            </td>
-            <td>
-                <input type="checkbox" checked name="asistencia_estudiante_<?= $element['estudiante']?>">
+                <input type="number" class="recopila" value="<?= $this->crud_model->get_hs_notas_puntuacion($element['estudiante'],$materia,$evaluacion); ?>" min="0" max="10" name="nota_<?= $element['estudiante']?>">
             </td>
         </tr>
     <?php
     }
     ?>
-
+    <tr>
+        <td colspan="4"><p style="text-align:center" ><button class="btn btn-normal btn-gray" style="width: 100%;
+margin-top: 20px;"  onclick="actualizarNotas()">Actualizar</button></p></td>
+    </tr>
     </tbody>
 </table>
