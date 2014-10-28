@@ -21,7 +21,7 @@
             </td>
 
             <td>
-                <input type="checkbox" checked name="presente"value="1">
+                <input type="checkbox" checked name="presente_<?= $element['estudiante'] ?>" class="recopila" >
             </td>
                       
         </tr>
@@ -30,7 +30,7 @@
     ?>
     <tr>
      <td colspan="4"><p style="text-align:center" ><button class="btn btn-normal btn-gray" style="width: 100%;
-margin-top: 20px;">Actualizar</button></p></td>
+margin-top: 20px;"  onclick="actualizarAsistencias()">Actualizar</button></p></td>
     </tr>
     </tbody>
 </table>

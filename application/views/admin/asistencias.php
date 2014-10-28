@@ -190,5 +190,21 @@
                 $('#materias').html(data);
             });
     }
+
+    function actualizarAsistencias(){
+        var data = '';
+        $.each($(".recopila"), function (index, value) {
+            var helper = $.trim($(value).val());
+            var id = $(value).attr('name');
+            data += '&' + id + '=' + helper;
+        });
+        console.log(data);
+        return false;
+        $.post('new-element', data, function (response) {
+            if (response.eval == true) {
+                location.reload();
+            }
+        })
+    }
    
 </script>
