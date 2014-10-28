@@ -203,9 +203,6 @@ class Crud_model extends CI_Model {
         $query	=	$this->db->get_where('hs_asistencias' , array('estudiante' => $estudiante,'materia'=>$materia,'fecha'=>$fecha));
         $res	=	$query->result_array();
         if(count($res)>0){
-            //echo 'presente'.$res['presente'];
-            //if($res['presente']=='1') return true;
-
             foreach($res as $row)
                 if($row['presente']=='1') return true;
         }
@@ -216,9 +213,6 @@ class Crud_model extends CI_Model {
         $query	=	$this->db->get_where('hs_notas' , array('estudiante' => $estudiante,'materia'=>$materia,'evaluacion'=>$evaluacion));
         $res	=	$query->result_array();
         if(count($res)>0){
-            //echo 'presente'.$res['presente'];
-            //if($res['presente']=='1') return true;
-
             foreach($res as $row)
                 return $row['puntuacion'];
         }
