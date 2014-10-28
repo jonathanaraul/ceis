@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-10-2014 a las 09:23:30
+-- Tiempo de generación: 28-10-2014 a las 16:33:58
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -372,6 +372,35 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_asistencias`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_asistencias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curso` int(11) NOT NULL,
+  `materia` int(11) NOT NULL,
+  `evaluacion` int(11) NOT NULL,
+  `estudiante` int(11) NOT NULL,
+  `presente` tinyint(1) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `curso` (`curso`,`materia`,`evaluacion`,`estudiante`),
+  KEY `materia` (`materia`),
+  KEY `evaluacion` (`evaluacion`),
+  KEY `estudiante` (`estudiante`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `hs_asistencias`
+--
+
+INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `presente`, `create_at`) VALUES
+(5, 5, 4, 7, 5, 1, '2014-10-28 11:14:40'),
+(6, 5, 4, 7, 6, 0, '2014-10-28 11:14:40');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hs_cursos`
 --
 
@@ -381,6 +410,8 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
   `periodo` int(11) NOT NULL,
   `seccion` varchar(10) NOT NULL,
   `cupo` int(11) NOT NULL,
+  `fecha_ini` longtext NOT NULL,
+  `fecha_cul` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `periodo` (`periodo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -389,11 +420,11 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
 -- Volcado de datos para la tabla `hs_cursos`
 --
 
-INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`) VALUES
-(1, 'FUNDAMENTACION VIGILANCIA', 1, 'A', 50),
-(2, 'REENTRENAMIENTO VIGILANCIA', 1, 'A', 50),
-(3, 'ESPECIALIZACION VIGILANCIA SECTOR FINANCIERO', 2, 'A', 20),
-(5, 'ESPECIALIZACION VIGILANCIA HOSPITALARIA', 1, 'B', 30);
+INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`, `fecha_ini`, `fecha_cul`) VALUES
+(1, 'FUNDAMENTACION VIGILANCIA', 1, 'A', 50, '10/27/2014', '10/30/2014'),
+(2, 'REENTRENAMIENTO VIGILANCIA', 1, 'A', 50, '10/27/2014', '10/30/2014'),
+(3, 'ESPECIALIZACION VIGILANCIA SECTOR FINANCIERO', 2, 'A', 20, '10/27/2014', '10/30/2014'),
+(5, 'ESPECIALIZACION VIGILANCIA HOSPITALARIA', 1, 'B', 30, '10/27/2014', '10/30/2014');
 
 -- --------------------------------------------------------
 
@@ -557,7 +588,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1394 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1412 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -1956,7 +1987,25 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1390, 'Periodo', ''),
 (1391, 'RSS', ''),
 (1392, 'Periodo', ''),
-(1393, 'RSS', '');
+(1393, 'RSS', ''),
+(1394, 'Periodo', ''),
+(1395, 'RSS', ''),
+(1396, 'editar_curso', ''),
+(1397, 'Periodo', ''),
+(1398, 'RSS', ''),
+(1399, 'Periodo', ''),
+(1400, 'RSS', ''),
+(1401, 'Recepción', ''),
+(1402, 'Periodo', ''),
+(1403, 'RSS', ''),
+(1404, 'Periodo', ''),
+(1405, 'RSS', ''),
+(1406, 'ponderacion', ''),
+(1407, 'Periodo', ''),
+(1408, 'RSS', ''),
+(1409, 'lista_de_asistencias', ''),
+(1410, 'Periodo', ''),
+(1411, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -3313,6 +3362,15 @@ CREATE TABLE IF NOT EXISTS `transport` (
 --
 
 --
+-- Filtros para la tabla `hs_asistencias`
+--
+ALTER TABLE `hs_asistencias`
+  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_asistencias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_asistencias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_asistencias_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `hs_cursos`
 --
 ALTER TABLE `hs_cursos`
@@ -3328,8 +3386,8 @@ ALTER TABLE `hs_evaluaciones`
 -- Filtros para la tabla `hs_inscripcion`
 --
 ALTER TABLE `hs_inscripcion`
-  ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hs_materias`
@@ -3341,10 +3399,10 @@ ALTER TABLE `hs_materias`
 -- Filtros para la tabla `hs_notas`
 --
 ALTER TABLE `hs_notas`
-  ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_notas_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_notas_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_notas_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hs_notas_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `municipio`
