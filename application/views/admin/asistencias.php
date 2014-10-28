@@ -192,19 +192,26 @@
     }
 
     function actualizarAsistencias(){
-        var data = '';
+        var fecha = $('#fecha').val();
+        var curso = $('#cursos').val();
+        var materia = $('#materias').val();
+
+        var data = 'fecha='+fecha+'&curso='+curso+'&materia='+materia;
         $.each($(".recopila"), function (index, value) {
-            var helper = $.trim($(value).val());
+            var helper = $(value).is(':checked');
             var id = $(value).attr('name');
             data += '&' + id + '=' + helper;
         });
+
         console.log(data);
-        return false;
-        $.post('new-element', data, function (response) {
-            if (response.eval == true) {
-                location.reload();
-            }
-        })
+
+        $.post('<?php echo site_url()?>ajax/guardarAsistencias',
+            {'data': data },
+            function (data) {
+                console.log('guardo las asistencias');
+            });
+
+
     }
    
 </script>

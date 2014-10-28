@@ -1,6 +1,6 @@
 <table border="0" cellspacing="0" cellpadding="0" class="table table-normal box">
     <thead>
-    <th style="width: 25%">Cedula</th>
+    <th style="width: 25%">Cedula <?= $materia?></th>
     <th style="width: 25%">Nombre</th>
     <th style="width: 25%">Apellido</th>
     <th style="width: 25%">Asistencia</th>
@@ -21,7 +21,11 @@
             </td>
 
             <td>
-                <input type="checkbox" checked name="presente_<?= $element['estudiante'] ?>" class="recopila" >
+                <input type="checkbox" <?php
+                if($this->crud_model->get_hs_asistencias_presente($element['estudiante'],$materia,$fecha)){
+                    echo ' checked';
+                }
+                ?> name="presente_<?= $element['estudiante'] ?>" id="presente_<?= $element['estudiante'] ?>" class="recopila" >
             </td>
                       
         </tr>
