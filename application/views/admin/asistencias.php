@@ -5,7 +5,7 @@
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_asistencias'); ?>
+                    <?php echo get_phrase('lista_de_asistencias'); ?>
                 </a></li>
         </ul>
         <!------CONTROL TABS END------->
@@ -27,74 +27,30 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="class_id" class="" onchange="show_subjects(this.value)" style="float:left;">
-                                <option value=""><?php echo get_phrase('select_a_class'); ?></option>
+                            <select name="cursos" id="cursos" onchange="ajaxMaterias(this.value);">
+                                <option value="0"><?= 'Seleccionar curso' ?></option>
                                 <?php
-                                $classes = $this->db->get('class')->result_array();
-                                foreach ($classes as $row):
-                                    ?>
-                                    <option value="<?php echo $row['class_id']; ?>"
-                                        <?php if ($class_id == $row['class_id']) echo 'selected'; ?>>
-                                        Class <?php echo $row['name']; ?></option>
-                                <?php
-                                endforeach;
+                                $classes = $this->db->get('hs_cursos')->result_array();
+                                foreach ($classes as $row) {
+                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                }
                                 ?>
                             </select>
                         </td>
                         <td>
-                            <select name="exam_id" class="" style="float:left;">
-                                <option value=""><?php echo get_phrase('select_an_exam'); ?></option>
-                                <?php
-                                $exams = $this->db->get('exam')->result_array();
-                                foreach ($exams as $row):
-                                    ?>
-                                    <option value="<?php echo $row['exam_id']; ?>"
-                                        <?php if ($exam_id == $row['exam_id']) echo 'selected'; ?>>
-                                        <?php echo get_phrase('class'); ?> <?php echo $row['name']; ?></option>
-                                <?php
-                                endforeach;
+                            <select name="materias" id="materias" onchange="ajaxEvaluaciones(this.value);">
+                                <option value="0"><?= 'Seleccionar materia' ?></option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="evaluaciones" id="evaluaciones">
+                                <option value="0"><?= 'Seleccionar evaluacion' ?></option>
                                 ?>
                             </select>
                         </td>
-
                         <td>
-                            <!-----SELECT SUBJECT ACCORDING TO SELECTED CLASS--------->
-                            <?php
-                            $classes = $this->crud_model->get_classes();
-                            foreach ($classes as $row): ?>
-
-                                <select
-                                    name="<?php if ($class_id == $row['class_id']) echo 'subject_id'; else echo 'temp'; ?>"
-                                    id="subject_id_<?php echo $row['class_id']; ?>"
-                                    style="display:<?php if ($class_id == $row['class_id']) echo 'block'; else echo 'none'; ?>;"
-                                    class="" style="float:left;">
-
-                                    <option value="">Subject of class <?php echo $row['name']; ?></option>
-
-                                    <?php
-                                    $subjects = $this->crud_model->get_subjects_by_class($row['class_id']);
-                                    foreach ($subjects as $row2): ?>
-                                        <option value="<?php echo $row2['subject_id']; ?>"
-                                            <?php if (isset($subject_id) && $subject_id == $row2['subject_id'])
-                                                echo 'selected="selected"';?>><?php echo $row2['name']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-
-
-                                </select>
-                            <?php endforeach; ?>
-
-
-                            <select name="temp" id="subject_id_0"
-                                    style="display:<?php if (isset($subject_id) && $subject_id > 0) echo 'none'; else echo 'block'; ?>;"
-                                    class="" style="float:left;">
-                                <option value="">Select a class first</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="hidden" name="operation" value="selection"/>
-                            <input type="submit" value="<?php echo get_phrase('manage_marks'); ?>"
-                                   class="btn btn-normal btn-gray"/>
+                            <input type="button" class="btn btn-normal btn-gray" value="Consultar"
+                                   onclick="consultarAsistencias(this.value)">
                         </td>
                     </tr>
                 </table>
@@ -103,8 +59,15 @@
 
 
             <br/><br/>
+            <div id="loader" style="display: none">
+                <p style="text-align: center">
+                    <img src="<?php echo base_url();?>template/images/loader.gif">
+                </p>
+            </div>
+            <div id="lista_de_asistencia" style="background-color:  #eaebef;padding: 7px 11px;display: none">
 
-
+            </div>
+    
             <?php if ($exam_id > 0 && $class_id > 0 && $subject_id > 0): ?>
                 <?php
                 ////CREATE THE MARK ENTRY ONLY IF NOT EXISTS////
@@ -189,18 +152,59 @@
 </div>
 
 <script type="text/javascript">
-    function show_subjects(class_id) {
-        for (i = 0; i <= 100; i++) {
 
-            try {
-                document.getElementById('subject_id_' + i).style.display = 'none';
-                document.getElementById('subject_id_' + i).setAttribute("name", "temp");
-            }
-            catch (err) {
-            }
+    function consultarAsistencias(valor) {
+
+        var curso = $('#cursos').val();
+        var materia = $('#materias').val();
+        var evaluacion = $('#evaluaciones').val();
+
+        if (curso <= 0 || materia <= 0 || evaluacion <= 0) {
+            alert('Debe llenar los tres campos');
+            return false;
         }
-        document.getElementById('subject_id_' + class_id).style.display = 'block';
-        document.getElementById('subject_id_' + class_id).setAttribute("name", "subject_id");
+
+        $('#lista_de_asistencia').empty();
+
+        $('#loader').css('display','block');
+        var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
+
+        $.post('<?php echo site_url()?>ajax/listarAsistencias',
+            data,
+            function (data) {
+
+                $('#lista_de_asistencia').html(data);
+                $('#loader').css('display','none');
+                $('#lista_de_asistencia').css('display','block');
+            });
     }
+
+    function ajaxMaterias(valor) {
+        $('#materias').empty();
+        $('#materias').prev().html('');
+
+        if (valor == 0) {
+            $('#evaluaciones').empty();
+            $('#evaluaciones').prev().html('');
+            $('#evaluaciones').html('<option value="0">Seleccionar evaluacion</option>');
+        }
+
+        $.post('<?php echo site_url()?>ajax/obtenMaterias',
+            {'curso': valor },
+            function (data) {
+                $('#materias').html(data);
+            });
+    }
+    function ajaxEvaluaciones(valor) {
+        $('#evaluaciones').empty();
+        $('#evaluaciones').prev().html('');
+
+        $.post('<?php echo site_url()?>ajax/obtenEvaluaciones',
+            {'materia': valor },
+            function (data) {
+                $('#evaluaciones').html(data);
+            });
+    }
+
 
 </script>

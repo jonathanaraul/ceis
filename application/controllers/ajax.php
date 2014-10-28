@@ -82,4 +82,17 @@ class ajax extends CI_Controller
 
         $this->load->view('asistencia-listado', $dato);
     }
+
+        function listarAsistencias()
+
+    {
+        $curso = $this->input->post('curso');
+        $materia = $this->input->post('materia');
+        $evaluacion = $this->input->post('evaluacion');
+
+        $dato['elements'] = $this->db->get_where('hs_asistencias', array('curso' => $curso,'materia' => $materia, 'evaluacion'=> $evaluacion))
+                                     ->result_array();
+
+        $this->load->view('admin/lista_asistencias', $dato);
+    }
 }

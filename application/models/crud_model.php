@@ -190,13 +190,13 @@ class Crud_model extends CI_Model {
         $query	=	$this->db->get_where('student' , array('student_id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['snombre']);
+            return ucfirst($row['name']);
     }
     function get_hs_student_apellido_by_id($id){
         $query	=	$this->db->get_where('student' , array('student_id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['snombre']);
+            return ucfirst($row['papellido']);
     }
     function get_class_name_numeric($class_id)
 
