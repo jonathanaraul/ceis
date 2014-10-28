@@ -1,18 +1,18 @@
 <div class="box">
     <div class="box-header">
 
-        <!------CONTROL TABS START------->
+        <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('lista_de_asistencias'); ?>
                 </a></li>
         </ul>
-        <!------CONTROL TABS END------->
+        <!--CONTROL TABS END-->
 
     </div>
     <div class="box-content padded">
-        <!----TABLE LISTING STARTS--->
+        <!--TABLE LISTING STARTS-->
         <div
             class="tab-pane  <?php if (!isset($edit_data) && !isset($personal_profile) && !isset($academic_result)) echo 'active'; ?>"
             id="list">
@@ -22,7 +22,7 @@
                     <tr>
                         <td><?= 'Seleccionar curso'; ?></td>
                         <td><?= 'Seleccionar materia'; ?></td>
-                        <td><?= 'Seleccionar evaluacion'; ?></td>
+                        <td><?= 'Seleccionar Fecha'; ?></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
@@ -38,15 +38,12 @@
                             </select>
                         </td>
                         <td>
-                            <select name="materias" id="materias" onchange="ajaxEvaluaciones(this.value);">
+                            <select name="materias" id="materias">
                                 <option value="0"><?= 'Seleccionar materia' ?></option>
                             </select>
                         </td>
                         <td>
-                            <select name="evaluaciones" id="evaluaciones">
-                                <option value="0"><?= 'Seleccionar evaluacion' ?></option>
-                                ?>
-                            </select>
+                             <input type="text" class="datepicker fill-up" name="fecha" id="fecha"/>
                         </td>
                         <td>
                             <input type="button" class="btn btn-normal btn-gray" value="Consultar"
@@ -145,7 +142,7 @@
 
             <?php endif; ?>
         </div>
-        <!----TABLE LISTING ENDS--->
+        <!--TABLE LISTING ENDS-->
 
     </div>
 </div>
@@ -157,17 +154,21 @@
 
         var curso = $('#cursos').val();
         var materia = $('#materias').val();
-        var evaluacion = $('#evaluaciones').val();
+        var fecha = $('#fecha').val();
 
-        if (curso <= 0 || materia <= 0 || evaluacion <= 0) {
+        if (curso <= 0 || materia <= 0 ) {
             alert('Debe llenar los tres campos');
             return false;
+        }
+        if(fecha==''){
+            alert('Debe llenar los tres campos');
+            return false; 
         }
 
         $('#lista_de_asistencia').empty();
 
         $('#loader').css('display','block');
-        var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
+        var data = 'curso=' + curso + '&materia=' + materia + '&fecha=' + fecha;
 
         $.post('<?php echo site_url()?>ajax/listarAsistencias',
             data,
@@ -183,28 +184,11 @@
         $('#materias').empty();
         $('#materias').prev().html('');
 
-        if (valor == 0) {
-            $('#evaluaciones').empty();
-            $('#evaluaciones').prev().html('');
-            $('#evaluaciones').html('<option value="0">Seleccionar evaluacion</option>');
-        }
-
         $.post('<?php echo site_url()?>ajax/obtenMaterias',
             {'curso': valor },
             function (data) {
                 $('#materias').html(data);
             });
     }
-    function ajaxEvaluaciones(valor) {
-        $('#evaluaciones').empty();
-        $('#evaluaciones').prev().html('');
-
-        $.post('<?php echo site_url()?>ajax/obtenEvaluaciones',
-            {'materia': valor },
-            function (data) {
-                $('#evaluaciones').html(data);
-            });
-    }
-
-
+   
 </script>

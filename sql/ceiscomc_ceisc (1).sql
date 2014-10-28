@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-10-2014 a las 16:33:58
+-- Tiempo de generación: 28-10-2014 a las 16:47:58
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -379,14 +379,13 @@ CREATE TABLE IF NOT EXISTS `hs_asistencias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) NOT NULL,
   `materia` int(11) NOT NULL,
-  `evaluacion` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
   `presente` tinyint(1) NOT NULL,
+  `fecha` date NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `curso` (`curso`,`materia`,`evaluacion`,`estudiante`),
+  KEY `curso` (`curso`,`materia`,`estudiante`),
   KEY `materia` (`materia`),
-  KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=7 ;
 
@@ -394,9 +393,9 @@ CREATE TABLE IF NOT EXISTS `hs_asistencias` (
 -- Volcado de datos para la tabla `hs_asistencias`
 --
 
-INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `presente`, `create_at`) VALUES
-(5, 5, 4, 7, 5, 1, '2014-10-28 11:14:40'),
-(6, 5, 4, 7, 6, 0, '2014-10-28 11:14:40');
+INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `presente`, `fecha`, `create_at`) VALUES
+(5, 5, 4, 5, 1, '0000-00-00', '2014-10-28 11:14:40'),
+(6, 5, 4, 6, 0, '0000-00-00', '2014-10-28 11:14:40');
 
 -- --------------------------------------------------------
 
@@ -588,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1412 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1414 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2005,7 +2004,9 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1408, 'RSS', ''),
 (1409, 'lista_de_asistencias', ''),
 (1410, 'Periodo', ''),
-(1411, 'RSS', '');
+(1411, 'RSS', ''),
+(1412, 'Periodo', ''),
+(1413, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -3365,10 +3366,9 @@ CREATE TABLE IF NOT EXISTS `transport` (
 -- Filtros para la tabla `hs_asistencias`
 --
 ALTER TABLE `hs_asistencias`
-  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_asistencias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_asistencias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_asistencias_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hs_cursos`

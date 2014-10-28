@@ -1,7 +1,7 @@
 <div class="box">
     <div class="box-header">
 
-        <!------CONTROL TABS START------->
+        <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
@@ -12,12 +12,12 @@
                     <?php echo get_phrase('Agregar Período'); ?>
                 </a></li>
         </ul>
-        <!------CONTROL TABS END------->
+        <!--CONTROL TABS END-->
 
     </div>
     <div class="box-content padded">
         <div class="tab-content">
-            <!----TABLE LISTING STARTS--->
+            <!--TABLE LISTING STARTS-->
             <div class="tab-pane box active" id="list">
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
@@ -79,10 +79,10 @@
                     </tbody>
                 </table>
             </div>
-            <!----TABLE LISTING ENDS--->
+            <!--TABLE LISTING ENDS-->
 
 
-            <!----CREATION FORM STARTS---->
+            <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
                     <?php echo form_open('admin/periodo/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
