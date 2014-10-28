@@ -75,7 +75,8 @@ class Login extends CI_Controller
         }
         $query = $this->db->get_where($this->input->post('login_type'), array(
             'email' => $this->input->post('email'),
-            'password' => $this->input->post('password')
+            'password' => $this->encrypt->decode('password') 
+            
         ));
         if ($query->num_rows() > 0) {
             $row = $query->row();
