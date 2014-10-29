@@ -13,6 +13,15 @@
     
 <body>
 	<div id="main_body">
+		<?php if($page_name=="users"){ ?>
+			
+			<div class="container-fluid padded">
+                <?php include $this->session->userdata('login_type').'/'.$page_name.'.php';?>
+            </div>  
+		<?php
+			}else{
+        
+        ?>
 		<?php include 'header.php';?>
         <?php include $this->session->userdata('login_type').'/navigation.php';?>
         <div class="main-content">
@@ -22,6 +31,11 @@
             </div>       
         <?php include 'footer.php';?>
         </div>
+        <?php
+			}
+        
+        ?>
+        
 	</div>
 </body>
 <?php include 'modal_hidden.php';?> 
