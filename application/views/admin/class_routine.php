@@ -106,33 +106,25 @@
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>
 
                             <div class="controls">
-                                <select name="class_id" class="uniform" style="width:100%;">
-                                    <?php
-                                    $classes = $this->db->get('class')->result_array();
-                                    foreach ($classes as $row):
-                                        ?>
-                                        <option
-                                            value="<?php echo $row['class_id']; ?>"><?php echo $row['name']; ?></option>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </select>
+                               <select name="cursos" id="cursos" onchange="ajaxMaterias(this.value)" style="width:100%;">
+                                <option value="0"><?= 'Seleccionar curso' ?></option>
+                                <?php
+                                $classes = $this->db->get('hs_cursos')->result_array();
+                                foreach ($classes as $row) {
+                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                }
+                                ?>
+                            </select>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('subject'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('materias'); ?></label>
 
                             <div class="controls">
-                                <select name="subject_id" class="uniform" style="width:100%;">
-                                    <?php
-                                    $subjects = $this->db->get('subject')->result_array();
-                                    foreach ($subjects as $row):
-                                        ?>
-                                        <option
-                                            value="<?php echo $row['subject_id']; ?>"><?php echo $row['name']; ?></option>
-                                    <?php
-                                    endforeach;
-                                    ?>
+                                <select name="materias" id="materias" class="uniform" style="width:100%;">
+                                   
+                                    <option value="0"><?='Seleccionar materia'?></option>
+                                   
                                 </select>
                             </div>
                         </div>
@@ -189,8 +181,26 @@
                     </form>
                 </div>
             </div>
+
+            <script type="text/javascript">
+
+ function ajaxMaterias(valor) {
+
+        $('#materias').empty();
+        $('#materias').prev().html('');
+
+        $.post('<?php echo site_url()?>ajax/obtenMaterias',
+            {'curso': valor },
+            function (data) {
+                $('#materias').html(data);
+            });
+    }
+
+</script>
             <!----CREATION FORM ENDS--->
 
         </div>
     </div>
 </div>
+
+
