@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-10-2014 a las 16:47:58
+-- Tiempo de generación: 28-10-2014 a las 22:01:38
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -380,22 +380,30 @@ CREATE TABLE IF NOT EXISTS `hs_asistencias` (
   `curso` int(11) NOT NULL,
   `materia` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
-  `presente` tinyint(1) NOT NULL,
   `fecha` date NOT NULL,
+  `presente` tinyint(4) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `curso` (`curso`,`materia`,`estudiante`),
   KEY `materia` (`materia`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `hs_asistencias`
 --
 
-INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `presente`, `fecha`, `create_at`) VALUES
-(5, 5, 4, 5, 1, '0000-00-00', '2014-10-28 11:14:40'),
-(6, 5, 4, 6, 0, '0000-00-00', '2014-10-28 11:14:40');
+INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `fecha`, `presente`, `create_at`) VALUES
+(5, 5, 4, 5, '0000-00-00', 0, '2014-10-28 19:09:52'),
+(6, 5, 4, 6, '0000-00-00', 0, '2014-10-28 19:09:52'),
+(7, 5, 5, 6, '0000-00-00', 0, '2014-10-28 19:44:37'),
+(8, 5, 5, 5, '0000-00-00', 0, '2014-10-28 19:44:37'),
+(9, 5, 5, 6, '2014-10-28', 0, '2014-10-28 19:45:48'),
+(10, 5, 5, 5, '2014-10-28', 0, '2014-10-28 19:45:39'),
+(11, 5, 5, 6, '2014-10-29', 0, '2014-10-28 19:48:01'),
+(12, 5, 5, 5, '2014-10-29', 0, '2014-10-28 19:48:01'),
+(13, 5, 4, 6, '2014-10-30', 1, '2014-10-28 21:10:47'),
+(14, 5, 4, 5, '2014-10-30', 1, '2014-10-28 21:10:22');
 
 -- --------------------------------------------------------
 
@@ -518,13 +526,20 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
   `evaluacion` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
   `puntuacion` int(11) NOT NULL,
-  `asistencia` tinyint(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `curso` (`curso`,`materia`,`evaluacion`,`estudiante`),
   KEY `materia` (`materia`),
   KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `hs_notas`
+--
+
+INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
+(1, 5, 5, 10, 6, 6),
+(2, 5, 5, 10, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -587,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1414 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1540 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2006,7 +2021,133 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1410, 'Periodo', ''),
 (1411, 'RSS', ''),
 (1412, 'Periodo', ''),
-(1413, 'RSS', '');
+(1413, 'RSS', ''),
+(1414, 'Periodo', ''),
+(1415, 'RSS', ''),
+(1416, 'Periodo', ''),
+(1417, 'RSS', ''),
+(1418, 'Periodo', ''),
+(1419, 'RSS', ''),
+(1420, 'Periodo', ''),
+(1421, 'RSS', ''),
+(1422, 'Periodo', ''),
+(1423, 'RSS', ''),
+(1424, 'Periodo', ''),
+(1425, 'RSS', ''),
+(1426, 'Periodo', ''),
+(1427, 'RSS', ''),
+(1428, 'Periodo', ''),
+(1429, 'RSS', ''),
+(1430, 'Periodo', ''),
+(1431, 'Periodo', ''),
+(1432, 'RSS', ''),
+(1433, 'RSS', ''),
+(1434, 'convenio_sena', ''),
+(1435, 'convenio_sena', ''),
+(1436, 'Cedula', ''),
+(1437, 'Cedula', ''),
+(1438, 'Periodo', ''),
+(1439, 'RSS', ''),
+(1440, 'Periodo', ''),
+(1441, 'RSS', ''),
+(1442, 'convenio_sena', ''),
+(1443, 'Cedula', ''),
+(1444, 'Periodo', ''),
+(1445, 'RSS', ''),
+(1446, 'Periodo', ''),
+(1447, 'RSS', ''),
+(1448, 'convenio_sena', ''),
+(1449, 'Cedula', ''),
+(1450, 'Periodo', ''),
+(1451, 'RSS', ''),
+(1452, 'convenio_sena', ''),
+(1453, 'Cedula', ''),
+(1454, 'Periodo', ''),
+(1455, 'RSS', ''),
+(1456, 'Periodo', ''),
+(1457, 'RSS', ''),
+(1458, 'convenio_sena', ''),
+(1459, 'Cedula', ''),
+(1460, 'Periodo', ''),
+(1461, 'RSS', ''),
+(1462, 'Periodo', ''),
+(1463, 'RSS', ''),
+(1464, 'Periodo', ''),
+(1465, 'RSS', ''),
+(1466, 'Periodo', ''),
+(1467, 'RSS', ''),
+(1468, 'Periodo', ''),
+(1469, 'RSS', ''),
+(1470, 'Periodo', ''),
+(1471, 'RSS', ''),
+(1472, 'Periodo', ''),
+(1473, 'RSS', ''),
+(1474, 'Periodo', ''),
+(1475, 'RSS', ''),
+(1476, 'Periodo', ''),
+(1477, 'RSS', ''),
+(1478, 'Periodo', ''),
+(1479, 'RSS', ''),
+(1480, 'Periodo', ''),
+(1481, 'RSS', ''),
+(1482, 'Periodo', ''),
+(1483, 'RSS', ''),
+(1484, 'Periodo', ''),
+(1485, 'Periodo', ''),
+(1486, 'RSS', ''),
+(1487, 'RSS', ''),
+(1488, 'convenio_sena', ''),
+(1489, 'convenio_sena', ''),
+(1490, 'Cedula', ''),
+(1491, 'Cedula', ''),
+(1492, 'Periodo', ''),
+(1493, 'RSS', ''),
+(1494, 'Periodo', ''),
+(1495, 'RSS', ''),
+(1496, 'Periodo', ''),
+(1497, 'RSS', ''),
+(1498, 'Periodo', ''),
+(1499, 'RSS', ''),
+(1500, 'Periodo', ''),
+(1501, 'RSS', ''),
+(1502, 'Periodo', ''),
+(1503, 'RSS', ''),
+(1504, 'Periodo', ''),
+(1505, 'RSS', ''),
+(1506, 'Periodo', ''),
+(1507, 'RSS', ''),
+(1508, 'Periodo', ''),
+(1509, 'RSS', ''),
+(1510, 'Periodo', ''),
+(1511, 'RSS', ''),
+(1512, 'Periodo', ''),
+(1513, 'RSS', ''),
+(1514, 'Periodo', ''),
+(1515, 'RSS', ''),
+(1516, 'Periodo', ''),
+(1517, 'RSS', ''),
+(1518, 'Periodo', ''),
+(1519, 'RSS', ''),
+(1520, 'Periodo', ''),
+(1521, 'RSS', ''),
+(1522, 'Periodo', ''),
+(1523, 'RSS', ''),
+(1524, 'Periodo', ''),
+(1525, 'RSS', ''),
+(1526, 'Periodo', ''),
+(1527, 'RSS', ''),
+(1528, 'Periodo', ''),
+(1529, 'RSS', ''),
+(1530, 'Periodo', ''),
+(1531, 'RSS', ''),
+(1532, 'Periodo', ''),
+(1533, 'RSS', ''),
+(1534, 'Periodo', ''),
+(1535, 'RSS', ''),
+(1536, 'Periodo', ''),
+(1537, 'RSS', ''),
+(1538, 'Periodo', ''),
+(1539, 'RSS', '');
 
 -- --------------------------------------------------------
 

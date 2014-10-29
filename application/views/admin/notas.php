@@ -50,7 +50,7 @@
                         </td>
                         <td>
                             <input type="button" class="btn btn-normal btn-gray" value="Gestionar Notas"
-                                   onclick="gestionarNotas(this.value)">
+                                   onclick="consultarNotas(this.value)">
                         </td>
                     </tr>
                 </table>
@@ -64,7 +64,7 @@
                     <img src="<?php echo base_url();?>template/images/loader.gif">
                 </p>
             </div>
-            <div id="asistencias" style="background-color:  #eaebef;padding: 7px 11px;display: none">
+            <div id="lista_de_notas" style="background-color:  #eaebef;padding: 7px 11px;display: none">
 
             </div>
 
@@ -147,7 +147,7 @@
 
 <script type="text/javascript">
 
-    function gestionarNotas(valor) {
+    function consultarNotas(valor) {
 
         var curso = $('#cursos').val();
         var materia = $('#materias').val();
@@ -158,18 +158,18 @@
             return false;
         }
 
-        $('#asistencias').empty();
+        $('#lista_de_notas').empty();
 
         $('#loader').css('display','block');
         var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
 
-        $.post('<?php echo site_url()?>ajax/obtenAsistencias',
+        $.post('<?php echo site_url()?>ajax/listarNotas',
             data,
             function (data) {
 
-                $('#asistencias').html(data);
+                $('#lista_de_notas').html(data);
                 $('#loader').css('display','none');
-                $('#asistencias').css('display','block');
+                $('#lista_de_notas').css('display','block');
             });
     }
 
@@ -199,6 +199,26 @@
                 $('#evaluaciones').html(data);
             });
     }
+    function actualizarNotas(){
 
+        var curso = $('#cursos').val();
+        var materia = $('#materias').val();
+        var evaluacion = $('#evaluaciones').val();
+
+        var data = 'evaluacion='+evaluacion+'&curso='+curso+'&materia='+materia;
+        $.each($(".recopila"), function (index, value) {
+            var helper = $(value).val();
+            var id = $(value).attr('name');
+            data += '&' + id + '=' + helper;
+        });
+
+        $.post('<?php echo site_url()?>ajax/guardarNotas',
+            {'data': data },
+            function (data) {
+                console.log('guardo las notas');
+            });
+
+
+    }
 
 </script>
