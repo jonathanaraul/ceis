@@ -22,17 +22,17 @@
                 <div class="accordion" id="accordion2">
                     <?php
                     $toggle = true;
-                    $classes = $this->db->get('class')->result_array();
+                    $classes = $this->db->get('hs_cursos')->result_array();
                     foreach ($classes as $row):
                         ?>
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                                   href="#collapse<?php echo $row['class_id']; ?>">
-                                    <i class="icon-rss icon-1x"></i> Class <?php echo $row['name']; ?>
+                                   href="#collapse<?php echo $row['id']; ?>">
+                                    <i class="icon-rss icon-1x"></i> Curso: <?php echo $row['nombre']; ?>
                                 </a>
                             </div>
-                            <div id="collapse<?php echo $row['class_id']; ?>"
+                            <div id="collapse<?php echo $row['id']; ?>"
                                  class="accordion-body collapse <?php if ($toggle) {
                                      echo 'in';
                                      $toggle = false;
