@@ -10,8 +10,12 @@
                 </a>
             </li>
             <li>
-				<a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('añadir_usuario'); ?> </a>
+				<a href="#add_user" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('agregar_usuario'); ?> </a>
 			</li>
+            <li>
+				<a href="#add_role" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('agregar_rol'); ?> </a>
+			</li>
+            
         </ul>
         <!------CONTROL TABS END------->
 
@@ -42,9 +46,9 @@
 		
 			</div>  
  
-        <!----CREATION FORM STARTS---->
-
-        <div class="tab-pane box" id="add" style="padding: 5px">
+        <!----CREATION FORM STARTS USERS---->
+ 
+         <div class="tab-pane box" id="add_user" style="padding: 5px"> 
             <div
                 class="box-content"> <?php echo form_open('admin/users/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
                 
@@ -113,7 +117,7 @@
 									<option value=""><?php echo get_phrase('seleccione'); ?></option>
 									<?php
 
-									$rol = $this->db->get('rol')->result_array();
+									$rol = $this->db->get('hs_role')->result_array();
 
 									foreach ($rol as $row):
 
@@ -167,7 +171,32 @@
             </div>
         </div>
 
-        <!----CREATION FORM ENDS--->
+        <!----CREATION FORM ENDS USERS--->
+        
+        <!----CREATION FORM STARTS ROLE--->
+        <div class="tab-pane box" id="add_role" style="padding: 5px"> 
+            <div
+                class="box-content"> <?php echo form_open('admin/role/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+               
+                <form method="post" action="<?php echo base_url(); ?>index.php?admin/role/create/" class="form-horizontal validatable">
+                    <div class="padded">
+                        
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('nombre_rol'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="validate[required]" name="rol"/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('añadir_rol'); ?></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!----CREATION FORM ENDS ROLE--->
     </div>
 </div>
 
@@ -185,17 +214,17 @@
 					  $('#show').show(); 
 					},
 				
-	   })
+	   });
 		
-		if (element.value=="management"){
+		if (element.value=="admin"){	
+			$('#show').load('index.php?admin/users/1');
+		
+		}else if (element.value=="management"){
 			
 			$('#show').load('index.php?admin/users/2');
 		
 		}else if (element.value=="operative"){	
 			$('#show').load('index.php?admin/users/3');
-		
-		}else if (element.value=="admin"){	
-			$('#show').load('index.php?admin/users/1');
 		
 		}else if (element.value=="teacher"){	
 			$('#show').load('index.php?admin/users/4');
