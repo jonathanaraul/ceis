@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 28-10-2014 a las 22:01:38
--- Versión del servidor: 5.6.12-log
--- Versión de PHP: 5.4.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-10-2014 a las 01:00:58
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
-CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -461,6 +459,37 @@ INSERT INTO `hs_evaluaciones` (`id`, `nombre`, `materia`, `ponderacion`, `fecha`
 (8, 'Metodos de inmovilizacion del oponente', 4, 10, '2014-10-28 15:00:00'),
 (9, 'Parametros de seguridad', 5, 10, '2014-10-28 08:00:00'),
 (10, 'Deteccion de parametros anormales', 5, 10, '2014-11-05 08:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hs_facturacion`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_facturacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `estudiante` int(11) NOT NULL,
+  `curso` int(11) NOT NULL,
+  `descripcion` text COLLATE utf8_spanish2_ci NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `monto` double(12,2) NOT NULL,
+  `metodo_pago` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `estudiante` (`estudiante`,`curso`),
+  KEY `curso` (`curso`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `hs_facturacion`
+--
+
+INSERT INTO `hs_facturacion` (`id`, `estudiante`, `curso`, `descripcion`, `cantidad`, `monto`, `metodo_pago`, `estado`, `fecha`) VALUES
+(1, 2, 1, 'Mensualidad Mes de Noviembre', 1, 1500.00, 'Contado', 1, '2014-10-28'),
+(2, 4, 1, 'Mensualidad - Marzo - 2014', 1, 1458903.87, 'Deposito', 0, '2014-10-28'),
+(3, 6, 5, 'Mensualidad - Enero - 2014', 1, 500000.00, 'Deposito', 0, '2014-04-09'),
+(4, 5, 5, 'Mensualidad - Diciembre - 2014', 1, 154000.98, 'Transferencia', 0, '2014-12-11');
 
 -- --------------------------------------------------------
 
@@ -3522,6 +3551,13 @@ ALTER TABLE `hs_cursos`
 --
 ALTER TABLE `hs_evaluaciones`
   ADD CONSTRAINT `hs_evaluaciones_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `hs_facturacion`
+--
+ALTER TABLE `hs_facturacion`
+  ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_facturacion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hs_inscripcion`
