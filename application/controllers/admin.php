@@ -986,7 +986,7 @@ class Admin extends CI_Controller
 
     /******MANAGE BILLING / INVOICES WITH STATUS*****/
 
-    function invoice($param1 = '', $param2 = '', $param3 = '')
+    function facturacion($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -997,51 +997,59 @@ class Admin extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['student_id'] = $this->input->post('student_id');
+            $data['estudiante'] = $this->input->post('estudiante');
 
-            $data['title'] = $this->input->post('title');
+            $data['curso'] = $this->input->post('curso');
 
-            $data['description'] = $this->input->post('description');
+            $data['descripcion'] = $this->input->post('descripcion');
 
-            $data['amount'] = $this->input->post('amount');
+            $data['cantidad'] = $this->input->post('cantidad');
 
-            $data['status'] = $this->input->post('status');
+            $data['monto'] = $this->input->post('monto');
 
-            $data['creation_timestamp'] = strtotime($this->input->post('date'));
+            $data['metodo_pago'] = $this->input->post('metodo_pago');
+
+            $data['estado'] = $this->input->post('estado');
+
+            $data['fecha']= formatDate($this->input->post('fecha'));
 
 
-            $this->db->insert('invoice', $data);
+            $this->db->insert('hs_facturacion', $data);
 
-            redirect(base_url() . 'index.php?admin/invoice', 'refresh');
+            redirect(base_url() . 'index.php?admin/facturacion', 'refresh');
 
         }
 
         if ($param1 == 'do_update') {
 
-            $data['student_id'] = $this->input->post('student_id');
+            $data['estudiante'] = $this->input->post('estudiante');
 
-            $data['title'] = $this->input->post('title');
+            $data['curso'] = $this->input->post('curso');
 
-            $data['description'] = $this->input->post('description');
+            $data['descripcion'] = $this->input->post('descripcion');
 
-            $data['amount'] = $this->input->post('amount');
+            $data['cantidad'] = $this->input->post('cantidad');
 
-            $data['status'] = $this->input->post('status');
+            $data['monto'] = $this->input->post('monto');
 
-            $data['creation_timestamp'] = strtotime($this->input->post('date'));
+            $data['metodo_pago'] = $this->input->post('metodo_pago');
+
+            $data['estado'] = $this->input->post('estado');
+
+            $data['fecha']= formatDate($this->input->post('fecha'));
 
 
-            $this->db->where('invoice_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->update('invoice', $data);
+            $this->db->update('hs_facturacion', $data);
 
-            redirect(base_url() . 'index.php?admin/invoice', 'refresh');
+            redirect(base_url() . 'index.php?admin/facturacion', 'refresh');
 
         } else if ($param1 == 'edit') {
 
-            $page_data['edit_data'] = $this->db->get_where('invoice', array(
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array(
 
-                'invoice_id' => $param2
+                'id' => $param2
 
             ))->result_array();
 
@@ -1049,21 +1057,21 @@ class Admin extends CI_Controller
 
         if ($param1 == 'delete') {
 
-            $this->db->where('invoice_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->delete('invoice');
+            $this->db->delete('hs_facturacion');
 
-            redirect(base_url() . 'index.php?admin/invoice', 'refresh');
+            redirect(base_url() . 'index.php?admin/facturacion', 'refresh');
 
         }
 
-        $page_data['page_name'] = 'invoice';
+        $page_data['page_name'] = 'facturacion';
 
-        $page_data['page_title'] = get_phrase('manage_invoice/payment');
+        $page_data['page_title'] = get_phrase('gestionar_facturas');
 
-        $this->db->order_by('creation_timestamp', 'desc');
+        $this->db->order_by('fecha', 'desc');
 
-        $page_data['invoices'] = $this->db->get('invoice')->result_array();
+        $page_data['facturacion'] = $this->db->get('hs_facturacion')->result_array();
 
         $this->load->view('index', $page_data);
 

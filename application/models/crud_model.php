@@ -363,6 +363,15 @@ function get_empresas()
 		return $query->result_array();
 
 	}
+//////////////FACTURACION//////////////
+
+    function get_hs_facturacion_estado($estado){
+        if($estado == 1){
+        	return "Cancelado";
+        }else{
+        	return "No Cancelado";
+        }
+    }
 
 	
 

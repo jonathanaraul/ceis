@@ -241,13 +241,13 @@
 </li>
 
 
-<!------invoice----->
+<!------fcturacion----->
 
-<li class="<?php if ($page_name == 'invoice') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'facturacion') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?admin/invoice" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?admin/facturacion" rel="tooltip" data-placement="right"
 
        data-original-title="<?php echo get_phrase('invoice_help'); ?>">
 
@@ -255,7 +255,7 @@
 
         <img src="<?php echo base_url(); ?>template/images/icons/payment.png"/>
 
-        <span><?php echo get_phrase('payment'); ?></span>
+        <span><?php echo get_phrase('facturacion'); ?></span>
 
     </a>
 

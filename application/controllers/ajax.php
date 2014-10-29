@@ -53,6 +53,23 @@ class ajax extends CI_Controller
 
     }
 
+    function obtenCursos()
+
+    {
+        $estudiante = $this->input->post('estudiante');
+
+        $elements = $this->db->get_where('hs_inscripcion', array('estudiante' => $estudiante))->result_array();
+
+        $cadena = '<option value="0" selected>Seleccionar Curso</option>';
+
+        foreach ($elements as $element) {
+            $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($element['curso']) . '</option>';
+
+        }
+        echo $cadena;
+
+    }
+
     function obtenEvaluaciones()
 
 {

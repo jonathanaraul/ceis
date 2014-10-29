@@ -118,13 +118,13 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('class_routine', array('class_routine_id' => $param2))->result_array();
 
-        } else if ($param1 == 'view_invoice') {
+        } else if ($param1 == 'ver_factura') {
 
-            $page_data['edit_data'] = $this->db->get_where('invoice', array('invoice_id' => $param2))->result_array();
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_invoice') {
+        } else if ($param1 == 'edit_factura') {
 
-            $page_data['edit_data'] = $this->db->get_where('invoice', array('invoice_id' => $param2))->result_array();
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
 
         } else if ($param1 == 'edit_book') {
 

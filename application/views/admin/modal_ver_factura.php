@@ -5,37 +5,33 @@
 
             <div class="pull-left">
 			<span style="font-size:20px;font-weight:100;">
-				<?php echo get_phrase('payment_to'); ?>
+				<?= get_phrase('pagar_a'); ?>
             </span>
                 <br/>
-                <?php echo $system_name; ?>
+                <?= $system_name; ?>
                 <br/>
-                <?php echo $this->db->get_where('settings', array('type' => 'address'))->row()->description; ?>
+                <?= $this->db->get_where('settings', array('type' => 'address'))->row()->description; ?>
             </div>
             <div class="pull-right">
 			<span style="font-size:20px;font-weight:100;">
-				<?php echo get_phrase('bill_to'); ?>
+				<?= get_phrase('bill_to'); ?>
             </span>
                 <br/>
-                <?php echo $this->db->get_where('student', array('student_id' => $row['student_id']))->row()->name; ?>
+                <?= $this->crud_model->get_hs_student_nombre_by_id($row['estudiante'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['estudiante']);?>
                 <br/>
-                <?php echo get_phrase('roll'); ?> :
-                <?php echo $this->db->get_where('student', array('student_id' => $row['student_id']))->row()->roll; ?>
-                <br/>
-                <?php echo get_phrase('class'); ?> :
-                <?php
-                $class_id = $this->db->get_where('student', array('student_id' => $row['student_id']))->row()->class_id;
-                echo $this->db->get_where('class', array('class_id' => $class_id))->row()->name;
+                <?= get_phrase('curso'); ?> :
+                <?=
+                 $this->crud_model->get_hs_cursos_nombre($row['curso']);
                 ?>
             </div>
             <div style="clear:both;"></div>
             <hr/>
             <table width="100%">
                 <tr style="background-color:#7087A3; color:#fff; padding:5px;">
-                    <td style="padding:5px;"><?php echo get_phrase('invoice_title'); ?></td>
+                    <td style="padding:5px;"><?= get_phrase('invoice_title'); ?></td>
                     <td width="30%" style="padding:5px;">
                         <div class="pull-right">
-                            <?php echo get_phrase('amount'); ?>
+                            <?= get_phrase('monto'); ?>
                         </div>
                     </td>
                 </tr>
@@ -45,12 +41,12 @@
 						<?php echo $row['title']; ?>
                     </span>
                         <br/>
-                        <?php echo $row['description']; ?>
+                        <?php echo $row['descripcion']; ?>
                     </td>
                     <td width="30%" style="padding:5px;">
                         <div class="pull-right">
 						<span style="font-size:20px;font-weight:100;">
-							<?php echo $row['amount']; ?>
+							<?php echo $row['monto']; ?>
                         </span>
                         </div>
                     </td>
@@ -60,11 +56,14 @@
                     <td width="30%" style="padding:5px;">
                         <div class="pull-right">
                             <hr/>
-                            <?php echo get_phrase('status'); ?> : <?php echo $row['status']; ?>
+                            <?php echo get_phrase('status'); ?> : <?= $this->crud_model->get_hs_facturacion_estado($row['estado']); ?>
                             <br/>
-                            <?php echo get_phrase('invoice_id'); ?> : <?php echo $row['invoice_id']; ?>
+                            <?php echo get_phrase('invoice_id'); ?> : <?php echo $row['id']; ?>
                             <br/>
-                            <?php echo get_phrase('date'); ?> : <?php echo date('m/d/Y', $row['creation_timestamp']); ?>
+                            <?php echo get_phrase('date'); ?> : <?php $f= date_create($row['fecha']);
+                                                                      $date= date_format($f, 'd/m/Y');
+                                                                      echo $date; 
+                                ?>
                         </div>
                     </td>
                 </tr>
