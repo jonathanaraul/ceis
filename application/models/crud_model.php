@@ -392,7 +392,25 @@ function get_empresas()
         	return "No Cancelado";
         }
     }
+//////////////DOCUMENTOS////////////////
 
+    function get_suma_notas($id_estudiante){
+
+        $query = $this->db->select('puntuacion')->get_where('hs_notas', array('estudiante' => $id_estudiante))->result_array();
+        $suma= 0;
+        foreach($query as $sum):
+            $suma+=$sum['puntuacion'];
+        endforeach;
+        return $suma;
+    }
+
+	function get_nro_materias($id_estudiante){
+
+        $this->db->where('estudiante', $id_estudiante);
+        $this->db->from('hs_notas');
+        
+        return $this->db->count_all_results();
+    }
 	
 
 		

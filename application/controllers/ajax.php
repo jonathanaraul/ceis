@@ -87,6 +87,77 @@ class ajax extends CI_Controller
 
     }
 
+    function obtenEstudiantes()
+
+    {
+        $curso = $this->input->post('curso');
+
+        $elements = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
+
+        $cadena = '<option value="0">Visualizar Todos</option>';
+
+        foreach ($elements as $element) {
+            $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_hs_student_nombre_by_id($element['estudiante']) .' '. $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']) .'</option>';
+
+        }
+        echo $cadena;
+
+    }
+
+    function recuperarDiplomas()
+
+    {
+        $curso = $this->input->post('curso');
+        $estudiante = $this->input->post('estudiante');
+
+        $dato['curso']= $curso;
+        $dato['estudiantes']= $estudiante;
+
+        $inscritos = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1 ))->result_array();
+        
+        if($estudiante == 0){
+
+        foreach($inscritos as $inscrito):
+
+            $query = $this->db->select('puntuacion')->get_where('hs_notas', array('estudiante' => $inscrito['estudiante']))->result_array();
+            $suma= 0;
+            foreach($query as $sum):
+                $suma+=$sum['puntuacion'];
+            endforeach;
+            $this->db->where('estudiante', $inscrito['estudiante']);
+            $this->db->from('hs_notas');
+            $nro_materias= $this->db->count_all_results();
+            $media= $suma/$nro_materias;
+
+            $dato['media']= $media;
+            $dato['diploma_nombre']= $inscrito['estudiante'];
+            $dato['elements'] = $this->db->get_where('hs_notas', array('curso' => $curso, 'puntuacion >=' => 5))->result_array();
+            $this->load->view('admin/visualizar_diploma', $dato); 
+
+        endforeach;
+ 
+
+        }else{
+
+        $query = $this->db->select('puntuacion')->get_where('hs_notas', array('estudiante' => $inscritos['estudiante']))->result_array();
+        $suma= 0;
+        foreach($query as $sum):
+        $suma+=$sum['puntuacion'];
+        endforeach;
+
+        $this->db->where('estudiante', $inscritos['estudiante']);
+        $this->db->from('hs_notas');
+        $nro_materias= $this->db->count_all_results();
+
+        $media= $suma/$nro_materias;
+        $dato['media']= $media;
+        $dato['diploma_nombre']= $inscritos['estudiante'];
+        $dato['elements'] = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $estudiante, 'puntuacion >=' => $media))->result_array();
+
+        $this->load->view('admin/visualizar_diploma', $dato);
+        }
+    }
+
 
     function listarNotas()
 

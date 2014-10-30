@@ -264,19 +264,19 @@
 
 <!------book----->
 
-<li class="<?php if ($page_name == 'book') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'diplomas') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?admin/book" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?admin/diplomas" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('book_help'); ?>">
+       data-original-title="<?php echo get_phrase('gestion_de_diplomas'); ?>">
 
         <!--<i class="icon-book icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
 
-        <span><?php echo get_phrase('library'); ?></span>
+        <span><?php echo get_phrase('diplomas'); ?></span>
 
     </a>
 

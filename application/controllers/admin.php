@@ -1078,9 +1078,9 @@ class Admin extends CI_Controller
 
     }
 
-    /**********MANAGE LIBRARY / BOOKS********************/
+    /**********GESTIONAR DOCUMENTOS********************/
 
-    function book($param1 = '', $param2 = '', $param3 = '')
+    function diplomas($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -1104,7 +1104,7 @@ class Admin extends CI_Controller
 
             $this->db->insert('book', $data);
 
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
+            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
 
         }
 
@@ -1127,7 +1127,7 @@ class Admin extends CI_Controller
 
             $this->db->update('book', $data);
 
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
+            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -1145,15 +1145,15 @@ class Admin extends CI_Controller
 
             $this->db->delete('book');
 
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
+            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
 
         }
 
-        $page_data['books'] = $this->db->get('book')->result_array();
+        $page_data['estudiantes'] = $this->db->get('hs_inscripcion')->result_array();
 
-        $page_data['page_name'] = 'book';
+        $page_data['page_name'] = 'documentos';
 
-        $page_data['page_title'] = get_phrase('manage_library_books');
+        $page_data['page_title'] = get_phrase('documentos_académicos');
 
         $this->load->view('index', $page_data);
 
