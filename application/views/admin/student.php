@@ -110,6 +110,7 @@
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['phone']; ?></td>
                             <td align="center" class="span5">
+                               
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('student_profile',<?php echo $row['student_id']; ?>)"
                                    class="btn btn-default btn-small"> <i

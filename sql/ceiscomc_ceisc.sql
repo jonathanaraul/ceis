@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2014 a las 01:00:58
--- Versión del servidor: 5.6.16
--- Versión de PHP: 5.5.11
+-- Servidor: localhost
+-- Tiempo de generación: 30-10-2014 a las 06:50:47
+-- Versión del servidor: 5.6.12-log
+-- Versión de PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
+CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -214,14 +216,15 @@ CREATE TABLE IF NOT EXISTS `class_routine` (
   `time_end` int(11) NOT NULL,
   `day` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`class_routine_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `class_routine`
 --
 
 INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time_start`, `time_end`, `day`) VALUES
-(1, 3, 1, 7, 10, 'monday');
+(1, 3, 1, 7, 10, 'monday'),
+(2, 0, 0, 16, 17, 'monday');
 
 -- --------------------------------------------------------
 
@@ -415,8 +418,8 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
   `periodo` int(11) NOT NULL,
   `seccion` varchar(10) NOT NULL,
   `cupo` int(11) NOT NULL,
-  `fecha_ini` longtext NOT NULL,
-  `fecha_cul` longtext NOT NULL,
+  `fecha_ini` date NOT NULL,
+  `fecha_cul` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `periodo` (`periodo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -426,10 +429,10 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
 --
 
 INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`, `fecha_ini`, `fecha_cul`) VALUES
-(1, 'FUNDAMENTACION VIGILANCIA', 1, 'A', 50, '10/27/2014', '10/30/2014'),
-(2, 'REENTRENAMIENTO VIGILANCIA', 1, 'A', 50, '10/27/2014', '10/30/2014'),
-(3, 'ESPECIALIZACION VIGILANCIA SECTOR FINANCIERO', 2, 'A', 20, '10/27/2014', '10/30/2014'),
-(5, 'ESPECIALIZACION VIGILANCIA HOSPITALARIA', 1, 'B', 30, '10/27/2014', '10/30/2014');
+(1, 'FUNDAMENTACION VIGILANCIA', 1, 'A', 50, '2014-10-30', '2014-11-15'),
+(2, 'REENTRENAMIENTO VIGILANCIA', 1, 'A', 50, '2014-10-30', '2014-11-15'),
+(3, 'ESPECIALIZACION VIGILANCIA SECTOR FINANCIERO', 2, 'A', 20, '2014-10-30', '2014-11-15'),
+(5, 'ESPECIALIZACION VIGILANCIA HOSPITALARIA', 1, 'B', 30, '2014-10-30', '2014-11-15');
 
 -- --------------------------------------------------------
 
@@ -596,6 +599,57 @@ INSERT INTO `hs_periodo` (`id`, `nombre_periodo`, `fecha_inicio`, `fecha_fin`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_role`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_role` (
+  `rol_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rol` varchar(50) NOT NULL,
+  PRIMARY KEY (`rol_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `hs_role`
+--
+
+INSERT INTO `hs_role` (`rol_id`, `rol`) VALUES
+(1, 'Administrativo'),
+(2, 'Gerencia'),
+(3, 'Operativo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hs_users`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `snombre` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `papellido` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `sapellido` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `sex` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `address` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `email` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `password` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `rol` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `hs_users`
+--
+
+INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, `sex`, `address`, `phone`, `email`, `password`, `rol`) VALUES
+(1, 'maria', '', '', '', '', '', '', 'maria@gmail.com', '', 1),
+(2, 'GRECIA', '', 'pico', 'muñoz', 'female', '', '', 'gre@gmail.com', '2212', 2),
+(3, 'carlos', '', 'oronoz', 'cabello', 'male', '', '', 'hola', 'ipuZOqpMwgOkZvvmc1H4/8YqoUITz6vJLsTLjsAPvdFSOKF2SrKOgf7hUzi1W4JfPXwgPd6qADRmIvvAX7WqXw==', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `invoice`
 --
 
@@ -631,7 +685,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1540 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1552 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2176,7 +2230,19 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1536, 'Periodo', ''),
 (1537, 'RSS', ''),
 (1538, 'Periodo', ''),
-(1539, 'RSS', '');
+(1539, 'RSS', ''),
+(1540, 'Periodo', ''),
+(1541, 'facturacion', ''),
+(1542, 'RSS', ''),
+(1543, 'manejo_de_usuarios', ''),
+(1544, 'Periodo', ''),
+(1545, 'RSS', ''),
+(1546, 'Periodo', ''),
+(1547, 'RSS', ''),
+(1548, 'Periodo', ''),
+(1549, 'RSS', ''),
+(1550, 'Periodo', ''),
+(1551, 'RSS', '');
 
 -- --------------------------------------------------------
 

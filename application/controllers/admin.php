@@ -1706,19 +1706,20 @@ class Admin extends CI_Controller
 
     }
 
-	/****MODULO USUARIOS*****/
+	/****Manage USUARIOS*****/
 
 	
-    function users($param1 = '', $param2 = '', $param3 = '')
+    
+	function users($param1 = '', $param2 = '', $param3 = '')
 
     {
 		$this->load->library('encrypt');
         if ($this->session->userdata('admin_login') != 1)
 
-            redirect(base_url(), 'refresh');
+            redirect('login', 'refresh');
 
         if ($param1 == 'create') {
-
+           
             $data['name'] = $this->input->post('name');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
@@ -1732,11 +1733,11 @@ class Admin extends CI_Controller
 
             $data['email'] = $this->input->post('email');
 
-           $data['password'] = $this->encrypt->encode('password');
+			$data['password'] = $this->encrypt->encode('password');
             
             $data['rol'] = $this->input->post('rol');
 
-            $this->db->insert('hs_users', $data);
+			$this->db->insert('hs_users', $data);
 
             $user_id = mysql_insert_id();
 
@@ -1744,18 +1745,16 @@ class Admin extends CI_Controller
 
             $this->email_model->account_opening_email('hs_users', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
+            redirect(base_url() . 'index.php?admin/users/'.$data['rol'], 'refresh');
 
         }
 
-        if ($param1 == 'do_update') {
+        if ($param2 == 'do_update') {
 
             $data['name'] = $this->input->post('name');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
             $data['sapellido'] = $this->input->post('sapellido');
-
-            $data['birthday'] = $this->input->post('birthday');
 
             $data['sex'] = $this->input->post('sex');
 
@@ -1767,115 +1766,66 @@ class Admin extends CI_Controller
 
             $data['password'] = $this->encrypt->encode('password');
            
-            
             $data['rol'] = $this->input->post('rol');
+            
+            $this->db->where('user_id', $param3);
 
+            $this->db->update('hs_users', $data);
 
-            $this->db->where('user_id', $param2);
+            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/user_image/' . $param3 . '.jpg');
 
-            $this->db->update('hs_user', $data);
+            $this->crud_model->clear_cache();
 
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/user_image/' . $param2 . '.jpg');
+            redirect(base_url() . 'index.php?admin/users/' . $param1, 'refresh');
+            
+            
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
-
-        } else if ($param1 == 'personal_profile') {
-
-            $page_data['personal_profile'] = true;
-
-            $page_data['current_user_id'] = $param2;
-
-        } else if ($param1 == 'edit') {
+        } else if ($param2 == 'edit') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_users', array(
 
-                'user_id' => $param2
+                'user_id' => $param3
 
             ))->result_array();
 
-        }else if ($param1 == 'delete') {
+        } else if ($param2 == 'personal_profile') {
 
-            $this->db->where('user_id', $param2);
+            $page_data['personal_profile'] = true;
+
+            $page_data['current_user_id'] = $param3;
+
+        } 
+
+        if ($param2 == 'delete') {
+
+            $this->db->where('user_id', $param3);
 
             $this->db->delete('hs_users');
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
+            redirect(base_url() . 'index.php?admin/users/' . $param1, 'refresh');
 
         }
-        else if ($param1 == '1') {
 
-            $page_data['users'] = $this->db->get_where('hs_users', array(
+        $page_data['rol'] = $param1;
 
-                'rol' => $param1 
+        $page_data['users'] = $this->db->get_where('hs_users', array(
 
-            ))->result_array();
-            
-			$page_data['page_name'] = 'users';
+            'rol' => $param1
 
-			$this->load->view('index', $page_data);
-			
-        
-        }else if ($param1 == '2') {
+        ))->result_array();
 
-            $page_data['users'] = $this->db->get_where('hs_users', array(
+        $page_data['page_name'] = 'manage_users';
 
-                'rol' => $param1 
+		$page_data['page_title'] = get_phrase('manejar_usuarios');
 
-            ))->result_array();
-
-			$page_data['page_name'] = 'users';
-
-			$this->load->view('index', $page_data);
-        
-        }else if ($param1 == '3') {
-			
-            $page_data['users'] = $this->db->get_where('hs_users', array(
-
-                'rol' => $param1 
-
-            ))->result_array();
-
-			$page_data['page_name'] = 'users';
-
-			$this->load->view('index', $page_data);
-        
-			
-		}else if ($param1 == '4') {
-			
-            $page_data['users'] = $this->db->get_where('hs_users', array(
-
-                'rol' => $param1 
-
-            ))->result_array();
-
-			$page_data['page_name'] = 'users';
-
-			$this->load->view('index', $page_data);
-        
-			
-		}else if ($param1 == '5') {
-			
-           $page_data['users'] = $this->db->get_where('hs_users', array(
-
-                'rol' => $param1 
-
-            ))->result_array();
-
-			$page_data['page_name'] = 'users';
-
-			$this->load->view('index', $page_data);
-        
-			
-		}
-
-        
+        $this->load->view('index', $page_data);
 
     }
     
     
     /*****ROLE SETTINGS*********/
     
-      function role($param1 = '', $param2 = '', $param3 = '')
+      function manage_role($param1 = '', $param2 = '', $param3 = '')
 
     {
 		
@@ -1892,7 +1842,7 @@ class Admin extends CI_Controller
             $user_id = mysql_insert_id();
 
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
+            redirect(base_url() . 'index.php?admin/manage_role/', 'refresh');
 
         }
 
@@ -1906,7 +1856,7 @@ class Admin extends CI_Controller
 
             $this->db->update('hs_role', $data);
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
+            redirect(base_url() . 'index.php?admin/manage_role/', 'refresh');
 
         } else if ($param1 == 'personal_profile') {
 
@@ -1930,10 +1880,17 @@ class Admin extends CI_Controller
 
             $this->db->delete('hs_role');
 
-            redirect(base_url() . 'index.php?admin/manage_users/', 'refresh');
+            redirect(base_url() . 'index.php?admin/manage_role/', 'refresh');
+            
 
         }
+        $page_data['page_name'] = 'manage_role';
+
+		$page_data['page_title'] = 'Manejar Roles de Usuarios';
+
+        $this->load->view('index', $page_data);
     }
+    
     /*****LANGUAGE SETTINGS*********/
 
     function manage_language($param1 = '', $param2 = '', $param3 = '')

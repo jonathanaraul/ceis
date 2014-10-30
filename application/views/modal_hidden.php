@@ -33,6 +33,8 @@ function modal(param1 ,param2 ,param3)
 	document.getElementById('modal-tablesLabel').innerHTML = param1.replace("_"," ");
     if (param1 == 'student_profile') {
         document.getElementById('miboton').style.display = 'none';
+    }else if (param1 == 'user_profile') {
+        document.getElementById('miboton').style.display = 'none';
     }
 }
 
