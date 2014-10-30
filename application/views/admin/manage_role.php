@@ -65,15 +65,11 @@
 										
 										<td align="center">
 											
-											<a data-toggle="modal" href="#modal-form" onclick="modal('user_profile',<?php echo $row['user_id']; ?>)"
-												class="btn btn-default btn-small"> 
-												<i class="icon-user"></i> <?php echo get_phrase('profile'); ?> 
-											</a> 
-											<a data-toggle="modal" href="#modal-form"onclick="modal('edit_user',<?php echo $row['user_id']; ?>)"
+											<a data-toggle="modal" href="#modal-form"onclick="modal('edit_role',<?php echo $row['rol_id']; ?>)"
 												class="btn btn-gray btn-small"> 
 												<i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
 											</a> 
-											<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/users/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> 
+											<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/manage_role/delete/<?php echo $row['rol_id']; ?>')" class="btn btn-red btn-small"> 
 												<i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 											</a>
 										</td>

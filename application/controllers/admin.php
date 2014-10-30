@@ -1776,7 +1776,9 @@ class Admin extends CI_Controller
 
             $this->crud_model->clear_cache();
 
-            redirect(base_url() . 'index.php?admin/users/'.$param1, 'refresh');
+            redirect(base_url() . 'index.php?admin/users/' . $param1, 'refresh');
+            
+            
 
         } else if ($param2 == 'edit') {
 
@@ -1879,6 +1881,7 @@ class Admin extends CI_Controller
             $this->db->delete('hs_role');
 
             redirect(base_url() . 'index.php?admin/manage_role/', 'refresh');
+            
 
         }
         $page_data['page_name'] = 'manage_role';

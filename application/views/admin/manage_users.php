@@ -96,7 +96,8 @@
 								<td>
 									<div class="avatar"><img
 											src="<?php echo $this->crud_model->get_image_url('user', $row['user_id']); ?>"
-											class="avatar-medium"/></div>
+											class="avatar-medium"/>
+									</div>
 								</td>
 								<td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
 								<td><?php echo $row['email']; ?></td>
@@ -109,12 +110,13 @@
 									</a> 
 									<a data-toggle="modal" href="#modal-form"
 										onclick="modal('edit_user',<?php echo $row['user_id']; ?>,<?php echo $rol; ?>)"
-										class="btn btn-gray btn-small"> 
-										<i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
-									</a> 
+										class="btn btn-gray btn-small"> <i
+                                        class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
+                                    </a>
 									<a data-toggle="modal" href="#modal-delete" 
 										onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/users/<?php echo $rol; ?>/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 									</a>
+									
 								</td>
                         </tr>
                     <?php endforeach; ?>
