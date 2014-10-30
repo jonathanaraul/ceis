@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 30-10-2014 a las 06:50:47
--- Versión del servidor: 5.6.12-log
--- Versión de PHP: 5.4.12
+-- Host: localhost
+-- Generation Time: Oct 30, 2014 at 09:44 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,28 +17,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `ceiscomc_ceisc`
+-- Database: `ceiscomc_ceisc`
 --
-CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+`admin_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `level` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+  `level` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `name`, `email`, `password`, `level`) VALUES
@@ -51,40 +48,38 @@ INSERT INTO `admin` (`admin_id`, `name`, `email`, `password`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `book`
+-- Table structure for table `book`
 --
 
 CREATE TABLE IF NOT EXISTS `book` (
-  `book_id` int(11) NOT NULL AUTO_INCREMENT,
+`book_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `author` longtext COLLATE utf8_unicode_ci NOT NULL,
   `class_id` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `price` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `price` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `class`
+-- Table structure for table `class`
 --
 
 CREATE TABLE IF NOT EXISTS `class` (
-  `class_id` int(11) NOT NULL AUTO_INCREMENT,
+`class_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `seccion` varchar(11) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `fcha_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `fcha_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_inicio` longtext COLLATE utf8_unicode_ci NOT NULL,
   `hora_fin` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `cupo` int(11) NOT NULL,
-  PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+  `cupo` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `class`
+-- Dumping data for table `class`
 --
 
 INSERT INTO `class` (`class_id`, `name`, `seccion`, `fcha_inicio`, `fcha_fin`, `hora_inicio`, `hora_fin`, `cupo`) VALUES
@@ -96,17 +91,16 @@ INSERT INTO `class` (`class_id`, `name`, `seccion`, `fcha_inicio`, `fcha_fin`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `class_name`
+-- Table structure for table `class_name`
 --
 
 CREATE TABLE IF NOT EXISTS `class_name` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(400) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=92 ;
+`id` int(11) NOT NULL,
+  `nombre` varchar(400) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `class_name`
+-- Dumping data for table `class_name`
 --
 
 INSERT INTO `class_name` (`id`, `nombre`) VALUES
@@ -205,21 +199,20 @@ INSERT INTO `class_name` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `class_routine`
+-- Table structure for table `class_routine`
 --
 
 CREATE TABLE IF NOT EXISTS `class_routine` (
-  `class_routine_id` int(11) NOT NULL AUTO_INCREMENT,
+`class_routine_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `time_start` int(11) NOT NULL,
   `time_end` int(11) NOT NULL,
-  `day` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`class_routine_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `day` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `class_routine`
+-- Dumping data for table `class_routine`
 --
 
 INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time_start`, `time_end`, `day`) VALUES
@@ -229,17 +222,16 @@ INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamento`
+-- Table structure for table `departamento`
 --
 
 CREATE TABLE IF NOT EXISTS `departamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+`id` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `departamento`
+-- Dumping data for table `departamento`
 --
 
 INSERT INTO `departamento` (`id`, `nombre`) VALUES
@@ -279,47 +271,44 @@ INSERT INTO `departamento` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dormitory`
+-- Table structure for table `dormitory`
 --
 
 CREATE TABLE IF NOT EXISTS `dormitory` (
-  `dormitory_id` int(11) NOT NULL AUTO_INCREMENT,
+`dormitory_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `number_of_room` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`dormitory_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `description` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `email_template`
+-- Table structure for table `email_template`
 --
 
 CREATE TABLE IF NOT EXISTS `email_template` (
-  `email_template_id` int(11) NOT NULL AUTO_INCREMENT,
+`email_template_id` int(11) NOT NULL,
   `task` longtext COLLATE utf8_unicode_ci NOT NULL,
   `subject` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `body` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`email_template_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `body` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empresas`
+-- Table structure for table `empresas`
 --
 
 CREATE TABLE IF NOT EXISTS `empresas` (
-  `empresas_id` int(11) NOT NULL AUTO_INCREMENT,
+`empresas_id` int(11) NOT NULL,
   `nit_empresas` int(11) NOT NULL,
   `nombre_empresas` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `contacto_empresa` int(13) NOT NULL,
-  PRIMARY KEY (`empresas_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `contacto_empresa` int(13) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `empresas`
+-- Dumping data for table `empresas`
 --
 
 INSERT INTO `empresas` (`empresas_id`, `nit_empresas`, `nombre_empresas`, `contacto_empresa`) VALUES
@@ -329,19 +318,18 @@ INSERT INTO `empresas` (`empresas_id`, `nit_empresas`, `nombre_empresas`, `conta
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `exam`
+-- Table structure for table `exam`
 --
 
 CREATE TABLE IF NOT EXISTS `exam` (
-  `exam_id` int(11) NOT NULL AUTO_INCREMENT,
+`exam_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `date` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`exam_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `exam`
+-- Dumping data for table `exam`
 --
 
 INSERT INTO `exam` (`exam_id`, `name`, `date`, `comment`) VALUES
@@ -350,21 +338,20 @@ INSERT INTO `exam` (`exam_id`, `name`, `date`, `comment`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grade`
+-- Table structure for table `grade`
 --
 
 CREATE TABLE IF NOT EXISTS `grade` (
-  `grade_id` int(11) NOT NULL AUTO_INCREMENT,
+`grade_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `grade_point` longtext COLLATE utf8_unicode_ci NOT NULL,
   `mark_from` int(11) NOT NULL,
   `mark_upto` int(11) NOT NULL,
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`grade_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `grade`
+-- Dumping data for table `grade`
 --
 
 INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`, `comment`) VALUES
@@ -373,25 +360,21 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_asistencias`
+-- Table structure for table `hs_asistencias`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_asistencias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
   `materia` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `presente` tinyint(4) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `curso` (`curso`,`materia`,`estudiante`),
-  KEY `materia` (`materia`),
-  KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=15 ;
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `hs_asistencias`
+-- Dumping data for table `hs_asistencias`
 --
 
 INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `fecha`, `presente`, `create_at`) VALUES
@@ -409,23 +392,21 @@ INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `fecha`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_cursos`
+-- Table structure for table `hs_cursos`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_cursos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nombre` varchar(500) NOT NULL,
   `periodo` int(11) NOT NULL,
   `seccion` varchar(10) NOT NULL,
   `cupo` int(11) NOT NULL,
   `fecha_ini` date NOT NULL,
-  `fecha_cul` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `periodo` (`periodo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `fecha_cul` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_cursos`
+-- Dumping data for table `hs_cursos`
 --
 
 INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`, `fecha_ini`, `fecha_cul`) VALUES
@@ -437,21 +418,19 @@ INSERT INTO `hs_cursos` (`id`, `nombre`, `periodo`, `seccion`, `cupo`, `fecha_in
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_evaluaciones`
+-- Table structure for table `hs_evaluaciones`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_evaluaciones` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `materia` int(11) NOT NULL,
   `ponderacion` float NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `materia` (`materia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_evaluaciones`
+-- Dumping data for table `hs_evaluaciones`
 --
 
 INSERT INTO `hs_evaluaciones` (`id`, `nombre`, `materia`, `ponderacion`, `fecha`) VALUES
@@ -466,11 +445,11 @@ INSERT INTO `hs_evaluaciones` (`id`, `nombre`, `materia`, `ponderacion`, `fecha`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_facturacion`
+-- Table structure for table `hs_facturacion`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_facturacion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
   `descripcion` text COLLATE utf8_spanish2_ci NOT NULL,
@@ -478,14 +457,11 @@ CREATE TABLE IF NOT EXISTS `hs_facturacion` (
   `monto` double(12,2) NOT NULL,
   `metodo_pago` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  `fecha` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `estudiante` (`estudiante`,`curso`),
-  KEY `curso` (`curso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=5 ;
+  `fecha` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `hs_facturacion`
+-- Dumping data for table `hs_facturacion`
 --
 
 INSERT INTO `hs_facturacion` (`id`, `estudiante`, `curso`, `descripcion`, `cantidad`, `monto`, `metodo_pago`, `estado`, `fecha`) VALUES
@@ -497,22 +473,34 @@ INSERT INTO `hs_facturacion` (`id`, `estudiante`, `curso`, `descripcion`, `canti
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_inscripcion`
+-- Table structure for table `hs_horarios_materias`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_horarios_materias` (
+`id` int(11) NOT NULL,
+  `curso` int(11) NOT NULL,
+  `materia` int(11) NOT NULL,
+  `hora_inicio` int(11) NOT NULL,
+  `hora_fin` int(11) NOT NULL,
+  `dia` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hs_inscripcion`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_inscripcion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `curso` (`curso`),
-  KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_inscripcion`
+-- Dumping data for table `hs_inscripcion`
 --
 
 INSERT INTO `hs_inscripcion` (`id`, `estudiante`, `curso`, `status`, `create_at`) VALUES
@@ -524,19 +512,17 @@ INSERT INTO `hs_inscripcion` (`id`, `estudiante`, `curso`, `status`, `create_at`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_materias`
+-- Table structure for table `hs_materias`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_materias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nombre` varchar(300) NOT NULL,
-  `curso` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `curso` (`curso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `curso` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_materias`
+-- Dumping data for table `hs_materias`
 --
 
 INSERT INTO `hs_materias` (`id`, `nombre`, `curso`) VALUES
@@ -548,25 +534,20 @@ INSERT INTO `hs_materias` (`id`, `nombre`, `curso`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_notas`
+-- Table structure for table `hs_notas`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_notas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
   `materia` int(11) NOT NULL,
   `evaluacion` int(11) NOT NULL,
   `estudiante` int(11) NOT NULL,
-  `puntuacion` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `curso` (`curso`,`materia`,`evaluacion`,`estudiante`),
-  KEY `materia` (`materia`),
-  KEY `evaluacion` (`evaluacion`),
-  KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `puntuacion` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_notas`
+-- Dumping data for table `hs_notas`
 --
 
 INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
@@ -576,20 +557,19 @@ INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `p
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_periodo`
+-- Table structure for table `hs_periodo`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_periodo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nombre_periodo` varchar(30) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
-  `duracion` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `duracion` varchar(30) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_periodo`
+-- Dumping data for table `hs_periodo`
 --
 
 INSERT INTO `hs_periodo` (`id`, `nombre_periodo`, `fecha_inicio`, `fecha_fin`, `duracion`) VALUES
@@ -599,17 +579,16 @@ INSERT INTO `hs_periodo` (`id`, `nombre_periodo`, `fecha_inicio`, `fecha_fin`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_role`
+-- Table structure for table `hs_role`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_role` (
-  `rol_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rol` varchar(50) NOT NULL,
-  PRIMARY KEY (`rol_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+`rol_id` int(11) NOT NULL,
+  `rol` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `hs_role`
+-- Dumping data for table `hs_role`
 --
 
 INSERT INTO `hs_role` (`rol_id`, `rol`) VALUES
@@ -620,11 +599,11 @@ INSERT INTO `hs_role` (`rol_id`, `rol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hs_users`
+-- Table structure for table `hs_users`
 --
 
 CREATE TABLE IF NOT EXISTS `hs_users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `snombre` longtext COLLATE utf8_unicode_ci NOT NULL,
   `papellido` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -634,12 +613,11 @@ CREATE TABLE IF NOT EXISTS `hs_users` (
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `rol` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `rol` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `hs_users`
+-- Dumping data for table `hs_users`
 --
 
 INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, `sex`, `address`, `phone`, `email`, `password`, `rol`) VALUES
@@ -650,11 +628,11 @@ INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `invoice`
+-- Table structure for table `invoice`
 --
 
 CREATE TABLE IF NOT EXISTS `invoice` (
-  `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
+`invoice_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `title` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -663,12 +641,11 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `payment_timestamp` longtext COLLATE utf8_unicode_ci NOT NULL,
   `payment_method` longtext COLLATE utf8_unicode_ci NOT NULL,
   `payment_details` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `status` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'paid or unpaid',
-  PRIMARY KEY (`invoice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `status` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'paid or unpaid'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `invoice`
+-- Dumping data for table `invoice`
 --
 
 INSERT INTO `invoice` (`invoice_id`, `student_id`, `title`, `description`, `amount`, `creation_timestamp`, `payment_timestamp`, `payment_method`, `payment_details`, `status`) VALUES
@@ -677,18 +654,17 @@ INSERT INTO `invoice` (`invoice_id`, `student_id`, `title`, `description`, `amou
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `language`
+-- Table structure for table `language`
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-  `phrase_id` int(11) NOT NULL AUTO_INCREMENT,
+`phrase_id` int(11) NOT NULL,
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `english` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1552 ;
+  `english` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=1557 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `language`
+-- Dumping data for table `language`
 --
 
 INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
@@ -2242,16 +2218,21 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1548, 'Periodo', ''),
 (1549, 'RSS', ''),
 (1550, 'Periodo', ''),
-(1551, 'RSS', '');
+(1551, 'RSS', ''),
+(1552, 'Recepción', ''),
+(1553, 'Periodo', ''),
+(1554, 'RSS', ''),
+(1555, 'Periodo', ''),
+(1556, 'RSS', '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mark`
+-- Table structure for table `mark`
 --
 
 CREATE TABLE IF NOT EXISTS `mark` (
-  `mark_id` int(11) NOT NULL AUTO_INCREMENT,
+`mark_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -2259,26 +2240,23 @@ CREATE TABLE IF NOT EXISTS `mark` (
   `mark_obtained` int(11) NOT NULL DEFAULT '0',
   `mark_total` int(11) NOT NULL DEFAULT '100',
   `attendance` int(11) NOT NULL DEFAULT '0',
-  `comment` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`mark_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `municipio`
+-- Table structure for table `municipio`
 --
 
 CREATE TABLE IF NOT EXISTS `municipio` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `departamento` int(11) NOT NULL,
-  `nombre` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `departamento` (`departamento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1077 ;
+  `nombre` varchar(300) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1077 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `municipio`
+-- Dumping data for table `municipio`
 --
 
 INSERT INTO `municipio` (`id`, `departamento`, `nombre`) VALUES
@@ -3362,19 +3340,18 @@ INSERT INTO `municipio` (`id`, `departamento`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `noticeboard`
+-- Table structure for table `noticeboard`
 --
 
 CREATE TABLE IF NOT EXISTS `noticeboard` (
-  `notice_id` int(11) NOT NULL AUTO_INCREMENT,
+`notice_id` int(11) NOT NULL,
   `notice_title` longtext COLLATE utf8_unicode_ci NOT NULL,
   `notice` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `create_timestamp` int(11) NOT NULL,
-  PRIMARY KEY (`notice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+  `create_timestamp` int(11) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `noticeboard`
+-- Dumping data for table `noticeboard`
 --
 
 INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timestamp`) VALUES
@@ -3389,11 +3366,11 @@ INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timest
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `parent`
+-- Table structure for table `parent`
 --
 
 CREATE TABLE IF NOT EXISTS `parent` (
-  `parent_id` int(11) NOT NULL AUTO_INCREMENT,
+`parent_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -3401,18 +3378,17 @@ CREATE TABLE IF NOT EXISTS `parent` (
   `relation_with_student` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `profession` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`parent_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `profession` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `payment`
+-- Table structure for table `payment`
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
-  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+`payment_id` int(11) NOT NULL,
   `payment_type` longtext COLLATE utf8_unicode_ci NOT NULL,
   `transaction_id` longtext COLLATE utf8_unicode_ci NOT NULL,
   `invoice_id` int(11) NOT NULL,
@@ -3420,26 +3396,24 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `method` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `amount` int(11) NOT NULL,
-  `timestamp` int(11) NOT NULL,
-  PRIMARY KEY (`payment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `timestamp` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rss`
+-- Table structure for table `rss`
 --
 
 CREATE TABLE IF NOT EXISTS `rss` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(300) NOT NULL,
   `url` varchar(300) NOT NULL,
-  `create_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `create_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `rss`
+-- Dumping data for table `rss`
 --
 
 INSERT INTO `rss` (`id`, `name`, `url`, `create_timestamp`) VALUES
@@ -3449,18 +3423,17 @@ INSERT INTO `rss` (`id`, `name`, `url`, `create_timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
-  `settings_id` int(11) NOT NULL AUTO_INCREMENT,
+`settings_id` int(11) NOT NULL,
   `type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`settings_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `settings`
+-- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
@@ -3475,11 +3448,11 @@ INSERT INTO `settings` (`settings_id`, `type`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+`student_id` int(11) NOT NULL,
   `documento` longtext COLLATE utf8_unicode_ci NOT NULL,
   `ndocumento` int(18) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -3517,12 +3490,11 @@ CREATE TABLE IF NOT EXISTS `student` (
   `check_cedula` tinyint(2) NOT NULL,
   `check_cert_est` tinyint(2) NOT NULL,
   `check_foto` tinyint(2) NOT NULL,
-  `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+  `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `student`
+-- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `nom_sector_eco`, `nom_subsector_eco`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`, `check_lib_militar`, `check_cedula`, `check_cert_est`, `check_foto`, `talla_camisa`) VALUES
@@ -3536,19 +3508,18 @@ INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subject`
+-- Table structure for table `subject`
 --
 
 CREATE TABLE IF NOT EXISTS `subject` (
-  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
+`subject_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `class_id` int(11) NOT NULL,
-  `teacher_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+  `teacher_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `subject`
+-- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
@@ -3561,11 +3532,11 @@ INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `teacher`
+-- Table structure for table `teacher`
 --
 
 CREATE TABLE IF NOT EXISTS `teacher` (
-  `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
+`teacher_id` int(11) NOT NULL,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `snombre` longtext COLLATE utf8_unicode_ci NOT NULL,
   `papellido` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -3575,83 +3546,481 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `password` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `password` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `transport`
+-- Table structure for table `transport`
 --
 
 CREATE TABLE IF NOT EXISTS `transport` (
-  `transport_id` int(11) NOT NULL AUTO_INCREMENT,
+`transport_id` int(11) NOT NULL,
   `route_name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `number_of_vehicle` longtext COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `route_fare` longtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`transport_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `route_fare` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Restricciones para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Filtros para la tabla `hs_asistencias`
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+ ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+ ADD PRIMARY KEY (`book_id`);
+
+--
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+ ADD PRIMARY KEY (`class_id`);
+
+--
+-- Indexes for table `class_name`
+--
+ALTER TABLE `class_name`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `class_routine`
+--
+ALTER TABLE `class_routine`
+ ADD PRIMARY KEY (`class_routine_id`);
+
+--
+-- Indexes for table `departamento`
+--
+ALTER TABLE `departamento`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dormitory`
+--
+ALTER TABLE `dormitory`
+ ADD PRIMARY KEY (`dormitory_id`);
+
+--
+-- Indexes for table `email_template`
+--
+ALTER TABLE `email_template`
+ ADD PRIMARY KEY (`email_template_id`);
+
+--
+-- Indexes for table `empresas`
+--
+ALTER TABLE `empresas`
+ ADD PRIMARY KEY (`empresas_id`);
+
+--
+-- Indexes for table `exam`
+--
+ALTER TABLE `exam`
+ ADD PRIMARY KEY (`exam_id`);
+
+--
+-- Indexes for table `grade`
+--
+ALTER TABLE `grade`
+ ADD PRIMARY KEY (`grade_id`);
+
+--
+-- Indexes for table `hs_asistencias`
 --
 ALTER TABLE `hs_asistencias`
-  ADD CONSTRAINT `hs_asistencias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_asistencias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `curso` (`curso`,`materia`,`estudiante`), ADD KEY `materia` (`materia`), ADD KEY `estudiante` (`estudiante`);
 
 --
--- Filtros para la tabla `hs_cursos`
+-- Indexes for table `hs_cursos`
 --
 ALTER TABLE `hs_cursos`
-  ADD CONSTRAINT `hs_cursos_ibfk_1` FOREIGN KEY (`periodo`) REFERENCES `hs_periodo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `periodo` (`periodo`);
 
 --
--- Filtros para la tabla `hs_evaluaciones`
+-- Indexes for table `hs_evaluaciones`
 --
 ALTER TABLE `hs_evaluaciones`
-  ADD CONSTRAINT `hs_evaluaciones_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `materia` (`materia`);
 
 --
--- Filtros para la tabla `hs_facturacion`
+-- Indexes for table `hs_facturacion`
 --
 ALTER TABLE `hs_facturacion`
-  ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_facturacion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `estudiante` (`estudiante`,`curso`), ADD KEY `curso` (`curso`);
 
 --
--- Filtros para la tabla `hs_inscripcion`
+-- Indexes for table `hs_horarios_materias`
+--
+ALTER TABLE `hs_horarios_materias`
+ ADD PRIMARY KEY (`id`), ADD KEY `curso` (`curso`,`materia`), ADD KEY `materia` (`materia`);
+
+--
+-- Indexes for table `hs_inscripcion`
 --
 ALTER TABLE `hs_inscripcion`
-  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `curso` (`curso`), ADD KEY `estudiante` (`estudiante`);
 
 --
--- Filtros para la tabla `hs_materias`
+-- Indexes for table `hs_materias`
 --
 ALTER TABLE `hs_materias`
-  ADD CONSTRAINT `hs_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `curso` (`curso`);
 
 --
--- Filtros para la tabla `hs_notas`
+-- Indexes for table `hs_notas`
 --
 ALTER TABLE `hs_notas`
-  ADD CONSTRAINT `hs_notas_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_notas_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_notas_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `curso` (`curso`,`materia`,`evaluacion`,`estudiante`), ADD KEY `materia` (`materia`), ADD KEY `evaluacion` (`evaluacion`), ADD KEY `estudiante` (`estudiante`);
 
 --
--- Filtros para la tabla `municipio`
+-- Indexes for table `hs_periodo`
+--
+ALTER TABLE `hs_periodo`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hs_role`
+--
+ALTER TABLE `hs_role`
+ ADD PRIMARY KEY (`rol_id`);
+
+--
+-- Indexes for table `hs_users`
+--
+ALTER TABLE `hs_users`
+ ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+ ADD PRIMARY KEY (`invoice_id`);
+
+--
+-- Indexes for table `language`
+--
+ALTER TABLE `language`
+ ADD PRIMARY KEY (`phrase_id`);
+
+--
+-- Indexes for table `mark`
+--
+ALTER TABLE `mark`
+ ADD PRIMARY KEY (`mark_id`);
+
+--
+-- Indexes for table `municipio`
 --
 ALTER TABLE `municipio`
-  ADD CONSTRAINT `municipio_ibfk_1` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD PRIMARY KEY (`id`), ADD KEY `departamento` (`departamento`);
+
+--
+-- Indexes for table `noticeboard`
+--
+ALTER TABLE `noticeboard`
+ ADD PRIMARY KEY (`notice_id`);
+
+--
+-- Indexes for table `parent`
+--
+ALTER TABLE `parent`
+ ADD PRIMARY KEY (`parent_id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+ ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `rss`
+--
+ALTER TABLE `rss`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+ ADD PRIMARY KEY (`settings_id`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+ ADD PRIMARY KEY (`student_id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+ ADD PRIMARY KEY (`subject_id`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
+ ADD PRIMARY KEY (`teacher_id`);
+
+--
+-- Indexes for table `transport`
+--
+ALTER TABLE `transport`
+ ADD PRIMARY KEY (`transport_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `class_name`
+--
+ALTER TABLE `class_name`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=92;
+--
+-- AUTO_INCREMENT for table `class_routine`
+--
+ALTER TABLE `class_routine`
+MODIFY `class_routine_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `departamento`
+--
+ALTER TABLE `departamento`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `dormitory`
+--
+ALTER TABLE `dormitory`
+MODIFY `dormitory_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `email_template`
+--
+ALTER TABLE `email_template`
+MODIFY `email_template_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `empresas`
+--
+ALTER TABLE `empresas`
+MODIFY `empresas_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `exam`
+--
+ALTER TABLE `exam`
+MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `grade`
+--
+ALTER TABLE `grade`
+MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `hs_asistencias`
+--
+ALTER TABLE `hs_asistencias`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `hs_cursos`
+--
+ALTER TABLE `hs_cursos`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `hs_evaluaciones`
+--
+ALTER TABLE `hs_evaluaciones`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `hs_facturacion`
+--
+ALTER TABLE `hs_facturacion`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `hs_horarios_materias`
+--
+ALTER TABLE `hs_horarios_materias`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `hs_inscripcion`
+--
+ALTER TABLE `hs_inscripcion`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `hs_materias`
+--
+ALTER TABLE `hs_materias`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `hs_notas`
+--
+ALTER TABLE `hs_notas`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `hs_periodo`
+--
+ALTER TABLE `hs_periodo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `hs_role`
+--
+ALTER TABLE `hs_role`
+MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `hs_users`
+--
+ALTER TABLE `hs_users`
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `language`
+--
+ALTER TABLE `language`
+MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1557;
+--
+-- AUTO_INCREMENT for table `mark`
+--
+ALTER TABLE `mark`
+MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `municipio`
+--
+ALTER TABLE `municipio`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1077;
+--
+-- AUTO_INCREMENT for table `noticeboard`
+--
+ALTER TABLE `noticeboard`
+MODIFY `notice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `parent`
+--
+ALTER TABLE `parent`
+MODIFY `parent_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `rss`
+--
+ALTER TABLE `rss`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `transport`
+--
+ALTER TABLE `transport`
+MODIFY `transport_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `hs_asistencias`
+--
+ALTER TABLE `hs_asistencias`
+ADD CONSTRAINT `hs_asistencias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_asistencias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_cursos`
+--
+ALTER TABLE `hs_cursos`
+ADD CONSTRAINT `hs_cursos_ibfk_1` FOREIGN KEY (`periodo`) REFERENCES `hs_periodo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_evaluaciones`
+--
+ALTER TABLE `hs_evaluaciones`
+ADD CONSTRAINT `hs_evaluaciones_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_facturacion`
+--
+ALTER TABLE `hs_facturacion`
+ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_facturacion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_horarios_materias`
+--
+ALTER TABLE `hs_horarios_materias`
+ADD CONSTRAINT `hs_horarios_materias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_horarios_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_inscripcion`
+--
+ALTER TABLE `hs_inscripcion`
+ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_materias`
+--
+ALTER TABLE `hs_materias`
+ADD CONSTRAINT `hs_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hs_notas`
+--
+ALTER TABLE `hs_notas`
+ADD CONSTRAINT `hs_notas_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_notas_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_notas_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `municipio`
+--
+ALTER TABLE `municipio`
+ADD CONSTRAINT `municipio_ibfk_1` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
