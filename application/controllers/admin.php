@@ -691,6 +691,7 @@ class Admin extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
+
     /****MANAGE EXAM MARKS*****/
 
     function notas($exam_id = '', $class_id = '', $subject_id = '')
@@ -980,6 +981,79 @@ class Admin extends CI_Controller
         $page_data['page_name'] = 'class_routine';
 
         $page_data['page_title'] = get_phrase('manage_class_routine');
+
+        $this->load->view('index', $page_data);
+
+    }
+
+    function horarios_materias($param1 = '', $param2 = '', $param3 = '')
+
+    {
+
+        if ($this->session->userdata('admin_login') != 1)
+
+            redirect(base_url(), 'refresh');
+
+        if ($param1 == 'create') {
+
+            $data['cursos'] = $this->input->post('curso');
+
+            $data['materias'] = $this->input->post('materia');
+
+            $data['time_start'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+
+            $data['time_end'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+
+            $data['day'] = $this->input->post('dia');
+
+            $this->db->insert('hs_horarios_materias', $data);
+
+            redirect(base_url() . 'index.php?admin/horarios_materias/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['cursos'] = $this->input->post('curso');
+
+            $data['materias'] = $this->input->post('materia');
+
+            $data['time_start'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+
+            $data['time_end'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+
+            $data['day'] = $this->input->post('dia');
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_horarios_materias', $data);
+
+            redirect(base_url() . 'index.php?admin/horarios_materias/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_horarios_materias', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_horarios_materias');
+
+            redirect(base_url() . 'index.php?admin/horarios_materias/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'horarios_materias';
+
+        $page_data['page_title'] = "Horarios de materias";
 
         $this->load->view('index', $page_data);
 
