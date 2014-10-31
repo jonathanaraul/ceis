@@ -119,8 +119,7 @@ class Admin extends CI_Controller
             if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
 
             $data['talla_camisa'] = $this->input->post('talla_camisa');
-            $data['class_id'] = $this->input->post('class_id');
-
+            
             $data['barrio'] = $this->input->post('barrio');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
@@ -163,11 +162,11 @@ class Admin extends CI_Controller
 
             $this->email_model->account_opening_email('student', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
 
-            redirect(base_url() . 'index.php?admin/student/' . $data['class_id'], 'refresh');
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
         }
 
-        if ($param2 == 'do_update') {
+        if ($param1 == 'do_update') {
 
             $data['documento'] = $this->input->post('documento');
             $data['ndocumento'] = $this->input->post('ndocumento');
@@ -199,9 +198,7 @@ class Admin extends CI_Controller
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
             $data['email'] = $this->input->post('email');
-
-            $data['class_id'] = $this->input->post('class_id');
-
+            
             $convenio = $this->input->post('convenio');
             if ($convenio == 'convenio_sena') {
                 $data['sena'] = 1;
@@ -230,32 +227,31 @@ class Admin extends CI_Controller
                 $data['nom_subsector_eco'] = null;
             }
 
-            $this->db->where('student_id', $param3);
+            $this->db->where('student_id', $param2);
 
             $this->db->update('student', $data);
 
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param3 . '.jpg');
+            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param2 . '.jpg');
 
             $this->crud_model->clear_cache();
+            
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
-
-            redirect(base_url() . 'index.php?admin/student/' . $param1, 'refresh');
-
-        } else if ($param2 == 'edit') {
+        } else if ($param1 == 'edit') {
 
             $page_data['edit_data'] = $this->db->get_where('student', array(
 
-                'student_id' => $param3
+                'student_id' => $param2
 
             ))->result_array();
 
-        } else if ($param2 == 'personal_profile') {
+        } else if ($param1 == 'personal_profile') {
 
             $page_data['personal_profile'] = true;
 
-            $page_data['current_student_id'] = $param3;
+            $page_data['current_student_id'] = $param2;
 
-        } else if ($param2 == 'academic_result') {
+        }  else if ($param1 == 'academic_result') {
 
             $page_data['academic_result'] = true;
 
@@ -263,23 +259,17 @@ class Admin extends CI_Controller
 
         }
 
-        if ($param2 == 'delete') {
+        if ($param1 == 'delete') {
 
             $this->db->where('student_id', $param3);
 
             $this->db->delete('student');
 
-            redirect(base_url() . 'index.php?admin/student/' . $param1, 'refresh');
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
         }
 
-        $page_data['class_id'] = $param1;
-
-        $page_data['students'] = $this->db->get_where('student', array(
-
-            'class_id' => $param1
-
-        ))->result_array();
+        $page_data['students'] = $this->db->get('student')->result_array();
 
         $page_data['page_name'] = 'student';
 

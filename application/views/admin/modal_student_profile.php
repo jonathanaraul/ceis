@@ -40,20 +40,6 @@ foreach ($student_info as $row):?>
             <table class="table table-normal ">
 
 
-                <?php if ($row['class_id'] != ''): ?>
-
-                    <tr>
-
-                        <td>Curso</td>
-
-                        <td><b><?php echo $this->crud_model->get_class_name($row['class_id']); ?></b></td>
-
-                    </tr>
-
-                <?php endif; ?>
-
-
-
                 <?php if ($row['roll'] != ''): ?>
 
                     <tr>

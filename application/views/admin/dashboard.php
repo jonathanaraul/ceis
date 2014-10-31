@@ -258,26 +258,29 @@
 
                 <?php
 
+
+
                 $notices    =   $this->db->get('hs_cursos')->result_array();
 
-                foreach($notices as $row):
-
-                    $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
-
-
+                foreach($notices as $row){
+                //if('2014-11-1'>'2014-11-15'){echo 'el mundo esta loco';exit;}
+                   $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
+               // var_dump($fechas);exit;
+                   foreach ($fechas as $fecha) {
+                       # code...
+                  
                 ?>
 
                 {
-
                     title: "<?= $row['nombre'];?>",
-
-                    start: "<?= $row['fecha_ini'] ?>"
-
+                    start: "<?= $fecha['inicio'];?>",
+                    fin  : "<?= $fecha['fin'];?>",
+                    allDay : false
                 },
 
                 <?php
-
-                endforeach
+                   }
+                }
 
                 ?>
 

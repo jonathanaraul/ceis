@@ -606,7 +606,6 @@ function get_empresas()
 	{
 
 		$query	=	$this->db->get_where('hs_role' , array('rol_id' => $rol));
-
 		$res	=	$query->result_array();
 
 		foreach($res as $row)
@@ -621,7 +620,37 @@ function get_empresas()
 	{
 
 		$array = array();
+		$indice = 0;
+		$fechaInicio = DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaInicio.'T00:00:00');
+		$fechaFin=  DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaFin.'T00:00:00');
 
+         
+        while( intval($fechaFin->diff($fechaInicio)->format('%d')) != 0){
+
+            $numeroDia = $fechaInicio->format('w');//Obtener numero dia 0domingo 6sabado
+
+            $query	=	$this->db->get_where('hs_horarios_materias' , array('curso' => $idCurso, 'dia'=> $numeroDia));
+		    $resultados	=	$query->result_array();
+		    foreach($resultados as $resultado){
+
+		    	$horaInicio = intval($resultado['hora_inicio']);
+		    	$horaFin = intval($resultado['hora_fin']);
+
+		    	if($horaInicio<10) $horaInicio= '0'.$horaInicio;
+		    	if($horaFin<10) $horaFin= '0'.$horaFin;
+
+		    	$array[$indice]['inicio'] = $fechaInicio->format('Y-m-d').'T'.$horaInicio.':00:00';
+        	    $array[$indice]['fin'] = $fechaInicio->format('Y-m-d').'T'.$horaFin.':00:00';
+
+        	    $indice++;
+		    }
+
+        	$fechaInicio = strtotime ( '+1 day' , strtotime ( $fechaInicio->format('Y-m-d') ) ) ;
+        	$fechaInicio = date ( 'Y-m-j' , $fechaInicio );
+        	$fechaInicio = DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaInicio.'T00:00:00');
+
+        	
+        }
 
 		return $array;
 

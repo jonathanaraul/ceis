@@ -1,5 +1,3 @@
-<?php if ($class_id != ""): ?>
-
 <div class="box">
 <div class="box-header">
     <!--CONTROL TABS START-->
@@ -17,45 +15,10 @@
 <div class="tab-pane  active" id="list">
     <center>
         <br/>
-        <select name="class_id"
-                onchange="window.location='<?php echo base_url(); ?>index.php?admin/student/'+this.value">
-            <option value=""><?php echo get_phrase('select_a_class'); ?></option>
-            <?php
-
-            $classes = $this->db->get('class')->result_array();
-
-            foreach ($classes as $row):
-
-                ?>
-                <option value="<?php echo $row['class_id']; ?>"
-
-                    <?php if ($class_id == $row['class_id']) echo 'selected'; ?>>
-                    <?php echo $row['name']; ?></option>
-            <?php
-
-            endforeach;
-
-            ?>
-        </select>
+        
         <br/>
         <br/>
-        <?php if ($class_id == ''): ?>
-            <div id="ask_class" class="  alert alert-info  " style="width:300px;"><i class="icon-info-sign"></i>Por
-                Favor Seleccione un Curso
-            </div>
-            <script>
-                $(document).ready(function () {
-                    function shake() {
-                        $("#ask_class").effect("shake");
-                    }
-
-                    setTimeout(shake, 500);
-                });
-            </script>
-            <br/>
-            <br/>
-        <?php endif; ?>
-        <?php if ($class_id != ''): ?>
+        
         <div class="action-nav-normal">
             <div class=" action-nav-button" style="width:300px;"><a href="#" title="Users"> <img
                         src="<?php echo base_url(); ?>template/images/icons/user.png"/>
@@ -68,7 +31,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive ">
                     <thead>
                     <tr>
-                        <th>
+                        <th width="50">
                             <div><?php echo get_phrase('id'); ?></div>
                         </th>
                         <th width="80">
@@ -80,7 +43,7 @@
                         <th>
                             <div><?php echo get_phrase('student_name'); ?></div>
                         </th>
-                        <th class="span3">
+                        <th class="span2">
                             <div><?php echo get_phrase('address'); ?></div>
                         </th>
                         <th>
@@ -89,7 +52,7 @@
                         <th>
                             <div><?php echo get_phrase('tlf_contacto'); ?></div>
                         </th>
-                        <th>
+                        <th width="20%">
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
                     </tr>
@@ -98,7 +61,7 @@
                     <?php $count = 1;
                     foreach ($students as $row): ?>
                         <tr>
-                            <td class="span1"><?php echo $row['student_id']; ?></td>
+                            <td><?php echo $row['student_id']; ?></td>
                             <td>
                                 <div class="avatar"><img
                                         src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>"
@@ -118,7 +81,7 @@
 
                                 <a
                                     data-toggle="modal" href="#modal-form"
-                                    onclick="modal('edit_student',<?php echo $row['student_id']; ?>,<?php echo $class_id; ?>)"
+                                    onclick="modal('edit_student',<?php echo $row['student_id']; ?>)"
                                     class="btn btn-gray btn-small"> <i
                                         class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
                                 <?php if ($this->session->userdata('admin_id') == 4) { ?>
@@ -167,7 +130,6 @@
             </div>
         </div>
     </div>
-    <?php endif; ?>
 </div>
 
 <!----TABLE LISTING ENDS--->
@@ -679,27 +641,7 @@
         <input type="text" class="" name="email"/>
     </div>
 </div>
-<div class="control-group">
-    <label class="control-label"><?php echo get_phrase('class'); ?></label>
 
-    <div class="controls">
-        <select name="class_id" class="uniform" style="width:100%;">
-            <?php
-
-            $classes = $this->db->get('class')->result_array();
-
-            foreach ($classes as $row):
-
-                ?>
-                <option value="<?php echo $row['class_id']; ?>"> <?php echo $row['name']; ?> </option>
-            <?php
-
-            endforeach;
-
-            ?>
-        </select>
-    </div>
-</div>
 <div class="control-group">
     <label class="control-label"><?php echo get_phrase('photo'); ?></label>
 
@@ -740,55 +682,7 @@
 </div>
 </div>
 </div>
-<?php endif; ?>
-<?php if ($class_id == ""): ?>
-    <center>
-        <div class="span5" style="float:none !important;">
-            <div class="box">
-                <div class="box-header"><span class="title"> <i
-                            class="icon-info-sign"></i><?php echo get_phrase('alert_studinate'); ?></span></div>
-                <div class="box-content padded"><br/>
-                    <select name="class_id"
-                            onchange="window.location='<?php echo base_url(); ?>index.php?admin/student/'+this.value">
-                        <option value=""><?php echo get_phrase('select_a_class'); ?></option>
-                        <?php
 
-                        $classes = $this->db->get('class')->result_array();
-
-                        foreach ($classes as $row):
-
-                            ?>
-                            <option value="<?php echo $row['class_id']; ?>"
-
-                                <?php if ($class_id == $row['class_id']) echo 'selected'; ?>>
-                                <?php echo $row['name'] . ' (' . $row['fcha_inicio'] . ')'; ?></option>
-                        <?php
-
-                        endforeach;
-
-                        ?>
-                    </select>
-                    <hr/>
-                    <script>
-
-                        $(document).ready(function () {
-
-                            function ask() {
-
-                                Growl.info({title: "Seleccione un Curso", text: " "});
-
-                            }
-
-                            setTimeout(ask, 500);
-
-                        });
-
-                    </script>
-                </div>
-            </div>
-        </div>
-    </center>
-<?php endif; ?>
 <script>
 
     function readURL(input) {

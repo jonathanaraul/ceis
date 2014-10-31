@@ -58,8 +58,7 @@
                         <img src="<?php echo base_url();?>template/images/loader.gif">
                     </p>
                 </div>
-                <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none">
-
+                    <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 1057px;">
                 </div>
             </div>
         </div>
