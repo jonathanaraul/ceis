@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-10-2014 a las 06:50:47
+-- Tiempo de generación: 31-10-2014 a las 01:54:45
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `class_routine` (
   `time_end` int(11) NOT NULL,
   `day` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`class_routine_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `class_routine`
@@ -224,7 +224,8 @@ CREATE TABLE IF NOT EXISTS `class_routine` (
 
 INSERT INTO `class_routine` (`class_routine_id`, `class_id`, `subject_id`, `time_start`, `time_end`, `day`) VALUES
 (1, 3, 1, 7, 10, 'monday'),
-(2, 0, 0, 16, 17, 'monday');
+(2, 0, 0, 16, 17, 'monday'),
+(3, 0, 0, 7, 11, '0');
 
 -- --------------------------------------------------------
 
@@ -497,6 +498,36 @@ INSERT INTO `hs_facturacion` (`id`, `estudiante`, `curso`, `descripcion`, `canti
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hs_horarios_materias`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_horarios_materias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curso` int(11) NOT NULL,
+  `materia` int(11) NOT NULL,
+  `hora_inicio` int(11) NOT NULL,
+  `hora_fin` int(11) NOT NULL,
+  `dia` int(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curso` (`curso`,`materia`),
+  KEY `materia` (`materia`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `hs_horarios_materias`
+--
+
+INSERT INTO `hs_horarios_materias` (`id`, `curso`, `materia`, `hora_inicio`, `hora_fin`, `dia`) VALUES
+(2, 5, 5, 8, 10, 0),
+(3, 5, 5, 11, 13, 0),
+(4, 5, 5, 10, 12, 1),
+(5, 5, 4, 17, 21, 3),
+(6, 5, 5, 8, 10, 3),
+(7, 5, 4, 8, 9, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hs_inscripcion`
 --
 
@@ -685,7 +716,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1552 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1616 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2242,7 +2273,72 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1548, 'Periodo', ''),
 (1549, 'RSS', ''),
 (1550, 'Periodo', ''),
-(1551, 'RSS', '');
+(1551, 'RSS', ''),
+(1552, 'Recepción', ''),
+(1553, 'Periodo', ''),
+(1554, 'RSS', ''),
+(1555, 'Periodo', ''),
+(1556, 'RSS', ''),
+(0, 'Periodo', ''),
+(1557, 'Periodo', ''),
+(1558, 'horarios_materias', ''),
+(1559, 'gestion_de_diplomas', ''),
+(1560, 'diplomas', ''),
+(1561, 'RSS', ''),
+(1562, 'convenio_sena', ''),
+(1563, 'Cedula', ''),
+(1564, 'Periodo', ''),
+(1565, 'RSS', ''),
+(1566, 'Periodo', ''),
+(1567, 'RSS', ''),
+(1568, 'Periodo', ''),
+(1569, 'RSS', ''),
+(1570, 'Periodo', ''),
+(1571, 'RSS', ''),
+(1572, 'Periodo', ''),
+(1573, 'RSS', ''),
+(1574, 'Periodo', ''),
+(1575, 'RSS', ''),
+(1576, 'Periodo', ''),
+(1577, 'RSS', ''),
+(1578, 'Periodo', ''),
+(1579, 'RSS', ''),
+(1580, 'Periodo', ''),
+(1581, 'RSS', ''),
+(1582, 'Periodo', ''),
+(1583, 'RSS', ''),
+(1584, 'Periodo', ''),
+(1585, 'RSS', ''),
+(1586, 'Periodo', ''),
+(1587, 'RSS', ''),
+(1588, 'Periodo', ''),
+(1589, 'RSS', ''),
+(1590, 'Periodo', ''),
+(1591, 'RSS', ''),
+(1592, 'Periodo', ''),
+(1593, 'RSS', ''),
+(1594, 'Periodo', ''),
+(1595, 'RSS', ''),
+(1596, 'Periodo', ''),
+(1597, 'RSS', ''),
+(1598, 'Periodo', ''),
+(1599, 'RSS', ''),
+(1600, 'Periodo', ''),
+(1601, 'RSS', ''),
+(1602, 'Periodo', ''),
+(1603, 'RSS', ''),
+(1604, 'Periodo', ''),
+(1605, 'RSS', ''),
+(1606, 'Periodo', ''),
+(1607, 'RSS', ''),
+(1608, 'Periodo', ''),
+(1609, 'RSS', ''),
+(1610, 'Periodo', ''),
+(1611, 'RSS', ''),
+(1612, 'Periodo', ''),
+(1613, 'RSS', ''),
+(1614, 'Periodo', ''),
+(1615, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -3624,6 +3720,13 @@ ALTER TABLE `hs_evaluaciones`
 ALTER TABLE `hs_facturacion`
   ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_facturacion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `hs_horarios_materias`
+--
+ALTER TABLE `hs_horarios_materias`
+  ADD CONSTRAINT `hs_horarios_materias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_horarios_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hs_inscripcion`

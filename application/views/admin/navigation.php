@@ -240,6 +240,25 @@
 
 </li>
 
+<!--class routine-->
+
+<li class="<?php if ($page_name == 'horarios_materias') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?admin/horarios_materias" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo "Ayuda de horarios" ?>">
+
+        <!--<i class="icon-indent-right icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/routine.png"/>
+
+        <span><?php echo get_phrase('horarios_materias'); ?></span>
+
+    </a>
+
+</li>
 
 <!------fcturacion----->
 
