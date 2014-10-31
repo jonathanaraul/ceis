@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 07:37:33
+-- Tiempo de generación: 31-10-2014 a las 07:45:49
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -637,17 +637,20 @@ INSERT INTO `hs_periodo` (`id`, `nombre_periodo`, `fecha_inicio`, `fecha_fin`, `
 CREATE TABLE IF NOT EXISTS `hs_role` (
   `rol_id` int(11) NOT NULL AUTO_INCREMENT,
   `rol` varchar(50) NOT NULL,
+  `back_name` varchar(50) NOT NULL,
   PRIMARY KEY (`rol_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `hs_role`
 --
 
-INSERT INTO `hs_role` (`rol_id`, `rol`) VALUES
-(1, 'Administrativo'),
-(2, 'Gerencia'),
-(3, 'Operativo');
+INSERT INTO `hs_role` (`rol_id`, `rol`, `back_name`) VALUES
+(1, 'Administrativo', 'admin'),
+(2, 'Gerencia', 'parent'),
+(3, 'Operativo', 'parent'),
+(4, 'Profesor', 'teacher'),
+(5, 'Recepción', 'parent');
 
 -- --------------------------------------------------------
 
