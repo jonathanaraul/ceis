@@ -621,11 +621,23 @@ function get_empresas()
 	{
 
 		$array = array();
+		$indice = 0;
+		$fechaInicio = DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaInicio.'T00:00:00');
+		$fechaFin=  DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaFin.'T00:00:00');
 
-		$array[0]['inicio'] = $fechaInicio .'T08:00:00';
-		$array[0]['fin'] = $fechaInicio .'T10:00:00';
-		$array[1]['inicio'] = $fechaInicio .'T13:00:00';
-		$array[1]['fin'] = $fechaInicio .'T15:30:00';
+         
+        while( intval($fechaFin->diff($fechaInicio)->format('%d')) != 0){
+
+        	$array[$indice]['inicio'] = $fechaInicio->format('Y-m-d').'T08:00:00';
+        	$array[$indice]['fin'] = $fechaInicio->format('Y-m-d').'T10:00:00';
+
+        	$fechaInicio = strtotime ( '+1 day' , strtotime ( $fechaInicio->format('Y-m-d') ) ) ;
+        	$fechaInicio = date ( 'Y-m-j' , $fechaInicio );
+        	$fechaInicio = DateTime::createFromFormat('Y-m-d\TH:i:s', $fechaInicio.'T00:00:00');
+
+        	$indice++;
+        }
+        
 		return $array;
 
 	}
