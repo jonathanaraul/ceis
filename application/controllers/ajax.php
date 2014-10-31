@@ -108,18 +108,18 @@ class ajax extends CI_Controller
 
     {
         $curso = $this->input->post('curso');
-        $estudiante = $this->input->post('estudiante');
+        $estudiante = $this->input->post('estudiantes');
 
         $dato['curso']= $curso;
         $dato['estudiantes']= $estudiante;
 
         $inscritos = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1 ))->result_array();
-        
+
         if($estudiante == 0){
 
         foreach($inscritos as $inscrito):
 
-            $query = $this->db->select('puntuacion')->get_where('hs_notas', array('estudiante' => $inscrito['estudiante']))->result_array();
+            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
             $suma= 0;
             foreach($query as $sum):
                 $suma+=$sum['puntuacion'];
@@ -131,30 +131,34 @@ class ajax extends CI_Controller
 
             $dato['media']= $media;
             $dato['diploma_nombre']= $inscrito['estudiante'];
-            $dato['elements'] = $this->db->get_where('hs_notas', array('curso' => $curso, 'puntuacion >=' => 5))->result_array();
+            if($media >= 5){
+            $dato['elements']= $query;
             $this->load->view('admin/visualizar_diploma', $dato); 
+            }
 
         endforeach;
  
 
         }else{
 
-        $query = $this->db->select('puntuacion')->get_where('hs_notas', array('estudiante' => $inscritos['estudiante']))->result_array();
-        $suma= 0;
-        foreach($query as $sum):
-        $suma+=$sum['puntuacion'];
-        endforeach;
+            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $estudiante))->result_array();
+            $suma= 0;
+            foreach($query as $sum):
+            $suma+=$sum['puntuacion'];
+            endforeach;
 
-        $this->db->where('estudiante', $inscritos['estudiante']);
-        $this->db->from('hs_notas');
-        $nro_materias= $this->db->count_all_results();
+            $this->db->where('estudiante', $inscritos[0]['estudiante']);
+            $this->db->from('hs_notas');
+            $nro_materias= $this->db->count_all_results();
+            $media= $suma/$nro_materias;
 
-        $media= $suma/$nro_materias;
-        $dato['media']= $media;
-        $dato['diploma_nombre']= $inscritos['estudiante'];
-        $dato['elements'] = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $estudiante, 'puntuacion >=' => $media))->result_array();
+            $dato['media']= $media;
+            $dato['diploma_nombre']= $inscritos[0]['estudiante'];
 
-        $this->load->view('admin/visualizar_diploma', $dato);
+            if($media >= 5 && ($dato['diploma_nombre'] == $estudiante)){
+                $dato['elements'] = $query;
+                $this->load->view('admin/visualizar_diploma', $dato);
+            }
         }
     }
 
