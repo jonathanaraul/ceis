@@ -574,6 +574,46 @@ function get_empresas()
 		return $image_url;
 
 	}
+	
+	
+	////////USERS/////////////
+
+	function get_users($rol)
+
+	{
+
+		$query	=	$this->db->get_where('hs_users' , array('rol' => $rol));
+
+		return $query->result_array();
+
+	}
+
+	
+
+	function get_users_info($user_id)
+
+	{
+
+		$query	=	$this->db->get_where('hs_users' , array('user_id' => $user_id));
+
+		return $query->result_array();
+
+	}
+	
+	////////USERS/////////////
+	function get_rol_name($rol)
+
+	{
+
+		$query	=	$this->db->get_where('hs_role' , array('rol_id' => $rol));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+			return $row['rol'];
+
+	}
 
 }
 
