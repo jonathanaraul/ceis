@@ -82,8 +82,7 @@
                                 <a
                                     data-toggle="modal" href="#modal-form"
                                     onclick="modal('edit_student',<?php echo $row['student_id']; ?>)"
-                                    class="btn btn-gray btn-small"> <i
-                                        class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
+                                    class="btn btn-gray btn-small"> <i class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
                                 <?php if ($this->session->userdata('admin_id') == 4) { ?>
                                     <a
                                         data-toggle="modal" href="#modal-delete"

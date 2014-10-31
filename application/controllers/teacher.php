@@ -462,20 +462,12 @@ class Teacher extends CI_Controller
             $data['name'] = $this->input->post('name');
             //$data['apellido']        = $this->input->post('apellido');
 
-            $data['birthday'] = $this->input->post('birthday');
-
-            $data['sex'] = $this->input->post('sex');
-
-            $data['address'] = $this->input->post('address');
-
-            $data['phone'] = $this->input->post('phone');
-
             $data['email'] = $this->input->post('email');
 
 
-            $this->db->where('teacher_id', $this->session->userdata('teacher_id'));
+            $this->db->where('user_id', $this->session->userdata('user_id'));
 
-            $this->db->update('teacher', $data);
+            $this->db->update('hs_users', $data);
 
             $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
 
@@ -486,24 +478,27 @@ class Teacher extends CI_Controller
         if ($param1 == 'change_password') {
 
             $data['password'] = $this->input->post('password');
-
+			
 
             $data['new_password'] = $this->input->post('new_password');
 			$encrypted_string = $this->encrypt->encode($data['new_password']);
+            
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
 
-            $current_password = $this->db->get_where('teacher', array(
+            $current_password = $this->db->get_where('hs_users', array(
 
-                'teacher_id' => $this->session->userdata('teacher_id')
+                'user_id' => $this->session->userdata('user_id')
 
             ))->row()->password;
+            
+            $decode_string= $this->encrypt->decode($current_password);
 
-            if ($current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+            if ($decode_string == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
 
-                $this->db->where('teacher_id', $this->session->userdata('teacher_id'));
+                $this->db->where('user_id', $this->session->userdata('user_id'));
 
-                $this->db->update('teacher', array(
+                $this->db->update('hs_users', array(
 
                     'password' => $encrypted_string
 
@@ -520,16 +515,15 @@ class Teacher extends CI_Controller
             redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
 
         }
+        $page_data['edit_data'] = $this->db->get_where('hs_users', array(
 
+            'user_id' => $this->session->userdata('user_id')
+
+        ))->result_array();
+        
         $page_data['page_name'] = 'manage_profile';
 
         $page_data['page_title'] = get_phrase('manage_profile');
-
-        $page_data['edit_data'] = $this->db->get_where('teacher', array(
-
-            'teacher_id' => $this->session->userdata('teacher_id')
-
-        ))->result_array();
 
         $this->load->view('index', $page_data);
 
@@ -640,7 +634,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect('login', 'refresh');
 
