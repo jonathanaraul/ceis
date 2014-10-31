@@ -234,6 +234,12 @@
 
             droppable: 0,
 
+            lang: 'es',
+
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+
             /*drop: function (e, t) {
 
              var n, r;
