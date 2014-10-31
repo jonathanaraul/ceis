@@ -160,7 +160,7 @@ class ajax extends CI_Controller
 
             foreach($inscritos as $inscrito):
 
-                $dato['documento_nombre']= $inscrito['estudiante'];                
+                $dato['documento_nombre']= $estudiante;                
                 $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
                 $suma= 0;
                 foreach($query as $sum):
@@ -181,7 +181,7 @@ class ajax extends CI_Controller
                     }
                 }else{
 
-                    if($documento == 2){
+                    if($documento == 2 && $inscrito['estudiante'] == $estudiante){
 
                         if($media >=7){
                             
@@ -192,8 +192,11 @@ class ajax extends CI_Controller
                         }
                     }else{
 
-                        $this->load->view('admin/visualizar_acta', $dato);
+                        if($documento == 3 && $inscrito['estudiante'] == $estudiante){
 
+                            $this->load->view('admin/visualizar_acta', $dato);
+                            
+                        }
                     }
 
                 }

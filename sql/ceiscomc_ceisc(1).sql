@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 07:45:49
+-- Tiempo de generación: 31-10-2014 a las 05:48:18
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -592,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
   KEY `materia` (`materia`),
   KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `hs_notas`
@@ -601,9 +601,16 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
 INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
 (1, 5, 5, 10, 6, 6),
 (2, 5, 5, 10, 5, 6),
-(3, 1, 2, 4, 4, 6),
+(3, 1, 2, 4, 4, 9),
 (4, 5, 4, 9, 6, 10),
-(5, 5, 4, 8, 5, 3);
+(5, 5, 4, 8, 5, 3),
+(6, 1, 3, 5, 4, 7),
+(7, 1, 3, 6, 4, 6),
+(8, 5, 4, 7, 6, 8),
+(9, 5, 4, 7, 5, 5),
+(10, 5, 4, 8, 6, 9),
+(11, 5, 5, 9, 6, 7),
+(12, 5, 5, 9, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -720,7 +727,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1830 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1873 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2556,7 +2563,50 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1826, 'Periodo', ''),
 (1827, 'RSS', ''),
 (1828, 'Periodo', ''),
-(1829, 'RSS', '');
+(1829, 'RSS', ''),
+(1830, 'Periodo', ''),
+(1831, 'documentos_academicos', ''),
+(1832, 'documentos', ''),
+(1833, 'RSS', ''),
+(1834, 'Periodo', ''),
+(1835, 'documentos_academicos', ''),
+(1836, 'RSS', ''),
+(1837, 'Periodo', ''),
+(1838, 'documentos_academicos', ''),
+(1839, 'RSS', ''),
+(1840, 'Periodo', ''),
+(1841, 'documentos_academicos', ''),
+(1842, 'RSS', ''),
+(1843, 'ponderacion', ''),
+(1844, 'Periodo', ''),
+(1845, 'documentos_academicos', ''),
+(1846, 'RSS', ''),
+(1847, 'Periodo', ''),
+(1848, 'documentos_academicos', ''),
+(1849, 'RSS', ''),
+(1850, 'ponderacion', ''),
+(1851, 'Periodo', ''),
+(1852, 'documentos_academicos', ''),
+(1853, 'RSS', ''),
+(1854, 'Periodo', ''),
+(1855, 'documentos_academicos', ''),
+(1856, 'RSS', ''),
+(1857, 'Periodo', ''),
+(1858, 'documentos_academicos', ''),
+(1859, 'RSS', ''),
+(1860, 'Periodo', ''),
+(1861, 'documentos_academicos', ''),
+(1862, 'RSS', ''),
+(1863, 'gestionar_documentos', ''),
+(1864, 'Periodo', ''),
+(1865, 'documentos_academicos', ''),
+(1866, 'RSS', ''),
+(1867, 'Periodo', ''),
+(1868, 'documentos_academicos', ''),
+(1869, 'RSS', ''),
+(1870, 'Periodo', ''),
+(1871, 'documentos_academicos', ''),
+(1872, 'RSS', '');
 
 -- --------------------------------------------------------
 
