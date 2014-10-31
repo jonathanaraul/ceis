@@ -43,13 +43,13 @@
                                         <?php
                                         for ($d = 0; $d < 7; $d++):
 
-                                            if ($d == 6) $day = 'Domingo';
-                                            else if ($d == 0) $day = 'Lunes';
-                                            else if ($d == 1) $day = 'Martes';
-                                            else if ($d == 2) $day = 'Miercoles';
-                                            else if ($d == 3) $day = 'Jueves';
-                                            else if ($d == 4) $day = 'Viernes';
-                                            else if ($d == 5) $day = 'Sabado';
+                                            if ($d == 0) $day = 'Domingo';
+                                            else if ($d == 1) $day = 'Lunes';
+                                            else if ($d == 2) $day = 'Martes';
+                                            else if ($d == 3) $day = 'Miercoles';
+                                            else if ($d == 4) $day = 'Jueves';
+                                            else if ($d == 5) $day = 'Viernes';
+                                            else if ($d == 6) $day = 'Sabado';
                                             ?>
                                             <tr class="gradeA">
                                                 <td width="100"><?php echo strtoupper($day); ?></td>
