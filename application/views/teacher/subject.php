@@ -39,7 +39,7 @@
                             	<a data-toggle="modal" href="#modal-form" onclick="modal('edit_subject',<?php echo $row['subject_id'];?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i> <?php echo get_phrase('edit');?>
                                 </a>
-                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>index.php?admin/subject/delete/<?php echo $row['subject_id'];?>')" class="btn btn-red btn-small">
+                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>index.php?teacher/subject/delete/<?php echo $row['subject_id'];?>')" class="btn btn-red btn-small">
                                 		<i class="icon-trash"></i> <?php echo get_phrase('delete');?>
                                 </a>
         					</td>
@@ -54,7 +54,7 @@
 			<!----CREATION FORM STARTS---->
 			<div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                	<?php echo form_open('admin/subject/create' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
+                	<?php echo form_open('teacher/subject/create' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
                         <div class="padded">
                             <div class="control-group">
                                 <label class="control-label"><?php echo get_phrase('name');?></label>

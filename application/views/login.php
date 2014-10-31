@@ -161,8 +161,8 @@
                                 }
 
                             </script>
-
-                                <?php echo form_open('login' , array('class' => 'separate-sections', 'onsubmit' => 'return check_account_type()'));?>
+								 
+                                <?php echo form_open('login/new_user', array('class' => 'separate-sections', 'onsubmit' => 'return check_account_type()'));?>
 
                                     <center>
 
@@ -175,9 +175,6 @@
                                             </div>
 
                                         </div>
-
-                                        
-
                                                 <img src="<?php echo base_url();?>template/images/icons_big/admin.png" style="display:none;"/>
 
                                                 <img src="<?php echo base_url();?>template/images/icons_big/teacher.png" style="display:none;"/>
@@ -192,15 +189,16 @@
 
                                         <select id="account_selector" class="validate[required]" name="login_type" style="width:100%;margin-bottom:0px !important;" >
 
-                                            <option value=""><?php echo get_phrase('account_type');?></option>
-
-                                            <option value="admin"><?php echo get_phrase('Gerencia');?></option>
-
-                                            <option value="admin"><?php echo get_phrase('Operativo');?></option>
-
-                                            <option value="admin"><?php echo get_phrase('Administrativo');?></option>
-                                             <option value="admin"><?php echo get_phrase('Profesor');?></option>
-                                             <option value="admin"><?php echo get_phrase('Recepción');?></option>
+                                            <option value=""><?php echo get_phrase('account_type'); ?></option>
+											<?php
+													$role = $this->db->get('hs_role')->result_array();
+													foreach ($role as $row):
+											?>
+												<option value="<?php echo $row['back_name']; ?>">
+														<?php echo $row['rol']; ?>
+												</option>
+											
+											<?php endforeach; ?>
 
               
               
@@ -274,7 +272,7 @@
                                               {
 
                                                   var img = document.getElementById('account_selector').value;
-
+															
                                                   if(img == "")
 
                                                         img	=	'account';
@@ -320,13 +318,6 @@
                                     </script>
 
                                     
-
-                                    
-
-                                    
-
-                                    
-
                                     <div class="input-prepend">
 
                                         <span class="add-on" href="#">
@@ -362,6 +353,8 @@
                                             </a>
 
                                         </div>
+                                        
+                                        <?php echo form_hidden('token',$token);?>
 
                                         <div class="span6">
 

@@ -1,89 +1,30 @@
-<?php
-
-if (!defined('BASEPATH'))
-
-    exit('No direct script access allowed');
-
-
-/*
-
- *	@author : Joyonto Roy
-
- *	date	: 20 August, 2013
-
- *	University Of Dhaka, Bangladesh
-
- *	Ekattor School & College Management System
-
- *	http://codecanyon.net/user/joyontaroy
-
- */
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Teacher extends CI_Controller
 
 {
 
-
-    function __construct()
-
-    {
-
+	public function __construct() {
         parent::__construct();
-
-        $this->load->database();
-
-        /*cache control*/
-
-        $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
-
-        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-
-        $this->output->set_header('Pragma: no-cache');
-
-        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-
+        $this->load->library(array('session','form_validation'));
+        $this->load->helper(array('url','form'));
+        $this->load->database('default');
+        
     }
-
-
-    /***default functin, redirects to login page if no admin logged in yet***/
-
+    
     public function index()
-
     {
-
-        if ($this->session->userdata('teacher_login') != 1)
-
-            redirect(base_url() . 'index.php?login', 'refresh');
-
-        if ($this->session->userdata('teacher_login') == 1)
-
-            redirect(base_url() . 'index.php?teacher/dashboard', 'refresh');
-
-    }
-
-
-    /***ADMIN DASHBOARD***/
-
-    function dashboard()
-
-    {
-
-        if ($this->session->userdata('teacher_login') != 1)
-
-            redirect(base_url(), 'refresh');
-
+        if($this->session->userdata('rol') == FALSE || $this->session->userdata('rol') != '4')
+        {
+            redirect(base_url().'login');
+        }
+       
         $page_data['page_name'] = 'dashboard';
 
         $page_data['page_title'] = get_phrase('teacher_dashboard');
 
         $this->load->view('index', $page_data);
-
     }
-
-
-
-
 
     /*ENTRY OF A NEW STUDENT*/
 
@@ -94,38 +35,70 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect('login', 'refresh');
 
         if ($param1 == 'create') {
-
+            $data['documento'] = $this->input->post('documento');
+            $data['ndocumento'] = $this->input->post('ndocumento');
             $data['name'] = $this->input->post('name');
-            //$data['apellido']        = $this->input->post('apellido');
-
+            $data['snombre'] = $this->input->post('snombre');
+            $data['papellido'] = $this->input->post('papellido');
+            $data['sapellido'] = $this->input->post('sapellido');
             $data['birthday'] = $this->input->post('birthday');
-
             $data['sex'] = $this->input->post('sex');
-
-            $data['religion'] = $this->input->post('religion');
-
-            $data['blood_group'] = $this->input->post('blood_group');
-
+            $data['estado_civil'] = $this->input->post('estado_civil');
+            $data['tienehijos'] = $this->input->post('tienehijos');
+            $data['ndehijos'] = $this->input->post('ndehijos');
+            $data['nlibmilitar'] = $this->input->post('nlibmilitar');
+            $data['tipodeingreso'] = $this->input->post('tipodeingreso');
+            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
-
             $data['phone'] = $this->input->post('phone');
-
             $data['email'] = $this->input->post('email');
 
-            $data['father_name'] = $this->input->post('father_name');
+            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
+            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
+            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
+            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
 
-            $data['mother_name'] = $this->input->post('mother_name');
+            $data['talla_camisa'] = $this->input->post('talla_camisa');
+            
+            $data['barrio'] = $this->input->post('barrio');
+            $data['departamento'] = $this->input->post('departamento');
+            $data['municipio'] = $this->input->post('municipio');
+            $data['email'] = $this->input->post('email');
 
-            $data['class_id'] = $this->input->post('class_id');
+            $convenio = $this->input->post('convenio');
+            if ($convenio == 'convenio_sena') {
+                $data['sena'] = 1;
+                $data['cod_regional'] = $this->input->post('cod_regional');
+                $data['nom_regional'] = $this->input->post('nom_regional');
+                $data['cod_departamento'] = $this->input->post('cod_departamento');
 
-            $data['roll'] = $this->input->post('roll');
-
-            $data['password'] = rand(1000000, 10000000);
+                $data['nom_departamento'] = $this->input->post('nom_departamento');
+                $data['cod_municipio'] = $this->input->post('cod_municipio');
+                $data['nom_municipio'] = $this->input->post('nom_municipio');
+                $data['emp_gremio'] = $this->input->post('emp_gremio');
+                $data['lin_formacion'] = $this->input->post('lin_formacion');
+                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
+                $data['caracterizacion'] = $this->input->post('caracterizacion');
+            } else {
+                $data['sena'] = 0;
+                $data['cod_regional'] = null;
+                $data['nom_regional'] = null;
+                $data['cod_departamento'] = null;
+                $data['nom_departamento'] = null;
+                $data['cod_municipio'] = null;
+                $data['nom_municipio'] = null;
+                $data['emp_gremio'] = null;
+                $data['lin_formacion'] = null;
+                $data['nom_sector_eco'] = null;
+                $data['nom_subsector_eco'] = null;
+            }
 
             $this->db->insert('student', $data);
 
@@ -135,61 +108,96 @@ class Teacher extends CI_Controller
 
             $this->email_model->account_opening_email('student', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
 
-            redirect(base_url() . 'index.php?teacher/student', 'refresh');
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
         }
 
-        if ($param2 == 'do_update') {
+        if ($param1 == 'do_update') {
 
+            $data['documento'] = $this->input->post('documento');
+            $data['ndocumento'] = $this->input->post('ndocumento');
             $data['name'] = $this->input->post('name');
-            //$data['apellido']        = $this->input->post('apellido');
-
+            $data['snombre'] = $this->input->post('snombre');
+            $data['papellido'] = $this->input->post('papellido');
+            $data['sapellido'] = $this->input->post('sapellido');
             $data['birthday'] = $this->input->post('birthday');
-
             $data['sex'] = $this->input->post('sex');
-
-            $data['religion'] = $this->input->post('religion');
-
-            $data['blood_group'] = $this->input->post('blood_group');
-
+            $data['estado_civil'] = $this->input->post('estado_civil');
+            $data['tienehijos'] = $this->input->post('tienehijos');
+            $data['ndehijos'] = $this->input->post('ndehijos');
+            $data['nlibmilitar'] = $this->input->post('nlibmilitar');
+            $data['tipodeingreso'] = $this->input->post('tipodeingreso');
+            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            $data['empresa'] = $this->input->post('empresa');
             $data['address'] = $this->input->post('address');
-
             $data['phone'] = $this->input->post('phone');
-
             $data['email'] = $this->input->post('email');
 
-            $data['father_name'] = $this->input->post('father_name');
+            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
+            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
+            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
+            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
 
-            $data['mother_name'] = $this->input->post('mother_name');
+            $data['talla_camisa'] = $this->input->post('talla_camisa');
 
-            $data['class_id'] = $this->input->post('class_id');
+            $data['barrio'] = $this->input->post('barrio');
+            $data['departamento'] = $this->input->post('departamento');
+            $data['municipio'] = $this->input->post('municipio');
+            $data['email'] = $this->input->post('email');
+            
+            $convenio = $this->input->post('convenio');
+            if ($convenio == 'convenio_sena') {
+                $data['sena'] = 1;
+                $data['cod_regional'] = $this->input->post('cod_regional');
+                $data['nom_regional'] = $this->input->post('nom_regional');
+                $data['cod_departamento'] = $this->input->post('cod_departamento');
+                $data['nom_departamento'] = $this->input->post('nom_departamento');
+                $data['cod_municipio'] = $this->input->post('cod_municipio');
+                $data['nom_municipio'] = $this->input->post('nom_municipio');
+                $data['emp_gremio'] = $this->input->post('emp_gremio');
+                $data['lin_formacion'] = $this->input->post('lin_formacion');
+                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
+                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
+                $data['caracterizacion'] = $this->input->post('caracterizacion');
+            } else {
+                $data['sena'] = 0;
+                $data['cod_regional'] = null;
+                $data['nom_regional'] = null;
+                $data['cod_departamento'] = null;
+                $data['nom_departamento'] = null;
+                $data['cod_municipio'] = null;
+                $data['nom_municipio'] = null;
+                $data['emp_gremio'] = null;
+                $data['lin_formacion'] = null;
+                $data['nom_sector_eco'] = null;
+                $data['nom_subsector_eco'] = null;
+            }
 
-            $data['roll'] = $this->input->post('roll');
-
-
-            $this->db->where('student_id', $param3);
+            $this->db->where('student_id', $param2);
 
             $this->db->update('student', $data);
 
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param3 . '.jpg');
+            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param2 . '.jpg');
 
-            redirect(base_url() . 'index.php?teacher/student/' . $param1, 'refresh');
+            $this->crud_model->clear_cache();
+            
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
-        } else if ($param2 == 'edit') {
+        } else if ($param1 == 'edit') {
 
             $page_data['edit_data'] = $this->db->get_where('student', array(
 
-                'student_id' => $param3
+                'student_id' => $param2
 
             ))->result_array();
 
-        } else if ($param2 == 'personal_profile') {
+        } else if ($param1 == 'personal_profile') {
 
             $page_data['personal_profile'] = true;
 
-            $page_data['current_student_id'] = $param3;
+            $page_data['current_student_id'] = $param2;
 
-        } else if ($param2 == 'academic_result') {
+        }  else if ($param1 == 'academic_result') {
 
             $page_data['academic_result'] = true;
 
@@ -197,23 +205,17 @@ class Teacher extends CI_Controller
 
         }
 
-        if ($param2 == 'delete') {
+        if ($param1 == 'delete') {
 
-            $this->db->where('student_id', $param2);
+            $this->db->where('student_id', $param3);
 
             $this->db->delete('student');
 
-            redirect(base_url() . 'index.php?teacher/student/' . $param1, 'refresh');
+            redirect(base_url() . 'index.php?admin/student/', 'refresh');
 
         }
 
-        $page_data['class_id'] = $param1;
-
-        $page_data['students'] = $this->db->get_where('student', array(
-
-            'class_id' => $param1
-
-        ))->result_array();
+        $page_data['students'] = $this->db->get('student')->result_array();
 
         $page_data['page_name'] = 'student';
 
@@ -230,7 +232,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -260,7 +262,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -330,7 +332,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -401,7 +403,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -451,7 +453,7 @@ class Teacher extends CI_Controller
     {
 		$this->load->library('encrypt');
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
@@ -540,7 +542,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -616,7 +618,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect('login', 'refresh');
 
@@ -661,7 +663,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect(base_url(), 'refresh');
 
@@ -733,7 +735,7 @@ class Teacher extends CI_Controller
 
     {
 
-        if ($this->session->userdata('teacher_login') != 1)
+        if ($this->session->userdata('rol') != 4)
 
             redirect('login', 'refresh');
 

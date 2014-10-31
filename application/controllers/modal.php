@@ -5,35 +5,18 @@ class Modal extends CI_Controller
 {
 
 
-    function __construct()
+    function __construct(){
+		parent::__construct();
 
-    {
-
-        parent::__construct();
-
-        $this->load->database();
-
-        /*cache control*/
-
-        $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
-
-        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-
-        $this->output->set_header('Pragma: no-cache');
-
-        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-
+        $this->load->library(array('session','form_validation'));
+        $this->load->helper(array('url','form'));
+        $this->load->database('default');
     }
 
 
     /***default functin, redirects to login page if no admin logged in yet***/
 
-    public function index()
-
-    {
-
-
-    }
+    public function index(){}
 
 
     function popup($param1 = '', $param2 = '', $param3 = '')
@@ -153,6 +136,10 @@ class Modal extends CI_Controller
         }else if ($param1 == 'edit_role') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_role', array('rol_id' => $param2))->result_array();
+
+        }else if ($param1 == 'edit_subject') {
+
+            $page_data['edit_data'] = $this->db->get_where('subject', array('subject_id' => $param2))->result_array();
 
         }
 

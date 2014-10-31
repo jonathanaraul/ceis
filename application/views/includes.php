@@ -13,8 +13,7 @@
         <![endif]-->
 
         <script src="<?php echo base_url();?>template/js/controladorceis.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>template/js/jquery-1.3.2.min.js" type="text/javascript"></script> 
-
+      
         
 
         <?php

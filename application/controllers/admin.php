@@ -1,79 +1,26 @@
-<?php
-
-if (!defined('BASEPATH'))
-
-    exit('No direct script access allowed');
-
-
-/*
-
- *	@author : Joyonto Roy
-
- *	date	: 20 August, 2013
-
- *	University Of Dhaka, Bangladesh
-
- *   Nulled By Vokey 
-
- *	Ekattor School & College Management System
-
- *	http://codecanyon.net/user/joyontaroy
-
- */
-
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 
 {
-
-
-    function __construct()
-
-    {
-
+	public function __construct() {
         parent::__construct();
-
-        $this->load->database();
+        $this->load->library(array('session'));
+        $this->load->helper(array('url'));
+        
+        $this->load->database('default');
         $this->load->model('inscripcion_model');
         $this->load->helper('date');
-
-
-        /*cache control*/
-
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-
         $this->output->set_header('Pragma: no-cache');
-
     }
-
-
-    /***default functin, redirects to login page if no admin logged in yet***/
-
+    
     public function index()
-
     {
-
-        if ($this->session->userdata('admin_login') != 1)
-
+        if($this->session->userdata('rol') == FALSE || $this->session->userdata('rol') != '1')
+        {
             redirect(base_url() . 'index.php?login', 'refresh');
-
-        if ($this->session->userdata('admin_login') == 1)
-
-            redirect(base_url() . 'index.php?admin/dashboard', 'refresh');
-
-    }
-
-
-    /***ADMIN DASHBOARD***/
-
-    function dashboard()
-
-    {
-
-        if ($this->session->userdata('admin_login') != 1)
-
-            redirect(base_url(), 'refresh');
-
+        }
         $page_data['page_name'] = 'dashboard';
 
         $page_data['page_title'] = get_phrase('admin_dashboard');
