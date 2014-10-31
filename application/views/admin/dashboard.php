@@ -217,6 +217,8 @@
 
         // page is now ready, initialize the calendar...
 
+       //var colores = {'red','blue','yellow','green','brown'};
+
 
         $("#calendar2").fullCalendar({
 
@@ -236,41 +238,40 @@
 
             lang: 'es',
 
+
+
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
 
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 
-            /*drop: function (e, t) {
+            dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
 
-             var n, r;
+            buttonText : {
+                today : 'Hoy',
+                month : 'Mes',
+                week : 'Semana',
+                day : 'Día'
+            },
 
-             r = $(this).data("eventObject"), n = $.extend({}, r), n.start = e, n.allDay = t, $("#calendar").fullCalendar("renderEvent", n, !0);
-
-             if ($("#drop-remove").is(":checked")) return $(this).remove()
-
-             },
-
-
-
-             nulled by Vokey*/
 
             events: [
 
                 <?php
 
-                $notices	=	$this->db->get('noticeboard')->result_array();
+                $notices    =   $this->db->get('hs_cursos')->result_array();
 
                 foreach($notices as $row):
+
+                    $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
+
 
                 ?>
 
                 {
 
-                    title: "<?php echo $row['notice_title'];?>",
+                    title: "<?= $row['nombre'];?>",
 
-                    start: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>),
-
-                    end: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>)
+                    start: "<?= $row['fecha_ini'] ?>"
 
                 },
 
