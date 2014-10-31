@@ -132,7 +132,7 @@
                             <label class="control-label"><?php echo get_phrase('day'); ?></label>
 
                             <div class="controls">
-                                <select name="day" class="uniform" style="width:100%;">
+                                <select name="dia" class="uniform" style="width:100%;">
                                     <option value="0">Lunes</option>
                                     <option value="1">Martes</option>
                                     <option value="2">Miercoles</option>

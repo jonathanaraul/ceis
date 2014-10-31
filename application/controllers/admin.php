@@ -996,13 +996,13 @@ class Admin extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['curso'] = $this->input->post('curso');
+            $data['curso'] = $this->input->post('cursos');
 
-            $data['materia'] = $this->input->post('materia');
+            $data['materia'] = $this->input->post('materias');
 
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+            $data['hora_inicio'] = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
 
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+            $data['hora_fin'] = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
 
             $data['dia'] = $this->input->post('dia');
 
@@ -1014,13 +1014,13 @@ class Admin extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['curso'] = $this->input->post('curso');
+            $data['curso'] = $this->input->post('cursos');
 
-            $data['materia'] = $this->input->post('materia');
+            $data['materia'] = $this->input->post('materias');
 
-            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+            $data['hora_inicio'] = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
 
-            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+            $data['hora_fin'] = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
 
             $data['dia'] = $this->input->post('dia');
 
