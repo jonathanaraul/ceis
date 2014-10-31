@@ -1154,7 +1154,7 @@ class Admin extends CI_Controller
 
     /**********GESTIONAR DOCUMENTOS********************/
 
-    function diplomas($param1 = '', $param2 = '', $param3 = '')
+    function documentos($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -1162,68 +1162,6 @@ class Admin extends CI_Controller
 
             redirect('login', 'refresh');
 
-        if ($param1 == 'create') {
-
-            $data['name'] = $this->input->post('name');
-
-            $data['description'] = $this->input->post('description');
-
-            $data['price'] = $this->input->post('price');
-
-            $data['author'] = $this->input->post('author');
-
-            $data['class_id'] = $this->input->post('class_id');
-
-            $data['status'] = $this->input->post('status');
-
-            $this->db->insert('book', $data);
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        }
-
-        if ($param1 == 'do_update') {
-
-            $data['name'] = $this->input->post('name');
-
-            $data['description'] = $this->input->post('description');
-
-            $data['price'] = $this->input->post('price');
-
-            $data['author'] = $this->input->post('author');
-
-            $data['class_id'] = $this->input->post('class_id');
-
-            $data['status'] = $this->input->post('status');
-
-
-            $this->db->where('book_id', $param2);
-
-            $this->db->update('book', $data);
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        } else if ($param1 == 'edit') {
-
-            $page_data['edit_data'] = $this->db->get_where('book', array(
-
-                'book_id' => $param2
-
-            ))->result_array();
-
-        }
-
-        if ($param1 == 'delete') {
-
-            $this->db->where('book_id', $param2);
-
-            $this->db->delete('book');
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        }
-
-        $page_data['estudiantes'] = $this->db->get('hs_inscripcion')->result_array();
 
         $page_data['page_name'] = 'documentos';
 

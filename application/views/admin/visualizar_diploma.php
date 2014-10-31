@@ -6,9 +6,9 @@
         </div>
         <div class="titulo" style=" width:300px; height: 100px; font-size: 40px; margin-left: 400px; margin-top: 100px;">CERTIFICADO</div>
         <div style="width:850px; font-size: 15px; color:#000; margin-left: 130px; margin-top: 30px;">Certificado que es otorgado al ciudadano(a):<h3 style="display: inline;"> 
-        <?= $this->crud_model->get_hs_student_nombre_by_id($diploma_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($diploma_nombre); ?></h2>, 
+        <?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?></h3>, 
         por haber cumplido con todos los requisitos exigidos por esta institución, culminando con exito el curso 
-        <?= $this->crud_model->get_hs_cursos_nombre($elements[0]['curso']).' '.$media;?>.
+        <span style="font-size:15px; font-weight:bold;"><?= $this->crud_model->get_hs_cursos_nombre($elements[0]['curso'])?></span>.
         </div>
         <div style=" width: 200px; color: black; float: left; margin-left: 180px; margin-top: 60px; text-align: center; font-size:15px;">
             Instructor <br><br> __________________________<br><br>Firma
@@ -27,9 +27,6 @@
   
     </div>
 
-    <div><p style="text-align:center" ><button id="<?php if($media < 5){echo "btn_disable";}else{echo "imprimir";}?>" class="btn btn-normal btn-gray" style="width: 100%;
-                margin-top: 20px;"  onclick="actualizarNotas()"><?php if($media < 5){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
+    <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
+                margin-top: 20px;"  onclick="actualizarNotas()"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
     </div>
-<script type="text/javascript">
- $('#btn_disable').attr("disabled", true);
-</script>

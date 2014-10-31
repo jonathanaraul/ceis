@@ -104,64 +104,101 @@ class ajax extends CI_Controller
 
     }
 
-    function recuperarDiplomas()
+    function recuperarDocumentos()
 
     {
         $curso = $this->input->post('curso');
         $estudiante = $this->input->post('estudiante');
+        $documento= $this->input->post('documento');
 
         $dato['curso']= $curso;
-        $dato['estudiantes']= $estudiante;
-
         $inscritos = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1 ))->result_array();
 
         if($estudiante == 0){
 
-        foreach($inscritos as $inscrito):
+            foreach($inscritos as $inscrito):
 
-            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
-            $suma= 0;
-            foreach($query as $sum):
-                $suma+=$sum['puntuacion'];
+
+                $dato['documento_nombre']= $inscrito['estudiante'];
+                $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
+                $suma= 0;
+                foreach($query as $sum):
+                    $suma+=$sum['puntuacion'];
+                endforeach;
+                $this->db->where('estudiante', $inscrito['estudiante']);
+                $this->db->from('hs_notas');
+                $nro_materias= $this->db->count_all_results();
+                $media= $suma/$nro_materias;
+                $dato['elements']= $query;
+                
+                if($documento == 1){
+
+                    $dato['media']= $media;
+                    $this->load->view('admin/visualizar_diploma', $dato);
+
+                }else{
+
+                    if($documento == 2){
+
+                        if($media >=7){
+
+                            $dato['media']= $media;
+                            $this->load->view('admin/visualizar_certificado', $dato);
+                        }
+
+                    }else{
+
+                        $this->load->view('admin/visualizar_acta', $dato);
+                    }
+                }
+                
+
             endforeach;
-            $this->db->where('estudiante', $inscrito['estudiante']);
-            $this->db->from('hs_notas');
-            $nro_materias= $this->db->count_all_results();
-            $media= $suma/$nro_materias;
-
-            $dato['media']= $media;
-            $dato['diploma_nombre']= $inscrito['estudiante'];
-
-            $dato['elements']= $query;
-            $this->load->view('admin/visualizar_diploma', $dato); 
-            
-
-        endforeach;
  
 
         }else{
 
-        foreach($inscritos as $inscrito):
+            foreach($inscritos as $inscrito):
 
-            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
-            $suma= 0;
-            foreach($query as $sum):
-                $suma+=$sum['puntuacion'];
+                $dato['documento_nombre']= $inscrito['estudiante'];                
+                $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
+                $suma= 0;
+                foreach($query as $sum):
+                    $suma+=$sum['puntuacion'];
+                endforeach;
+                $this->db->where('estudiante', $inscrito['estudiante']);
+                $this->db->from('hs_notas');
+                $nro_materias= $this->db->count_all_results();
+                $media= $suma/$nro_materias;
+                $dato['elements']= $query;
+
+                if($documento == 1){
+
+                    if($inscrito['estudiante'] == $estudiante){
+
+                        $dato['media']= $media;
+                        $this->load->view('admin/visualizar_diploma', $dato); 
+                    }
+                }else{
+
+                    if($documento == 2){
+
+                        if($media >=7){
+                            
+
+                            $dato['media']= $media;
+                            $this->load->view('admin/visualizar_certificado', $dato);
+
+                        }
+                    }else{
+
+                        $this->load->view('admin/visualizar_acta', $dato);
+
+                    }
+
+                }
+
             endforeach;
-            $this->db->where('estudiante', $inscrito['estudiante']);
-            $this->db->from('hs_notas');
-            $nro_materias= $this->db->count_all_results();
-            $media= $suma/$nro_materias;
-
-            $dato['media']= $media;
-            $dato['diploma_nombre']= $inscrito['estudiante'];
-
-            if($inscrito['estudiante'] == $estudiante){
-            $dato['elements']= $query;
-            $this->load->view('admin/visualizar_diploma', $dato); 
-            }
-
-        endforeach;
             
         }
     }
