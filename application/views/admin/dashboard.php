@@ -217,6 +217,8 @@
 
         // page is now ready, initialize the calendar...
 
+       //var colores = {'red','blue','yellow','green','brown'};
+
 
         $("#calendar2").fullCalendar({
 
@@ -243,25 +245,20 @@
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 
             dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
-            /*drop: function (e, t) {
 
-             var n, r;
+            buttonText : {
+                today : 'Hoy',
+                month : 'Mes',
+                week : 'Semana',
+                day : 'Día'
+            },
 
-             r = $(this).data("eventObject"), n = $.extend({}, r), n.start = e, n.allDay = t, $("#calendar").fullCalendar("renderEvent", n, !0);
-
-             if ($("#drop-remove").is(":checked")) return $(this).remove()
-
-             },
-
-
-
-             nulled by Vokey*/
 
             events: [
 
                 <?php
 
-                $notices	=	$this->db->get('noticeboard')->result_array();
+                $notices    =   $this->db->get('hs_cursos')->result_array();
 
                 foreach($notices as $row):
 
@@ -269,11 +266,9 @@
 
                 {
 
-                    title: "<?php echo $row['notice_title'];?>",
+                    title: "<?= $row['nombre'];?>",
 
-                    start: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>),
-
-                    end: new Date(<?php echo date('Y',$row['create_timestamp']);?>, <?php echo date('m',$row['create_timestamp'])-1;?>, <?php echo date('d',$row['create_timestamp']);?>)
+                    start: "<?= $row['fecha_ini'] ?>"
 
                 },
 
