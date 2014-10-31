@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 17:55:01
+-- Tiempo de generación: 31-10-2014 a las 18:11:55
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -389,22 +389,6 @@ CREATE TABLE IF NOT EXISTS `hs_asistencias` (
   KEY `estudiante` (`estudiante`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=15 ;
 
---
--- Volcado de datos para la tabla `hs_asistencias`
---
-
-INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `fecha`, `presente`, `create_at`) VALUES
-(5, 5, 4, 5, '0000-00-00', 0, '2014-10-28 19:09:52'),
-(6, 5, 4, 6, '0000-00-00', 0, '2014-10-28 19:09:52'),
-(7, 5, 5, 6, '0000-00-00', 0, '2014-10-28 19:44:37'),
-(8, 5, 5, 5, '0000-00-00', 0, '2014-10-28 19:44:37'),
-(9, 5, 5, 6, '2014-10-28', 0, '2014-10-28 19:45:48'),
-(10, 5, 5, 5, '2014-10-28', 0, '2014-10-28 19:45:39'),
-(11, 5, 5, 6, '2014-10-29', 0, '2014-10-28 19:48:01'),
-(12, 5, 5, 5, '2014-10-29', 0, '2014-10-28 19:48:01'),
-(13, 5, 4, 6, '2014-10-30', 1, '2014-10-28 21:10:47'),
-(14, 5, 4, 5, '2014-10-30', 1, '2014-10-28 21:10:22');
-
 -- --------------------------------------------------------
 
 --
@@ -448,19 +432,6 @@ CREATE TABLE IF NOT EXISTS `hs_evaluaciones` (
   PRIMARY KEY (`id`),
   KEY `materia` (`materia`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Volcado de datos para la tabla `hs_evaluaciones`
---
-
-INSERT INTO `hs_evaluaciones` (`id`, `nombre`, `materia`, `ponderacion`, `fecha`) VALUES
-(4, 'Conceptos basicos de traslados', 2, 10, '2014-10-08 00:00:00'),
-(5, 'Conceptos basicos de municiones', 3, 10, '2014-10-31 13:00:00'),
-(6, 'Tipos de armamento', 3, 10, '2014-10-28 14:00:00'),
-(7, 'Tacticas basicas', 4, 10, '2014-11-05 14:00:00'),
-(8, 'Metodos de inmovilizacion del oponente', 4, 10, '2014-10-28 15:00:00'),
-(9, 'Parametros de seguridad', 5, 10, '2014-10-28 08:00:00'),
-(10, 'Deteccion de parametros anormales', 5, 10, '2014-11-05 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -511,18 +482,6 @@ CREATE TABLE IF NOT EXISTS `hs_horarios_materias` (
   KEY `materia` (`materia`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=8 ;
 
---
--- Volcado de datos para la tabla `hs_horarios_materias`
---
-
-INSERT INTO `hs_horarios_materias` (`id`, `curso`, `materia`, `hora_inicio`, `hora_fin`, `dia`) VALUES
-(2, 5, 5, 8, 10, 1),
-(3, 5, 5, 11, 13, 1),
-(4, 5, 5, 10, 12, 2),
-(5, 5, 4, 17, 21, 4),
-(6, 5, 5, 8, 10, 4),
-(7, 5, 4, 8, 9, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -560,19 +519,19 @@ CREATE TABLE IF NOT EXISTS `hs_materias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(300) NOT NULL,
   `curso` int(11) NOT NULL,
+  `profesor` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `curso` (`curso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  KEY `curso` (`curso`),
+  KEY `profesor` (`profesor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `hs_materias`
 --
 
-INSERT INTO `hs_materias` (`id`, `nombre`, `curso`) VALUES
-(2, 'Logistica', 1),
-(3, 'Manejo de armas', 1),
-(4, 'Defensa personal', 5),
-(5, 'Traslado de personal', 5);
+INSERT INTO `hs_materias` (`id`, `nombre`, `curso`, `profesor`) VALUES
+(6, 'TECNICAS DE INVESTIGACION Y ELABORACION DE INFORMES', 1, 2),
+(7, 'SALUD OCUPACIONAL', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -593,24 +552,6 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
   KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
-
---
--- Volcado de datos para la tabla `hs_notas`
---
-
-INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
-(1, 5, 5, 10, 6, 6),
-(2, 5, 5, 10, 5, 6),
-(3, 1, 2, 4, 4, 9),
-(4, 5, 4, 9, 6, 10),
-(5, 5, 4, 8, 5, 3),
-(6, 1, 3, 5, 4, 7),
-(7, 1, 3, 6, 4, 6),
-(8, 5, 4, 7, 6, 8),
-(9, 5, 4, 7, 5, 5),
-(10, 5, 4, 8, 6, 9),
-(11, 5, 5, 9, 6, 7),
-(12, 5, 5, 9, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -725,7 +666,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1984 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2115 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2715,7 +2656,138 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1980, 'Estudiante', ''),
 (1981, 'Estudiante', ''),
 (1982, 'Padres', ''),
-(1983, 'parents_dashboard', '');
+(1983, 'parents_dashboard', ''),
+(1984, 'Periodo', ''),
+(1985, 'documentos_academicos', ''),
+(1986, 'RSS', ''),
+(1987, 'Periodo', ''),
+(1988, 'documentos_academicos', ''),
+(1989, 'RSS', ''),
+(1990, 'Periodo', ''),
+(1991, 'documentos_academicos', ''),
+(1992, 'RSS', ''),
+(1993, 'Periodo', ''),
+(1994, 'documentos_academicos', ''),
+(1995, 'RSS', ''),
+(1996, 'Periodo', ''),
+(1997, 'documentos_academicos', ''),
+(1998, 'RSS', ''),
+(1999, 'Periodo', ''),
+(2000, 'documentos_academicos', ''),
+(2001, 'RSS', ''),
+(2002, 'Periodo', ''),
+(2003, 'documentos_academicos', ''),
+(2004, 'RSS', ''),
+(2005, 'Periodo', ''),
+(2006, 'documentos_academicos', ''),
+(2007, 'RSS', ''),
+(2008, 'Periodo', ''),
+(2009, 'documentos_academicos', ''),
+(2010, 'RSS', ''),
+(2011, 'Periodo', ''),
+(2012, 'documentos_academicos', ''),
+(2013, 'RSS', ''),
+(2014, 'Periodo', ''),
+(2015, 'documentos_academicos', ''),
+(2016, 'RSS', ''),
+(2017, 'Periodo', ''),
+(2018, 'documentos_academicos', ''),
+(2019, 'RSS', ''),
+(2020, 'Periodo', ''),
+(2021, 'documentos_academicos', ''),
+(2022, 'RSS', ''),
+(2023, 'Periodo', ''),
+(2024, 'documentos_academicos', ''),
+(2025, 'RSS', ''),
+(2026, 'Periodo', ''),
+(2027, 'documentos_academicos', ''),
+(2028, 'RSS', ''),
+(2029, 'profesor', ''),
+(2030, 'Periodo', ''),
+(2031, 'documentos_academicos', ''),
+(2032, 'RSS', ''),
+(2033, 'profesor', ''),
+(2034, 'Periodo', ''),
+(2035, 'documentos_academicos', ''),
+(2036, 'RSS', ''),
+(2037, 'profesor', ''),
+(2038, 'Periodo', ''),
+(2039, 'documentos_academicos', ''),
+(2040, 'RSS', ''),
+(2041, 'profesor', ''),
+(2042, 'Periodo', ''),
+(2043, 'documentos_academicos', ''),
+(2044, 'RSS', ''),
+(2045, 'gestionar_facturas', ''),
+(2046, 'Periodo', ''),
+(2047, 'documentos_academicos', ''),
+(2048, 'RSS', ''),
+(2049, 'lista_de_facturas', ''),
+(2050, 'agregar_factura', ''),
+(2051, 'descripción', ''),
+(2052, 'Cantidad', ''),
+(2053, 'monto', ''),
+(2054, 'metodo_de_pago', ''),
+(2055, 'estado', ''),
+(2056, 'cantidad', ''),
+(2057, 'efectivo', ''),
+(2058, 'deposito', ''),
+(2059, 'transferencia', ''),
+(2060, 'cancelado', ''),
+(2061, 'no_cancelado', ''),
+(2062, 'Periodo', ''),
+(2063, 'documentos_academicos', ''),
+(2064, 'RSS', ''),
+(2065, 'Periodo', ''),
+(2066, 'documentos_academicos', ''),
+(2067, 'RSS', ''),
+(2068, 'profesor', ''),
+(2069, 'Periodo', ''),
+(2070, 'documentos_academicos', ''),
+(2071, 'RSS', ''),
+(2072, 'cantidad', ''),
+(2073, 'Periodo', ''),
+(2074, 'documentos_academicos', ''),
+(2075, 'RSS', ''),
+(2076, 'cantidad', ''),
+(2077, 'Periodo', ''),
+(2078, 'documentos_academicos', ''),
+(2079, 'RSS', ''),
+(2080, 'Profesor(a)', ''),
+(2081, 'Periodo', ''),
+(2082, 'documentos_academicos', ''),
+(2083, 'RSS', ''),
+(2084, 'Periodo', ''),
+(2085, 'documentos_academicos', ''),
+(2086, 'RSS', ''),
+(2087, 'ponderacion', ''),
+(2088, 'Periodo', ''),
+(2089, 'documentos_academicos', ''),
+(2090, 'RSS', ''),
+(2091, 'Periodo', ''),
+(2092, 'documentos_academicos', ''),
+(2093, 'RSS', ''),
+(2094, 'Periodo', ''),
+(2095, 'documentos_academicos', ''),
+(2096, 'RSS', ''),
+(2097, 'Periodo', ''),
+(2098, 'documentos_academicos', ''),
+(2099, 'RSS', ''),
+(2100, 'Periodo', ''),
+(2101, 'documentos_academicos', ''),
+(2102, 'RSS', ''),
+(2103, 'Periodo', ''),
+(2104, 'documentos_academicos', ''),
+(2105, 'RSS', ''),
+(2106, 'Periodo', ''),
+(2107, 'documentos_academicos', ''),
+(2108, 'RSS', ''),
+(2109, 'Periodo', ''),
+(2110, 'documentos_academicos', ''),
+(2111, 'RSS', ''),
+(2112, 'Periodo', ''),
+(2113, 'documentos_academicos', ''),
+(2114, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -3835,6 +3907,74 @@ INSERT INTO `municipio` (`id`, `departamento`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nombre_materias`
+--
+
+CREATE TABLE IF NOT EXISTS `nombre_materias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `materia` varchar(400) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=64 ;
+
+--
+-- Volcado de datos para la tabla `nombre_materias`
+--
+
+INSERT INTO `nombre_materias` (`id`, `materia`) VALUES
+(1, 'TECNICAS DE INVESTIGACION Y ELABORACION DE INFORMES'),
+(2, 'ESTUDIO DE SEGURIDAD DE INSTALACIONES Y ANALISIS DE RIESGOS'),
+(3, 'CONTROL DE EMERGENCIAS Y PRIMEROS AUXILIOS'),
+(4, 'SALUD OCUPACIONAL'),
+(5, 'PREVENCION Y MANEJO DE EQUIPOS DE CONTROL DE INCENDIOS'),
+(6, 'REDACCION, METODOLOGIA PARA LA RECOLECCION DE INFORMACION Y TOMA DE DECISIONES'),
+(7, 'PRINCIPIOS DE PROTECCION Y ANALISIS DE RIESGOS'),
+(8, 'OBSERVACION Y DESCRIPCION'),
+(9, 'AVANZADAS'),
+(10, 'ESTUDIO DE SEGURIDAD DE INSTALACIONES y RUTAS'),
+(11, 'NORMAS DE TRANSITO'),
+(12, 'TECNICAS DE VIGILANCIA Y SEGUIMIENTO'),
+(13, 'DECRETO 3222/2002'),
+(14, 'DECRETO 3222/2002, RELACIONES CON LAS AUTORIDADES.'),
+(15, 'FACTORES DE INSEGURIDAD, PROCEDIMIENTOS DE VIGILANCIA'),
+(16, 'FACTORES DE INSEGURIDAD, PROCEDIMIENTOS DE ESCOLTA'),
+(17, 'FACTORES DE INSEGURIDAD, PROCEDIMIENTOS DE SUPERVISOR'),
+(18, 'FACTORES DE INSEGURIDAD, PROCEDIMIENTOS DE VIGILANCIA COMO OPERADOR DE MEDIOS TECNOLOGICOS'),
+(19, 'CARACTERISTICAS, IDENTIFICACION Y BUSQUEDA DE EXPLOSIVOS'),
+(20, 'ACTUACION EN LA ESCENA DEL INCIDENTE ley 906 de 2004'),
+(21, 'MODUS OPERANDI DELINCUENCIAL'),
+(22, 'CONOCIMIENTO DE ARMAS DE FUEGO'),
+(23, 'CONOCIMIENTO Y EMPLEO DE EQUIPOS DE COMUNICACION'),
+(24, 'CONTROL DE ACCESO'),
+(25, 'PREVENCION DE LA DELINCUENCIA'),
+(26, 'EJERCICIO PRACTICO DE TIRO'),
+(27, 'DECRETO 2535/93'),
+(28, 'CONOCIMIENTO Y MANEJO DE ARMAS NO LETALES'),
+(29, 'CONOCIMIENTO DEL ENTORNO'),
+(30, 'INFORMATICA BASICA'),
+(31, 'SEGURIDAD ELECTRONICA'),
+(32, 'SISTEMAS ELECTRONICOS DE SEGURIDAD'),
+(33, 'CONTROL DE ACCESO (SISTEMAS ELECTRONICOS, GARRET, REQUISAS ENTRE OTROS)'),
+(34, 'CONOCIMIENTO Y EMPLEO DE EQUIPOS DE COMUNICACION Y OPERACION DE CENTRALES DE MONITOREO'),
+(35, 'NORMAS SUPERINTENDENCIA Y CLASES DE SERVICIOS DE V.S.P., MODALIDADES Y MEDIOS'),
+(36, 'MANERA DE SUMINISTRAR INFORMACION A LA AUTORIDAD'),
+(37, 'CONSTITUCION NACIONAL'),
+(38, 'CODIGO DE POLICIA Y CODIGO DE CONVIVENCIA CIUDADANA'),
+(39, 'NOCIONES DERECHO PENAL Y LABORAL'),
+(40, 'RELACIONES CON LAS AUTORIDADES, GRADOS Y DISTINTIVOS DE LA FUERZA PUBLICA'),
+(41, 'DERECHOS HUMANOS Y D.I.H.'),
+(42, 'DEFENSA PERSONAL'),
+(43, 'CALIDAD DEL SERVICIO Y ATENCION AL CLIENTE'),
+(44, 'COMPORTAMIENTO SOCIAL, URBANIDAD Y ETICA'),
+(45, 'ETICA Y PREVENCI'),
+(46, 'RESOLUCION DE CONFLICTOS'),
+(47, 'MANEJO DE ESTRES'),
+(48, 'MANEJO DE EMOCIONES Y ESTRES'),
+(49, 'ETICA Y URBANIDAD'),
+(50, 'RELACIONES HUMANAS E INTERPERSONALES');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `noticeboard`
 --
 
@@ -4052,7 +4192,22 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `teacher`
+--
+
+INSERT INTO `teacher` (`teacher_id`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `address`, `phone`, `email`, `password`) VALUES
+(2, 'Rosa', 'V', 'Carvajal', 'C', '01/29/1980', 'female', '', '', 'rv@gmail.com', '1j3BRZkeg4 '),
+(3, 'Erika', 'C', 'Solano', 'v', '10/09/2014', 'female', '', '', 'es@gmail.com', 'v1v3Ypur5D '),
+(4, 'Reinaldo', 'B', 'Anaya', 'R', '10/10/2014', 'male', '', '', 'ra@gmail.com', 'qLSlRrCZvE '),
+(5, 'Luis', 'E', 'Velasquez', 'B', '10/14/2014', 'male', '', '', 'lv@gmail.com', 'FE2p5qwSey '),
+(6, 'German', 'K', 'Beltran', 'D', '10/17/2014', 'male', '', '', 'gb@gmail.com', 'bc4aWE9mZ8 '),
+(7, 'Efrain', 'S', 'Garcia', 'F', '10/15/2014', 'male', '', '', 'eg@gmail.com', 'dPj4I6uBpl '),
+(8, 'Frank', 'A', 'Insignares', 'G', '10/17/2014', 'male', '', '', 'fi@gmail.com', 'ajqB6CPYGW '),
+(9, 'Luis', 'E', 'Gracia', 'L', '10/13/2014', 'male', '', '', 'lg@gmail.com', '0aSC0WWB14 '),
+(10, 'Roger', 'H', 'Bertel', 'L', '10/05/2014', 'male', '', '', 'lb@gmail.com', 'owmP9S8JrB ');
 
 -- --------------------------------------------------------
 
@@ -4118,6 +4273,7 @@ ALTER TABLE `hs_inscripcion`
 -- Filtros para la tabla `hs_materias`
 --
 ALTER TABLE `hs_materias`
+  ADD CONSTRAINT `hs_materias_ibfk_2` FOREIGN KEY (`profesor`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

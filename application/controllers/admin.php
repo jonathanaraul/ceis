@@ -448,6 +448,8 @@ class Admin extends CI_Controller
 
             $data['curso'] = $this->input->post('curso');
 
+            $data['profesor'] = $this->input->post('profesor');
+
             $this->db->insert('hs_materias', $data);
 
             redirect(base_url() . 'index.php?admin/materias/', 'refresh');
@@ -459,6 +461,8 @@ class Admin extends CI_Controller
             $data['nombre'] = $this->input->post('nombre');
 
             $data['curso'] = $this->input->post('curso');
+
+            $data['profesor'] = $this->input->post('profesor');
 
 
             $this->db->where('id', $param2);

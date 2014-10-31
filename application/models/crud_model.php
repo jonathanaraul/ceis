@@ -82,7 +82,7 @@ class Crud_model extends CI_Model {
 
 		foreach($res as $row)
 
-			return $row['name'];
+			return $row['name'].' '.$row['papellido'];
 
 	}
 
@@ -180,6 +180,21 @@ class Crud_model extends CI_Model {
             return $row['nombre'];
 
     }
+
+    function get_hs_cursos_seccion($class_id)
+
+    {
+
+        $query	=	$this->db->get_where('hs_cursos' , array('id' => $class_id));
+
+        $res	=	$query->result_array();
+
+        foreach($res as $row)
+
+            return $row['seccion'];
+
+    }
+
     function get_hs_student_cedula_by_id($id){
         $query	=	$this->db->get_where('student' , array('student_id' => $id));
         $res	=	$query->result_array();

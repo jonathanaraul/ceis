@@ -24,11 +24,17 @@
                     <thead>
                     <tr>
                         <th>
+                            <div>#</div>
+                        </th>
+                        <th>
                             <div><?php echo get_phrase('subject_name'); ?></div>
                         </th>
                         <th>
                             <div><?php echo get_phrase('class'); ?></div>
                         </th>
+                        <th>
+                            <div><?php echo get_phrase('Profesor(a)'); ?></div>
+                        </th>                        
                         <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
@@ -38,8 +44,10 @@
                     <?php $count = 1;
                     foreach ($materias as $row): ?>
                         <tr>
+                            <td><?= $count++; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
-                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']); ?></td>
+                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
+                            <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('edit_materia',<?php echo $row['id']; ?>)"
@@ -66,10 +74,16 @@
                     <?php echo form_open('admin/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('name'); ?></label>
-
+                            <label class="control-label"><?= 'Nombre'?></label>
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="nombre"/>
+                                <select name="nombre" class="uniform" style="width:100%;">
+                                    <?php
+                                    $elements = $this->db->get('nombre_materias')->result_array();
+                                    foreach ($elements as $element){
+                                        echo '<option value="'.$element['materia'].'">'.$element['materia'].'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="control-group">
@@ -82,9 +96,22 @@
                                     foreach ($cursos as $row):
                                         ?>
                                         <option
-                                            value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                            value="<?php echo $row['id']; ?>"><?php echo $row['nombre'].' - Sección '. $row['seccion']; ?></option>
                                     <?php
                                     endforeach;
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'Profesor(a)'?></label>
+                            <div class="controls">
+                                <select name="profesor" class="uniform" style="width:100%;">
+                                    <?php
+                                    $profesores = $this->db->get('teacher')->result_array();
+                                    foreach ($profesores as $profesor){
+                                        echo '<option value="'.$profesor['teacher_id'].'">'.$profesor['name'].' '.$profesor['papellido'].'</option>';
+                                    }
                                     ?>
                                 </select>
                             </div>
