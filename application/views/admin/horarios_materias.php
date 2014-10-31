@@ -41,23 +41,23 @@
                                     <table cellpadding="0" cellspacing="0" border="0" class="table table-normal">
                                         <tbody>
                                         <?php
-                                        for ($d = 1; $d <= 7; $d++):
+                                        for ($d = 0; $d < 7; $d++):
 
-                                            if ($d == 1) $day = 'sunday';
-                                            else if ($d == 2) $day = 'monday';
-                                            else if ($d == 3) $day = 'tuesday';
-                                            else if ($d == 4) $day = 'wednesday';
-                                            else if ($d == 5) $day = 'thursday';
-                                            else if ($d == 6) $day = 'friday';
-                                            else if ($d == 7) $day = 'saturday';
+                                            if ($d == 6) $day = 'Domingo';
+                                            else if ($d == 0) $day = 'Lunes';
+                                            else if ($d == 1) $day = 'Martes';
+                                            else if ($d == 2) $day = 'Miercoles';
+                                            else if ($d == 3) $day = 'Jueves';
+                                            else if ($d == 4) $day = 'Viernes';
+                                            else if ($d == 5) $day = 'Sabado';
                                             ?>
                                             <tr class="gradeA">
                                                 <td width="100"><?php echo strtoupper($day); ?></td>
                                                 <td>
                                                     <?php
                                                     $this->db->order_by("hora_inicio", "asc");
-                                                    $this->db->where('dia', $dia);
-                                                    $this->db->where('curso', $row['curso']);
+                                                    $this->db->where('dia', $d);
+                                                    $this->db->where('curso', $row['id']);
                                                     $routines = $this->db->get('hs_horarios_materias')->result_array();
                                                     foreach ($routines as $row2):
                                                         ?>
