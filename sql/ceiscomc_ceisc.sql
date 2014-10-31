@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 05:48:18
+-- Tiempo de generación: 31-10-2014 a las 17:55:01
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -654,10 +654,9 @@ CREATE TABLE IF NOT EXISTS `hs_role` (
 
 INSERT INTO `hs_role` (`rol_id`, `rol`, `back_name`) VALUES
 (1, 'Administrativo', 'admin'),
-(2, 'Gerencia', 'parent'),
-(3, 'Operativo', 'parent'),
-(4, 'Profesor', 'teacher'),
-(5, 'Recepción', 'parent');
+(2, 'Estudiante', 'student'),
+(3, 'Padres', 'parent'),
+(4, 'Profesor', 'teacher');
 
 -- --------------------------------------------------------
 
@@ -685,9 +684,8 @@ CREATE TABLE IF NOT EXISTS `hs_users` (
 --
 
 INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, `sex`, `address`, `phone`, `email`, `password`, `rol`) VALUES
-(1, 'maria', '', '', '', '', '', '', 'maria@gmail.com', '', 1),
-(2, 'GRECIA', '', 'pico', 'muñoz', 'female', '', '', 'gre@gmail.com', '2212', 2),
-(3, 'carlos', '', 'oronoz', 'cabello', 'male', '', '', 'hola', 'ipuZOqpMwgOkZvvmc1H4/8YqoUITz6vJLsTLjsAPvdFSOKF2SrKOgf7hUzi1W4JfPXwgPd6qADRmIvvAX7WqXw==', 2);
+(2, 'GRECIA', '', 'pico', 'muñoz', 'female', '', '', 'gre@gmail.com', 'h01mYqCgeXz0O/ySfoikvOqlV/Gya8pKp2O0wHKP0JYJZ/BsdpR/EPIi5/+kFJMUBG/NbeHNJFUNfBRjLa2eZQ==', 1),
+(3, 'carlos', '', 'oronoz', 'cabello', 'male', '', '', 'cloker19@gmail.com', 'Tv+l2FLiYHpeinoxqp/iWiaAwimJRw/45bq/ASMfzMXSU7V1XdJcvRoh0cUmibujsLUfTLm7HcPkxmvhey7Fmg==', 4);
 
 -- --------------------------------------------------------
 
@@ -727,7 +725,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1873 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1984 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -2606,7 +2604,118 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (1869, 'RSS', ''),
 (1870, 'Periodo', ''),
 (1871, 'documentos_academicos', ''),
-(1872, 'RSS', '');
+(1872, 'RSS', ''),
+(1873, 'password_mismatch', ''),
+(1874, 'password_updated', ''),
+(1875, 'convenio_sena', ''),
+(1876, 'Cedula', ''),
+(1877, 'convenio_sena', ''),
+(1878, 'Cedula', ''),
+(1879, 'convenio_sena', ''),
+(1880, 'Cedula', ''),
+(1881, 'convenio_sena', ''),
+(1882, 'Cedula', ''),
+(1883, 'convenio_sena', ''),
+(1884, 'Cedula', ''),
+(1885, 'convenio_sena', ''),
+(1886, 'Cedula', ''),
+(1887, 'convenio_sena', ''),
+(1888, 'Cedula', ''),
+(1889, 'convenio_sena', ''),
+(1890, 'Cedula', ''),
+(1891, 'convenio_sena', ''),
+(1892, 'Cedula', ''),
+(1893, 'convenio_sena', ''),
+(1894, 'Cedula', ''),
+(1895, 'convenio_sena', ''),
+(1896, 'Cedula', ''),
+(1897, 'convenio_sena', ''),
+(1898, 'Cedula', ''),
+(1899, 'convenio_sena', ''),
+(1900, 'Cedula', ''),
+(1901, 'convenio_sena', ''),
+(1902, 'Cedula', ''),
+(1903, 'Periodo', ''),
+(1904, 'documentos_academicos', ''),
+(1905, 'RSS', ''),
+(1906, 'Periodo', ''),
+(1907, 'documentos_academicos', ''),
+(1908, 'RSS', ''),
+(1909, 'Periodo', ''),
+(1910, 'documentos_academicos', ''),
+(1911, 'RSS', ''),
+(1912, 'Periodo', ''),
+(1913, 'documentos_academicos', ''),
+(1914, 'RSS', ''),
+(1915, 'Periodo', ''),
+(1916, 'documentos_academicos', ''),
+(1917, 'RSS', ''),
+(1918, 'Periodo', ''),
+(1919, 'documentos_academicos', ''),
+(1920, 'RSS', ''),
+(1921, 'Periodo', ''),
+(1922, 'documentos_academicos', ''),
+(1923, 'RSS', ''),
+(1924, 'convenio_sena', ''),
+(1925, 'Cedula', ''),
+(1926, 'Periodo', ''),
+(1927, 'documentos_academicos', ''),
+(1928, 'RSS', ''),
+(1929, 'convenio_sena', ''),
+(1930, 'Periodo', ''),
+(1931, 'documentos_academicos', ''),
+(1932, 'RSS', ''),
+(1933, 'Cedula', ''),
+(1934, 'convenio_sena', ''),
+(1935, 'Cedula', ''),
+(1936, 'Periodo', ''),
+(1937, 'documentos_academicos', ''),
+(1938, 'RSS', ''),
+(1939, 'listado_usuarios', ''),
+(1940, 'añadir_usuarios', ''),
+(1941, 'nombre_usuario', ''),
+(1942, 'rol', ''),
+(1943, 'seleccione', ''),
+(1944, 'añadir_usuario', ''),
+(1945, 'manejar_usuarios', ''),
+(1946, 'Periodo', ''),
+(1947, 'documentos_academicos', ''),
+(1948, 'RSS', ''),
+(1949, 'Periodo', ''),
+(1950, 'documentos_academicos', ''),
+(1951, 'RSS', ''),
+(1952, 'Periodo', ''),
+(1953, 'documentos_academicos', ''),
+(1954, 'RSS', ''),
+(1955, 'Periodo', ''),
+(1956, 'documentos_academicos', ''),
+(1957, 'RSS', ''),
+(1958, 'listado_roles_usuarios', ''),
+(1959, 'añadir_rol', ''),
+(1960, 'nombre_rol', ''),
+(1961, 'Periodo', ''),
+(1962, 'documentos_academicos', ''),
+(1963, 'RSS', ''),
+(1964, 'Estudiante', ''),
+(1965, 'Estudiante', ''),
+(1966, 'Estudiante', ''),
+(1967, 'Estudiante', ''),
+(1968, 'Estudiante', ''),
+(1969, 'Estudiante', ''),
+(1970, 'Estudiante', ''),
+(1971, 'Estudiante', ''),
+(1972, 'Estudiante', ''),
+(1973, 'Estudiante', ''),
+(1974, 'Estudiante', ''),
+(1975, 'Estudiante', ''),
+(1976, 'Estudiante', ''),
+(1977, 'Estudiante', ''),
+(1978, 'Estudiante', ''),
+(1979, 'Estudiante', ''),
+(1980, 'Estudiante', ''),
+(1981, 'Estudiante', ''),
+(1982, 'Padres', ''),
+(1983, 'parents_dashboard', '');
 
 -- --------------------------------------------------------
 
@@ -3882,7 +3991,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `check_foto` tinyint(2) NOT NULL,
   `talla_camisa` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `student`
@@ -3894,7 +4003,10 @@ INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre
 (3, 'CC', 22447886, 'juan', 'raul', 'hernandez', 'padron', '10/10/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'la calle tal', '1231232131', 'elmejor159@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'el barrio tal', '14', '495', NULL, 0, 1, 0, 0, '16'),
 (4, 'CC', 22447886, 'jose', 'raul', 'lopez', 'ramirez', '10/03/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'las cocuizas', '675676575', 'prueba@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'los bloques', '1', '2', NULL, 0, 1, 0, 0, '14'),
 (5, 'CC', 2131312, 'carlos', 'david', 'arreaza', 'colmenares', '10/30/2014', 'masculino', 'Soltero', 'no', '0', '34543535', 'becado', '0', 'plaza piar', '123123132', 'prueba2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'peligroso', '13', '466', NULL, 0, 1, 0, 0, '16'),
-(6, 'CC', 11991682, 'shack', 'adams', 'oneil', 'doge', '10/13/2014', 'masculino', 'casado', 'no', '0', '4554645654', 'becado', '0', 'las terrazas', '678987978979', 'prueba3@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'mas peligroso', '14', '497', NULL, 0, 1, 0, 0, '18');
+(6, 'CC', 11991682, 'shack', 'adams', 'oneil', 'doge', '10/13/2014', 'masculino', 'casado', 'no', '0', '4554645654', 'becado', '0', 'las terrazas', '678987978979', 'prueba3@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'mas peligroso', '14', '497', NULL, 0, 1, 0, 0, '18'),
+(7, 'CC', 20837445, 'Maria', 'de los angeles', 'subero', 'pico', '', '0', '0', '0', '0', '', 'particular', '0', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '', '1', '2', NULL, 0, 0, 0, 0, ''),
+(8, '0', 20837445, 'GRECIA', '', 'subero', 'pico', '', '0', '0', '0', '0', '', '0', '0', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '', '1', '2', NULL, 0, 0, 0, 0, ''),
+(9, 'CC', 20837445, 'GRECIA', 'de los angeles', 'subero', 'pico', '', '0', '0', '0', '0', '', '0', '0', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '', '1', '2', NULL, 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -3992,8 +4104,8 @@ ALTER TABLE `hs_facturacion`
 -- Filtros para la tabla `hs_horarios_materias`
 --
 ALTER TABLE `hs_horarios_materias`
-  ADD CONSTRAINT `hs_horarios_materias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hs_horarios_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `hs_horarios_materias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_horarios_materias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `hs_inscripcion`
