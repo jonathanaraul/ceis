@@ -108,7 +108,7 @@ class ajax extends CI_Controller
 
     {
         $curso = $this->input->post('curso');
-        $estudiante = $this->input->post('estudiantes');
+        $estudiante = $this->input->post('estudiante');
 
         $dato['curso']= $curso;
         $dato['estudiantes']= $estudiante;
