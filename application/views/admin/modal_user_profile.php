@@ -1,6 +1,6 @@
 <?php
 
-$user_info = $this->crud_model->get_hs_users_info($current_user_id);
+$user_info = $this->crud_model->get_users_info($current_user_id);
 
 foreach ($user_info as $row):?>
 
@@ -39,20 +39,18 @@ foreach ($user_info as $row):?>
 
             <table class="table table-normal ">
 
-<!--
 
-                <?php if ($row['rol'] != ''): ?>
+			<?php if ($row['rol'] != ''): ?>
 
                     <tr>
 
                         <td>Rol del Usuario</td>
 
-                        <td><b><?php echo $this->crud_model->get_hs_role_rol($row['rol']); ?></b></td>
+                        <td><b><?php echo $this->crud_model->get_rol_name($row['rol']); ?></b></td>
 
                     </tr>
 
                 <?php endif; ?>
--->
 
 
 
