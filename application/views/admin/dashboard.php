@@ -262,6 +262,9 @@
 
                 foreach($notices as $row):
 
+                    $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
+
+
                 ?>
 
                 {

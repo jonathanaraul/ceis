@@ -615,6 +615,18 @@ function get_empresas()
 
 	}
 
+	////////CALENDARIO/////////////
+	function get_datetimes_by_horario_curso_materias($fechaInicio,$fechaFin,$idCurso)
+
+	{
+
+		$array = array();
+
+
+		return $array;
+
+	}
+
 }
 
 
