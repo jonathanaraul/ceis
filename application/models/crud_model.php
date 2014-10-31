@@ -622,7 +622,10 @@ function get_empresas()
 
 		$array = array();
 
-
+		$array[0]['inicio'] = $fechaInicio .'T08:00:00';
+		$array[0]['fin'] = $fechaInicio .'T10:00:00';
+		$array[1]['inicio'] = $fechaInicio .'T13:00:00';
+		$array[1]['fin'] = $fechaInicio .'T15:30:00';
 		return $array;
 
 	}

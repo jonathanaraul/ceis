@@ -260,24 +260,25 @@
 
                 $notices    =   $this->db->get('hs_cursos')->result_array();
 
-                foreach($notices as $row):
+                foreach($notices as $row){
 
-                    $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
+                   $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
 
-
+                   foreach ($fechas as $fecha) {
+                       # code...
+                  
                 ?>
 
                 {
-
                     title: "<?= $row['nombre'];?>",
-
-                    start: "<?= $row['fecha_ini'] ?>"
-
+                    start: "<?= $fecha['inicio'];?>",
+                    fin  : "<?= $fecha['fin'];?>",
+                    allDay : false
                 },
 
                 <?php
-
-                endforeach
+                   }
+                }
 
                 ?>
 
