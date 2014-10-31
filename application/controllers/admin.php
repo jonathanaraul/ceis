@@ -1087,9 +1087,9 @@ class Admin extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['estudiante'] = $this->input->post('estudiante');
+            $data['estudiante'] = $this->input->post('estudiantes');
 
-            $data['curso'] = $this->input->post('curso');
+            $data['curso'] = $this->input->post('cursos');
 
             $data['descripcion'] = $this->input->post('descripcion');
 
