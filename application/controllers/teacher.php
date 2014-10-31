@@ -9,6 +9,8 @@ class Teacher extends CI_Controller
         $this->load->library(array('session','form_validation'));
         $this->load->helper(array('url','form'));
         $this->load->database('default');
+        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        $this->output->set_header('Pragma: no-cache');
         
     }
     
@@ -108,7 +110,7 @@ class Teacher extends CI_Controller
 
             $this->email_model->account_opening_email('student', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
 
-            redirect(base_url() . 'index.php?admin/student/', 'refresh');
+            redirect(base_url() . 'index.php?teacher/student/', 'refresh');
 
         }
 
@@ -181,7 +183,7 @@ class Teacher extends CI_Controller
 
             $this->crud_model->clear_cache();
             
-            redirect(base_url() . 'index.php?admin/student/', 'refresh');
+            redirect(base_url() . 'index.php?teacher/student/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -211,7 +213,7 @@ class Teacher extends CI_Controller
 
             $this->db->delete('student');
 
-            redirect(base_url() . 'index.php?admin/student/', 'refresh');
+            redirect(base_url() . 'index.php?teacher/student/', 'refresh');
 
         }
 
@@ -494,7 +496,7 @@ class Teacher extends CI_Controller
             
             $decode_string= $this->encrypt->decode($current_password);
 
-            if ($decode_string == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+            if ($decode_string == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
 
                 $this->db->where('user_id', $this->session->userdata('user_id'));
 
@@ -745,7 +747,7 @@ class Teacher extends CI_Controller
 
             $this->db->insert('document', $data);
 
-            redirect(base_url() . 'admin/manage_document', 'refresh');
+            redirect(base_url() . 'teacher/manage_document', 'refresh');
 
         }
 
@@ -755,7 +757,7 @@ class Teacher extends CI_Controller
 
             $this->db->delete('document');
 
-            redirect(base_url() . 'admin/manage_document', 'refresh');
+            redirect(base_url() . 'teacher/manage_document', 'refresh');
 
         }
 

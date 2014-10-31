@@ -8,9 +8,8 @@ class Modal extends CI_Controller
     function __construct(){
 		parent::__construct();
 
-        $this->load->library(array('session','form_validation'));
-        $this->load->helper(array('url','form'));
-        $this->load->database('default');
+
+        $this->load->database();
     }
 
 

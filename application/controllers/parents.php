@@ -1,59 +1,39 @@
-<?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
-/*	
- *	@author : Joyonto Roy
- *	date	: 20 August, 2013
- *	University Of Dhaka, Bangladesh
- *	Ekattor School & College Management System
- *	http://codecanyon.net/user/joyontaroy
- */
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Parents extends CI_Controller
+
 {
-
-
-    function __construct()
-    {
+	public function __construct() {
         parent::__construct();
-        $this->load->database();
-        /*cache control*/
-        $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
+        $this->load->library(array('session'));
+        $this->load->helper(array('url'));
+        
+        $this->load->database('default');
+        $this->load->model('inscripcion_model');
+        $this->load->helper('date');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
-        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     }
-
-    /***default functin, redirects to login page if no admin logged in yet***/
+    
     public function index()
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if($this->session->userdata('rol') == FALSE || $this->session->userdata('rol') != '3')
+        {
             redirect(base_url() . 'index.php?login', 'refresh');
-        if ($this->session->userdata('parent_login') == 1)
-            redirect(base_url() . 'index.php?parents/dashboard', 'refresh');
-    }
-
-    function f()
-    {
-        echo 'h';
-    }
-
-    /***ADMIN DASHBOARD***/
-    function dashboard()
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect(base_url(), 'refresh');
+        }
         $page_data['page_name'] = 'dashboard';
+
         $page_data['page_title'] = get_phrase('parent_dashboard');
+
         $this->load->view('index', $page_data);
+
     }
 
-
+    
     /****MANAGE TEACHERS*****/
     function teacher_list($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect(base_url(), 'refresh');
         if ($param1 == 'personal_profile') {
             $page_data['personal_profile'] = true;
@@ -72,7 +52,7 @@ class Parents extends CI_Controller
     /****MANAGE SUBJECTS*****/
     function subject($param1 = '', $param2 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if  ($this->session->userdata('rol') != 3)
             redirect(base_url(), 'refresh');
 
         $parent_profile = $this->db->get_where('parent', array(
@@ -91,11 +71,11 @@ class Parents extends CI_Controller
     /****MANAGE EXAM MARKS*****/
     function marks($exam_id = '', $class_id = '', $subject_id = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect(base_url(), 'refresh');
 
 
-        $student_id = $this->db->get_where('parent', array('parent_id' => $this->session->userdata('parent_id')
+        $student_id = $this->db->get_where('parent', array('parent_id' => $this->session->userdata('user_id')
         ))->row()->student_id;
         $class_id = $this->db->get_where('student', array('student_id' => $student_id
         ))->row()->class_id;
@@ -129,7 +109,7 @@ class Parents extends CI_Controller
     /**********MANAGING CLASS ROUTINE******************/
     function class_routine($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect(base_url(), 'refresh');
 
         $student_id = $this->db->get_where('parent', array('parent_id' => $this->session->userdata('parent_id')
@@ -216,7 +196,7 @@ class Parents extends CI_Controller
     /**********MANAGE LIBRARY / BOOKS********************/
     function book($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect('login', 'refresh');
 
         $page_data['books'] = $this->db->get('book')->result_array();
@@ -229,7 +209,7 @@ class Parents extends CI_Controller
     /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
     function transport($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect('login', 'refresh');
 
         $page_data['transports'] = $this->db->get('transport')->result_array();
@@ -242,7 +222,7 @@ class Parents extends CI_Controller
     /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
     function dormitory($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect('login', 'refresh');
 
         $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
@@ -255,7 +235,7 @@ class Parents extends CI_Controller
     /**********WATCH NOTICEBOARD AND EVENT ********************/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect('login', 'refresh');
 
         $page_data['notices'] = $this->db->get('noticeboard')->result_array();
@@ -268,7 +248,7 @@ class Parents extends CI_Controller
     /**********MANAGE DOCUMENT / home work FOR A SPECIFIC CLASS or ALL*******************/
     function document($do = '', $document_id = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect('login', 'refresh');
 
         $page_data['page_name'] = 'manage_document';
@@ -281,7 +261,7 @@ class Parents extends CI_Controller
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('parent_login') != 1)
+        if ($this->session->userdata('rol') != 3)
             redirect(base_url() . 'index.php?login', 'refresh');
         if ($param1 == 'update_profile_info') {
             $data['name'] = $this->input->post('name');

@@ -1,46 +1,30 @@
-<?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
-/*	
- *	@author : Joyonto Roy
- *	date	: 20 August, 2013
- *	University Of Dhaka, Bangladesh
- *	Ekattor School & College Management System
- *	http://codecanyon.net/user/joyontaroy
- */
+<?<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Student extends CI_Controller
+
 {
 
-
-    function __construct()
-    {
+	public function __construct() {
         parent::__construct();
-        $this->load->database();
-        /*cache control*/
-        $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
+        $this->load->library(array('session','form_validation'));
+        $this->load->helper(array('url','form'));
+        $this->load->database('default');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
-        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+        
     }
-
-    /***default functin, redirects to login page if no admin logged in yet***/
+    
     public function index()
     {
-        if ($this->session->userdata('student_login') != 1)
-            redirect(base_url() . 'index.php?login', 'refresh');
-        if ($this->session->userdata('student_login') == 1)
-            redirect(base_url() . 'index.php?student/dashboard', 'refresh');
-    }
-
-    /***ADMIN DASHBOARD***/
-    function dashboard()
-    {
-        if ($this->session->userdata('student_login') != 1)
-            redirect(base_url(), 'refresh');
+        if($this->session->userdata('rol') == FALSE || $this->session->userdata('rol') != '2')
+        {
+            redirect(base_url().'login');
+        }
+       
         $page_data['page_name'] = 'dashboard';
+
         $page_data['page_title'] = get_phrase('student_dashboard');
+
         $this->load->view('index', $page_data);
     }
 
@@ -48,7 +32,7 @@ class Student extends CI_Controller
     /****MANAGE TEACHERS*****/
     function teacher_list($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect(base_url(), 'refresh');
         if ($param1 == 'personal_profile') {
             $page_data['personal_profile'] = true;
@@ -67,7 +51,7 @@ class Student extends CI_Controller
     /****MANAGE SUBJECTS*****/
     function subject($param1 = '', $param2 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect(base_url(), 'refresh');
 
         $student_profile = $this->db->get_where('student', array(
@@ -86,7 +70,7 @@ class Student extends CI_Controller
     /****MANAGE EXAM MARKS*****/
     function marks($exam_id = '', $class_id = '', $subject_id = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect(base_url(), 'refresh');
 
         $student_profile = $this->db->get_where('student', array(
@@ -121,7 +105,7 @@ class Student extends CI_Controller
     /**********MANAGING CLASS ROUTINE******************/
     function class_routine($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect(base_url(), 'refresh');
 
         $student_profile = $this->db->get_where('student', array(
@@ -212,7 +196,7 @@ class Student extends CI_Controller
     /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
     function transport($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect('login', 'refresh');
 
         $page_data['transports'] = $this->db->get('transport')->result_array();
@@ -225,7 +209,7 @@ class Student extends CI_Controller
     /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
     function dormitory($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect('login', 'refresh');
 
         $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
@@ -238,7 +222,7 @@ class Student extends CI_Controller
     /**********WATCH NOTICEBOARD AND EVENT ********************/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect('login', 'refresh');
 
         $page_data['notices'] = $this->db->get('noticeboard')->result_array();
@@ -251,7 +235,7 @@ class Student extends CI_Controller
     /**********MANAGE DOCUMENT / home work FOR A SPECIFIC CLASS or ALL*******************/
     function document($do = '', $document_id = '')
     {
-        if ($this->session->userdata('student_login') != 1)
+        if ($this->session->userdata('rol') != 2)
             redirect('login', 'refresh');
 
         $page_data['page_name'] = 'manage_document';
@@ -262,53 +246,85 @@ class Student extends CI_Controller
 
 
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
+
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
+
     {
 		$this->load->library('encrypt');
-		
-        if ($this->session->userdata('student_login') != 1)
+
+        if ($this->session->userdata('rol') != 2)
+
             redirect(base_url() . 'index.php?login', 'refresh');
+
         if ($param1 == 'update_profile_info') {
+
             $data['name'] = $this->input->post('name');
-            $data['birthday'] = $this->input->post('birthday');
-            $data['sex'] = $this->input->post('sex');
-            $data['religion'] = $this->input->post('religion');
-            $data['blood_group'] = $this->input->post('blood_group');
-            $data['address'] = $this->input->post('address');
-            $data['phone'] = $this->input->post('phone');
+            //$data['apellido']        = $this->input->post('apellido');
+
             $data['email'] = $this->input->post('email');
 
-            $this->db->where('student_id', $this->session->userdata('student_id'));
-            $this->db->update('student', $data);
+
+            $this->db->where('user_id', $this->session->userdata('user_id'));
+
+            $this->db->update('hs_users', $data);
+
             $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
-            redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
+
+            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
+
         }
+
         if ($param1 == 'change_password') {
+
             $data['password'] = $this->input->post('password');
+			
+
             $data['new_password'] = $this->input->post('new_password');
-            $encrypted_string = $this->encrypt->encode($data['new_password']);
-           
+			$encrypted_string = $this->encrypt->encode($data['new_password']);
+            
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
-            $current_password = $this->db->get_where('student', array(
-                'student_id' => $this->session->userdata('student_id')
+
+            $current_password = $this->db->get_where('hs_users', array(
+
+                'user_id' => $this->session->userdata('user_id')
+
             ))->row()->password;
-            if ($current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
-                $this->db->where('student_id', $this->session->userdata('student_id'));
-                $this->db->update('student', array(
+            
+            $decode_string= $this->encrypt->decode($current_password);
+
+            if ($decode_string == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+
+                $this->db->where('user_id', $this->session->userdata('user_id'));
+
+                $this->db->update('hs_users', array(
+
                     'password' => $encrypted_string
+
                 ));
+
                 $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+
             } else {
+
                 $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
+
             }
-            redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
+
+            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
+
         }
-        $page_data['page_name'] = 'manage_profile';
-        $page_data['page_title'] = get_phrase('manage_profile');
-        $page_data['edit_data'] = $this->db->get_where('student', array(
-            'student_id' => $this->session->userdata('student_id')
+        $page_data['edit_data'] = $this->db->get_where('hs_users', array(
+
+            'user_id' => $this->session->userdata('user_id')
+
         ))->result_array();
+        
+        $page_data['page_name'] = 'manage_profile';
+
+        $page_data['page_title'] = get_phrase('manage_profile');
+
         $this->load->view('index', $page_data);
+
     }
 }

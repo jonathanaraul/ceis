@@ -81,13 +81,14 @@
 										
 							
 							
-							if ($rol=='2' or $rol=='3' )
+							if ($rol=='3' )
 
-								$account_type	=	'parents';
+								$account_type	=	'parent';
 
 							else
 								$account_type	=	$row['back_name'];		
-											
+								endif;
+						endforeach;			
 										
 						?>
 
@@ -104,10 +105,7 @@
                         		<i class="icon-off"></i><span><?php echo get_phrase('logout');?></span></a></li>
 
 					</ul>
-						<?php 
-							endif;
-						endforeach;
-						?>
+						
                 	<!-- Account Selector -->
 
 					</li>
@@ -126,7 +124,7 @@
 							$role=$this->db->get('hs_role')->result_array();
 								foreach ($role as $row):
 									if($row['rol_id']==$rol):
-										echo get_phrase($row['rol']).' '.get_phrase('panel');
+										echo get_phrase('panel').' '.get_phrase($row['rol']);
 									endif;
 								endforeach;
 							?> 

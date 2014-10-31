@@ -26,19 +26,16 @@ class Login extends CI_Controller
 				$this->load->view('login', $data);
 				break;
 			case '1':
-				redirect(base_url(). 'index.php?admin');
+				redirect(base_url().'index.php?admin');
 				break;
 			case '2':
-				redirect(base_url() . 'index.php?parents/dashboard', 'refresh');
+				redirect(base_url() .'index.php?student');
 				break;	
 			case '3':
-				redirect(base_url() . 'index.php?parents/dashboard', 'refresh');
+				redirect(base_url() .'index.php?parents');
 				break;
 			case '4':
 				redirect(base_url().'index.php?teacher');
-				break;
-			case '5':
-				redirect(base_url() . 'index.php?parents/dashboard', 'refresh');
 				break;
 			default:		
 				$page_data['page_title'] = get_phrase('login');

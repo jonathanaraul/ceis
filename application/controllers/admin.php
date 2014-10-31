@@ -36,7 +36,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -232,7 +232,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -332,7 +332,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -438,7 +438,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -504,7 +504,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -573,7 +573,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -635,7 +635,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -704,7 +704,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -776,7 +776,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -854,7 +854,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -927,7 +927,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1002,7 +1002,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1095,7 +1095,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -1115,7 +1115,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -1189,7 +1189,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -1260,7 +1260,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1331,7 +1331,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1399,7 +1399,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1471,7 +1471,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1542,7 +1542,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1614,7 +1614,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
@@ -1663,7 +1663,7 @@ class Admin extends CI_Controller
 
     {
 		$this->load->library('encrypt');
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect('login', 'refresh');
 
@@ -1778,7 +1778,7 @@ class Admin extends CI_Controller
 
     {
 		
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1846,7 +1846,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
@@ -1959,7 +1959,7 @@ class Admin extends CI_Controller
 	 function manage_users($param1 = '', $param2 = '', $param3 = '')
 
     {
-		if ($this->session->userdata('admin_login') != 1)
+		if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
@@ -1986,7 +1986,7 @@ class Admin extends CI_Controller
 
     {
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url(), 'refresh');
 
@@ -2035,50 +2035,53 @@ class Admin extends CI_Controller
 
     {
 		$this->load->library('encrypt');
-		
 
-        if ($this->session->userdata('admin_login') != 1)
+        if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'update_profile_info') {
 
             $data['name'] = $this->input->post('name');
+            //$data['apellido']        = $this->input->post('apellido');
 
             $data['email'] = $this->input->post('email');
 
 
-            $this->db->where('admin_id', $this->session->userdata('admin_id'));
+            $this->db->where('user_id', $this->session->userdata('user_id'));
 
-            $this->db->update('admin', $data);
+            $this->db->update('hs_users', $data);
 
             $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
 
-            redirect(base_url() . 'index.php?admin/manage_profile/', 'refresh');
+            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
 
         }
 
         if ($param1 == 'change_password') {
 
             $data['password'] = $this->input->post('password');
+			
 
             $data['new_password'] = $this->input->post('new_password');
-            $encrypted_string = $this->encrypt->encode($data['new_password']);
-
+			$encrypted_string = $this->encrypt->encode($data['new_password']);
+            
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
 
-            $current_password = $this->db->get_where('admin', array(
+            $current_password = $this->db->get_where('hs_users', array(
 
-                'admin_id' => $this->session->userdata('admin_id')
+                'user_id' => $this->session->userdata('user_id')
 
             ))->row()->password;
+            
+            $decode_string= $this->encrypt->decode($current_password);
 
-            if ($current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+            if ($decode_string == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
 
-                $this->db->where('admin_id', $this->session->userdata('admin_id'));
+                $this->db->where('user_id', $this->session->userdata('user_id'));
 
-                $this->db->update('admin', array(
+                $this->db->update('hs_users', array(
 
                     'password' => $encrypted_string
 
@@ -2092,19 +2095,18 @@ class Admin extends CI_Controller
 
             }
 
-            redirect(base_url() . 'index.php?admin/manage_profile/', 'refresh');
+            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
 
         }
+        $page_data['edit_data'] = $this->db->get_where('hs_users', array(
 
+            'user_id' => $this->session->userdata('user_id')
+
+        ))->result_array();
+        
         $page_data['page_name'] = 'manage_profile';
 
         $page_data['page_title'] = get_phrase('manage_profile');
-
-        $page_data['edit_data'] = $this->db->get_where('admin', array(
-
-            'admin_id' => $this->session->userdata('admin_id')
-
-        ))->result_array();
 
         $this->load->view('index', $page_data);
 

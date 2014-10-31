@@ -83,15 +83,9 @@
                                     data-toggle="modal" href="#modal-form"
                                     onclick="modal('edit_student',<?php echo $row['student_id']; ?>)"
                                     class="btn btn-gray btn-small"> <i class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
-                                <?php if ($this->session->userdata('admin_id') == 4) { ?>
-                                    <a
-                                        data-toggle="modal" href="#modal-delete"
-                                        onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/delete/<?php echo $row['student_id']; ?>')"
-                                        class="btn btn-red btn-small"> <i
-                                            class="icon-trash"></i> <?php echo get_phrase('delete'); ?> </a>
-                                <?php } ?>
+                                
 
-                                <!--<a href="<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/personal_profile/<?php echo $row['student_id']; ?>"
+                                <!--<a href="<?php echo base_url(); ?>index.php?teacher/student/<?php echo $class_id; ?>/personal_profile/<?php echo $row['student_id']; ?>"
 
                                              class="btn btn-gray">
 
@@ -99,7 +93,7 @@
 
                                         </a>
 
-                                        <a href="<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/academic_result/<?php echo $row['student_id']; ?>"
+                                        <a href="<?php echo base_url(); ?>index.php?teacher/student/<?php echo $class_id; ?>/academic_result/<?php echo $row['student_id']; ?>"
 
                                              class="btn btn-gray">
 
@@ -107,7 +101,7 @@
 
                                         </a>
 
-                                        <a href="<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/edit/<?php echo $row['student_id']; ?>"
+                                        <a href="<?php echo base_url(); ?>index.php?teacher/student/<?php echo $class_id; ?>/edit/<?php echo $row['student_id']; ?>"
 
                                             class="btn btn-gray">
 
@@ -115,7 +109,7 @@
 
                                         </a>
 
-                                        <a href="<?php echo base_url(); ?>index.php?admin/student/<?php echo $class_id; ?>/delete/<?php echo $row['student_id']; ?>" onclick="return confirm('delete?')"
+                                        <a href="<?php echo base_url(); ?>index.php?teacher/student/<?php echo $class_id; ?>/delete/<?php echo $row['student_id']; ?>" onclick="return confirm('delete?')"
 
                                              class="btn btn-red">
 
@@ -137,7 +131,7 @@
 
 <div class="tab-pane box" id="add" style="padding: 5px">
 <div
-    class="box-content"> <?php echo form_open('admin/student/create/', array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data')); ?>
+    class="box-content"> <?php echo form_open('teacher/student/create/', array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data')); ?>
 <script>
     function mostrarTmilitar(valor) {
         if (valor != 'masculino')
