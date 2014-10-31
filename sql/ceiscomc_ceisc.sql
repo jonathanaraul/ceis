@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 31-10-2014 a las 01:54:45
--- Versión del servidor: 5.6.12-log
--- Versión de PHP: 5.4.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-10-2014 a las 22:08:06
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
-CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -594,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
   KEY `materia` (`materia`),
   KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `hs_notas`
@@ -602,7 +600,10 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
 
 INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
 (1, 5, 5, 10, 6, 6),
-(2, 5, 5, 10, 5, 10);
+(2, 5, 5, 10, 5, 6),
+(3, 1, 2, 4, 4, 6),
+(4, 5, 4, 9, 6, 10),
+(5, 5, 4, 8, 5, 3);
 
 -- --------------------------------------------------------
 
