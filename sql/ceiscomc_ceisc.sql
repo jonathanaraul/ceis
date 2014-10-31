@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 31-10-2014 a las 06:19:04
--- Versión del servidor: 5.6.12-log
--- Versión de PHP: 5.4.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 31-10-2014 a las 07:37:33
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ceiscomc_ceisc`
 --
-CREATE DATABASE IF NOT EXISTS `ceiscomc_ceisc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ceiscomc_ceisc`;
 
 -- --------------------------------------------------------
 
@@ -3810,7 +3808,6 @@ CREATE TABLE IF NOT EXISTS `student` (
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `class_id` longtext COLLATE utf8_unicode_ci NOT NULL,
   `cod_regional` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_regional` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cod_departamento` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3838,13 +3835,13 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Volcado de datos para la tabla `student`
 --
 
-INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `class_id`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `nom_sector_eco`, `nom_subsector_eco`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`, `check_lib_militar`, `check_cedula`, `check_cert_est`, `check_foto`, `talla_camisa`) VALUES
-(1, 'CC', 2345, 'jose', 'luis', 'perez', 'marquez', '10/14/2014', 'masculino', 'Separado', 'no', '0', '2345', 'particular', '0', 'barrio', '45', 'jonathan.araul@gmail.com', '4', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'miempresa', 'ALTA GERENCIA/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'barrio', '2', '20', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, ''),
-(2, 'CC', 22447886, 'jose', 'raul', 'hernandez', 'padron', '01/25/1992', 'masculino', 'Soltero', 'no', '0', '234234', 'particular', '0', 'las cocuizas', '123324234323', 'correoprueba@gmail.com', '3', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'ninguna', 'SENA EMPRESAS/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'los bloques', '1', '2', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, '16'),
-(3, 'CC', 22447886, 'juan', 'raul', 'hernandez', 'padron', '10/10/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'la calle tal', '1231232131', 'elmejor159@hotmail.com', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'el barrio tal', '14', '495', NULL, 0, 1, 0, 0, '16'),
-(4, 'CC', 22447886, 'jose', 'raul', 'lopez', 'ramirez', '10/03/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'las cocuizas', '675676575', 'prueba@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'los bloques', '1', '2', NULL, 0, 1, 0, 0, '14'),
-(5, 'CC', 2131312, 'carlos', 'david', 'arreaza', 'colmenares', '10/30/2014', 'masculino', 'Soltero', 'no', '0', '34543535', 'becado', '0', 'plaza piar', '123123132', 'prueba2@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'peligroso', '13', '466', NULL, 0, 1, 0, 0, '16'),
-(6, 'CC', 11991682, 'shack', 'adams', 'oneil', 'doge', '10/13/2014', 'masculino', 'casado', 'no', '0', '4554645654', 'becado', '0', 'las terrazas', '678987978979', 'prueba3@gmail.com', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'mas peligroso', '14', '497', NULL, 0, 1, 0, 0, '18');
+INSERT INTO `student` (`student_id`, `documento`, `ndocumento`, `name`, `snombre`, `papellido`, `sapellido`, `birthday`, `sex`, `estado_civil`, `tienehijos`, `ndehijos`, `nlibmilitar`, `tipodeingreso`, `empresa`, `address`, `phone`, `email`, `cod_regional`, `nom_regional`, `cod_departamento`, `nom_departamento`, `cod_municipio`, `nom_municipio`, `emp_gremio`, `lin_formacion`, `nom_sector_eco`, `nom_subsector_eco`, `sena`, `barrio`, `departamento`, `municipio`, `caracterizacion`, `check_lib_militar`, `check_cedula`, `check_cert_est`, `check_foto`, `talla_camisa`) VALUES
+(1, 'CC', 2345, 'jose', 'luis', 'perez', 'marquez', '10/14/2014', 'masculino', 'Separado', 'no', '0', '2345', 'particular', '0', 'barrio', '45', 'jonathan.araul@gmail.com', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'miempresa', 'ALTA GERENCIA/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'barrio', '2', '20', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, ''),
+(2, 'CC', 22447886, 'jose', 'raul', 'hernandez', 'padron', '01/25/1992', 'masculino', 'Soltero', 'no', '0', '234234', 'particular', '0', 'las cocuizas', '123324234323', 'correoprueba@gmail.com', '0', 'Atlantico', '0', 'Atlantico', '0', 'Barranquilla', 'ninguna', 'SENA EMPRESAS/SENA GREMIO', 'SERVICIOS', 'VIGILANCIA', 1, 'los bloques', '1', '2', 'ADOLESCENTE EN CONFLICTO CON LA LEY PENAL', 0, 1, 0, 0, '16'),
+(3, 'CC', 22447886, 'juan', 'raul', 'hernandez', 'padron', '10/10/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'la calle tal', '1231232131', 'elmejor159@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'el barrio tal', '14', '495', NULL, 0, 1, 0, 0, '16'),
+(4, 'CC', 22447886, 'jose', 'raul', 'lopez', 'ramirez', '10/03/2014', 'masculino', 'Soltero', 'no', '0', '2321213', 'particular', '0', 'las cocuizas', '675676575', 'prueba@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'los bloques', '1', '2', NULL, 0, 1, 0, 0, '14'),
+(5, 'CC', 2131312, 'carlos', 'david', 'arreaza', 'colmenares', '10/30/2014', 'masculino', 'Soltero', 'no', '0', '34543535', 'becado', '0', 'plaza piar', '123123132', 'prueba2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'peligroso', '13', '466', NULL, 0, 1, 0, 0, '16'),
+(6, 'CC', 11991682, 'shack', 'adams', 'oneil', 'doge', '10/13/2014', 'masculino', 'casado', 'no', '0', '4554645654', 'becado', '0', 'las terrazas', '678987978979', 'prueba3@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'mas peligroso', '14', '497', NULL, 0, 1, 0, 0, '18');
 
 -- --------------------------------------------------------
 
