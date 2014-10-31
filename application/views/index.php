@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <link rel="icon" href="<?=base_url()?>/template/images/favicon.gif" type="image/gif">
 		<?php include 'includes.php';?>
         <title><?php echo $page_title;?> | <?php echo $system_title;?></title>
     </head>

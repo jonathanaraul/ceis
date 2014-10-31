@@ -26,6 +26,10 @@
 
   
     </div>
-    <div><p style="text-align:center" ><button class="btn btn-normal btn-gray" style="width: 100%;
-                margin-top: 20px;"  onclick="actualizarNotas()">Imprimir Diploma</button></p></td>
+
+    <div><p style="text-align:center" ><button id="<?php if($media < 5){echo "btn_disable";}else{echo "imprimir";}?>" class="btn btn-normal btn-gray" style="width: 100%;
+                margin-top: 20px;"  onclick="actualizarNotas()"><?php if($media < 5){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
     </div>
+<script type="text/javascript">
+ $('#btn_disable').attr("disabled", true);
+</script>

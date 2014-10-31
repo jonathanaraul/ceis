@@ -97,7 +97,7 @@ class ajax extends CI_Controller
         $cadena = '<option value="0">Visualizar Todos</option>';
 
         foreach ($elements as $element) {
-            $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_hs_student_nombre_by_id($element['estudiante']) .' '. $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']) .'</option>';
+            $cadena .= '<option value="' . $element['estudiante'] . '">' . $this->crud_model->get_hs_student_nombre_by_id($element['estudiante']) .' '. $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']) .'</option>';
 
         }
         echo $cadena;
@@ -108,7 +108,7 @@ class ajax extends CI_Controller
 
     {
         $curso = $this->input->post('curso');
-        $estudiante = $this->input->post('estudiantes');
+        $estudiante = $this->input->post('estudiante');
 
         $dato['curso']= $curso;
         $dato['estudiantes']= $estudiante;
@@ -131,34 +131,38 @@ class ajax extends CI_Controller
 
             $dato['media']= $media;
             $dato['diploma_nombre']= $inscrito['estudiante'];
-            if($media >= 5){
+
             $dato['elements']= $query;
             $this->load->view('admin/visualizar_diploma', $dato); 
-            }
+            
 
         endforeach;
  
 
         }else{
 
-            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $estudiante))->result_array();
+        foreach($inscritos as $inscrito):
+
+            $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
             $suma= 0;
             foreach($query as $sum):
-            $suma+=$sum['puntuacion'];
+                $suma+=$sum['puntuacion'];
             endforeach;
-
-            $this->db->where('estudiante', $inscritos[0]['estudiante']);
+            $this->db->where('estudiante', $inscrito['estudiante']);
             $this->db->from('hs_notas');
             $nro_materias= $this->db->count_all_results();
             $media= $suma/$nro_materias;
 
             $dato['media']= $media;
-            $dato['diploma_nombre']= $inscritos[0]['estudiante'];
+            $dato['diploma_nombre']= $inscrito['estudiante'];
 
-            if($media >= 5 && ($dato['diploma_nombre'] == $estudiante)){
-                $dato['elements'] = $query;
-                $this->load->view('admin/visualizar_diploma', $dato);
+            if($inscrito['estudiante'] == $estudiante){
+            $dato['elements']= $query;
+            $this->load->view('admin/visualizar_diploma', $dato); 
             }
+
+        endforeach;
+            
         }
     }
 
