@@ -1,79 +1,26 @@
-<?php
-
-if (!defined('BASEPATH'))
-
-    exit('No direct script access allowed');
-
-
-/*
-
- *	@author : Joyonto Roy
-
- *	date	: 20 August, 2013
-
- *	University Of Dhaka, Bangladesh
-
- *   Nulled By Vokey 
-
- *	Ekattor School & College Management System
-
- *	http://codecanyon.net/user/joyontaroy
-
- */
-
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 
 {
-
-
-    function __construct()
-
-    {
-
+	public function __construct() {
         parent::__construct();
-
-        $this->load->database();
+        $this->load->library(array('session'));
+        $this->load->helper(array('url'));
+        
+        $this->load->database('default');
         $this->load->model('inscripcion_model');
         $this->load->helper('date');
-
-
-        /*cache control*/
-
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-
         $this->output->set_header('Pragma: no-cache');
-
     }
-
-
-    /***default functin, redirects to login page if no admin logged in yet***/
-
+    
     public function index()
-
     {
-
-        if ($this->session->userdata('admin_login') != 1)
-
+        if($this->session->userdata('rol') == FALSE || $this->session->userdata('rol') != '1')
+        {
             redirect(base_url() . 'index.php?login', 'refresh');
-
-        if ($this->session->userdata('admin_login') == 1)
-
-            redirect(base_url() . 'index.php?admin/dashboard', 'refresh');
-
-    }
-
-
-    /***ADMIN DASHBOARD***/
-
-    function dashboard()
-
-    {
-
-        if ($this->session->userdata('admin_login') != 1)
-
-            redirect(base_url(), 'refresh');
-
+        }
         $page_data['page_name'] = 'dashboard';
 
         $page_data['page_title'] = get_phrase('admin_dashboard');
@@ -1144,7 +1091,7 @@ class Admin extends CI_Controller
 
     /**********GESTIONAR DOCUMENTOS********************/
 
-    function diplomas($param1 = '', $param2 = '', $param3 = '')
+    function documentos($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -1152,68 +1099,6 @@ class Admin extends CI_Controller
 
             redirect('login', 'refresh');
 
-        if ($param1 == 'create') {
-
-            $data['name'] = $this->input->post('name');
-
-            $data['description'] = $this->input->post('description');
-
-            $data['price'] = $this->input->post('price');
-
-            $data['author'] = $this->input->post('author');
-
-            $data['class_id'] = $this->input->post('class_id');
-
-            $data['status'] = $this->input->post('status');
-
-            $this->db->insert('book', $data);
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        }
-
-        if ($param1 == 'do_update') {
-
-            $data['name'] = $this->input->post('name');
-
-            $data['description'] = $this->input->post('description');
-
-            $data['price'] = $this->input->post('price');
-
-            $data['author'] = $this->input->post('author');
-
-            $data['class_id'] = $this->input->post('class_id');
-
-            $data['status'] = $this->input->post('status');
-
-
-            $this->db->where('book_id', $param2);
-
-            $this->db->update('book', $data);
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        } else if ($param1 == 'edit') {
-
-            $page_data['edit_data'] = $this->db->get_where('book', array(
-
-                'book_id' => $param2
-
-            ))->result_array();
-
-        }
-
-        if ($param1 == 'delete') {
-
-            $this->db->where('book_id', $param2);
-
-            $this->db->delete('book');
-
-            redirect(base_url() . 'index.php?admin/documentos', 'refresh');
-
-        }
-
-        $page_data['estudiantes'] = $this->db->get('hs_inscripcion')->result_array();
 
         $page_data['page_name'] = 'documentos';
 

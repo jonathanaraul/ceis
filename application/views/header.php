@@ -40,11 +40,32 @@
 
                             <div class="avatar">
 
-                                <img src="<?php echo base_url();?>template/images/icons_big/<?php echo $this->session->userdata('login_type');?>.png" class="avatar-medium"/>
+                                <img src="<?php echo base_url();?>template/images/icons_big/<?php 
+                                
+									$rol= $this->session->userdata('rol');
+									
+									$role = $this->db->get('hs_role')->result_array();
+										foreach ($role as $row):
+											if($row['rol_id']==$rol):
+												echo $row['back_name'];
+											endif;
+										endforeach;
+										?>.png" class="avatar-medium"/>
 
                             </div>
 
-                            <span><?php echo $this->session->userdata('name');?></span>
+                            <span>
+								<?php 
+									$rol= $this->session->userdata('rol');
+									$name = $this->db->get('hs_users')->result_array();
+										foreach ($name as $row):
+											if($row['rol']==$rol):
+												echo $row['name'];
+											endif;
+										endforeach;
+									
+								?>
+								</span>
 
                         </li>
 
@@ -53,15 +74,21 @@
                         
 
                         <?php
-
-							if ($this->session->userdata('login_type')	==	'parent')
+							$rol= $this->session->userdata('rol');
+							$role = $this->db->get('hs_role')->result_array();
+								foreach ($role as $row):
+									if($row['rol_id']==$rol):
+										
+							
+							
+							if ($rol=='2' or $rol=='3' )
 
 								$account_type	=	'parents';
 
 							else
-
-								$account_type	=	$this->session->userdata('login_type');
-
+								$account_type	=	$row['back_name'];		
+											
+										
 						?>
 
 						<li><a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/manage_profile">
@@ -77,7 +104,10 @@
                         		<i class="icon-off"></i><span><?php echo get_phrase('logout');?></span></a></li>
 
 					</ul>
-
+						<?php 
+							endif;
+						endforeach;
+						?>
                 	<!-- Account Selector -->
 
 					</li>
@@ -90,7 +120,17 @@
 
 					<li class="dropdown">
 
-					<a href="#" ><i class="icon-user"></i><?php echo get_phrase($this->session->userdata('login_type')).' '.get_phrase('panel');?> </a>
+						<a href="#" ><i class="icon-user"></i><?php
+						
+							$rol= $this->session->userdata('rol');
+							$role=$this->db->get('hs_role')->result_array();
+								foreach ($role as $row):
+									if($row['rol_id']==$rol):
+										echo get_phrase($row['rol']).' '.get_phrase('panel');
+									endif;
+								endforeach;
+							?> 
+						</a>
 
 					</li>
 

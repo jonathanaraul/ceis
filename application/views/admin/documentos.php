@@ -3,7 +3,7 @@
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_diplomas'); ?>
+                    <?php echo get_phrase('gestionar_documentos'); ?>
                 </a></li>
         </ul>
     </div>
@@ -13,6 +13,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-normal box">
                     <thead>
                         <tr>
+                            <td><?= 'Seleccionar Documento'; ?></td>
                             <td><?= 'Seleccionar Curso'; ?></td>
                             <td><?= 'Seleccionar Estudiante'; ?></td>
                             <td>&nbsp;</td>
@@ -20,6 +21,14 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>
+                                <select name="documentos" id="documentos" >
+                                    <option value="0"><?= 'Seleccionar Documento' ?></option>
+                                    <option value="1"><?= 'Diplomas' ?></option>
+                                    <option value="2"><?= 'Certificado de Estudio' ?></option>
+                                    <option value="3"><?= 'Actas' ?></option>
+                                </select>
+                            </td>
                             <td>
                                 <select name="cursos" id="cursos" onchange="ajaxEstudiantes(this.value);">
                                     <option value="0"><?= 'Seleccionar Curso' ?></option>
@@ -49,8 +58,7 @@
                         <img src="<?php echo base_url();?>template/images/loader.gif">
                     </p>
                 </div>
-                <div id="diplomas" style="background-color:  #eaebef;padding: 7px 11px;display: none;margin: auto;width: 1057px;">
-
+                    <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 1057px;">
                 </div>
             </div>
         </div>
@@ -74,24 +82,27 @@
 
         var curso = $('#cursos').val();
         var estudiante = $('#estudiante').val();
+        var documento = $('#documentos').val();
 
-        if (curso <= 0 || estudiante < 0) {
-            alert('Debe llenar ambos campos');
+
+        if (curso <= 0 || estudiante < 0 || documento <= 0) {
+            alert('Debe llenar todos los campos');
             return false;
         }
 
-        $('#diploma').empty();
+        $('#documento').empty();
 
         $('#loader').css('display','block');
-        var data = 'curso=' + curso + '&estudiante=' + estudiante;
+        var data = 'curso=' + curso + '&estudiante=' + estudiante + '&documento=' + documento;
 
-        $.post('<?php echo site_url()?>ajax/recuperarDiplomas',
+
+        $.post('<?php echo site_url()?>ajax/recuperarDocumentos',
             data,
             function (data) {
 
-                $('#diplomas').html(data);
+                $('#documento').html(data);
                 $('#loader').css('display','none');
-                $('#diplomas').css('display','block');
+                $('#documento').css('display','block');
             });
     }
 
