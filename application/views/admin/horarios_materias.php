@@ -5,11 +5,11 @@
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('class_routine_list'); ?>
+                    <?= 'Lista de horarios de materias'; ?>
                 </a></li>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
-                    <?php echo get_phrase('add_class_routine'); ?>
+                    <?= 'Agregar horario de materia'; ?>
                 </a></li>
         </ul>
         <!--CONTROL TABS END-->
@@ -100,7 +100,7 @@
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/class_routine/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('admin/horarios_materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>
@@ -133,13 +133,13 @@
 
                             <div class="controls">
                                 <select name="day" class="uniform" style="width:100%;">
-                                    <option value="sunday">sunday</option>
-                                    <option value="monday">monday</option>
-                                    <option value="tuesday">tuesday</option>
-                                    <option value="wednesday">wednesday</option>
-                                    <option value="thursday">thursday</option>
-                                    <option value="friday">friday</option>
-                                    <option value="saturday">saturday</option>
+                                    <option value="0">Lunes</option>
+                                    <option value="1">Martes</option>
+                                    <option value="2">Miercoles</option>
+                                    <option value="3">Jueves</option>
+                                    <option value="4">Viernes</option>
+                                    <option value="5">Sabado</option>
+                                    <option value="6">Domingo</option>
                                 </select>
                             </div>
                         </div>

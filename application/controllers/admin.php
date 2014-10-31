@@ -996,15 +996,15 @@ class Admin extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['cursos'] = $this->input->post('curso');
+            $data['curso'] = $this->input->post('curso');
 
-            $data['materias'] = $this->input->post('materia');
+            $data['materia'] = $this->input->post('materia');
 
-            $data['time_start'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
 
-            $data['time_end'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
 
-            $data['day'] = $this->input->post('dia');
+            $data['dia'] = $this->input->post('dia');
 
             $this->db->insert('hs_horarios_materias', $data);
 
@@ -1014,15 +1014,15 @@ class Admin extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['cursos'] = $this->input->post('curso');
+            $data['curso'] = $this->input->post('curso');
 
-            $data['materias'] = $this->input->post('materia');
+            $data['materia'] = $this->input->post('materia');
 
-            $data['time_start'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
+            $data['hora_inicio'] = $this->input->post('hora_inicio') + (12 * ($this->input->post('starting_ampm') - 1));
 
-            $data['time_end'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
+            $data['hora_fin'] = $this->input->post('hora_fin') + (12 * ($this->input->post('ending_ampm') - 1));
 
-            $data['day'] = $this->input->post('dia');
+            $data['dia'] = $this->input->post('dia');
 
 
             $this->db->where('id', $param2);
