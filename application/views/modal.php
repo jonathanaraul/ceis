@@ -12,7 +12,10 @@
     
     
 <body>
-<?php include $this->session->userdata('login_type').'/modal_'.$page_name.'.php';?>
+	<?php 
+		$role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
+		include $role[0]['back_name'].'/modal_'.$page_name.'.php';
+	?>
 
 </body>
 </html>
