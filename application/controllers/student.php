@@ -6,8 +6,10 @@ class Student extends CI_Controller
 
 	public function __construct() {
         parent::__construct();
-        $this->load->library(array('session','form_validation'));
-        $this->load->helper(array('url','form'));
+        $this->load->library(array('session'));
+        $this->load->library('bcrypt');
+        $this->load->helper(array('url'));
+        
         $this->load->database('default');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
@@ -250,8 +252,6 @@ class Student extends CI_Controller
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
 
     {
-		$this->load->library('encrypt');
-
         if ($this->session->userdata('rol') != 2)
 
             redirect(base_url() . 'index.php?login', 'refresh');
@@ -259,8 +259,7 @@ class Student extends CI_Controller
         if ($param1 == 'update_profile_info') {
 
             $data['name'] = $this->input->post('name');
-            //$data['apellido']        = $this->input->post('apellido');
-
+           
             $data['email'] = $this->input->post('email');
 
 
@@ -270,36 +269,31 @@ class Student extends CI_Controller
 
             $this->session->set_flashdata('flash_message', get_phrase('account_updated'));
 
-            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
+            redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
 
         }
 
         if ($param1 == 'change_password') {
 
             $data['password'] = $this->input->post('password');
-			
 
             $data['new_password'] = $this->input->post('new_password');
-			$encrypted_string = $this->encrypt->encode($data['new_password']);
+			
+				$password = $this->bcrypt->hash_password($data['new_password']);
             
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
-
-            $current_password = $this->db->get_where('hs_users', array(
-
-                'user_id' => $this->session->userdata('user_id')
-
-            ))->row()->password;
+            $current_password = $this->db->get_where('hs_users', array( 'user_id' => $this->session->userdata('user_id') ))->row()->password;
             
-            $decode_string= $this->encrypt->decode($current_password);
+				$decode_pass= password_verify($data['password'] , $current_password);
 
-            if ($decode_string == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+            if ($decode_pass == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
 
                 $this->db->where('user_id', $this->session->userdata('user_id'));
 
                 $this->db->update('hs_users', array(
 
-                    'password' => $encrypted_string
+                    'password' => $password
 
                 ));
 
@@ -311,7 +305,7 @@ class Student extends CI_Controller
 
             }
 
-            redirect(base_url() . 'index.php?teacher/manage_profile/', 'refresh');
+            redirect(base_url() . 'index.php?student/manage_profile/', 'refresh');
 
         }
         $page_data['edit_data'] = $this->db->get_where('hs_users', array(

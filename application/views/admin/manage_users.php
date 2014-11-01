@@ -30,10 +30,9 @@
 					$role = $this->db->get('hs_role')->result_array();
 					foreach ($role as $row):
 			?>
-                <option value="<?php echo $row['rol_id']; ?>"
-
-                    <?php if ($rol == $row['rol_id']) echo 'selected'; ?>>
-                    <?php echo $row['rol']; ?></option>
+                <option value="<?php echo $row['rol_id']; ?>">
+                    <?php echo $row['rol']; ?>
+                </option>
             
             <?php endforeach; ?>
         </select>
@@ -57,10 +56,28 @@
         <?php endif; ?>
         <?php if ($rol != ''): ?>
         <div class="action-nav-normal">
-            <div class=" action-nav-button" style="width:300px;"><a href="#" title="Users"> <img
-                        src="<?php echo base_url(); ?>template/images/icons/user.png"/>
-                    <span>Total <?php echo count($users); ?> Usuarios</span> </a></div>
+            <div class=" action-nav-button" style="width:300px;">
+				<a href="#" title="Users"><img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
+                    <span>Total 
+						<?php
+							$role = $this->db->get('hs_role')->result_array();
+							$found = false;
+							foreach ($users as $row){
+								foreach ($role as $rol){
+									if($row['rol']==$rol['rol_id']){
+										$found = true;	
+									}
+								}
+							}
+							if($found){
+							echo count($users).' '.$rol['rol'];	
+							}	
+						?>
+                    </span>
+                </a>
+            </div>
         </div>
+        
     </center>
     <div class="box">
         <div class="box-content">

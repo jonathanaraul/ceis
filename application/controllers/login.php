@@ -7,6 +7,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
 		$this->load->model('login_model');
+		$this->load->library('bcrypt');
 		$this->load->library(array('session','form_validation'));
 		$this->load->helper(array('url','form'));
 		$this->load->database('default');
@@ -46,53 +47,53 @@ class Login extends CI_Controller
 
 	public function new_user()
 	{
+		
 		if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token'))
 		{
+			
             $config = array(
 				array(
-					'field' => 'email',
-					'label' => 'Email',
-					'rules' => 'required|trim|xss_clean'
+                'field' => 'email',
+                'label' => 'Email',
+                'rules' => 'trim|required|xss_clean|valid_email'
 				),
 				array(
 					'field' => 'password',
-					'label' => 'password',
-					'rules' => 'required|trim|xss_clean'
+					'label' => 'Password',
+					'rules' => 'trim|required|xss_clean'
+					
 				)
 			);
             
 			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('login_user', ucfirst($this->input->post('login_type')) . ' Login failed!');
-			$this->form_validation->set_error_delimiters('<div class="alert alert-error">
-														  <button type="button" class="close" data-dismiss="alert">×</button>', '</div>');
-            
-            
- 
-            //lanzamos mensajes de error si es que los hay
-            
+			$this->form_validation->set_message('required', 'El campo es requerido');
+           
 			if ($this->form_validation->run() == FALSE) {
 				 $this->index();
-			}else{
-				$email = $this->input->post('email');
-				$password = $this->encrypt->decode('password');
-				$check_user = $this->login_model->login_user($email,$password);
-				if($check_user == TRUE)
-				{
-					$data = array(
-	                'is_logued_in' 	=> 		TRUE,
-	                'user_id'	 	=> 		$check_user->user_id,
-	                'rol'			=>		$check_user->rol,
-	                'email' 		=> 		$check_user->email
-            		);		
-					$this->session->set_userdata($data);
-					$this->index();
+				}else{
+					$email 	  = $this->input->post('email');
+					$password = $this->input->post('password');
+					
+					
+					$check_user = $this->login_model->login_user($email,$password);
+						if($check_user == TRUE)
+							{
+								$data = array(
+								'is_logued_in' 	=> 		TRUE,
+								'user_id'	 	=> 		$check_user->user_id,
+								'rol'			=>		$check_user->rol,
+								'email' 		=> 		$check_user->email,
+								'password' 		=> 		$check_user->password
+								);	
+								
+								$this->session->set_userdata($data);
+								$this->index();
+							}				
 				}
-			}
-		}else{
-			redirect(base_url().'index.php?login');
-		}
-		
-		
+			}else{
+				$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
+				redirect(base_url().'index.php?login');
+			}			
 	}
 	
 	

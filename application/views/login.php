@@ -135,10 +135,8 @@
                             </div>
 
                             <div class="box-content padded">
-
-                          
-								 
-                                <?php echo form_open('login/new_user', array('class' => 'separate-sections', 'onsubmit' => 'return check_account_type()'));?>
+								<?php echo validation_errors(); ?>
+                                <?php echo form_open('login/new_user', array('class' => 'separate-sections'));?>
 
 
                                     <div class="input-prepend">
@@ -149,7 +147,7 @@
 
                                         </span>
 
-                                        <input name="email" type="text" placeholder="<?php echo get_phrase('email');?>" autocomplete="off">
+                                        <input name="email" type="text" placeholder="<?php echo get_phrase('email');?>" autocomplete="off" >
 
                                     </div>
 

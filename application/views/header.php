@@ -58,12 +58,12 @@
 								<?php 
 									$rol= $this->session->userdata('rol');
 									$name = $this->db->get('hs_users')->result_array();
-										foreach ($name as $row):
-											if($row['rol']==$rol):
+										foreach ($name as $row){
+											if($row['rol']==$rol){
+												
 												echo $row['name'];
-											endif;
-										endforeach;
-									
+											}
+										}
 								?>
 								</span>
 

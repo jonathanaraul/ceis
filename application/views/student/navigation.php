@@ -17,7 +17,7 @@
         <!------dashboard----->
 		<li class="<?php if($page_name == 'dashboard')echo 'dark-nav active';?>">
 			<span class="glow"></span>
-				<a href="<?php echo base_url();?>index.php?student/dashboard" rel="tooltip" data-placement="right" 
+				<a href="<?php echo base_url();?>index.php?student" rel="tooltip" data-placement="right" 
                 	data-original-title="<?php echo get_phrase('dashboard_help');?>">
 					<!--<i class="icon-desktop icon-1x"></i>-->
                     <img src="<?php echo base_url();?>template/images/icons/home.png" />

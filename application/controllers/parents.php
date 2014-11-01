@@ -5,6 +5,7 @@ class Parents extends CI_Controller
 {
 	public function __construct() {
         parent::__construct();
+        $this->load->library('bcrypt');
         $this->load->library(array('session'));
         $this->load->helper(array('url'));
         
@@ -261,8 +262,10 @@ class Parents extends CI_Controller
     /******MANAGE OWN PROFILE AND CHANGE PASSWORD***/
     function manage_profile($param1 = '', $param2 = '', $param3 = '')
     {
+        
         if ($this->session->userdata('rol') != 3)
             redirect(base_url() . 'index.php?login', 'refresh');
+        
         if ($param1 == 'update_profile_info') {
             $data['name'] = $this->input->post('name');
             $data['email'] = $this->input->post('email');
@@ -273,17 +276,27 @@ class Parents extends CI_Controller
             redirect(base_url() . 'index.php?parents/manage_profile/', 'refresh');
         }
         if ($param1 == 'change_password') {
+            
             $data['password'] = $this->input->post('password');
+
             $data['new_password'] = $this->input->post('new_password');
+			
+				$password = $this->bcrypt->hash_password($data['new_password']);
+            
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
-            $current_password = $this->db->get_where('parent', array(
-                'parent_id' => $this->session->userdata('parent_id')
-            ))->row()->password;
-            if ($current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
-                $this->db->where('parent_id', $this->session->userdata('parent_id'));
-                $this->db->update('parent', array(
-                    'password' => $data['new_password']
+            $current_password = $this->db->get_where('hs_users', array( 'user_id' => $this->session->userdata('user_id') ))->row()->password;
+            
+				$decode_pass= password_verify($data['password'] , $current_password);
+
+            if ($decode_pass == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
+
+                $this->db->where('user_id', $this->session->userdata('user_id'));
+
+                $this->db->update('hs_users', array(
+
+                    'password' => $password
+
                 ));
                 $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
             } else {
