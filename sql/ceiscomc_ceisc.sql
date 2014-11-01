@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2014 a las 18:11:55
+-- Tiempo de generación: 01-11-2014 a las 12:26:49
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -618,15 +618,18 @@ CREATE TABLE IF NOT EXISTS `hs_users` (
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `rol` int(11) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `hs_users`
 --
 
 INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, `sex`, `address`, `phone`, `email`, `password`, `rol`) VALUES
-(2, 'GRECIA', '', 'pico', 'muñoz', 'female', '', '', 'gre@gmail.com', 'h01mYqCgeXz0O/ySfoikvOqlV/Gya8pKp2O0wHKP0JYJZ/BsdpR/EPIi5/+kFJMUBG/NbeHNJFUNfBRjLa2eZQ==', 1),
-(3, 'carlos', '', 'oronoz', 'cabello', 'male', '', '', 'cloker19@gmail.com', 'Tv+l2FLiYHpeinoxqp/iWiaAwimJRw/45bq/ASMfzMXSU7V1XdJcvRoh0cUmibujsLUfTLm7HcPkxmvhey7Fmg==', 4);
+(2, 'GRECIA', '', 'pico', 'muñoz', 'female', '', '', 'gre@gmail.com', '$2a$08$yjOnlwKHnO49iKaiuho5YeiNCacy7gN74ntvahmdc7BGHpQHRLG/.', 1),
+(3, 'carlos', '', 'oronoz', 'cabello', 'male', '', '', 'cloker19@gmail.com', '$2a$08$kY.mtDZsY1rI/oqoZK2TVOkL8U1KJdZg150jDkLYA.yet4FeWEXJy', 4),
+(4, 'Maria', '', 'Subero', '', '', '', '', 'm@gmail.com', '$2a$08$hlS2.94rruWJ4Q985yXjbuESwEBnQqcWnNzC2jrTTmcbV4ISiBit.', 4),
+(11, 'bob', '', 'patiño', 'patiño', 'male', '', '', 'bob@gmail.com', '$2a$08$jua6UPoEaATw2oz.mX5Y/Od7mhtMPSZRAlowsU5DHQcCVjXORHezy', 2),
+(12, 'jonathan', '', 'araul', 'araul', 'male', '', '', 'araul@gmail.com', '$2a$08$MerCrR37M21nwWnpKstp0eD3a05JMlEGtv7XoGPgO5zjJpeC.d0zi', 3);
 
 -- --------------------------------------------------------
 
