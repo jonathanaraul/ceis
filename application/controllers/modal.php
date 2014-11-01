@@ -22,7 +22,7 @@ class Modal extends CI_Controller
 
     {
 
-        if ($param1 == 'student_profile') {
+        if ($param1 == 'Perfil_Estudiante') {
 
             $page_data['current_student_id'] = $param2;
 
@@ -34,15 +34,15 @@ class Modal extends CI_Controller
 
             $page_data['current_student_id'] = $param2;
 
-        } else if ($param1 == 'edit_student') {
+        } else if ($param1 == 'Editar_Estudiante') {
 
             $page_data['edit_data'] = $this->db->get_where('student', array('student_id' => $param2))->result_array();
 
-        } else if ($param1 == 'teacher_profile') {
+        } else if ($param1 == 'Perfil_Profesor') {
 
             $page_data['current_teacher_id'] = $param2;
 
-        } else if ($param1 == 'edit_teacher') {
+        } else if ($param1 == 'Editar_Profesor') {
 
             $page_data['edit_data'] = $this->db->get_where('teacher', array('teacher_id' => $param2))->result_array();
 
@@ -50,7 +50,7 @@ class Modal extends CI_Controller
 
             $page_data['empresas_id'] = $param2;
 
-        } else if ($param1 == 'edit_empresas') {
+        } else if ($param1 == 'Editar_Empresas') {
 
             $page_data['edit_data'] = $this->db->get_where('empresas', array('empresas_id' => $param2))->result_array();
 
@@ -66,23 +66,23 @@ class Modal extends CI_Controller
 
             $page_data['class_id'] = $param3;
 
-        } else if ($param1 == 'edit_materia') {
+        } else if ($param1 == 'Editar_Materia') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_materias', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_curso') {
+        } else if ($param1 == 'Editar_Curso') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_cursos', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_periodo') {
+        } else if ($param1 == 'Editar_Periodo') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_periodo', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_evaluacion') {
+        } else if ($param1 == 'Editar_Evaluacion') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_evaluaciones', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_inscripcion') {
+        } else if ($param1 == 'Editar_Inscripcion') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_inscripcion', array('id' => $param2))->result_array();
 
@@ -98,11 +98,11 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('class_routine', array('class_routine_id' => $param2))->result_array();
 
-        } else if ($param1 == 'ver_factura') {
+        } else if ($param1 == 'Ver_Factura') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_factura') {
+        } else if ($param1 == 'Editar_Factura') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
 
@@ -118,7 +118,7 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('dormitory', array('dormitory_id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_notice') {
+        } else if ($param1 == 'Editar_Noticia') {
 
             $page_data['edit_data'] = $this->db->get_where('noticeboard', array('notice_id' => $param2))->result_array();
 
@@ -139,6 +139,10 @@ class Modal extends CI_Controller
         }else if ($param1 == 'edit_subject') {
 
             $page_data['edit_data'] = $this->db->get_where('subject', array('subject_id' => $param2))->result_array();
+
+        }else if ($param1 == 'Editar_rss') {
+
+            $page_data['edit_data'] = $this->db->get_where('rss', array('id' => $param2))->result_array();
 
         }
 

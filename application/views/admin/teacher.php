@@ -64,12 +64,12 @@
                                     <td><?php echo $row['email']; ?></td>
                                     <td><?php echo $row['phone']; ?></td>
                                     <td align="center"><a data-toggle="modal" href="#modal-form"
-                                                          onclick="modal('teacher_profile',<?php echo $row['teacher_id']; ?>)"
+                                                          onclick="modal('Perfil_Profesor',<?php echo $row['teacher_id']; ?>)"
 
                                                           class="btn btn-default btn-small"> <i
                                                 class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a> <a
                                             data-toggle="modal" href="#modal-form"
-                                            onclick="modal('edit_teacher',<?php echo $row['teacher_id']; ?>)"
+                                            onclick="modal('Editar_Profesor',<?php echo $row['teacher_id']; ?>)"
                                             class="btn btn-gray btn-small"> <i
                                                 class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> </a> <a
                                             data-toggle="modal" href="#modal-delete"

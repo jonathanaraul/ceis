@@ -49,7 +49,7 @@
                             <td><?php echo date('d M,Y', $row['create_timestamp']); ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_notice',<?php echo $row['notice_id']; ?>)"
+                                   onclick="modal('Editar_Noticia',<?php echo $row['notice_id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>

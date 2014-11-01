@@ -78,12 +78,12 @@
                             </td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('ver_factura',<?= $row['id']; ?>)"
+                                   onclick="modal('Ver_Factura',<?= $row['id']; ?>)"
                                    class="btn btn-default btn-small">
                                     <i class="icon-credit-card"></i> <?= get_phrase('view_invoice'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_factura',<?= $row['id']; ?>)"
+                                   onclick="modal('Editar_Factura',<?= $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?= get_phrase('edit'); ?>
                                 </a>

@@ -24,7 +24,7 @@
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?admin/dashboard" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>" rel="tooltip" data-placement="right"
 
        data-original-title="<?php echo get_phrase('dashboard_help'); ?>">
 

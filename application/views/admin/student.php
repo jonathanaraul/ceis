@@ -75,13 +75,13 @@
                             <td align="center" class="span5">
                                
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('student_profile',<?php echo $row['student_id']; ?>)"
+                                   onclick="modal('Perfil_Estudiante',<?php echo $row['student_id']; ?>)"
                                    class="btn btn-default btn-small"> <i
                                         class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a>
 
                                 <a
                                     data-toggle="modal" href="#modal-form"
-                                    onclick="modal('edit_student',<?php echo $row['student_id']; ?>)"
+                                    onclick="modal('Editar_Estudiante',<?php echo $row['student_id']; ?>)"
                                     class="btn btn-gray btn-small"> <i
                                         class="icon-wrench"></i> <?php echo get_phrase('actualizar'); ?> </a>
                               

@@ -115,7 +115,7 @@
                 <td align="center">
 
                     <a data-toggle="modal" href="#modal-form"
-                       onclick="modal('edit_curso',<?php echo $row['id']; ?>)" class="btn btn-gray btn-small">
+                       onclick="modal('Editar_Curso',<?php echo $row['id']; ?>)" class="btn btn-gray btn-small">
 
                         <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
 

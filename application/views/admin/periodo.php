@@ -64,7 +64,7 @@
                             <td><?php echo $row['duracion']; ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_periodo',<?php echo $row['id']; ?>)"
+                                   onclick="modal('Editar_Periodo',<?php echo $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>

@@ -5,11 +5,11 @@
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('rss_list'); ?>
+                    <?php echo get_phrase('lista_de_rss'); ?>
                 </a></li>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
-                    <?php echo get_phrase('add_rss'); ?>
+                    <?php echo get_phrase('agregar_rss'); ?>
                 </a></li>
         </ul>
         <!------CONTROL TABS END------->
@@ -50,7 +50,7 @@
                             <td><?php echo $row['create_timestamp'] ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_rss',<?php echo $row['id']; ?>)"
+                                   onclick="modal('Editar_rss',<?php echo $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>

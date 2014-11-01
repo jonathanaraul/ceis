@@ -88,7 +88,7 @@
                             <td align="center">
 
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_empresas',<?php echo $row['empresas_id']; ?>)"
+                                   onclick="modal('Editar_Empresas',<?php echo $row['empresas_id']; ?>)"
                                    class="btn btn-gray btn-small">
 
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>

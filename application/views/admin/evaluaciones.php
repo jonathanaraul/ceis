@@ -53,7 +53,7 @@
                             <td><?php echo $row['fecha'] ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('edit_evaluacion',<?php echo $row['id']; ?>)"
+                                   onclick="modal('Editar_Evaluacion',<?php echo $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>

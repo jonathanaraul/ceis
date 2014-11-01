@@ -42,7 +42,7 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?admin/marks">
+                    <a href="<?php echo base_url(); ?>index.php?admin/notas">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
 
@@ -66,7 +66,7 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?admin/invoice">
+                    <a href="<?php echo base_url(); ?>index.php?admin/facturacion">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/payment.png"/>
 
@@ -78,7 +78,7 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?admin/book">
+                    <a href="<?php echo base_url(); ?>index.php?admin/documentos">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
 
