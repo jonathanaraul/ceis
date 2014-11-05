@@ -187,6 +187,7 @@
 <!------Evaluaciones----->
 <?php 
 	if($this->session->userdata('rol') == '1' || $this->session->userdata('rol') == '2')
+    {
 ?>
 
 <li class="<?php if ($page_name == 'evaluaciones') echo 'dark-nav active'; ?>">
