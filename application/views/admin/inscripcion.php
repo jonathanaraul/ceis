@@ -46,7 +46,7 @@
                     <?php $count = 1;
                     foreach ($hs_inscripcion as $row): ?>
                         <tr>
-                            <td><?php echo $row['id'] ?></td>
+                            <td><?php echo $count++; ?></td>
                             <td>
 
                                 <?php

@@ -4,7 +4,7 @@
 
 <?php foreach ($edit_data as $row): ?>
 
-    <?php echo form_open('admin/users/' . $rol . '/do_update/' . $row['user_id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+    <?php echo form_open('admin/users/' . $row['rol'] . '/do_update/' . $row['user_id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
     <div class="padded">
 

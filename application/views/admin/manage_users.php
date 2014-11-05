@@ -126,7 +126,7 @@
 										<i class="icon-user"></i> <?php echo get_phrase('profile'); ?> 
 									</a> 
 									<a data-toggle="modal" href="#modal-form"
-										onclick="modal('edit_user',<?php echo $row['user_id']; ?>,<?php echo $rol; ?>)"
+										onclick="modal('edit_user',<?php echo $row['user_id']; ?>)"
 										class="btn btn-gray btn-small"> <i
                                         class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
                                     </a>

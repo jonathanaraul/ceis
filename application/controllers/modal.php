@@ -126,8 +126,6 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('hs_users', array('user_id' => $param2))->result_array();
 
-            $page_data['rol'] = $param3;
-
         }else if ($param1 == 'user_profile') {
 
             $page_data['current_user_id'] = $param2;

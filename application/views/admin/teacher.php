@@ -31,12 +31,6 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div>ID</div>
-                                </th>
-                                <th width="80">
-                                    <div><?php echo get_phrase('photo'); ?></div>
-                                </th>
-                                <th>
                                     <div><?php echo get_phrase('teacher_name'); ?></div>
                                 </th>
                                 <th>
@@ -54,12 +48,6 @@
                             <?php $count = 1;
                             foreach ($teachers as $row): ?>
                                 <tr>
-                                    <td><?php echo $count++; ?></td>
-                                    <td>
-                                        <div class="avatar"><img
-                                                src="<?php echo $this->crud_model->get_image_url('teacher', $row['teacher_id']); ?>"
-                                                class="avatar-medium"/></div>
-                                    </td>
                                     <td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
                                     <td><?php echo $row['email']; ?></td>
                                     <td><?php echo $row['phone']; ?></td>

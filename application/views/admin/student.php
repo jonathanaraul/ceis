@@ -31,16 +31,10 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive ">
                     <thead>
                     <tr>
-                        <th width="50">
-                            <div><?php echo get_phrase('id'); ?></div>
-                        </th>
-                        <th width="80">
-                            <div><?php echo get_phrase('photo'); ?></div>
-                        </th>
                         <th>
                             <div><?php echo get_phrase('cedula'); ?></div>
                         </th>
-                        <th>
+                        <th width="20%">
                             <div><?php echo get_phrase('student_name'); ?></div>
                         </th>
                         <th class="span2">
@@ -52,7 +46,7 @@
                         <th>
                             <div><?php echo get_phrase('tlf_contacto'); ?></div>
                         </th>
-                        <th width="20%">
+                        <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
                     </tr>
@@ -61,12 +55,6 @@
                     <?php $count = 1;
                     foreach ($students as $row): ?>
                         <tr>
-                            <td><?php echo $row['student_id']; ?></td>
-                            <td>
-                                <div class="avatar"><img
-                                        src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>"
-                                        class="avatar-medium"/></div>
-                            </td>
                             <td><?php echo $row['ndocumento']; ?></td>
                             <td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
                             <td><?php echo $row['address']; ?></td>
