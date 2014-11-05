@@ -102,9 +102,9 @@
 
 <div class="row-fluid">
 
-    <div class="span6">
+    <div class="span12">
 
-        <div class="box">
+        <div class="box" >
 
             <div class="box-header">
 
@@ -118,7 +118,7 @@
 
             </div>
 
-            <div class="box-content">
+            <div class="box-content" style="max-height: 500px; overflow-y: auto">
 
                 <div id="calendar2">
 
@@ -132,18 +132,19 @@
 
     <!---CALENDAR ENDS-->
 
-
+</div>
+<div class="row-fluid">
     <!---TO DO LIST STARTS-->
 
-    <div class="span6">
+    <div class="span12">
 
         <div class="box">
 
             <div class="box-header">
 
-						<span class="title">
+                        <span class="title">
 
-                        	<i class="icon-reorder"></i>
+                            <i class="icon-reorder"></i>
 
                             <?php echo get_phrase('noticeboard'); ?>
 
