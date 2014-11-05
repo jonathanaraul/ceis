@@ -21,28 +21,17 @@ class Login extends CI_Controller
 	public function index()
 	{	
 		
-		switch ($this->session->userdata('rol')) {
-			case '':
+		if ($this->session->userdata('rol')=='') {
+			
 				$data['token'] = $this->token();
 				$this->load->view('login', $data);
-				break;
-			case '1':
-				redirect(base_url().'index.php?admin');
-				break;
-			case '2':
-				redirect(base_url() .'index.php?student');
-				break;	
-			case '3':
-				redirect(base_url() .'index.php?parents');
-				break;
-			case '4':
-				redirect(base_url().'index.php?teacher');
-				break;
-			default:		
+		}elseif ($this->session->userdata('rol')>'0') {
+			
+				redirect(base_url().'index.php?site');
 				$page_data['page_title'] = get_phrase('login');
-				$this->load->view('login', $page_data);
-				break;		
+				$this->load->view('login', $page_data);	
 		}
+		
 	}
 
 	public function new_user()

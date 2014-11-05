@@ -71,32 +71,13 @@
 
                     	<li class="divider"></li>
 
-                        
+                       
 
-                        <?php
-							$rol= $this->session->userdata('rol');
-							$role = $this->db->get('hs_role')->result_array();
-								foreach ($role as $row):
-									if($row['rol_id']==$rol):
-										
-							
-							
-							if ($rol=='3' )
-
-								$account_type	=	'parent';
-
-							else
-								$account_type	=	$row['back_name'];		
-								endif;
-						endforeach;			
-										
-						?>
-
-						<li><a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/manage_profile">
+						<li><a href="<?php echo base_url();?>index.php?site/manage_profile">
 
                         		<i class="icon-user"></i><span><?php echo get_phrase('profile');?></span></a></li>
 
-                        <li><a href="<?php echo base_url();?>index.php?<?php echo $account_type;?>/manage_profile">
+                        <li><a href="<?php echo base_url();?>index.php?site/manage_profile">
 
                         		<i class="icon-lock"></i><span><?php echo get_phrase('change_password');?></span></a></li>
 

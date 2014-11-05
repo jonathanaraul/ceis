@@ -14,22 +14,13 @@
     
 <body>
 	<div id="main_body">
-		<?php 
-			$rol= $this->session->userdata('rol');
-			$role = $this->db->get('hs_role')->result_array();
-				foreach ($role as $row):
-					if($row['rol_id']==$rol):
-						$account_type	=	$row['back_name'];
-					endif;
-				endforeach;
-		?>
 		
 		<?php include 'header.php';?>
-        <?php include $account_type.'/navigation.php';?>
+        <?php include 'site/navigation.php';?>
         <div class="main-content">
             <?php include 'page_info.php';?>
             <div class="container-fluid padded">
-                <?php include $account_type.'/'.$page_name.'.php';?>
+                <?php include 'site/'.$page_name.'.php';?>
             </div>       
         <?php include 'footer.php';?>
         </div>
