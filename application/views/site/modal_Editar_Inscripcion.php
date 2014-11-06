@@ -43,8 +43,8 @@
 
                             <div class="controls">
                                 <select name="status" class="uniform" style="width:100%;">
-                                    <option value="0">Preinscripcion</option>
-                                    <option value="1">Inscripcion</option>
+                                    <option value="0">Preinscrito</option>
+                                    <option value="1">Inscrito</option>
                                 </select>
                             </div>
                         </div>
@@ -57,3 +57,8 @@
     </div>
 </div>
 
+<script type="text/javascript">
+$('select[name=estudiante]').val('<?php echo $row['estudiante']; ?>');
+$('select[name=curso]').val('<?php echo $row['curso']; ?>');
+$('select[name=status]').val('<?php echo $row['status']; ?>');
+</script>

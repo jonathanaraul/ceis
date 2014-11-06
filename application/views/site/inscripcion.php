@@ -50,9 +50,9 @@
                             <td>
 
                                 <?php
-                                $this->db->select('snombre, papellido,ndocumento');
+                                $this->db->select('name, papellido,ndocumento');
                                 $query = $this->db->get_where('student', array('student_id' => $row['estudiante']))->result_array();
-                                echo $query[0]['snombre'] . ' ' . $query[0]['papellido'] . ' ' . $query[0]['ndocumento'];
+                                echo $query[0]['name'] . ' ' . $query[0]['papellido'] . ' - ' . $query[0]['ndocumento'];
                                 ?>
                             </td>
                             <td>
