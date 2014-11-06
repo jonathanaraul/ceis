@@ -40,6 +40,9 @@
 
 
 <!------student----->
+<?php 
+	if($this->session->userdata('rol') == 1){
+ ?>
 
 <li class="<?php if ($page_name == 'student') echo 'dark-nav active'; ?>">
 
@@ -60,12 +63,7 @@
 </li>
 
 <!-- inscripciones -->
-<?php 
 
-	if($this->session->userdata('rol') == '1')
-	{
-
- ?>
 	
 <li class="<?php if ($page_name == 'inscripcion') echo 'dark-nav active'; ?>">
 
@@ -109,7 +107,7 @@
 <!------Periodo----->
 <?php 
 
-	if($this->session->userdata('rol') == '1')
+	if($this->session->userdata('rol') == 1)
 	{
 
  ?>
@@ -131,12 +129,10 @@
     </a>
 
 </li>
-<?php } ?>
-	
 <!------subject----->
 <?php 
-	if($this->session->userdata('rol') == '1' || $this->session->userdata('rol') == '2')
-	{
+	}
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
 ?>
 
 <li class="<?php if ($page_name == 'materias') echo 'dark-nav active'; ?>">
@@ -156,13 +152,12 @@
     </a>
 
 </li>
-<?php } ?>
 	
 
 <!------classes----->
 <?php 
-	if($this->session->userdata('rol') == '1')
-	{
+	} 
+	if($this->session->userdata('rol') == 1){
 ?>
 
 <li class="<?php if ($page_name == 'class') echo 'dark-nav active'; ?>">
@@ -186,8 +181,7 @@
 
 <!------Evaluaciones----->
 <?php 
-	if($this->session->userdata('rol') == '1' || $this->session->userdata('rol') == '2')
-    {
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 3){
 ?>
 
 <li class="<?php if ($page_name == 'evaluaciones') echo 'dark-nav active'; ?>">
@@ -207,7 +201,8 @@
     </a>
 
 </li>
-<?php } ?>
+<?php } 
+?>
 
 <!------notas----->
 
@@ -250,10 +245,6 @@
 </li>
 
 <!--class routine-->
-<?php 
-	if($this->session->userdata('rol') =='1')
-	{
-?>
 
 <li class="<?php if ($page_name == 'horarios_materias') echo 'dark-nav active'; ?>">
 
@@ -275,6 +266,9 @@
 
 
 <!------fcturacion----->
+<?php 
+	if($this->session->userdata('rol') == 1){
+?>
 
 <li class="<?php if ($page_name == 'facturacion') echo 'dark-nav active'; ?>">
 
@@ -314,35 +308,8 @@
     </a>
 
 </li>
-<?php } ?>
-<!------transport----->
-
-		<li class="<?php if($page_name == 'transport')echo 'dark-nav active';?>">
-			<span class="glow"></span>
-				<a href="<?php echo base_url();?>index.php?student/transport" rel="tooltip" data-placement="right" 
-                	data-original-title="<?php echo get_phrase('transport_help');?>">
-					<!--<i class="icon-truck icon-1x"></i>-->
-                    <img src="<?php echo base_url();?>template/images/icons/transport.png" />
-					<span><?php echo get_phrase('transport');?></span>
-				</a>
-		</li>
-        
-<!------dormitory----->
-<li class="<?php if($page_name == 'dormitory')echo 'dark-nav active';?>">
-	<span class="glow"></span>
-		<a href="<?php echo base_url();?>index.php?student/dormitory" rel="tooltip" data-placement="right" 
-			data-original-title="<?php echo get_phrase('dormitory_help');?>">
-			<!--<i class="icon-hospital icon-1x"></i>-->
-			<img src="<?php echo base_url();?>template/images/icons/dormitory.png" />
-			<span><?php echo get_phrase('dormitory');?></span>
-		</a>
-</li>
 
 <!------Empresas----->
-<?php
-	if($this->session->userdata('rol') =='1')
-	{
-?>
 
 <li class="<?php if ($page_name == 'empresas') echo 'dark-nav active'; ?>">
 
@@ -385,7 +352,7 @@
 
 <!-- rss -->
 <?php 
-	if($this->session->userdata('rol') =='1')
+	if($this->session->userdata('rol') == 1)
 	{
 ?>
 

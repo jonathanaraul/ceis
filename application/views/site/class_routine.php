@@ -73,7 +73,7 @@
                                                                        onclick="modal('edit_class_routine',<?php echo $row2['class_routine_id']; ?>)"><i
                                                                             class="icon-cog"></i> edit</a></li>
                                                                 <li><a data-toggle="modal" href="#modal-delete"
-                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/class_routine/delete/<?php echo $row2['class_routine_id']; ?>')">
+                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/class_routine/delete/<?php echo $row2['class_routine_id']; ?>')">
                                                                         <i class="icon-trash"></i> delete</a></li>
                                                             </ul>
                                                         </div>
@@ -100,7 +100,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/class_routine/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/class_routine/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>

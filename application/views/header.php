@@ -42,30 +42,18 @@
 
                                 <img src="<?php echo base_url();?>template/images/icons_big/<?php 
                                 
-									$rol= $this->session->userdata('rol');
-									
-									$role = $this->db->get('hs_role')->result_array();
-										foreach ($role as $row):
-											if($row['rol_id']==$rol):
-												echo $row['back_name'];
-											endif;
-										endforeach;
-										?>.png" class="avatar-medium"/>
+									$role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
+			
+										echo $role[0]['back_name']?>.png" class="avatar-medium"/>
 
                             </div>
 
                             <span>
 								<?php 
-									$rol= $this->session->userdata('rol');
-									$name = $this->db->get('hs_users')->result_array();
-										foreach ($name as $row){
-											if($row['rol']==$rol){
-												
-												echo $row['name'];
-											}
-										}
+									$role = $this->db->get_where('hs_users', array('user_id' => $this->session->userdata('user_id')))->result_array();
+									echo $role[0]['name'].' '.$role[0]['papellido'];		
 								?>
-								</span>
+							</span>
 
                         </li>
 
@@ -100,14 +88,9 @@
 					<li class="dropdown">
 
 						<a href="#" ><i class="icon-user"></i><?php
-						
-							$rol= $this->session->userdata('rol');
-							$role=$this->db->get('hs_role')->result_array();
-								foreach ($role as $row):
-									if($row['rol_id']==$rol):
-										echo get_phrase('panel').' '.get_phrase($row['rol']);
-									endif;
-								endforeach;
+							$role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
+								
+								echo get_phrase('panel').' '.get_phrase($role[0]['rol']);
 							?> 
 						</a>
 

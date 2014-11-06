@@ -35,22 +35,22 @@
                         <th>
                             <div><?php echo get_phrase('descripción'); ?></div>
                         </th>
-                        <th width="7%">
+                        <th>
                             <div><?php echo get_phrase('Cantidad'); ?></div>
                         </th>
-                        <th width="7%">
+                        <th>
                             <div><?php echo get_phrase('monto'); ?></div>
                         </th>
-                        <th width="10%">
+                       <th>
                             <div><?php echo get_phrase('metodo_de_pago'); ?></div>
                         </th>
-                        <th width="10%">
+                        <th>
                             <div><?php echo get_phrase('estado'); ?></div>
                         </th>
-                        <th width="9%">
+                        <th>
                             <div><?php echo get_phrase('fecha'); ?></div>
                         </th>
-                        <th width="30%">
+                        <th width="22%">
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
                     </tr>
@@ -80,7 +80,7 @@
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Ver_Factura',<?= $row['id']; ?>)"
                                    class="btn btn-default btn-small">
-                                    <i class="icon-credit-card"></i> <?= get_phrase('view_invoice'); ?>
+                                    <i class="icon-credit-card"></i> <?= get_phrase('ver'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Factura',<?= $row['id']; ?>)"
@@ -88,7 +88,7 @@
                                     <i class="icon-wrench"></i> <?= get_phrase('edit'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?= base_url(); ?>index.php?admin/facturacion/delete/<?php echo $row['id']; ?>')"
+                                   onclick="modal_delete('<?= base_url(); ?>index.php?site/facturacion/delete/<?php echo $row['id']; ?>')"
                                    class="btn btn-red btn-small">
                                     <i class="icon-trash"></i> <?= get_phrase('delete'); ?>
                                 </a>
@@ -104,7 +104,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?= form_open('admin/facturacion/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?= form_open('site/facturacion/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('estudiante'); ?></label>

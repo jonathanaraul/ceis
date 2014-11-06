@@ -22,9 +22,12 @@ class Site extends CI_Controller
         {
             redirect(base_url() . 'index.php?login', 'refresh');
         }
+        
+        $role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
+				
         $page_data['page_name'] = 'dashboard';
 
-        $page_data['page_title'] = get_phrase('dashboard');
+        $page_data['page_title'] = 'Escritorio'.' '.$role[0]['rol'];
 
         $this->load->view('index', $page_data);
 
@@ -235,7 +238,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1)
+        if ($this->session->userdata('rol') == FALSE)
 
             redirect(base_url(), 'refresh');
 
@@ -341,7 +344,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1 || $this->session->userdata('rol') != '2')
+        if ($this->session->userdata('rol') == 3)
 
             redirect(base_url(), 'refresh');
 
@@ -474,14 +477,76 @@ class Site extends CI_Controller
 
     }
 
+	/****MANAGE CURSOS*****/
 
-    /****MANAGE EXAM MARKS*****/
+    function cursos($param1 = '', $param2 = '')
+
+    {
+
+        if ($this->session->userdata('rol') != 1)
+
+            redirect(base_url(), 'refresh');
+
+        if ($param1 == 'create') {
+
+            $data['nombre'] = $this->input->post('nombre');
+            $data['seccion'] = $this->input->post('seccion');
+            $data['periodo'] = $this->input->post('periodo');
+            
+            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
+            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
+            $data['cupo'] = $this->input->post('cupo');
+
+            $this->db->insert('hs_cursos', $data);
+
+            redirect(base_url() . 'index.php?site/cursos/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['nombre'] = $this->input->post('nombre');
+            $data['seccion'] = $this->input->post('seccion');
+            $data['periodo'] = $this->input->post('periodo');
+            $data['cupo'] = $this->input->post('cupo');
+
+            $this->db->where('id', $param2);
+            $this->db->update('hs_cursos', $data);
+
+            redirect(base_url() . 'index.php?site/cursos/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_cursos', array(
+                'id' => $param2
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+            $this->db->delete('hs_cursos');
+
+            redirect(base_url() . 'index.php?site/cursos/', 'refresh');
+        }
+
+        $page_data['cursos'] = $this->db->get('hs_cursos')->result_array();
+        $page_data['page_name'] = 'cursos';
+        $page_data['page_title'] = get_phrase('manage_class');
+
+        $this->load->view('index', $page_data);
+
+    }
+
+    
+    /****MANAGE EXAM notas*****/
 
     function notas($exam_id = '', $class_id = '', $subject_id = '')
 
     {
 
-        if ($this->session->userdata('rol') != 1 || $this->session->userdata('rol') != '3')
+        if ($this->session->userdata('rol') == FALSE)
 
             redirect(base_url(), 'refresh');
 
@@ -551,7 +616,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1 || $this->session->userdata('rol') != '3')
+       if ($this->session->userdata('rol') == FALSE)
 
             redirect(base_url(), 'refresh');
 
@@ -702,7 +767,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1)
+        if ($this->session->userdata('rol') == FALSE)
 
             redirect(base_url(), 'refresh');
 
@@ -890,7 +955,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 2 || $this->session->userdata('rol') != '3')
+        if ($this->session->userdata('rol') != 2 || $this->session->userdata('rol') != 3)
 
             redirect('login', 'refresh');
 
@@ -1035,7 +1100,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') == 1)
+        if ($this->session->userdata('rol') == FALSE)
 
             redirect(base_url(), 'refresh');
 
@@ -1246,7 +1311,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1 || $this->session->userdata('rol') != '2')
+        if ($this->session->userdata('rol') == 2)
 
             redirect(base_url(), 'refresh');
 
@@ -1883,5 +1948,6 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
+ 
 }
 

@@ -2,7 +2,7 @@
 
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('admin/periodo/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/periodo/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
             <div class="padded">
 

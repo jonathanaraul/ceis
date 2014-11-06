@@ -4,7 +4,7 @@
 
         <?php foreach ($edit_data as $row): ?>
 
-            <?php echo form_open('admin/manage_role/do_update/'. $row['rol_id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/manage_role/do_update/'. $row['rol_id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
             <div class="padded">
 

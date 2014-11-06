@@ -96,7 +96,7 @@
                                 </a>
 
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/empresas/delete/<?php echo $row['empresas_id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/empresas/delete/<?php echo $row['empresas_id']; ?>')"
                                    class="btn btn-red btn-small">
 
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
@@ -124,7 +124,7 @@
 
                 <div class="box-content">
 
-                    <?php echo form_open('admin/empresas/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/empresas/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
                     <div class="padded">
 

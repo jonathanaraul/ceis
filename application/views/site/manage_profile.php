@@ -20,7 +20,7 @@
                     <?php
                     foreach ($edit_data as $row):
                         ?>
-                        <?php echo form_open('admin/manage_profile/update_profile_info', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                        <?php echo form_open('site/manage_profile/update_profile_info', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('name'); ?></label>
 
@@ -75,7 +75,7 @@
                     <?php
                     foreach ($edit_data as $row):
                         ?>
-                        <?php echo form_open('admin/manage_profile/change_password', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                        <?php echo form_open('site/manage_profile/change_password', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('password'); ?></label>
 

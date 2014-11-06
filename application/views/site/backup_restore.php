@@ -44,11 +44,11 @@
                             <tr>
                                 <td><?php echo get_phrase($type); ?></td>
                                 <td align="center">
-                                    <a href="<?php echo base_url(); ?>index.php?admin/backup_restore/create/<?php echo $type; ?>"
+                                    <a href="<?php echo base_url(); ?>index.php?site/backup_restore/create/<?php echo $type; ?>"
                                        class="btn btn-gray" rel="tooltip" data-original-title="download backup"><i
                                             class="icon-download-alt"></i>
                                         Download Backup</a>
-                                    <a href="<?php echo base_url(); ?>index.php?admin/backup_restore/delete/<?php echo $type; ?>"
+                                    <a href="<?php echo base_url(); ?>index.php?site/backup_restore/delete/<?php echo $type; ?>"
                                        class="btn btn-red" rel="tooltip" data-original-title="delete data"
                                        onclick="return confirm('delete confirm?');"><i class="icon-trash"></i>
                                         Delete / Truncate</a>
@@ -65,7 +65,7 @@
 
             <!----RESTORE--->
             <div class="tab-pane box  span6" id="restore">
-                <?php echo form_open('admin/backup_restore/restore', array('enctype' => 'multipart/form-data')); ?>
+                <?php echo form_open('site/backup_restore/restore', array('enctype' => 'multipart/form-data')); ?>
                 <input name="userfile" type="file"/>
                 <br/><br/>
                 <center><input type="submit" class="btn btn-blue"

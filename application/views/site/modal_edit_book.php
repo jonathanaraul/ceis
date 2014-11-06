@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('admin/book/do_update/' . $row['book_id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/book/do_update/' . $row['book_id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="control-group">
                     <label class="control-label"><?php echo get_phrase('name'); ?></label>

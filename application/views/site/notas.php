@@ -17,7 +17,7 @@
             class="tab-pane  <?php if (!isset($edit_data) && !isset($personal_profile) && !isset($academic_result)) echo 'active'; ?>"
             id="list">
             <center>
-                <?php echo form_open('admin/marks'); ?>
+                <?php echo form_open('site/marks'); ?>
                 <table border="0" cellspacing="0" cellpadding="0" class="table table-normal box">
                     <tr>
                         <td><?= 'Seleccionar curso'; ?></td>
@@ -109,7 +109,7 @@
                         $marks = $query->result_array();
                         foreach ($marks as $row2):
                             ?>
-                            <?php echo form_open('admin/marks'); ?>
+                            <?php echo form_open('site/marks'); ?>
                             <tr>
                                 <td>
                                     <?php echo $row['name']; ?>

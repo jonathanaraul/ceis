@@ -6,11 +6,19 @@
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?= 'Lista de horarios de materias'; ?>
-                </a></li>
+                </a>
+            </li>
+            <?php 
+				if($this->session->userdata('rol') == 1){
+			 ?>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
                     <?= 'Agregar horario de materia'; ?>
-                </a></li>
+                </a>
+            </li>
+            <?php 
+			}
+			?>
         </ul>
         <!--CONTROL TABS END-->
 
@@ -73,7 +81,7 @@
                                                                        onclick="modal('edit_class_routine',<?php echo $row2['id']; ?>)"><i
                                                                             class="icon-cog"></i> edit</a></li>
                                                                 <li><a data-toggle="modal" href="#modal-delete"
-                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/class_routine/delete/<?php echo $row2['id']; ?>')">
+                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/class_routine/delete/<?php echo $row2['id']; ?>')">
                                                                         <i class="icon-trash"></i> delete</a></li>
                                                             </ul>
                                                         </div>
@@ -100,7 +108,7 @@
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/horarios_materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/horarios_materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>

@@ -6,8 +6,13 @@
     <ul class="nav nav-tabs nav-tabs-left">
         <li class="active"><a href="#list" data-toggle="tab"><i
                     class="icon-align-justify"></i> <?php echo get_phrase('teacher_list'); ?> </a></li>
-        <li><a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('add_teacher'); ?> </a>
+         <?php 
+			if($this->session->userdata('rol') == 1){
+		 ?>
+        <li>
+			<a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('add_teacher'); ?> </a>
         </li>
+        <?php } ?>
     </ul>
 
     <!------CONTROL TABS END------->
@@ -51,20 +56,20 @@
                                     <td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
                                     <td><?php echo $row['email']; ?></td>
                                     <td><?php echo $row['phone']; ?></td>
-                                    <td align="center"><a data-toggle="modal" href="#modal-form"
-                                                          onclick="modal('Perfil_Profesor',<?php echo $row['teacher_id']; ?>)"
-
-                                                          class="btn btn-default btn-small"> <i
-                                                class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a> <a
-                                            data-toggle="modal" href="#modal-form"
-                                            onclick="modal('Editar_Profesor',<?php echo $row['teacher_id']; ?>)"
-                                            class="btn btn-gray btn-small"> <i
-                                                class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> </a> <a
-                                            data-toggle="modal" href="#modal-delete"
-                                            onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/teacher/delete/<?php echo $row['teacher_id']; ?>')"
-
-                                            class="btn btn-red btn-small"> <i
-                                                class="icon-trash"></i> <?php echo get_phrase('delete'); ?> </a>
+                                    <td align="center">
+										<a data-toggle="modal" href="#modal-form" onclick="modal('Perfil_Profesor',<?php echo $row['teacher_id']; ?>)"
+											class="btn btn-default btn-small"> <i class="icon-user"></i> <?php echo get_phrase('profile'); ?> 
+										</a> 
+										<?php 
+											if($this->session->userdata('rol') == 1){
+										 ?>
+											<a data-toggle="modal" href="#modal-form" onclick="modal('Editar_Profesor',<?php echo $row['teacher_id']; ?>)"
+												class="btn btn-gray btn-small"> <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
+                                            </a> 
+                                            <a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?site/teacher/delete/<?php echo $row['teacher_id']; ?>')"class="btn btn-red btn-small"> 
+                                            <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
+                                            </a>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -81,8 +86,8 @@
 
         <div class="tab-pane box" id="add" style="padding: 5px">
             <div
-                class="box-content"> <?php echo form_open('admin/teacher/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
-                <form method="post" action="<?php echo base_url(); ?>index.php?admin/teacher/create/"
+                class="box-content"> <?php echo form_open('site/teacher/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+                <form method="post" action="<?php echo base_url(); ?>index.php?site/teacher/create/"
                       class="form-horizontal validatable" enctype="multipart/form-data">
                     <div class="padded">
                         <div class="control-group">

@@ -20,9 +20,9 @@
                     <?php
                     foreach ($settings as $row):
                         ?>
-                        <?php echo form_open('admin/system_settings/' . $row['type'] . '/do_update/', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                        <?php echo form_open('site/system_settings/' . $row['type'] . '/do_update/', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                         <form method="post"
-                              action="<?php echo base_url(); ?>index.php?admin/system_settings/<?php echo $row['type']; ?>/do_update/"
+                              action="<?php echo base_url(); ?>index.php?site/system_settings/<?php echo $row['type']; ?>/do_update/"
                               class="form-horizontal validatable">
 
                             <div class="control-group">

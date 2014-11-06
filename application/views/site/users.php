@@ -60,7 +60,7 @@
 													class="btn btn-gray btn-small"> 
 													<i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
 												</a> 
-												<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/users/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> 
+												<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?site/users/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> 
 													<i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 												</a>
 											</td>

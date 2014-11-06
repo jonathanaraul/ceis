@@ -10,7 +10,7 @@
         </li>
     </ul>
     
-	<a class="btn btn-black" style="float:right;height:27px" href="index.php?admin/manage_role">
+	<a class="btn btn-black" style="float:right;height:27px" href="index.php?site/manage_role">
 		<i class="icon-info-sign"></i>
 			Manejar Roles
 	</a>
@@ -24,7 +24,7 @@
     <center>
         <br>
         
-        <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?admin/users/'+this.value">
+        <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?site/users/'+this.value">
             <option value=""><?php echo get_phrase('account_type'); ?></option>
             <?php
 					$role = $this->db->get('hs_role')->result_array();
@@ -131,7 +131,7 @@
                                         class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
                                     </a>
 									<a data-toggle="modal" href="#modal-delete" 
-										onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/users/<?php echo $rol; ?>/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
+										onclick="modal_delete('<?php echo base_url(); ?>index.php?site/users/<?php echo $rol; ?>/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 									</a>
 									
 								</td>
@@ -151,9 +151,9 @@
 
 <div class="tab-pane box" id="add" style="padding: 5px">
 	
-	<div class="box-content"> <?php echo form_open('admin/users/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+	<div class="box-content"> <?php echo form_open('site/users/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 					
-		<form method="post" action="<?php echo base_url(); ?>index.php?admin/users/create/" 
+		<form method="post" action="<?php echo base_url(); ?>index.php?site/users/create/" 
 							class="form-horizontal validatable" enctype="multipart/form-data">
 			<div class="padded">
 				<div class="control-group">
@@ -286,7 +286,7 @@
                             class="icon-info-sign"></i><?php echo get_phrase('manejar_usuarios'); ?></span></div>
                 <div class="box-content padded"><br/>
                     <select name="rol"
-                            onchange="window.location='<?php echo base_url(); ?>index.php?admin/users/'+this.value">
+                            onchange="window.location='<?php echo base_url(); ?>index.php?site/users/'+this.value">
                         <option value=""><?php echo get_phrase('account_type'); ?></option>
                         <?php
 
@@ -307,7 +307,7 @@
                     </select>
                     <hr/>
                     
-					<button onclick="window.location='<?php echo base_url(); ?>index.php?admin/manage_role'">
+					<button onclick="window.location='<?php echo base_url(); ?>index.php?site/manage_role'">
 						<div class="box-header">
 							<span class="title"> <i class="icon-info-sign"></i>
 								Manejar Roles de usuarios

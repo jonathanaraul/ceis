@@ -19,7 +19,7 @@
                     <center>
                         <br/>
                         <select name="class_id"
-                                onchange="window.location='<?php echo base_url(); ?>index.php?admin/parent/'+this.value">
+                                onchange="window.location='<?php echo base_url(); ?>index.php?site/parent/'+this.value">
                             <option value=""><?php echo get_phrase('select_a_class'); ?></option>
                             <?php
                             $classes = $this->db->get('class')->result_array();
@@ -146,7 +146,7 @@
                                                         <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                                     </a>
                                                     <a data-toggle="modal" href="#modal-delete"
-                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/parent/delete/<?php echo $parent_info->parent_id; ?>/<?php echo $class_id; ?>')"
+                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/parent/delete/<?php echo $parent_info->parent_id; ?>/<?php echo $class_id; ?>')"
                                                        class="btn btn-red btn-small">
                                                         <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                                     </a>
@@ -179,7 +179,7 @@
                 <div class="box-content padded">
                     <br/>
                     <select name="class_id"
-                            onchange="window.location='<?php echo base_url(); ?>index.php?admin/parent/'+this.value">
+                            onchange="window.location='<?php echo base_url(); ?>index.php?site/parent/'+this.value">
                         <option value=""><?php echo get_phrase('select_a_class'); ?></option>
                         <?php
                         $classes = $this->db->get('class')->result_array();

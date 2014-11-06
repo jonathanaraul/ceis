@@ -114,7 +114,7 @@
                     </a>
 
                     <a data-toggle="modal" href="#modal-delete"
-                       onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/classes/delete/<?php echo $row['class_id']; ?>')"
+                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/classes/delete/<?php echo $row['class_id']; ?>')"
                        class="btn btn-red btn-small">
 
                         <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
@@ -142,7 +142,7 @@
 
     <div class="box-content">
 
-        <?php echo form_open('admin/classes/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+        <?php echo form_open('site/classes/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
         <div class="padded">
 

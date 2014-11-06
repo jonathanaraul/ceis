@@ -4,7 +4,7 @@
 
         <?php foreach ($edit_data as $row): ?>
 
-            <?php echo form_open('admin/empresas/do_update/' . $row['empresas_id'], array('empresa' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/empresas/do_update/' . $row['empresas_id'], array('empresa' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
             <div class="padded">
 

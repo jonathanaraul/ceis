@@ -7,7 +7,7 @@
             ?>
 
 
-            <?php echo form_open('admin/parent/do_update/' . $row['parent_id'] . '/' . $class_id, array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/parent/do_update/' . $row['parent_id'] . '/' . $class_id, array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="control-group">
                     <label class="control-label"><?php echo get_phrase('parent_of'); ?></label>

@@ -6,11 +6,17 @@
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('noticeboard_list'); ?>
-                </a></li>
+                </a>
+            </li>
+            <?php 
+				if($this->session->userdata('rol') == 1){
+			 ?>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
                     <?php echo get_phrase('add_noticeboard'); ?>
-                </a></li>
+                </a>
+            </li>
+            <?php } ?>
         </ul>
         <!------CONTROL TABS END------->
 
@@ -22,7 +28,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
                     <tr>
-                        <th>
+                        <th width="5%">
                             <div>#</div>
                         </th>
                         <th>
@@ -31,12 +37,16 @@
                         <th>
                             <div><?php echo get_phrase('notice'); ?></div>
                         </th>
-                        <th>
+                        <th width="10%">
                             <div><?php echo get_phrase('date'); ?></div>
                         </th>
-                        <th>
+                        <?php 
+							if($this->session->userdata('rol') == 1){
+						?>
+                        <th width="18%">
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
+                        <?php }?>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,6 +57,9 @@
                             <td><?php echo $row['notice_title']; ?></td>
                             <td class="span5"><?php echo $row['notice']; ?></td>
                             <td><?php echo date('d M,Y', $row['create_timestamp']); ?></td>
+                            <?php 
+								if($this->session->userdata('rol') == 1){
+							?>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Noticia',<?php echo $row['notice_id']; ?>)"
@@ -54,11 +67,12 @@
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/noticeboard/delete/<?php echo $row['notice_id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/noticeboard/delete/<?php echo $row['notice_id']; ?>')"
                                    class="btn btn-red btn-small">
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -70,7 +84,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/noticeboard/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/noticeboard/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('title'); ?></label>

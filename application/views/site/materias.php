@@ -6,11 +6,17 @@
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('subject_list'); ?>
-                </a></li>
+                </a>
+            </li>
+			<?php 
+				if($this->session->userdata('rol') == 1){
+			?>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
                     <?php echo get_phrase('add_subject'); ?>
-                </a></li>
+                </a>
+            </li>
+            <?php } ?>
         </ul>
         <!------CONTROL TABS END------->
 
@@ -35,9 +41,13 @@
                         <th>
                             <div><?php echo get_phrase('Profesor(a)'); ?></div>
                         </th>                        
+                        <?php 
+							if($this->session->userdata('rol') == 1){
+						?>
                         <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,6 +58,9 @@
                             <td><?php echo $row['nombre']; ?></td>
                             <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
+                            <?php 
+								if($this->session->userdata('rol') == 1){
+							?>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Materia',<?php echo $row['id']; ?>)"
@@ -55,11 +68,12 @@
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/materias/delete/<?php echo $row['id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/materias/delete/<?php echo $row['id']; ?>')"
                                    class="btn btn-red btn-small">
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -71,7 +85,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= 'Nombre'?></label>

@@ -6,7 +6,7 @@
 						class="icon-align-justify"></i> <?php echo get_phrase('listado_roles_usuarios'); ?> </a></li>
 			</li>
 		</ul>
-		<a class="btn btn-black" style="float:right;height:27px" href="index.php?admin/users/0">
+		<a class="btn btn-black" style="float:right;height:27px" href="index.php?site/users/0">
 			<i class="icon-info-sign"></i>
 				Manejar Usuarios
 		</a>
@@ -20,9 +20,9 @@
 		
 	<!----CREATION FORM STARTS ROLE--->
 
-			<div class="box-content"> <?php echo form_open('admin/manage_role/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+			<div class="box-content"> <?php echo form_open('site/manage_role/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 			   
-				<form method="post" action="<?php echo base_url(); ?>index.php?admin/manage_role/create/" class="form-horizontal validatable">
+				<form method="post" action="<?php echo base_url(); ?>index.php?site/manage_role/create/" class="form-horizontal validatable">
 				   
 				   <h5>Nuevo <i class="icon-plus"></i>&nbsp;
 						<input type="text" class="validate[required]" name="rol" placeholder="Ingresar nombre del rol"/>
@@ -69,7 +69,7 @@
 												class="btn btn-gray btn-small"> 
 												<i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
 											</a> 
-											<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/manage_role/delete/<?php echo $row['rol_id']; ?>')" class="btn btn-red btn-small"> 
+											<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url(); ?>index.php?site/manage_role/delete/<?php echo $row['rol_id']; ?>')" class="btn btn-red btn-small"> 
 												<i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 											</a>
 										</td>

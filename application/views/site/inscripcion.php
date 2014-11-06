@@ -73,7 +73,7 @@
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
                                 </a>
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?admin/inscripcion/delete/<?php echo $row['id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/inscripcion/delete/<?php echo $row['id']; ?>')"
                                    class="btn btn-red btn-small">
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
@@ -89,7 +89,7 @@
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('admin/inscripcion/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/inscripcion/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('estudiante'); ?></label>
