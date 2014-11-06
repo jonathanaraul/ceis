@@ -88,62 +88,123 @@
 
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
-                <div class="box-content">
-                    <?php echo form_open('site/inscripcion/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
-                    <div class="padded">
-                        <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('estudiante'); ?></label>
-
-                            <div class="controls">
-                                <select name="estudiante" class="uniform" style="width:100%;">
-                                    <?php
-                                    $this->db->order_by("student_id", "desc");
-                                    $objects = $this->db->get('student')->result_array();
-                                    foreach ($objects as $object):
-                                        ?>
-                                        <option value="<?php echo $object['student_id']; ?>">
-                                            <?php echo $object['name'] . ' ' . $object['papellido'] . ' - ' . $object['ndocumento']; ?> </option>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </select>
+                <div class="box-content padded">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="list">
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-normal box">
+                                <thead>
+                                    <tr>
+                                        <td><?= 'Seleccionar Tipo de Inscripción'; ?></td>
+                                        <td><?= 'Seleccionar Curso'; ?></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="inscripcion" id="inscripcion" >
+                                                <option value="0"><?= 'Tipo de Inscripción' ?></option>
+                                                <option value="1"><?= 'Individual' ?></option>
+                                                <option value="2"><?= 'Por Lotes' ?></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="cursos" id="cursos">
+                                                <option value="0"><?= 'Seleccionar Curso' ?></option>
+                                                <?php
+                                                $classes = $this->db->get('hs_cursos')->result_array();
+                                                foreach ($classes as $row) {
+                                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'].' - Sección '. $row['seccion'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td colspan="2" style="text-align: center;">
+                                            <input type="button" class="btn btn-normal btn-gray" value="Gestionar Inscripción"
+                                                   onclick="gestionarInscripcion(this.value)">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/><br/>
+                            <div id="loader" style="display: none">
+                                <p style="text-align: center">
+                                    <img src="<?php echo base_url();?>template/images/loader.gif">
+                                </p>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('curso'); ?></label>
-
-                            <div class="controls">
-                                <select name="curso" class="uniform" style="width:100%;">
-                                    <?php
-                                    $objects = $this->db->get('hs_cursos')->result_array();
-                                    foreach ($objects as $object):
-                                        ?>
-                                        <option value="<?php echo $object['id']; ?>">
-                                            <?php echo $object['nombre'] . ' ' . $object['seccion']; ?> </option>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('status'); ?></label>
-
-                            <div class="controls">
-                                <select name="status" class="uniform" style="width:100%;">
-                                    <option value="0">Preinscripcion</option>
-                                    <option value="1">Inscripcion</option>
-                                </select>
+                                <div id="area_inscripcion" style="background-color:  #eaebef;">
                             </div>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-blue"><?php echo get_phrase('add_inscripcion'); ?></button>
-                    </div>
-                    </form>
                 </div>
             </div>
             <!--CREATION FORM ENDS-->
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function gestionarInscripcion(valor) {
+
+        var inscripcion = $('#inscripcion').val();
+        var curso = $('#cursos').val();
+
+        if (inscripcion <= 0 || curso <= 0) {
+            alert('Debe llenar ambos campos');
+            return false;
+        }
+
+        $('#area_inscripcion').empty();
+
+        $('#loader').css('display','block');
+        var data = 'inscripcion=' + inscripcion + '&curso=' + curso;
+
+        $.post('<?php echo site_url()?>ajax/inscribir',
+            data,
+            function (data) {
+
+                $('#area_inscripcion').html(data);
+                $('#loader').css('display','none');
+                $('#area_inscripcion').css('display','block');
+            });
+    }
+
+    function inscribirEstudiante(){
+
+        var curso = $('#cursos').val();
+        var estudiante = $('#estudiante').val();
+        var status = $('#status').val();
+
+        var data = 'curso=' + curso + '&estudiante=' + estudiante + '&status=' + status;
+
+        $.post('<?php echo site_url()?>ajax/guardarInscripcion',
+            data,
+            function (data) {
+                location.reload();
+            });
+
+
+    }
+
+    function inscribirEstudiantes(){
+
+        var curso = $('#cursos').val();
+        
+        var data = 'curso='+curso;
+        $.each($(".recopila"), function (index, value) {
+            var helper = $(value).val();
+            var id = $(value).attr('name');
+            data += '&' + id + '=' + helper;
+        });
+
+        $.post('<?php echo site_url()?>ajax/guardarInscripciones',
+            {'data': data },
+            function (data) {
+                location.reload();
+            });
+
+
+    }
+
+</script>

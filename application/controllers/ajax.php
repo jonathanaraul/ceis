@@ -134,7 +134,7 @@ class ajax extends CI_Controller
                 if($documento == 1){
 
                     $dato['media']= $media;
-                    $this->load->view('admin/visualizar_diploma', $dato);
+                    $this->load->view('site/visualizar_diploma', $dato);
 
                 }else{
 
@@ -143,12 +143,12 @@ class ajax extends CI_Controller
                         if($media >=7){
 
                             $dato['media']= $media;
-                            $this->load->view('admin/visualizar_certificado', $dato);
+                            $this->load->view('site/visualizar_certificado', $dato);
                         }
 
                     }else{
 
-                        $this->load->view('admin/visualizar_acta', $dato);
+                        $this->load->view('site/visualizar_acta', $dato);
                     }
                 }
                 
@@ -177,7 +177,7 @@ class ajax extends CI_Controller
                     if($inscrito['estudiante'] == $estudiante){
 
                         $dato['media']= $media;
-                        $this->load->view('admin/visualizar_diploma', $dato); 
+                        $this->load->view('site/visualizar_diploma', $dato); 
                     }
                 }else{
 
@@ -187,14 +187,14 @@ class ajax extends CI_Controller
                             
 
                             $dato['media']= $media;
-                            $this->load->view('admin/visualizar_certificado', $dato);
+                            $this->load->view('ste/visualizar_certificado', $dato);
 
                         }
                     }else{
 
                         if($documento == 3 && $inscrito['estudiante'] == $estudiante){
 
-                            $this->load->view('admin/visualizar_acta', $dato);
+                            $this->load->view('site/visualizar_acta', $dato);
                             
                         }
                     }
@@ -219,8 +219,109 @@ class ajax extends CI_Controller
 
         $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
 
-        $this->load->view('admin/lista_notas', $dato);
+        $this->load->view('site/lista_notas', $dato);
     }
+
+    function inscribir()
+
+    {
+        $inscripcion = $this->input->post('inscripcion');
+        $curso = $this->input->post('curso');
+
+        $dato['curso']= $curso;
+
+        if($inscripcion == 1){
+
+        $dato['estudiantes'] = $this->db->get('student')->result_array();
+
+        $this->load->view('site/inscribir_indiv', $dato);            
+
+        }else{
+
+        $dato['estudiantes'] = $this->db->get('student')->result_array();
+
+        $this->load->view('site/inscribir_lotes', $dato);
+
+        }
+
+
+    }
+
+    function guardarInscripcion()
+    {
+        $curso = $this->input->post('curso');
+        $estudiante = $this->input->post('estudiante');
+        $status = $this->input->post('status');
+
+        $existe = $this->db->get_where('hs_inscripcion', array('curso' => $curso,'estudiante' => $estudiante))->result_array();
+
+        if (count($existe) > 0) {
+            //Actualizar asistencia
+
+            $data = array(
+                'status' => $status,
+            );
+            $this->db->where('id', $existe[0]['id']);
+            $this->db->update('hs_inscripcion', $data);
+        } else {
+            //Insertar asistencia
+            $data = array(
+                'estudiante' => $estudiante,
+                'curso' => $curso,
+                'status' => $status,
+            );
+
+            $this->db->insert('hs_inscripcion', $data);
+        }
+    }
+
+    function guardarInscripciones()
+    {
+        $variables = $this->input->post();
+        $variables = explode('&', $variables["data"]);
+
+
+
+        for ($i = 0; $i < count($variables); $i++) {
+
+            if ($i == 0) {
+                $curso = explode('=', $variables[$i]);
+                $curso = $curso[1];
+            } else {
+
+                $helper = explode('_', $variables[$i]);
+                $helper = $helper[1];
+                $helper = explode('=', $helper);
+
+                $estudiante = $helper[0];
+                $status = intval($helper[1]);
+
+                $existe = $this->db->get_where('hs_inscripcion', array('curso' => $curso,'estudiante' => $estudiante))->result_array();
+
+                if (count($existe) > 0) {
+                    //Actualizar status
+
+                    $data = array(
+                        'estudiante' => $estudiante,
+                        'curso' => $curso,
+                        'status' => $status,
+                    );
+                    $this->db->where('id', $existe[0]['id']);
+                    $this->db->update('hs_inscripcion', $data);
+                } else {
+                    //Insertar inscripcion
+                    $data = array(
+                        'estudiante' => $estudiante,
+                        'curso' => $curso,
+                        'status' => $status,
+                    );
+
+                    $this->db->insert('hs_inscripcion', $data);
+                }
+            }
+        }
+    }
+
     function guardarNotas()
     {
         $variables = $this->input->post();
@@ -289,7 +390,7 @@ class ajax extends CI_Controller
 
         $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
 
-        $this->load->view('admin/lista_asistencias', $dato);
+        $this->load->view('site/lista_asistencias', $dato);
     }
 
     function guardarAsistencias()
