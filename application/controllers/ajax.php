@@ -46,8 +46,31 @@ class ajax extends CI_Controller
         $cadena = '<option value="0">Seleccionar materia</option>';
 
         foreach ($elements as $element) {
-            $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+            if($this->session->userdata('rol') == 1){
 
+                $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+            }else{
+                if($this->session->userdata('rol') == 4 && $this->session->userdata('user_id') == $element['profesor']){
+                    $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';      
+                }
+            }
+        }
+        echo $cadena;
+
+    }
+
+    function obtenCursosMaterias()
+
+    {
+        $curso = $this->input->post('curso');
+
+        $elements = $this->db->get_where('curso_materia', array('curso' => $curso))->result_array();
+
+        $cadena = '<option value="0">Seleccionar materia</option>';
+
+        foreach ($elements as $element) {
+
+                $cadena .= '<option value="' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '">' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '</option>';
         }
         echo $cadena;
 

@@ -58,10 +58,6 @@
             </th>
 
             <th>
-                <div>Período</div>
-            </th>
-
-            <th>
                 <div>Cupo</div>
             </th>
 
@@ -93,8 +89,6 @@
                 <td><?= $row['nombre']; ?></td>
 
                 <td><?= $row['seccion']; ?></td>
-
-                <td><?php echo  $this->crud_model->get_hs_periodo_nombre_periodo($row['periodo']); ?></td>
 
                 <td><?= $row['cupo']; ?></td>
 
@@ -155,7 +149,7 @@
         <div class="padded">
 
             <div class="control-group">
-                <label class="control-label"><?= 'Nombre'?></label>
+                <label class="control-label"><?= 'Curso'?></label>
                 <div class="controls">
                     <select name="nombre" class="uniform" style="width:100%;">
                         <?php
@@ -180,14 +174,17 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label"><?= 'Periodo' ?></label>
+                <label class="control-label"><?php echo get_phrase('materia'); ?></label>
                 <div class="controls">
-                    <select name="periodo" class="uniform" style="width:100%;">
+                    <select name="materias[]" id="materias" style="width:660px;" multiple="multiple" >
                         <?php
-                        $elements = $this->db->get('hs_periodo')->result_array();
-                        foreach ($elements as $element){
-                            echo '<option value="'.$element['id'].'">'.$element['nombre_periodo'].'</option>';
-                        }
+                        $elements = $this->db->get('nombre_materias')->result_array();
+                        foreach ($elements as $element):
+                            ?>
+                            <option
+                                value="<?php echo $element['id']; ?>"> <?php echo $element['materia']; ?> </option>
+                        <?php
+                        endforeach;
                         ?>
                     </select>
                 </div>
@@ -252,7 +249,7 @@
             });
     }
 
-
+ $(document).ready(function() { $("#materias").select2(); });
 
 
 </script>

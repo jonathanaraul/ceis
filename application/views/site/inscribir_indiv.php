@@ -21,7 +21,7 @@
                                 <option value="<?php echo $estudiante['student_id']; ?>">
                                     <?php echo $estudiante['name'] . ' ' . $estudiante['papellido'] . ' - ' . $estudiante['ndocumento']; ?> </option>
                             <?php
-                            //}
+                            }
                             endforeach;
                             ?>
                         </select>

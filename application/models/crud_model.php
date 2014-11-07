@@ -76,7 +76,7 @@ class Crud_model extends CI_Model {
 
 	{
 
-		$query	=	$this->db->get_where('teacher' , array('teacher_id' => $teacher_id));
+		$query	=	$this->db->get_where('hs_users' , array('user_id' => $teacher_id, 'rol' => 4));
 
 		$res	=	$query->result_array();
 
@@ -137,6 +137,16 @@ class Crud_model extends CI_Model {
 		$query	=	$this->db->get_where('hs_materias' , array('id' => $materia_id))->row();
 
 		return $query->nombre;
+
+	}
+
+	function get_nombre_materia_by_id($materia_id)
+
+	{
+
+		$query	=	$this->db->get_where('nombre_materias' , array('id' => $materia_id))->row();
+
+		return $query->materia;
 
 	}
 

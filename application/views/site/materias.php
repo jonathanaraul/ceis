@@ -53,14 +53,14 @@
                     <tbody>
                     <?php $count = 1;
                     foreach ($materias as $row): ?>
+                        <?php 
+                            if($this->session->userdata('rol') == 1){
+                        ?>                        
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
                             <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
-                            <?php 
-								if($this->session->userdata('rol') == 1){
-							?>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Materia',<?php echo $row['id']; ?>)"
@@ -73,8 +73,8 @@
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
-                            <?php } ?>
                         </tr>
+                        <?php }?>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -88,23 +88,11 @@
                     <?php echo form_open('site/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
-                            <label class="control-label"><?= 'Nombre'?></label>
-                            <div class="controls">
-                                <select name="nombre" class="uniform" style="width:100%;">
-                                    <?php
-                                    $elements = $this->db->get('nombre_materias')->result_array();
-                                    foreach ($elements as $element){
-                                        echo '<option value="'.$element['materia'].'">'.$element['materia'].'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
 
                             <div class="controls">
-                                <select name="curso" class="uniform" style="width:100%;">
+                                <select name="curso" class="uniform" style="width:100%;" onchange="ajaxMaterias(this.value);">
+                                    <option value="0"><?= 'Seleccionar Curso' ?></option>
                                     <?php
                                     $cursos = $this->db->get('hs_cursos')->result_array();
                                     foreach ($cursos as $row):
@@ -118,13 +106,21 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label"><?= 'Materia'?></label>
+                            <div class="controls">
+                                <select name="materias" id="materias" class="uniform">
+                                    <option value="0"><?= 'Seleccionar materia' ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
                             <label class="control-label"><?= 'Profesor(a)'?></label>
                             <div class="controls">
                                 <select name="profesor" class="uniform" style="width:100%;">
                                     <?php
-                                    $profesores = $this->db->get('teacher')->result_array();
+                                    $profesores = $this->db->get_where('hs_users', array('rol' => 4))->result_array();
                                     foreach ($profesores as $profesor){
-                                        echo '<option value="'.$profesor['teacher_id'].'">'.$profesor['name'].' '.$profesor['papellido'].'</option>';
+                                        echo '<option value="'.$profesor['user_id'].'">'.$profesor['name'].' '.$profesor['papellido'].'</option>';
                                     }
                                     ?>
                                 </select>
@@ -142,3 +138,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function ajaxMaterias(valor) {
+        $('#materias').empty();
+
+        $.post('<?php echo site_url()?>ajax/obtenCursosMaterias',
+            {'curso': valor },
+            function (data) {
+                $('#materias').html(data);
+            });
+    }
+
+</script>

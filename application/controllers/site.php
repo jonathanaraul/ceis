@@ -350,7 +350,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['nombre'] = $this->input->post('nombre');
+            $data['nombre'] = $this->input->post('materias');
 
             $data['curso'] = $this->input->post('curso');
 
@@ -364,7 +364,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['nombre'] = $this->input->post('nombre');
+            $data['nombre'] = $this->input->post('materias');
 
             $data['curso'] = $this->input->post('curso');
 
@@ -489,15 +489,23 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['nombre'] = $this->input->post('nombre');
-            $data['seccion'] = $this->input->post('seccion');
-            $data['periodo'] = $this->input->post('periodo');
+            $data1['nombre'] = $this->input->post('nombre');
+            $data1['seccion'] = $this->input->post('seccion');
+            $materias= $this->input->post('materias');
             
-            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
-            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
-            $data['cupo'] = $this->input->post('cupo');
+            $data1['fecha_ini']= formatDate($this->input->post('fecha_ini'));
+            $data1['fecha_cul']= formatDate($this->input->post('fecha_cul'));
+            $data1['cupo'] = $this->input->post('cupo');
 
-            $this->db->insert('hs_cursos', $data);
+            $this->db->insert('hs_cursos', $data1);
+
+            $consulta = $this->db->get_where('hs_cursos', array('nombre' => $data1['nombre'], 'seccion' => $data1['seccion']))->result_array();
+            
+            foreach ($materias as $materia) {
+                $data2['curso']= $consulta[0]['id'];
+                $data2['materia']=$materia;
+                $this->db->insert('curso_materia', $data2);
+            }
 
             redirect(base_url() . 'index.php?site/cursos/', 'refresh');
 
@@ -1307,7 +1315,7 @@ class Site extends CI_Controller
 
     /***CRUD evaluaciones**/
 
-        function evaluaciones($param1 = '', $param2 = '')
+        function gestionar_cursos($param1 = '', $param2 = '')
 
     {
 
@@ -1327,7 +1335,7 @@ class Site extends CI_Controller
 
             $this->db->insert('hs_evaluaciones', $data);
 
-            redirect(base_url() . 'index.php?site/evaluaciones/', 'refresh');
+            redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
 
         }
 
@@ -1345,7 +1353,7 @@ class Site extends CI_Controller
 
             $this->db->update('hs_evaluaciones', $data);
 
-            redirect(base_url() . 'index.php?site/evaluaciones/', 'refresh');
+            redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -1363,13 +1371,13 @@ class Site extends CI_Controller
 
             $this->db->delete('hs_evaluaciones');
 
-            redirect(base_url() . 'index.php?site/evaluaciones/', 'refresh');
+            redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
 
         }
 
-        $page_data['page_name'] = 'evaluaciones';
+        $page_data['page_name'] = 'gestionar_cursos';
 
-        $page_data['page_title'] = get_phrase('Gestionar Evaluaciones');
+        $page_data['page_title'] = get_phrase('Gestionar Cursos');
 
         $page_data['evaluaciones'] = $this->db->get('hs_evaluaciones')->result_array();
 

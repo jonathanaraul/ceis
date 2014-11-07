@@ -34,19 +34,6 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label"><?= 'Periodo' ?></label>
-                    <div class="controls">
-                        <select name="periodo" class="uniform" style="width:100%;">
-                            <?php
-                            $elements = $this->db->get('hs_periodo')->result_array();
-                            foreach ($elements as $element){
-                                echo '<option value="'.$element['id'].'">'.$element['nombre_periodo'].'</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
                     <label class="control-label"><?= 'Cupo Disponible' ?></label>
                     <div class="controls">
                         <input type="text" class="validate[required]" name="cupo" value="<?php echo $row['cupo']?>" />

@@ -3,6 +3,7 @@
 		<!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800">-->
 
         <link href="<?php echo base_url();?>template/css/ekattor.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url();?>template/css/select2/select2.css" rel="stylesheet" type="text/css" />
 
         <!--[if lt IE 9]>
 
@@ -13,6 +14,7 @@
         <![endif]-->
 
         <script src="<?php echo base_url();?>template/js/controladorceis.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>template/js/select2/select2.js" type="text/javascript"></script>
       
         
 

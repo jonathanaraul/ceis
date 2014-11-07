@@ -179,70 +179,30 @@
 </li>
 <?php } ?>
 
-<!------Evaluaciones----->
+<!------Gestionar Cursos----->
 <?php 
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 3){
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 4){
 ?>
 
-<li class="<?php if ($page_name == 'evaluaciones') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'gestionar_cursos') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/evaluaciones" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/gestionar_cursos" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('Ayuda Evaluaciones'); ?>">
+       data-original-title="<?php echo get_phrase('Gestion de Evaluaciones, Notas y Asistencias'); ?>">
 
         <!--<i class="icon-money icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
 
-        <span><?php echo get_phrase('evaluaciones'); ?></span>
+        <span><?php echo get_phrase('gestion_de_cursos'); ?></span>
 
     </a>
 
 </li>
 <?php } 
 ?>
-
-<!------notas----->
-
-<li class="<?php if ($page_name == 'notas') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/notas" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('Notas'); ?>">
-
-        <!--<i class="icon-pencil icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
-
-        <span><?= Notas; ?></span>
-
-    </a>
-
-</li>
-
-<!------Asistencias----->
-
-<li class="<?php if ($page_name == 'asistencias') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/asistencias" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('asistencias'); ?>">
-
-        <!--<i class="icon-pencil icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/noticeboard.png"/>
-
-        <span><?= Asistencias; ?></span>
-
-    </a>
-
-</li>
 
 <!--class routine-->
 
