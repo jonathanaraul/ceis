@@ -434,11 +434,11 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['nit'] = $this->input->post('nit_empresas');
+            $data['nit'] = $this->input->post('nit');
 
-            $data['nombre'] = $this->input->post('nombre_empresas');
+            $data['nombre'] = $this->input->post('nombre');
 
-            $data['contacto'] = $this->input->post('contacto_empresa');
+            $data['contacto'] = $this->input->post('contacto');
 
 
             $this->db->where('id', $param2);

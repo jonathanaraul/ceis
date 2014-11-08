@@ -52,7 +52,7 @@ class Modal extends CI_Controller
 
         } else if ($param1 == 'Editar_Empresas') {
 
-            $page_data['edit_data'] = $this->db->get_where('empresas', array('empresas_id' => $param2))->result_array();
+            $page_data['edit_data'] = $this->db->get_where('hs_empresas', array('id' => $param2))->result_array();
 
         } else if ($param1 == 'add_parent') {
 

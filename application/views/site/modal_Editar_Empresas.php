@@ -4,18 +4,17 @@
 
         <?php foreach ($edit_data as $row): ?>
 
-            <?php echo form_open('site/empresas/do_update/' . $row['empresas_id'], array('empresa' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/empresas/do_update/' . $row['id'], array('empresa' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
             <div class="padded">
 
                 <div class="control-group">
 
-                    <label class="control-label"><?php echo get_phrase('nit_empresas'); ?></label>
+                    <label class="control-label"><?php echo get_phrase('nit'); ?></label>
 
                     <div class="controls">
 
-                        <input type="text" class="validate[required]" name="nit_empresas"
-                               value="<?php echo $row['nit_empresas']; ?>"/>
+                        <input type="text" class="uniform" name="nit" value="<?php echo $row['nit']; ?>"/>
 
                     </div>
 
@@ -23,12 +22,11 @@
 
                 <div class="control-group">
 
-                    <label class="control-label"><?php echo get_phrase('nombre_empresas'); ?></label>
+                    <label class="control-label"><?php echo get_phrase('nombre'); ?></label>
 
                     <div class="controls">
 
-                        <input type="text" class="" name="nombre_empresas"
-                               value="<?php echo $row['nombre_empresas']; ?>"/>
+                        <input type="text" class="uniform" name="nombre" value="<?php echo $row['nombre']; ?>"/>
 
                     </div>
 
@@ -36,12 +34,11 @@
 
                 <div class="control-group">
 
-                    <label class="control-label"><?php echo get_phrase('contacto_empresa'); ?></label>
+                    <label class="control-label"><?php echo get_phrase('contacto'); ?></label>
 
                     <div class="controls">
 
-                        <input type="text" class="" name="contacto_empresa"
-                               value="<?php echo $row['contacto_empresa']; ?>"/>
+                        <input type="text" class="uniform" name="contacto" value="<?php echo $row['contacto']; ?>"/>
 
                     </div>
 

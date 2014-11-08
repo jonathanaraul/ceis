@@ -88,7 +88,7 @@
                             <td align="center">
 
                                 <a data-toggle="modal" href="#modal-form"
-                                   onclick="modal('Editar_Empresas',<?php echo $row['empresas_id']; ?>)"
+                                   onclick="modal('Editar_Empresas',<?php echo $row['id']; ?>)"
                                    class="btn btn-gray btn-small">
 
                                     <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
@@ -96,7 +96,7 @@
                                 </a>
 
                                 <a data-toggle="modal" href="#modal-delete"
-                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/empresas/delete/<?php echo $row['empresas_id']; ?>')"
+                                   onclick="modal_delete('<?php echo base_url(); ?>index.php?site/empresas/delete/<?php echo $row['id']; ?>')"
                                    class="btn btn-red btn-small">
 
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
