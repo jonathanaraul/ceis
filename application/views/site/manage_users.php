@@ -131,7 +131,7 @@
                                         class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
                                     </a>
 									<a data-toggle="modal" href="#modal-delete" 
-										onclick="modal_delete('<?php echo base_url(); ?>index.php?site/users/<?php echo $rol; ?>/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
+										onclick="modal_delete('<?php echo base_url(); ?>index.php?site/users/<?php echo $row['rol']; ?>/delete/<?php echo $row['user_id']; ?>')" class="btn btn-red btn-small"> <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?> 
 									</a>
 									
 								</td>

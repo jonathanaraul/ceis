@@ -77,10 +77,7 @@ class Login extends CI_Controller
 								
 								$this->session->set_userdata($data);
 								$this->index();
-							}	
-					$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
-					redirect(base_url() . 'index.php?login', 'refresh');
-					return FALSE;			
+							}				
 				}
 			}else{
 				$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
