@@ -160,22 +160,7 @@
                             <label class="control-label"><?php echo get_phrase('password'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="" name="password" value="
-<?php
-                                function generaPass()
-                                {
-                                    $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-                                    $longitudCadena = strlen($cadena);
-                                    $pass = "";
-                                    $longitudPass = 10;
-                                    for ($i = 1; $i <= $longitudPass; $i++) {
-                                        $pos = rand(0, $longitudCadena - 1);
-                                        $pass .= substr($cadena, $pos, 1);
-                                    }
-                                    return $pass;
-                                }
-
-                                echo generaPass(); ?> " readonly/>
+                                <input type="text" class="" name="password" placeholder="Ingrese password temporal">
                             </div>
                         </div>
                         <div class="control-group">

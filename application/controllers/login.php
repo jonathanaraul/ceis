@@ -21,11 +21,11 @@ class Login extends CI_Controller
 	public function index()
 	{	
 		
-		if ($this->session->userdata('rol')=='') {
+		if ($this->session->userdata('rol')=='' or $this->session->userdata('rol')>3) {
 			
 				$data['token'] = $this->token();
 				$this->load->view('login', $data);
-		}elseif ($this->session->userdata('rol')>'0') {
+		}elseif ($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=3) {
 			
 				redirect(base_url().'index.php?site');
 				$page_data['page_title'] = get_phrase('login');
@@ -55,7 +55,7 @@ class Login extends CI_Controller
 			);
             
 			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('required', 'El campo es requerido');
+			$this->form_validation->set_message('required', 'Todos los campos son requeridos');
            
 			if ($this->form_validation->run() == FALSE) {
 				 $this->index();
@@ -81,7 +81,7 @@ class Login extends CI_Controller
 				}
 			}else{
 				$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
-				redirect(base_url().'index.php?login');
+				redirect(base_url().'index.php?login','refresh');
 			}			
 	}
 	

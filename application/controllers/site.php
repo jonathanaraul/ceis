@@ -20,7 +20,8 @@ class Site extends CI_Controller
     {
         if($this->session->userdata('rol') == FALSE)
         {
-            redirect(base_url() . 'index.php?login', 'refresh');
+			
+            $this->load->view('login');
         }
         
         $role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
@@ -259,7 +260,9 @@ class Site extends CI_Controller
 
             $data['email'] = $this->input->post('email');
 
-            $data['password'] = $this->input->post('password');
+            $password = $this->input->post('password');
+            
+			$data['password'] = $this->bcrypt->hash_password($password);
 
             $this->db->insert('teacher', $data);
 
@@ -290,7 +293,9 @@ class Site extends CI_Controller
 
             $data['email'] = $this->input->post('email');
 
-            $data['password'] = $this->input->post('password');
+            $password = $this->input->post('password');
+            
+			$data['password'] = $this->bcrypt->hash_password($password);
 
 
             $this->db->where('teacher_id', $param2);

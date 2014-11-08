@@ -181,7 +181,7 @@
 
 <!------Gestionar Cursos----->
 <?php 
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 4){
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 3){
 ?>
 
 <li class="<?php if ($page_name == 'gestionar_cursos') echo 'dark-nav active'; ?>">
@@ -400,7 +400,7 @@
         
         <li class="<?php if ($page_name == 'manage_users') echo 'active'; ?>">
 
-            <a href="<?php echo base_url(); ?>index.php?site/manage_users">
+            <a href="<?php echo base_url(); ?>index.php?site/users/0">
 
                 <!--<i class="icon-download-alt"></i>-->
 

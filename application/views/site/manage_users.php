@@ -25,7 +25,7 @@
         <br>
         
         <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?site/users/'+this.value">
-            <option value=""><?php echo get_phrase('account_type'); ?></option>
+            <option value="">Seleccione <?php echo get_phrase('account_type'); ?></option>
             <?php
 					$role = $this->db->get('hs_role')->result_array();
 					foreach ($role as $row):
@@ -65,12 +65,13 @@
 							foreach ($users as $row){
 								foreach ($role as $rol){
 									if($row['rol']==$rol['rol_id']){
-										$found = true;	
+										$found = true;
+										$name_rol=$rol['rol'];
 									}
 								}
 							}
 							if($found){
-							echo count($users);	
+							echo count($users).' '.$name_rol.' (s/es)';	
 							}	
 						?>
                     </span>
@@ -87,9 +88,6 @@
 						<tr>
 							<th>
 								<div>ID</div>
-							</th>
-							<th width="70">
-								<div><?php echo get_phrase('photo'); ?></div>
 							</th>
 							<th>
 								<div><?php echo get_phrase('nombre_usuario'); ?></div>
@@ -110,12 +108,6 @@
 						foreach ($users as $row): ?>
 							<tr>
 								<td><?php echo $count++; ?></td>
-								<td>
-									<div class="avatar"><img
-											src="<?php echo $this->crud_model->get_image_url('user', $row['user_id']); ?>"
-											class="avatar-medium"/>
-									</div>
-								</td>
 								<td><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
 								<td><?php echo $row['email']; ?></td>
 								<td><?php echo $row['phone']; ?></td>
@@ -277,64 +269,6 @@
 </div>
 </div>
 </div>
-<?php endif; ?>
-<?php if ($rol == ""): ?>
- <center>
-        <div class="span5" style="float:none !important;">
-            <div class="box">
-                <div class="box-header"><span class="title"> <i
-                            class="icon-info-sign"></i><?php echo get_phrase('manejar_usuarios'); ?></span></div>
-                <div class="box-content padded"><br/>
-                    <select name="rol"
-                            onchange="window.location='<?php echo base_url(); ?>index.php?site/users/'+this.value">
-                        <option value=""><?php echo get_phrase('account_type'); ?></option>
-                        <?php
-
-                        $role = $this->db->get('hs_role')->result_array();
-
-                        foreach ($role as $row):
-
-                            ?>
-                            <option value="<?php echo $row['rol_id']; ?>"
-
-                                <?php if ($rol == $row['rol_id']) echo 'selected'; ?>>
-                                <?php echo $row['rol']; ?></option>
-                        <?php
-
-                        endforeach;
-
-                        ?>
-                    </select>
-                    <hr/>
-                    
-					<button onclick="window.location='<?php echo base_url(); ?>index.php?site/manage_role'">
-						<div class="box-header">
-							<span class="title"> <i class="icon-info-sign"></i>
-								Manejar Roles de usuarios
-							</span>
-						</div>
-					</button>
-            
-                <script>
-
-
-					$(document).ready(function () {
-
-						function ask() {
-
-							Growl.info({title: "Seleccione alguna opción", text: " "});
-
-						}
-
-						setTimeout(ask, 500);
-
-					});
-				</script>
-                </div>
-            </div>
-        </div>
-
-</center>
 <?php endif; ?>
 <script>
              
