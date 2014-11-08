@@ -11,15 +11,15 @@
                         <select name="estudiante" id="estudiante" class="uniform" style="width:100%;">
                             <?php
                             foreach ($estudiantes as $estudiante):
-                            $this->db->where('estudiante', $estudiante['student_id']);
+                            $this->db->where('estudiante', $estudiante['user_id']);
                             $this->db->where('curso', $curso);
                             $this->db->where('status', 1);
                             $this->db->from('hs_inscripcion');
                             $inscrito = $this->db->count_all_results();
                             if($inscrito == 0){
                             ?>
-                                <option value="<?php echo $estudiante['student_id']; ?>">
-                                    <?php echo $estudiante['name'] . ' ' . $estudiante['papellido'] . ' - ' . $estudiante['ndocumento']; ?> </option>
+                                <option value="<?php echo $estudiante['user_id']; ?>">
+                                    <?php echo $estudiante['name']. ' ' . $estudiante['snombre'] . ' ' . $estudiante['papellido'] . ' ' . $estudiante['sapellido']; ?> </option>
                             <?php
                             }
                             endforeach;

@@ -70,7 +70,7 @@
 								}
 							}
 							if($found){
-							echo count($users).' '.$rol['rol'];	
+							echo count($users);	
 							}	
 						?>
                     </span>

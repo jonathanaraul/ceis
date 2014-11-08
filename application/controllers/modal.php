@@ -102,9 +102,17 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
 
+        } else if ($param1 == 'Ver_Facturas') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion_empresas', array('id' => $param2))->result_array();
+
         } else if ($param1 == 'Editar_Factura') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array('id' => $param2))->result_array();
+
+        } else if ($param1 == 'Editar_Facturas') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion_empresas', array('id' => $param2))->result_array();
 
         } else if ($param1 == 'edit_book') {
 

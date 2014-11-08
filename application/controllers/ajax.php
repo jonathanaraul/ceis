@@ -93,6 +93,34 @@ class ajax extends CI_Controller
 
     }
 
+    
+    function obtenCursosFacturaEstudiantes()
+
+    {
+        $estudiante = $this->input->post('estudiante');
+
+        $elements = $this->db->get_where('hs_inscripcion', array('estudiante' => $estudiante))->result_array();
+
+        $cadena = '<option value="0" selected>Seleccionar Curso</option>';
+
+        foreach ($elements as $element) {
+            $existe= true;
+            $cursos= $this->db->get('hs_facturacion_empresas')->result_array();
+            foreach ($cursos as $curso) {
+                if($curso['curso']==$element['curso']){
+                    $existe= false;
+                }
+            }
+            if($existe){
+            $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($element['curso']) . '</option>';
+            }
+
+        }
+        echo $cadena;
+
+    }
+
+
     function obtenEvaluaciones()
 
     {
@@ -255,13 +283,13 @@ class ajax extends CI_Controller
 
         if($inscripcion == 1){
 
-        $dato['estudiantes'] = $this->db->get('student')->result_array();
+        $dato['estudiantes'] = $this->db->get_where('hs_users', array('rol'=> 2))->result_array();
 
         $this->load->view('site/inscribir_indiv', $dato);            
 
         }else{
 
-        $dato['estudiantes'] = $this->db->get('student')->result_array();
+        $dato['estudiantes'] = $this->db->get_where('hs_users', array('rol'=> 2))->result_array();
 
         $this->load->view('site/inscribir_lotes', $dato);
 
@@ -279,7 +307,7 @@ class ajax extends CI_Controller
         $existe = $this->db->get_where('hs_inscripcion', array('curso' => $curso,'estudiante' => $estudiante))->result_array();
 
         if (count($existe) > 0) {
-            //Actualizar asistencia
+            //Actualizar inscripcion
 
             $data = array(
                 'status' => $status,
@@ -287,7 +315,7 @@ class ajax extends CI_Controller
             $this->db->where('id', $existe[0]['id']);
             $this->db->update('hs_inscripcion', $data);
         } else {
-            //Insertar asistencia
+            //Insertar inscripcion
             $data = array(
                 'estudiante' => $estudiante,
                 'curso' => $curso,

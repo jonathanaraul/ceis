@@ -212,13 +212,13 @@ class Crud_model extends CI_Model {
             return ucfirst($row['ndocumento']);
     }
     function get_hs_student_nombre_by_id($id){
-        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $query	=	$this->db->get_where('hs_users' , array('user_id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
             return ucfirst($row['name']);
     }
     function get_hs_student_apellido_by_id($id){
-        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $query	=	$this->db->get_where('hs_users' , array('user_id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
             return ucfirst($row['papellido']);
@@ -321,13 +321,27 @@ function get_empresas()
 
 	{
 
-		$query	=	$this->db->get_where('empresas' , array('empresas_id' => $empresas_id));
+		$query	=	$this->db->get_where('hs_empresas' , array('id' => $empresas_id));
 
 		$res	=	$query->result_array();
 
 		foreach($res as $row)
 
-			return $row['nit_empresas'];
+			return $row['nombre'];
+
+	}
+
+	function get_empresas_nit($empresas_id)
+
+	{
+
+		$query	=	$this->db->get_where('hs_empresas' , array('id' => $empresas_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+			return $row['nit'];
 
 	}
 

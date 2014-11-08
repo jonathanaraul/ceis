@@ -6,7 +6,7 @@
     <tbody>
     <?php
     foreach ($estudiantes as $estudiante) {
-        $this->db->where('estudiante', $estudiante['student_id']);
+        $this->db->where('estudiante', $estudiante['user_id']);
         $this->db->where('curso', $curso);
         $this->db->where('status', 1);
         $this->db->from('hs_inscripcion');
@@ -15,12 +15,12 @@
         ?>
         <tr>
             <td>
-                <?= $this->crud_model->get_hs_student_nombre_by_id($estudiante['student_id']).' '.$this->crud_model->get_hs_student_apellido_by_id($estudiante['student_id']); ?>
+                <?php echo $estudiante['name']. ' ' . $estudiante['snombre'] . ' ' . $estudiante['papellido'] . ' ' . $estudiante['sapellido'];?>
             </td>
             <td>
                 <div class="control-group">
                     <div class="controls">
-                        <select name="status_<?= $estudiante['student_id']?>" id="status" class="recopila" style="width:100%;">
+                        <select name="status_<?= $estudiante['user_id']?>" id="status" class="recopila" style="width:100%;">
                             <option value="0">Preinscripcion</option>
                             <option value="1">Inscripcion</option>
                         </select>

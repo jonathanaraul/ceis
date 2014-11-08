@@ -420,13 +420,13 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['nit_empresas'] = $this->input->post('nit_empresas');
+            $data['nit'] = $this->input->post('nit_empresas');
 
-            $data['nombre_empresas'] = $this->input->post('nombre_empresas');
+            $data['nombre'] = $this->input->post('nombre_empresas');
 
-            $data['contacto_empresa'] = $this->input->post('contacto_empresa');
+            $data['contacto'] = $this->input->post('contacto_empresa');
 
-            $this->db->insert('empresas', $data);
+            $this->db->insert('hs_empresas', $data);
 
             redirect(base_url() . 'index.php?site/empresas/', 'refresh');
 
@@ -434,24 +434,24 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['nit_empresas'] = $this->input->post('nit_empresas');
+            $data['nit'] = $this->input->post('nit_empresas');
 
-            $data['nombre_empresas'] = $this->input->post('nombre_empresas');
+            $data['nombre'] = $this->input->post('nombre_empresas');
 
-            $data['contacto_empresa'] = $this->input->post('contacto_empresa');
+            $data['contacto'] = $this->input->post('contacto_empresa');
 
 
-            $this->db->where('empresas_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->update('empresas', $data);
+            $this->db->update('hs_empresas', $data);
 
             redirect(base_url() . 'index.php?site/empresas/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
-            $page_data['edit_data'] = $this->db->get_where('empresas', array(
+            $page_data['edit_data'] = $this->db->get_where('hs_empresas', array(
 
-                'empresas_id' => $param2
+                'id' => $param2
 
             ))->result_array();
 
@@ -459,15 +459,15 @@ class Site extends CI_Controller
 
         if ($param1 == 'delete') {
 
-            $this->db->where('empresas_id', $param2);
+            $this->db->where('id', $param2);
 
-            $this->db->delete('empresas');
+            $this->db->delete('hs_empresas');
 
             redirect(base_url() . 'index.php?site/empresas/', 'refresh');
 
         }
 
-        $page_data['empresas'] = $this->db->get('empresas')->result_array();
+        $page_data['empresas'] = $this->db->get('hs_empresas')->result_array();
 
         $page_data['page_name'] = 'empresas';
 
@@ -855,7 +855,7 @@ class Site extends CI_Controller
             redirect(base_url(), 'refresh');
 
 
-        if ($param1 == 'create') {
+        if ($param1 == 'create_estudiante') {
 
             $data['estudiante'] = $this->input->post('estudiante');
 
@@ -875,6 +875,29 @@ class Site extends CI_Controller
 
 
             $this->db->insert('hs_facturacion', $data);
+
+            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+
+        }
+
+        if ($param1 == 'create_empresa') {
+
+            $data['empresa'] = $this->input->post('empresa');
+
+            $data['curso'] = $this->input->post('curso');
+
+            $data['descripcion'] = $this->input->post('descripcion');
+
+            $data['monto'] = $this->input->post('monto');
+
+            $data['metodo_pago'] = $this->input->post('metodo_pago');
+
+            $data['estado'] = $this->input->post('estado');
+
+            $data['fecha']= formatDate($this->input->post('fecha'));
+
+
+            $this->db->insert('hs_facturacion_empresas', $data);
 
             redirect(base_url() . 'index.php?site/facturacion', 'refresh');
 
@@ -915,11 +938,54 @@ class Site extends CI_Controller
 
         }
 
+        if ($param1 == 'do_update_empresas') {
+
+            $data['empresa'] = $this->input->post('empresa');
+
+            $data['curso'] = $this->input->post('cursos');
+
+            $data['descripcion'] = $this->input->post('descripcion');
+
+            $data['monto'] = $this->input->post('monto');
+
+            $data['metodo_pago'] = $this->input->post('metodo_pago');
+
+            $data['estado'] = $this->input->post('estado');
+
+            $data['fecha']= formatDate($this->input->post('fecha'));
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_facturacion_empresas', $data);
+
+            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion_empresas', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
         if ($param1 == 'delete') {
 
             $this->db->where('id', $param2);
 
             $this->db->delete('hs_facturacion');
+
+            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+
+        }
+
+        if ($param1 == 'delete_empresa') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_facturacion_empresas');
 
             redirect(base_url() . 'index.php?site/facturacion', 'refresh');
 

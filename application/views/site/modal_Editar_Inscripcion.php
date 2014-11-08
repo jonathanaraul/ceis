@@ -9,12 +9,12 @@
                             <div class="controls">
                                 <select name="estudiante" class="uniform" style="width:100%;">
                                     <?php
-                                    $this->db->order_by("student_id", "desc");
-                                    $objects = $this->db->get('student')->result_array();
+                                    $this->db->order_by("user_id", "desc");
+                                    $objects = $this->db->get_where('hs_users', array('rol' => 2))->result_array();
                                     foreach ($objects as $object):
                                         ?>
-                                        <option value="<?php echo $object['student_id']; ?>">
-                                            <?php echo $object['name'] . ' ' . $object['papellido'] . ' - ' . $object['ndocumento']; ?> </option>
+                                        <option value="<?php echo $object['user_id']; ?>">
+                                            <?php echo $object['name'] . ' ' . $object['papellido'] . ' ' . $object['sapellido']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>
@@ -26,13 +26,23 @@
 
                             <div class="controls" >
                                 <select name="curso" class="uniform" style="width:100%;">
+                                    <option value="0">Seleccione Curso</option>                                    
                                     <?php
                                     $objects = $this->db->get('hs_cursos')->result_array();
                                     foreach ($objects as $object):
-                                        ?>
+                                        $existe=true;
+                                        $inscripciones= $this->db->get_where('hs_inscripcion', array('estudiante' => $row['estudiante']))->result_array();
+                                        foreach ($inscripciones as $inscripcion):
+                                            if($inscripcion['curso'] == $object['id']){
+                                                $existe=false;
+                                            }
+                                        endforeach;
+                                        if($existe){
+                                    ?>
                                         <option value="<?php echo $object['id']; ?>">
                                             <?php echo $object['nombre'] . ' ' . $object['seccion']; ?> </option>
                                     <?php
+                                        }
                                     endforeach;
                                     ?>
                                 </select>

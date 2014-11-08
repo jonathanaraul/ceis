@@ -77,12 +77,12 @@
 
                             <td><?php echo $count++; ?></td>
 
-                            <td><?php echo $row['nit_empresas']; ?></td>
+                            <td><?php echo $row['nit']; ?></td>
 
-                            <td><?php echo $row['nombre_empresas']; ?></td>
+                            <td><?php echo $row['nombre']; ?></td>
 
 
-                            <td><?php echo $row['contacto_empresa']; ?></td>
+                            <td><?php echo $row['contacto']; ?></td>
 
 
                             <td align="center">

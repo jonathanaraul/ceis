@@ -1,19 +1,19 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?= form_open('site/facturacion/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?= form_open('site/facturacion/do_update_empresas/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
-                            <label class="control-label"><?= get_phrase('estudiante'); ?></label>
+                            <label class="control-label"><?= get_phrase('empresa'); ?></label>
 
                             <div class="controls">
                                 <td>
-                                    <select name="estudiante" id="estudiantes" class="uniform" onchange="ajaxEstudiantes(this.value);">
-                                        <option value="0"><?= 'Seleccionar Estudiante' ?></option>
+                                    <select name="empresa"  class="uniform">
+                                        <option value="0"><?= 'Seleccionar Empresa' ?></option>
                                         <?php
-                                        $estudiantes = $this->db->get('hs_inscripcion')->result_array();
-                                        foreach ($estudiantes as $estudiante) {
-                                            echo '<option value="' . $estudiante['estudiante']. '">' .$this->crud_model->get_hs_student_nombre_by_id($estudiante['estudiante'])." ".$this->crud_model->get_hs_student_apellido_by_id($estudiante['estudiante']) . '</option>';
+                                        $empresas = $this->db->get('hs_empresas')->result_array();
+                                        foreach ($empresas as $empresa) {
+                                            echo '<option value="' . $empresa['id']. '">' .$empresa['nombre']. '</option>';
                                         }
                                         ?>
                                     </select>
@@ -21,11 +21,17 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?= get_phrase('curso'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
                                 <td>
                                     <select name="curso" id="cursos" class="uniform">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
+                                        <?php
+                                            $cursos = $this->db->get('hs_cursos')->result_array();
+                                            foreach ($cursos as $curso) {
+                                                echo '<option value="' . $curso['id']. '">' .$curso['nombre']. '</option>';
+                                            }
+                                        ?>
                                     </select>
                                 </td>
                             </div>
@@ -35,13 +41,6 @@
 
                             <div class="controls">
                                 <input type="text" class="uniform" name="descripcion" value="<?=$row['descripcion']?>" />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><?= get_phrase('cantidad'); ?></label>
-
-                            <div class="controls">
-                                <input type="text" class="uniform" name="cantidad" value="<?=$row['cantidad']?>"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -104,5 +103,7 @@
     }
 
 $('select[name=estado]').val('<?php echo $row['estado']; ?>');
+$('select[name=empresa]').val('<?php echo $row['empresa']; ?>');
+$('select[name=curso]').val('<?php echo $row['curso']; ?>');
 $('select[name=metodo_pago]').val('<?php echo $row['metodo_pago']; ?>');
 </script>
