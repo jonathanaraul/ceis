@@ -81,7 +81,8 @@ class Login extends CI_Controller
 				}
 			}else{
 				$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
-				redirect(base_url().'index.php?login','refresh');
+				redirect(base_url() . 'index.php?login', 'refresh');
+				return FALSE;
 			}			
 	}
 	

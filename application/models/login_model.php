@@ -27,6 +27,12 @@ class Login_model extends CI_Model {
 					return FALSE;
 					
 				}
-		}
+			
+		}else{
+			$this->session->set_flashdata('flash_message', get_phrase('E-mail o Contraseña incorrecta'));
+				redirect(base_url() . 'index.php?login', 'refresh');
+				return FALSE;
+			
+			}
 	}
 }
