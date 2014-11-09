@@ -84,54 +84,9 @@
 </li>
 
 <?php } ?>
-<!------teacher----->
 
-<li class="<?php if ($page_name == 'teacher') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/teacher" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('teacher_help'); ?>">
-
-        <!--<i class="icon-user icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/teacher.png"/>
-
-        <span><?php echo get_phrase('teacher'); ?></span>
-
-    </a>
-
-</li>
-
-<!------Periodo----->
-<?php 
-
-	if($this->session->userdata('rol') == 1)
-	{
-
- ?>
-
-<li class="<?php if ($page_name == 'periodo') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/periodo" rel="tooltip" data-placement="right"
-
-       data-original-title="Ayuda de Periodo">
-
-        <!--<i class="icon-user icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
-
-        <span><?php echo get_phrase('Periodo'); ?></span>
-
-    </a>
-
-</li>
 <!------subject----->
 <?php 
-	}
 	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
 ?>
 

@@ -33,14 +33,11 @@
                         <th>
                             <div><?php echo get_phrase('student'); ?></div>
                         </th>
-                        <th>
+                        <th width="20%">
                             <div><?php echo get_phrase('curso'); ?></div>
                         </th>
                         <th>
                             <div><?php echo get_phrase('descripción'); ?></div>
-                        </th>
-                        <th>
-                            <div><?php echo get_phrase('Cantidad'); ?></div>
                         </th>
                         <th>
                             <div><?php echo get_phrase('monto'); ?></div>
@@ -69,7 +66,6 @@
                             <td><?= $this->crud_model->get_hs_student_nombre_by_id($row['estudiante'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['estudiante']); ?></td>
                             <td><?= $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?= $row['descripcion']; ?></td>
-                            <td><?= $row['cantidad']; ?></td>
                             <td><?= $row['monto']; ?></td>
                             <td><?= $row['metodo_pago']; ?></td>
                             <td>
@@ -146,7 +142,7 @@
                             <td><?= $count++; ?></td>
                             <td><?= $this->crud_model->get_empresas_name($empresa['empresa']); ?></td>
                             <td><?= $this->crud_model->get_empresas_nit($empresa['empresa']); ?></td>                            
-                            <td><?= $this->crud_model->get_hs_cursos_nombre($cursos_empresas[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($empresa['curso']); ?></td>
+                            <td><?= $this->crud_model->get_hs_cursos_nombre($cursos_empresas[0]['curso']).' - Sección: '.$this->crud_model->get_hs_cursos_seccion($empresa['curso']); ?></td>
                             <td><?= $empresa['descripcion']; ?></td>
                             <td><?= $empresa['monto']; ?></td>
                             <td><?= $empresa['metodo_pago']; ?></td>

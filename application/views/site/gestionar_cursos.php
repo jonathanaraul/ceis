@@ -59,7 +59,7 @@
                         <tr>
                             <td><?php echo $count++; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
-                            <td><?php echo $this->crud_model->get_subject_name_by_id($row['materia']).' -- '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']). ' -- Seccion ' . $cursos[0]['seccion']; ?></td>
+                            <td><?php echo $this->crud_model->get_nombre_materia_by_id($materias[0]['nombre']).' -- Curso: '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']). ' -- Seccion: ' . $cursos[0]['seccion']; ?></td>
                             <td><?php echo $row['ponderacion']; ?></td>
                             <td><?php echo $row['fecha'] ?></td>
                             <td align="center">
@@ -107,7 +107,7 @@
                                         $cursos= $this->db->get_where('hs_cursos', array('id' => $element['curso']))->result_array();
                                         ?>
                                         <option
-                                            value="<?php echo $element['id']; ?>"> <?php echo $element['nombre'].' -- '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']); ?> </option>
+                                            value="<?php echo $element['id']; ?>"> <?php echo $this->crud_model->get_nombre_materia_by_id($element['nombre']).' -- Curso: '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']). ' -- Seccion: ' . $cursos[0]['seccion']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>

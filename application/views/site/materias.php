@@ -60,7 +60,7 @@
                         ?>                        
                         <tr>
                             <td><?= $count++; ?></td>
-                            <td><?php echo $row['nombre']; ?></td>
+                            <td><?php echo $this->crud_model->get_nombre_materia_by_id($row['nombre']); ?></td>
                             <td><?php echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
                             <td align="center">

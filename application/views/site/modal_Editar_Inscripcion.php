@@ -30,19 +30,10 @@
                                     <?php
                                     $objects = $this->db->get('hs_cursos')->result_array();
                                     foreach ($objects as $object):
-                                        $existe=true;
-                                        $inscripciones= $this->db->get_where('hs_inscripcion', array('estudiante' => $row['estudiante']))->result_array();
-                                        foreach ($inscripciones as $inscripcion):
-                                            if($inscripcion['curso'] == $object['id']){
-                                                $existe=false;
-                                            }
-                                        endforeach;
-                                        if($existe){
                                     ?>
                                         <option value="<?php echo $object['id']; ?>">
-                                            <?php echo $object['nombre'] . ' ' . $object['seccion']; ?> </option>
+                                            <?php echo $this->crud_model->get_class_name($object['curso']) . ' -- Seccion ' . $object['seccion']; ?> </option>
                                     <?php
-                                        }
                                     endforeach;
                                     ?>
                                 </select>

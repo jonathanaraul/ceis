@@ -37,7 +37,7 @@
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
                                    href="#collapse<?php echo $row['id']; ?>">
-                                    <i class="icon-rss icon-1x"></i> Curso: <?php echo $row['nombre']; ?>
+                                    <i class="icon-rss icon-1x"></i> Curso: <?php echo $this->crud_model->get_class_name($row['curso']).' -- Seccion: '.$row['seccion']; ?>
                                 </a>
                             </div>
                             <div id="collapse<?php echo $row['id']; ?>"
@@ -72,16 +72,18 @@
                                                         <div class="btn-group">
                                                             <button class="btn btn-gray btn-normal dropdown-toggle"
                                                                     data-toggle="dropdown">
-                                                                <?php echo $this->crud_model->get_subject_name_by_id($row2['materia']); ?>
+                                                                <?php
+                                                                $materia = $this->db->get_where('hs_materias', array('id' => $row2['materia']))->result_array();    
+                                                                 echo $this->crud_model->get_nombre_materia_by_id($materia[0]['nombre']); ?>
                                                                 <?php echo '(' . $row2['hora_inicio'] . '-' . $row2['hora_fin'] . ')'; ?>
                                                                 <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a data-toggle="modal" href="#modal-form"
-                                                                       onclick="modal('edit_class_routine',<?php echo $row2['id']; ?>)"><i
+                                                                       onclick="modal('Editar_Horario',<?php echo $row2['id']; ?>)"><i
                                                                             class="icon-cog"></i> edit</a></li>
                                                                 <li><a data-toggle="modal" href="#modal-delete"
-                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/class_routine/delete/<?php echo $row2['id']; ?>')">
+                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/horarios_materias/delete/<?php echo $row2['id']; ?>')">
                                                                         <i class="icon-trash"></i> delete</a></li>
                                                             </ul>
                                                         </div>
@@ -114,12 +116,12 @@
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>
 
                             <div class="controls">
-                               <select name="cursos" id="cursos" onchange="ajaxMaterias(this.value)" style="width:100%;">
+                               <select name="cursos" id="cursos" class="uniform" onchange="ajaxMaterias(this.value)" style="width:100%;">
                                 <option value="0"><?= 'Seleccionar curso' ?></option>
                                 <?php
                                 $classes = $this->db->get('hs_cursos')->result_array();
                                 foreach ($classes as $row) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                    echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' -- Seccion: '.$row['seccion'] . '</option>';
                                 }
                                 ?>
                             </select>
@@ -141,13 +143,13 @@
 
                             <div class="controls">
                                 <select name="dia" class="uniform" style="width:100%;">
-                                    <option value="0">Lunes</option>
-                                    <option value="1">Martes</option>
-                                    <option value="2">Miercoles</option>
-                                    <option value="3">Jueves</option>
-                                    <option value="4">Viernes</option>
-                                    <option value="5">Sabado</option>
-                                    <option value="6">Domingo</option>
+                                    <option value="0">Domingo</option>
+                                    <option value="1">Lunes</option>
+                                    <option value="2">Martes</option>
+                                    <option value="3">Miercoles</option>
+                                    <option value="4">Jueves</option>
+                                    <option value="5">Viernes</option>
+                                    <option value="6">Sabado</option>
                                 </select>
                             </div>
                         </div>
@@ -190,12 +192,11 @@
                 </div>
             </div>
 
-            <script type="text/javascript">
+<script type="text/javascript">
 
  function ajaxMaterias(valor) {
 
         $('#materias').empty();
-        $('#materias').prev().html('');
 
         $.post('<?php echo site_url()?>ajax/obtenMaterias',
             {'curso': valor },
@@ -205,8 +206,3 @@
     }
 
 </script>
-            <!--CREATION FORM ENDS-->
-
-        </div>
-    </div>
-</div>

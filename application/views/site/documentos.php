@@ -35,7 +35,7 @@
                                     <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $row['nombre'].' - Sección '. $row['seccion'] . '</option>';
+                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección: '. $row['seccion'] . '</option>';
                                     }
                                     ?>
                                 </select>

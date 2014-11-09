@@ -431,8 +431,6 @@ class Site extends CI_Controller
                 $this->db->insert('curso_materia', $data);
             }
 
-            $this->db->insert('curso_materia', $data);
-
             redirect(base_url() . 'index.php?site/configurar_cursos/', 'refresh');
 
         }
@@ -566,7 +564,7 @@ class Site extends CI_Controller
             $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
             $data['cupo'] = $this->input->post('cupo');
 
-            $this->db->insert('hs_cursos', $data1);
+            $this->db->insert('hs_cursos', $data);
 
             redirect(base_url() . 'index.php?site/cursos/', 'refresh');
 
@@ -965,11 +963,11 @@ class Site extends CI_Controller
 
         }
 
-        if ($param1 == 'do_update') {
+        if ($param1 == 'do_update1') {
 
-            $data['estudiante'] = $this->input->post('estudiantes');
+            $data['estudiante'] = $this->input->post('estudiante');
 
-            $data['curso'] = $this->input->post('cursos');
+            $data['curso'] = $this->input->post('curso');
 
             $data['descripcion'] = $this->input->post('descripcion');
 
@@ -987,6 +985,39 @@ class Site extends CI_Controller
             $this->db->where('id', $param2);
 
             $this->db->update('hs_facturacion', $data);
+
+            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_facturacion', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'do_update2') {
+
+            $data['empresa'] = $this->input->post('empresa');
+
+            $data['curso'] = $this->input->post('curso');
+
+            $data['descripcion'] = $this->input->post('descripcion');
+
+            $data['monto'] = $this->input->post('monto');
+
+            $data['metodo_pago'] = $this->input->post('metodo_pago');
+
+            $data['estado'] = $this->input->post('estado');
+
+            $data['fecha']= formatDate($this->input->post('fecha'));
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_facturacion_empresas', $data);
 
             redirect(base_url() . 'index.php?site/facturacion', 'refresh');
 

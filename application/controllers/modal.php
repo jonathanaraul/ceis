@@ -98,9 +98,9 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('grade', array('grade_id' => $param2))->result_array();
 
-        } else if ($param1 == 'edit_class_routine') {
+        } else if ($param1 == 'Editar_Horario') {
 
-            $page_data['edit_data'] = $this->db->get_where('class_routine', array('class_routine_id' => $param2))->result_array();
+            $page_data['edit_data'] = $this->db->get_where('hs_horarios_materias', array('id' => $param2))->result_array();
 
         } else if ($param1 == 'Ver_Factura') {
 

@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?= form_open('site/facturacion/do_update_empresas/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?= form_open('site/facturacion/do_update2/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('empresa'); ?></label>
@@ -29,7 +29,7 @@
                                         <?php
                                             $cursos = $this->db->get('hs_cursos')->result_array();
                                             foreach ($cursos as $curso) {
-                                                echo '<option value="' . $curso['id']. '">' .$curso['nombre']. '</option>';
+                                                echo '<option value="' . $curso['id']. '">' .$this->crud_model->get_hs_cursos_nombre($curso['curso']).' - Sección: '.$curso['seccion']. '</option>';
                                             }
                                         ?>
                                     </select>
@@ -103,7 +103,5 @@
     }
 
 $('select[name=estado]').val('<?php echo $row['estado']; ?>');
-$('select[name=empresa]').val('<?php echo $row['empresa']; ?>');
-$('select[name=curso]').val('<?php echo $row['curso']; ?>');
 $('select[name=metodo_pago]').val('<?php echo $row['metodo_pago']; ?>');
 </script>

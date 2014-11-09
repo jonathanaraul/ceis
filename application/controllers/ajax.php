@@ -48,10 +48,10 @@ class ajax extends CI_Controller
         foreach ($elements as $element) {
             if($this->session->userdata('rol') == 1){
 
-                $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+                $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';
             }else{
                 if($this->session->userdata('rol') == 3 && $this->session->userdata('user_id') == $element['profesor']){
-                    $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';      
+                    $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';      
                 }
             }
         }
@@ -72,7 +72,7 @@ class ajax extends CI_Controller
 
         foreach ($elements as $element) {
 
-                $cadena .= '<option value="' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '">' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '</option>';
+                $cadena .= '<option value="' . $element['materia'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '</option>';
         }
         echo $cadena;
 
@@ -88,7 +88,8 @@ class ajax extends CI_Controller
         $cadena = '<option value="0" selected>Seleccionar Curso</option>';
 
         foreach ($elements as $element) {
-            $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($element['curso']) . '</option>';
+            $curso= $this->db->get_where('hs_cursos', array('id' => $element['curso']))->result_array();
+            $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($curso[0]['curso']).' -- Sección: '.$this->crud_model->get_hs_cursos_seccion($element['curso']) . '</option>';
 
         }
         echo $cadena;

@@ -264,16 +264,13 @@
                 $notices    =   $this->db->get('hs_cursos')->result_array();
 
                 foreach($notices as $row){
-                //if('2014-11-1'>'2014-11-15'){echo 'el mundo esta loco';exit;}
                    $fechas = $this->crud_model->get_datetimes_by_horario_curso_materias( $row['fecha_ini'], $row['fecha_cul'], $row['id']  );
                // var_dump($fechas);exit;
-                   foreach ($fechas as $fecha) {
-                       # code...
-                  
+                   foreach ($fechas as $fecha) {                  
                 ?>
 
                 {
-                    title: "<?= $row['nombre'];?>",
+                    title: "<?= $this->crud_model->get_hs_cursos_nombre($row['curso']);?>",
                     start: "<?= $fecha['inicio'];?>",
                     fin  : "<?= $fecha['fin'];?>",
                     allDay : false

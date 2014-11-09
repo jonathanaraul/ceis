@@ -4,54 +4,54 @@
 
         <?php foreach ($edit_data as $row): ?>
 
-            <?php echo form_open('site/empresas/do_update/' . $row['id'], array('empresa' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/empresas/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
-            <div class="padded">
+                <div class="padded">
 
-                <div class="control-group">
+                    <div class="control-group">
 
-                    <label class="control-label"><?php echo get_phrase('nit'); ?></label>
+                        <label class="control-label"><?php echo get_phrase('nit'); ?></label>
 
-                    <div class="controls">
+                        <div class="controls">
 
-                        <input type="text" class="uniform" name="nit" value="<?php echo $row['nit']; ?>"/>
+                            <input type="text" class="uniform" name="nit" value="<?php echo $row['nit']; ?>"/>
 
-                    </div>
-
-                </div>
-
-                <div class="control-group">
-
-                    <label class="control-label"><?php echo get_phrase('nombre'); ?></label>
-
-                    <div class="controls">
-
-                        <input type="text" class="uniform" name="nombre" value="<?php echo $row['nombre']; ?>"/>
+                        </div>
 
                     </div>
 
-                </div>
+                    <div class="control-group">
 
-                <div class="control-group">
+                        <label class="control-label"><?php echo get_phrase('nombre'); ?></label>
 
-                    <label class="control-label"><?php echo get_phrase('contacto'); ?></label>
+                        <div class="controls">
 
-                    <div class="controls">
+                            <input type="text" class="uniform" name="nombre" value="<?php echo $row['nombre']; ?>"/>
 
-                        <input type="text" class="uniform" name="contacto" value="<?php echo $row['contacto']; ?>"/>
+                        </div>
 
                     </div>
 
+                    <div class="control-group">
+
+                        <label class="control-label"><?php echo get_phrase('contacto'); ?></label>
+
+                        <div class="controls">
+
+                            <input type="text" class="uniform" name="contacto" value="<?php echo $row['contacto']; ?>"/>
+
+                        </div>
+
+                    </div>
+
+
                 </div>
 
+                <div class="form-actions">
 
-            </div>
+                    <button type="submit" class="btn btn-gray"><?php echo get_phrase('edit_empresas'); ?></button>
 
-            <div class="form-actions">
-
-                <button type="submit" class="btn btn-gray"><?php echo get_phrase('edit_empresas'); ?></button>
-
-            </div>
+                </div>
 
             </form>
 

@@ -1,20 +1,21 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('site/class_routine/do_update/' . $row['class_routine_id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/horarios_materias/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="control-group">
                     <label class="control-label"><?php echo get_phrase('class'); ?></label>
 
                     <div class="controls">
-                        <select name="class_id" class="uniform" style="width:100%;">
+                        <select name="cursos" class="uniform" onchange="ajaxMaterias(this.value)" style="width:100%;">
                             <?php
-                            $classes = $this->db->get('class')->result_array();
-                            foreach ($classes as $row2):
+                            $cursos = $this->db->get('hs_cursos')->result_array();
+                            ?>
+                                <option value="0">Seleccione un Curso</option>
+                            <?php
+                            foreach ($cursos as $row2):
                                 ?>
-                                <option
-                                    value="<?php echo $row2['class_id']; ?>" <?php if ($row['class_id'] == $row2['class_id']) echo 'selected'; ?>>
-                                    <?php echo $row2['name']; ?></option>
+                                <option value="<?php echo $row2['id']; ?>"><?php echo $this->crud_model->get_hs_cursos_nombre($row2['curso']); ?></option>
                             <?php
                             endforeach;
                             ?>
@@ -25,17 +26,8 @@
                     <label class="control-label"><?php echo get_phrase('subject'); ?></label>
 
                     <div class="controls">
-                        <select name="subject_id" class="uniform" style="width:100%;">
-                            <?php
-                            $subjects = $this->db->get('subject')->result_array();
-                            foreach ($subjects as $row2):
-                                ?>
-                                <option
-                                    value="<?php echo $row2['subject_id']; ?>" <?php if ($row['subject_id'] == $row2['subject_id']) echo 'selected'; ?>>
-                                    <?php echo $row2['name']; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
+                        <select name="materias" id="materias" class="uniform" style="width:100%;">
+                            <option value="0">Seleccione un Curso</option>
                         </select>
                     </div>
                 </div>
@@ -43,34 +35,34 @@
                     <label class="control-label"><?php echo get_phrase('day'); ?></label>
 
                     <div class="controls">
-                        <select name="day" class="uniform" style="width:100%;">
+                        <select name="dia" class="uniform" style="width:100%;">
                             <option
-                                value="saturday"    <?php if ($row['day'] == 'saturday') echo 'selected="selected"'; ?>>
-                                saturday
+                                value="0"    <?php if ($row['dia'] == '0') echo 'selected="selected"'; ?>>
+                                Domingo
                             </option>
                             <option
-                                value="sunday"        <?php if ($row['day'] == 'sunday') echo 'selected="selected"'; ?>>
-                                sunday
+                                value="1"        <?php if ($row['dia'] == '1') echo 'selected="selected"'; ?>>
+                                Lunes
                             </option>
                             <option
-                                value="monday"        <?php if ($row['day'] == 'monday') echo 'selected="selected"'; ?>>
-                                monday
+                                value="2"        <?php if ($row['dia'] == '2') echo 'selected="selected"'; ?>>
+                                Martes
                             </option>
                             <option
-                                value="tuesday"    <?php if ($row['day'] == 'tuesday') echo 'selected="selected"'; ?>>
-                                tuesday
+                                value="3"    <?php if ($row['dia'] == '3') echo 'selected="selected"'; ?>>
+                                Miercoles
                             </option>
                             <option
-                                value="wednesday"    <?php if ($row['day'] == 'wednesday') echo 'selected="selected"'; ?>>
-                                wednesday
+                                value="4"    <?php if ($row['dia'] == '4') echo 'selected="selected"'; ?>>
+                                Jueves
                             </option>
                             <option
-                                value="thursday"    <?php if ($row['day'] == 'thursday') echo 'selected="selected"'; ?>>
-                                thursday
+                                value="5"    <?php if ($row['dia'] == '5') echo 'selected="selected"'; ?>>
+                                Viernes
                             </option>
                             <option
-                                value="friday"        <?php if ($row['day'] == 'friday') echo 'selected="selected"'; ?>>
-                                friday
+                                value="6"        <?php if ($row['dia'] == '6') echo 'selected="selected"'; ?>>
+                                Sabado
                             </option>
                         </select>
                     </div>
@@ -80,11 +72,11 @@
 
                     <div class="controls">
                         <?php
-                        if ($row['time_start'] < 13) {
-                            $time_start = $row['time_start'];
+                        if ($row['hora_inicio'] < 13) {
+                            $hora_inicio = $row['hora_inicio'];
                             $starting_ampm = 1;
-                        } else if ($row['time_start'] > 12) {
-                            $time_start = $row['time_start'] - 12;
+                        } else if ($row['hora_inicio'] > 12) {
+                            $hora_inicio = $row['hora_inicio'] - 12;
                             $starting_ampm = 2;
                         }
 
@@ -92,7 +84,7 @@
                         <select name="time_start" class="uniform" style="width:100%;">
                             <?php for ($i = 0; $i <= 12; $i++): ?>
                                 <option
-                                    value="<?php echo $i; ?>" <?php if ($i == $time_start) echo 'selected="selected"'; ?>>
+                                    value="<?php echo $i; ?>" <?php if ($i == $hora_inicio) echo 'selected="selected"'; ?>>
                                     <?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
@@ -108,14 +100,12 @@
                     <label class="control-label"><?php echo get_phrase('ending_time'); ?></label>
 
                     <div class="controls">
-
-
                         <?php
-                        if ($row['time_end'] < 13) {
-                            $time_end = $row['time_end'];
+                        if ($row['hora_fin'] < 13) {
+                            $hora_fin = $row['hora_fin'];
                             $ending_ampm = 1;
-                        } else if ($row['time_end'] > 12) {
-                            $time_end = $row['time_end'] - 12;
+                        } else if ($row['hora_fin'] > 12) {
+                            $hora_fin = $row['hora_fin'] - 12;
                             $ending_ampm = 2;
                         }
 
@@ -123,7 +113,7 @@
                         <select name="time_end" class="uniform" style="width:100%;">
                             <?php for ($i = 0; $i <= 12; $i++): ?>
                                 <option
-                                    value="<?php echo $i; ?>" <?php if ($i == $time_end) echo 'selected="selected"'; ?>>
+                                    value="<?php echo $i; ?>" <?php if ($i == $hora_fin) echo 'selected="selected"'; ?>>
                                     <?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
@@ -142,3 +132,18 @@
         <?php endforeach; ?>
     </div>
 </div>
+
+<script type="text/javascript">
+
+ function ajaxMaterias(valor) {
+
+        $('#materias').empty();
+
+        $.post('<?php echo site_url()?>ajax/obtenMaterias',
+            {'curso': valor },
+            function (data) {
+                $('#materias').html(data);
+            });
+    }
+
+</script>

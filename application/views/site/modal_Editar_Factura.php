@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?= form_open('site/facturacion/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?= form_open('site/facturacion/do_update1/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('estudiante'); ?></label>
