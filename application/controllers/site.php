@@ -1390,7 +1390,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') == 2)
+        if ($this->session->userdata('rol') == False)
 
             redirect(base_url(), 'refresh');
 
