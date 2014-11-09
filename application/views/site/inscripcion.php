@@ -58,9 +58,9 @@
                             <td>
 
                                 <?php
-                                $this->db->select('nombre, seccion');
+                                $this->db->select('curso, seccion');
                                 $query = $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
-                                echo $query[0]['nombre'] . ' ' . $query[0]['seccion'];
+                                echo $this->crud_model->get_class_name($query[0]['curso']) . ' -- Seccion ' . $query[0]['seccion'];
                                 ?>
                             </td>
                             <td><?php if ($row['status'] == 0) echo 'Preinscrito'; else echo 'Inscrito' ?></td>
@@ -114,7 +114,7 @@
                                                 <?php
                                                 $classes = $this->db->get('hs_cursos')->result_array();
                                                 foreach ($classes as $row) {
-                                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'].' - Sección '. $row['seccion'] . '</option>';
+                                                    echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion'] . '</option>';
                                                 }
                                                 ?>
                                             </select>

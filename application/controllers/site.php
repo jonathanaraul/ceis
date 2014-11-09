@@ -412,6 +412,72 @@ class Site extends CI_Controller
 
     }
 
+    function configurar_cursos($param1 = '', $param2 = '')
+
+    {
+
+        if ($this->session->userdata('rol') == 3)
+
+            redirect(base_url(), 'refresh');
+
+        if ($param1 == 'create') {
+
+            $materias= $this->input->post('materias');
+            
+            foreach ($materias as $materia) {
+                $data['curso'] = $this->input->post('curso');
+                $data['materia']=$materia;
+                
+                $this->db->insert('curso_materia', $data);
+            }
+
+            $this->db->insert('curso_materia', $data);
+
+            redirect(base_url() . 'index.php?site/configurar_cursos/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['curso'] = $this->input->post('curso');
+            $data['materia'] = $this->input->post('materias');
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('curso_materia', $data);
+
+            redirect(base_url() . 'index.php?site/configurar_cursos/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('curso_materia', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('curso_materia');
+
+            redirect(base_url() . 'index.php?site/configurar_cursos/', 'refresh');
+
+        }
+        $this->db->order_by("id", "asc");
+        $page_data['configurar_cursos'] = $this->db->get('curso_materia')->result_array();
+
+        $page_data['page_name'] = 'configurar_cursos';
+
+        $page_data['page_title'] = get_phrase('configurar_cursos');
+
+        $this->load->view('index', $page_data);
+
+    }
+
 
     /****MANAGE empresas*****/
 
@@ -494,23 +560,13 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data1['nombre'] = $this->input->post('nombre');
-            $data1['seccion'] = $this->input->post('seccion');
-            $materias= $this->input->post('materias');
-            
-            $data1['fecha_ini']= formatDate($this->input->post('fecha_ini'));
-            $data1['fecha_cul']= formatDate($this->input->post('fecha_cul'));
-            $data1['cupo'] = $this->input->post('cupo');
+            $data['curso'] = $this->input->post('curso');
+            $data['seccion'] = $this->input->post('seccion');            
+            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
+            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
+            $data['cupo'] = $this->input->post('cupo');
 
             $this->db->insert('hs_cursos', $data1);
-
-            $consulta = $this->db->get_where('hs_cursos', array('nombre' => $data1['nombre'], 'seccion' => $data1['seccion']))->result_array();
-            
-            foreach ($materias as $materia) {
-                $data2['curso']= $consulta[0]['id'];
-                $data2['materia']=$materia;
-                $this->db->insert('curso_materia', $data2);
-            }
 
             redirect(base_url() . 'index.php?site/cursos/', 'refresh');
 
@@ -518,9 +574,10 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['nombre'] = $this->input->post('nombre');
+            $data['curso'] = $this->input->post('curso');
             $data['seccion'] = $this->input->post('seccion');
-            $data['periodo'] = $this->input->post('periodo');
+            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
+            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
             $data['cupo'] = $this->input->post('cupo');
 
             $this->db->where('id', $param2);

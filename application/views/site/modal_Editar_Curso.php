@@ -11,11 +11,11 @@
                 <div class="control-group">
                     <label class="control-label"><?= 'Nombre'?></label>
                     <div class="controls">
-                        <select name="nombre" id="nombre_curso" class="uniform" style="width:100%;">
+                        <select name="curso" id="nombre_curso" class="uniform" style="width:100%;">
                             <?php
                             $elements = $this->db->get('class_name')->result_array();
                             foreach ($elements as $element){
-                                echo '<option value="'.$element['nombre'].'">'.$element['nombre'].'</option>';
+                                echo '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
                             }
                             ?>
                         </select>
@@ -39,8 +39,19 @@
                         <input type="text" class="validate[required]" name="cupo" value="<?php echo $row['cupo']?>" />
                     </div>
                 </div>
+                <div class="control-group">
+                <label class="control-label"><?= 'Fecha de Inicio' ?></label>
+                    <div class="controls">
+                    <input type="text" class="datepicker fill-up" name="fecha_ini"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                <label class="control-label"><?= 'Fecha de Culminación' ?></label>
+                    <div class="controls">
+                    <input type="text" class="datepicker fill-up" name="fecha_cul"/>
+                    </div>
+                </div>
             </div>
-
             <div class="form-actions">
 
                 <button type="submit" class="btn btn-gray"><?php echo get_phrase('editar_curso'); ?></button>
@@ -55,7 +66,6 @@
 
 </div>
 <script type="text/javascript">
-$('select[name=nombre]').val('<?php echo $row['nombre']; ?>');
+$('select[name=nombre]').val('<?php echo $row['curso']; ?>');
 $('select[name=seccion]').val('<?php echo $row['seccion']; ?>');
-$('select[name=periodo]').val('<?php echo $row['periodo']; ?>');
 </script>

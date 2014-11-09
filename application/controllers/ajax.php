@@ -50,7 +50,7 @@ class ajax extends CI_Controller
 
                 $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
             }else{
-                if($this->session->userdata('rol') == 4 && $this->session->userdata('user_id') == $element['profesor']){
+                if($this->session->userdata('rol') == 3 && $this->session->userdata('user_id') == $element['profesor']){
                     $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';      
                 }
             }
@@ -64,7 +64,9 @@ class ajax extends CI_Controller
     {
         $curso = $this->input->post('curso');
 
-        $elements = $this->db->get_where('curso_materia', array('curso' => $curso))->result_array();
+        $cursos= $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
+
+        $elements = $this->db->get_where('curso_materia', array('curso' => $cursos[0]['curso']))->result_array();
 
         $cadena = '<option value="0">Seleccionar materia</option>';
 
@@ -112,7 +114,8 @@ class ajax extends CI_Controller
                 }
             }
             if($existe){
-            $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($element['curso']) . '</option>';
+                $course= $this->db->get_where('hs_cursos', array('id' => $element['curso']))->result_array();
+                $cadena .= '<option value="' . $element['curso'] . '">' . $this->crud_model->get_hs_cursos_nombre($course[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($element['curso']) . '</option>';
             }
 
         }

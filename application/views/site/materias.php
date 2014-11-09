@@ -55,11 +55,13 @@
                     foreach ($materias as $row): ?>
                         <?php 
                             if($this->session->userdata('rol') == 1){
+                                
+                                $cursos= $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
                         ?>                        
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
-                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
+                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
@@ -98,7 +100,7 @@
                                     foreach ($cursos as $row):
                                         ?>
                                         <option
-                                            value="<?php echo $row['id']; ?>"><?php echo $row['nombre'].' - Sección '. $row['seccion']; ?></option>
+                                            value="<?php echo $row['id']; ?>"><?php echo $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion']; ?></option>
                                     <?php
                                     endforeach;
                                     ?>
@@ -118,7 +120,7 @@
                             <div class="controls">
                                 <select name="profesor" class="uniform" style="width:100%;">
                                     <?php
-                                    $profesores = $this->db->get_where('hs_users', array('rol' => 4))->result_array();
+                                    $profesores = $this->db->get_where('hs_users', array('rol' => 3))->result_array();
                                     foreach ($profesores as $profesor){
                                         echo '<option value="'.$profesor['user_id'].'">'.$profesor['name'].' '.$profesor['papellido'].'</option>';
                                     }

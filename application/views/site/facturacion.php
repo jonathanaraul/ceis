@@ -61,11 +61,13 @@
                     </thead>
                     <tbody>
                     <?php $count = 1;
-                    foreach ($facturacion as $row): ?>
+                    foreach ($facturacion as $row): 
+                        $cursos= $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
+                    ?>
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?= $this->crud_model->get_hs_student_nombre_by_id($row['estudiante'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['estudiante']); ?></td>
-                            <td><?= $this->crud_model->get_hs_cursos_nombre($row['curso']) ?></td>
+                            <td><?= $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?= $row['descripcion']; ?></td>
                             <td><?= $row['cantidad']; ?></td>
                             <td><?= $row['monto']; ?></td>
@@ -137,12 +139,14 @@
                     <tbody>
                     <?php $count = 1;
                     $empresas= $this->db->get('hs_facturacion_empresas')->result_array();
-                    foreach ($empresas as $empresa): ?>
+                    foreach ($empresas as $empresa): 
+                        $cursos_empresas= $this->db->get_where('hs_cursos', array('id' => $empresa['curso']))->result_array();
+                    ?>
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?= $this->crud_model->get_empresas_name($empresa['empresa']); ?></td>
                             <td><?= $this->crud_model->get_empresas_nit($empresa['empresa']); ?></td>                            
-                            <td><?= $this->crud_model->get_hs_cursos_nombre($empresa['curso']) ?></td>
+                            <td><?= $this->crud_model->get_hs_cursos_nombre($cursos_empresas[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($empresa['curso']); ?></td>
                             <td><?= $empresa['descripcion']; ?></td>
                             <td><?= $empresa['monto']; ?></td>
                             <td><?= $empresa['metodo_pago']; ?></td>
@@ -293,9 +297,9 @@
                                     <select name="curso" id="cursos" class="uniform">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
                                         <?php
-                                            $cursos = $this->db->get('hs_cursos')->result_array();
-                                            foreach ($cursos as $curso) {
-                                                echo '<option value="' . $curso['id']. '">' .$curso['nombre']. '</option>';
+                                            $curso2 = $this->db->get('hs_cursos')->result_array();
+                                            foreach ($curso2 as $curso2) {
+                                                echo '<option value="' . $curso2['id']. '">' .$this->crud_model->get_hs_cursos_nombre($curso2['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($curso2['id']). '</option>';
                                             }
                                         ?>
                                     </select>

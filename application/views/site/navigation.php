@@ -412,6 +412,20 @@
 
         </li>
 
+        <li class="<?php if ($page_name == 'configurar_cursos') echo 'active'; ?>">
+
+            <a href="<?php echo base_url(); ?>index.php?site/configurar_cursos">
+
+                <!--<i class="icon-download-alt"></i>-->
+
+                <img src="<?php echo base_url(); ?>template/images/icons/system_settings.png"/>
+
+                <?php echo get_phrase('configurar_cursos'); ?>
+
+            </a>
+
+        </li>
+
         <li class="<?php if ($page_name == 'backup_restore') echo 'active'; ?>">
 
             <a href="<?php echo base_url(); ?>index.php?site/backup_restore">

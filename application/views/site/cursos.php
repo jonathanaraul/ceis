@@ -86,7 +86,7 @@
 
                 <td><?= $count++; ?></td>
 
-                <td><?= $row['nombre']; ?></td>
+                <td><?= $this->crud_model->get_class_name($row['curso']); ?></td>
 
                 <td><?= $row['seccion']; ?></td>
 
@@ -151,11 +151,11 @@
             <div class="control-group">
                 <label class="control-label"><?= 'Curso'?></label>
                 <div class="controls">
-                    <select name="nombre" class="uniform" style="width:100%;">
+                    <select name="curso" class="uniform" style="width:100%;">
                         <?php
                         $elements = $this->db->get('class_name')->result_array();
                         foreach ($elements as $element){
-                            echo '<option value="'.$element['nombre'].'">'.$element['nombre'].'</option>';
+                            echo '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
                         }
                         ?>
                     </select>
@@ -170,22 +170,6 @@
                         <option value="C"> C</option>
                         <option value="D"> D</option>
                         <option value="E"> E</option>
-                    </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label"><?php echo get_phrase('materia'); ?></label>
-                <div class="controls">
-                    <select name="materias[]" id="materias" style="width:660px;" multiple="multiple" >
-                        <?php
-                        $elements = $this->db->get('nombre_materias')->result_array();
-                        foreach ($elements as $element):
-                            ?>
-                            <option
-                                value="<?php echo $element['id']; ?>"> <?php echo $element['materia']; ?> </option>
-                        <?php
-                        endforeach;
-                        ?>
                     </select>
                 </div>
             </div>
@@ -222,32 +206,6 @@
 </div>
 
 <script type="text/javascript">
-
-    function gestionarNotas(valor) {
-
-        var curso = $('#cursos').val();
-        var materia = $('#materias').val();
-        var evaluacion = $('#evaluaciones').val();
-
-        if (curso <= 0 || materia <= 0 || evaluacion <= 0) {
-            alert('Debe llenar los tres campos');
-            return false;
-        }
-
-        $('#asistencias').empty();
-
-        $('#loader').css('display','block');
-        var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
-
-        $.post('<?php echo site_url()?>ajax/obtenAsistencias',
-            data,
-            function (data) {
-
-                $('#asistencias').html(data);
-                $('#loader').css('display','none');
-                $('#asistencias').css('display','block');
-            });
-    }
 
  $(document).ready(function() { $("#materias").select2(); });
 

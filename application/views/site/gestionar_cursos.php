@@ -36,7 +36,7 @@
                         <th>
                             <div><?php echo get_phrase('name'); ?></div>
                         </th>
-                        <th>
+                        <th width="40%">
                             <div><?php echo get_phrase('materia'); ?></div>
                         </th>
                         <th>
@@ -52,11 +52,14 @@
                     </thead>
                     <tbody>
                     <?php $count = 1;
-                    foreach ($evaluaciones as $row): ?>
+                    foreach ($evaluaciones as $row): 
+                        $materias= $this->db->get_where('hs_materias', array('id' => $row['materia']))->result_array();
+                        $cursos= $this->db->get_where('hs_cursos', array('id' => $materias[0]['curso']))->result_array();
+                    ?>
                         <tr>
                             <td><?php echo $count++; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
-                            <td><?php echo $this->crud_model->get_subject_name_by_id($row['materia']); ?></td>
+                            <td><?php echo $this->crud_model->get_subject_name_by_id($row['materia']).' -- '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']). ' -- Seccion ' . $cursos[0]['seccion']; ?></td>
                             <td><?php echo $row['ponderacion']; ?></td>
                             <td><?php echo $row['fecha'] ?></td>
                             <td align="center">
@@ -101,9 +104,10 @@
                                     <?php
                                     $elements = $this->db->get('hs_materias')->result_array();
                                     foreach ($elements as $element):
+                                        $cursos= $this->db->get_where('hs_cursos', array('id' => $element['curso']))->result_array();
                                         ?>
                                         <option
-                                            value="<?php echo $element['id']; ?>"> <?php echo $element['nombre'].' -- '.$this->crud_model->get_hs_cursos_nombre($element['curso']); ?> </option>
+                                            value="<?php echo $element['id']; ?>"> <?php echo $element['nombre'].' -- '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']); ?> </option>
                                     <?php
                                     endforeach;
                                     ?>
@@ -184,7 +188,7 @@
                                     <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']) . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -240,7 +244,7 @@
                                     <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']) . '</option>';
                                     }
                                     ?>
                                 </select>
