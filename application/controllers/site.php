@@ -20,7 +20,8 @@ class Site extends CI_Controller
     {
         if($this->session->userdata('rol') == FALSE)
         {
-			redirect(base_url().'index.php?login');
+			
+            $this->load->view('login');
         }
         
         $role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
@@ -42,7 +43,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect('login', 'refresh');
 
         if ($param1 == 'create') {
             $data['documento'] = $this->input->post('documento');
@@ -240,7 +241,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == FALSE)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -350,7 +351,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == 3)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -420,7 +421,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -489,7 +490,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -560,7 +561,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == FALSE)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($this->input->post('operation') == 'selection') {
@@ -630,8 +631,8 @@ class Site extends CI_Controller
 
        if ($this->session->userdata('rol') == FALSE)
 
-            redirect(base_url().'index.php?login');
-            
+            redirect(base_url(), 'refresh');
+
 
         if ($this->input->post('operation') == 'selection') {
 
@@ -702,7 +703,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -781,7 +782,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == FALSE)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -856,7 +857,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($param1 == 'create_estudiante') {
@@ -1015,7 +1016,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect('login', 'refresh');
 
 
         $page_data['page_name'] = 'documentos';
@@ -1035,7 +1036,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 2 || $this->session->userdata('rol') != 3)
 
-            redirect(base_url().'index.php?login');
+            redirect('login', 'refresh');
 
         if ($param1 == 'create') {
 
@@ -1109,7 +1110,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect('login', 'refresh');
 
         if ($param1 == 'create') {
 
@@ -1180,7 +1181,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == FALSE)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($param1 == 'create') {
@@ -1251,7 +1252,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($param1 == 'create') {
@@ -1319,7 +1320,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -1391,7 +1392,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') == False)
 
-           redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -1462,7 +1463,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($param1 == 'create') {
@@ -1534,7 +1535,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url() . 'index.php?login', 'refresh');
 
 
         if ($param2 == 'do_update') {
@@ -1582,7 +1583,7 @@ class Site extends CI_Controller
     {
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect('login', 'refresh');
 
         if ($param1 == 'create') {
            
@@ -1703,7 +1704,7 @@ class Site extends CI_Controller
 		
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
         if ($param1 == 'create') {
 
@@ -1911,7 +1912,7 @@ class Site extends CI_Controller
 
         if ($this->session->userdata('rol') != 1)
 
-            redirect(base_url().'index.php?login');
+            redirect(base_url(), 'refresh');
 
 
         if ($operation == 'create') {
