@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2014 a las 12:20:33
+-- Tiempo de generación: 10-11-2014 a las 18:55:03
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -697,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `hs_users` (
   `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `rol` int(11) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
 -- Volcado de datos para la tabla `hs_users`
@@ -714,7 +714,10 @@ INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, 
 (21, 'Luis', 'F', 'Garcia', 'S', 'male', 'La piramide', '02345654433', 'garcia@gmail.com', '$2a$08$jtLQAgHnuJXj2tr9P1VqNuSR/csU89SPeYQB6hFXG4ygn1t5mbRCC', 2),
 (22, 'Roger', 'A', 'Bertel', 'R', 'male', 'Cerca de alli', '092435554', 'roger@gmail.com', '$2a$08$ikJnBH.ZsW6YbRSswN8bJuhtjIsh2ORX.lqjI3Pu/oUUfoCFnIPva', 2),
 (33, 'Mr.', '', 'Admin', '.', 'male', '', '', 'admin@admin.com', '$2a$08$XvBHE51RyN.FcNTNUf9..uA5SuBKDICLgA/mZbCd/rV9EVt6i9lkG', 1),
-(34, 'Cuenta', '', 'Operativa', '1', 'male', '', '', 'operativo@ceis.com.co', '$2a$08$XDZ2atlrxXK8Ajr6cXy5PeZdDuu03u4hzQ2EKiN5MsYkdAh9q9xg.', 1);
+(34, 'Cuenta', '', 'Operativa', '1', 'male', '', '', 'operativo@ceis.com.co', '$2a$08$XDZ2atlrxXK8Ajr6cXy5PeZdDuu03u4hzQ2EKiN5MsYkdAh9q9xg.', 1),
+(35, 'Cuenta', '', 'Directiva', '', '', '', '', 'direccion@ceis.com.co', 'vigilancia2014@', 1),
+(36, 'Cuenta', '', 'Recepción', '', '', '', '', 'recepcion@ceis.com.co', 'vigilancia2014@', 1),
+(37, 'administrativo@ceis.com.co', '', '', '', '', '', '', 'administrativo@ceis.com.co', 'vigilancia2014@', 1);
 
 -- --------------------------------------------------------
 
@@ -754,7 +757,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4681 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4685 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -5443,7 +5446,11 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (4677, 'documentos_academicos', ''),
 (4678, 'RSS', ''),
 (4679, 'documentos_academicos', ''),
-(4680, 'RSS', '');
+(4680, 'RSS', ''),
+(4681, 'documentos_academicos', ''),
+(4682, 'RSS', ''),
+(4683, 'documentos_academicos', ''),
+(4684, 'RSS', '');
 
 -- --------------------------------------------------------
 
