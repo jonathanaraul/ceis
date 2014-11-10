@@ -21,11 +21,11 @@ class Login extends CI_Controller
 	public function index()
 	{	
 		
-		if ($this->session->userdata('rol')=='' or $this->session->userdata('rol')>3) {
+		if ($this->session->userdata('rol')=='' or $this->session->userdata('rol')>2) {
 			
 				$data['token'] = $this->token();
 				$this->load->view('login', $data);
-		}elseif ($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=3) {
+		}elseif ($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2) {
 			
 				redirect(base_url().'index.php?site');
 				$page_data['page_title'] = get_phrase('login');

@@ -245,7 +245,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') == 3)
+        if ($this->session->userdata('rol') == 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
@@ -312,7 +312,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') == 3)
+        if ($this->session->userdata('rol') == 1)
 
             redirect(base_url(), 'refresh');
 
@@ -1020,7 +1020,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 2 || $this->session->userdata('rol') != 3)
+        if ($this->session->userdata('rol') != 2)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
