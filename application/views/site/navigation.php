@@ -39,16 +39,16 @@
 </li>
 
 
-<!------student----->
+<!------estudiantes----->
 <?php 
-	if($this->session->userdata('rol') == 1){
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
  ?>
 
-<li class="<?php if ($page_name == 'student') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'estudiantes') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/student" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/estudiantes" rel="tooltip" data-placement="right"
 
        data-original-title="<?php echo get_phrase('student_help'); ?>">
 

@@ -20,5 +20,5 @@
 
     <div>
         <p style="text-align:center" ><button type="button" id="imprimir" class="btn btn-normal btn-gray" style="width: 59.4%;
-        margin-left: 7px; margin-top: 20px;"  onclick="actualizarNotas()">Imprimir Certificación de Estudios</button></p></td>
+        margin-left: 7px; margin-top: 20px;"  onclick="imprimirCertificado()">Imprimir Certificación de Estudios</button></p></td>
     </div>

@@ -37,7 +37,7 @@ class Site extends CI_Controller
 
     /****MANAGE STUDENTS CLASSWISE*****/
 
-    function student($param1 = '', $param2 = '', $param3 = '')
+    function estudiantes($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -46,184 +46,80 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'create') {
+
             $data['documento'] = $this->input->post('documento');
-            $data['ndocumento'] = $this->input->post('ndocumento');
-            $data['name'] = $this->input->post('name');
+            $data['nombre'] = $this->input->post('nombre');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
             $data['sapellido'] = $this->input->post('sapellido');
-            $data['birthday'] = $this->input->post('birthday');
-            $data['sex'] = $this->input->post('sex');
-            $data['estado_civil'] = $this->input->post('estado_civil');
-            $data['tienehijos'] = $this->input->post('tienehijos');
-            $data['ndehijos'] = $this->input->post('ndehijos');
-            $data['nlibmilitar'] = $this->input->post('nlibmilitar');
-            $data['tipodeingreso'] = $this->input->post('tipodeingreso');
-            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
+            $data['sexo'] = $this->input->post('sexo');
             $data['empresa'] = $this->input->post('empresa');
-            $data['address'] = $this->input->post('address');
-            $data['phone'] = $this->input->post('phone');
+            $data['direccion'] = $this->input->post('direccion');
+            $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
 
-            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
-            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
-            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
-            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
+            $this->db->insert('hs_estudiantes', $data);
 
-            $data['talla_camisa'] = $this->input->post('talla_camisa');
-            
-            $data['barrio'] = $this->input->post('barrio');
-            $data['departamento'] = $this->input->post('departamento');
-            $data['municipio'] = $this->input->post('municipio');
-            $data['email'] = $this->input->post('email');
-
-            $convenio = $this->input->post('convenio');
-            if ($convenio == 'convenio_sena') {
-                $data['sena'] = 1;
-                $data['cod_regional'] = $this->input->post('cod_regional');
-                $data['nom_regional'] = $this->input->post('nom_regional');
-                $data['cod_departamento'] = $this->input->post('cod_departamento');
-
-                $data['nom_departamento'] = $this->input->post('nom_departamento');
-                $data['cod_municipio'] = $this->input->post('cod_municipio');
-                $data['nom_municipio'] = $this->input->post('nom_municipio');
-                $data['emp_gremio'] = $this->input->post('emp_gremio');
-                $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
-                $data['caracterizacion'] = $this->input->post('caracterizacion');
-            } else {
-                $data['sena'] = 0;
-                $data['cod_regional'] = null;
-                $data['nom_regional'] = null;
-                $data['cod_departamento'] = null;
-                $data['nom_departamento'] = null;
-                $data['cod_municipio'] = null;
-                $data['nom_municipio'] = null;
-                $data['emp_gremio'] = null;
-                $data['lin_formacion'] = null;
-                $data['nom_sector_eco'] = null;
-                $data['nom_subsector_eco'] = null;
-            }
-
-            $this->db->insert('student', $data);
-
-            $student_id = mysql_insert_id();
-
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $student_id . '.jpg');
-
-            $this->email_model->account_opening_email('student', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
-
-            redirect(base_url() . 'index.php?site/student/', 'refresh');
+            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 
         }
 
         if ($param1 == 'do_update') {
 
             $data['documento'] = $this->input->post('documento');
-            $data['ndocumento'] = $this->input->post('ndocumento');
-            $data['name'] = $this->input->post('name');
+            $data['nombre'] = $this->input->post('nombre');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
             $data['sapellido'] = $this->input->post('sapellido');
-            $data['birthday'] = $this->input->post('birthday');
-            $data['sex'] = $this->input->post('sex');
-            $data['estado_civil'] = $this->input->post('estado_civil');
-            $data['tienehijos'] = $this->input->post('tienehijos');
-            $data['ndehijos'] = $this->input->post('ndehijos');
-            $data['nlibmilitar'] = $this->input->post('nlibmilitar');
-            $data['tipodeingreso'] = $this->input->post('tipodeingreso');
-            if ($this->input->post('helpertipodeingreso') != '') $data['tipodeingreso'] = $this->input->post('helpertipodeingreso');
+            $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
+            $data['sexo'] = $this->input->post('sexo');
             $data['empresa'] = $this->input->post('empresa');
-            $data['address'] = $this->input->post('address');
-            $data['phone'] = $this->input->post('phone');
+            $data['direccion'] = $this->input->post('direccion');
+            $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
 
-            if ($this->input->post('check_cedula') == 'on') $data['check_cedula'] = 1;
-            if ($this->input->post('check_lib_militar') == 'on') $data['check_lib_militar'] = 1;
-            if ($this->input->post('check_cert_est') == 'on') $data['check_cert_est'] = 1;
-            if ($this->input->post('check_foto') == 'on') $data['check_foto'] = 1;
+            $this->db->where('id', $param2);
 
-            $data['talla_camisa'] = $this->input->post('talla_camisa');
-
-            $data['barrio'] = $this->input->post('barrio');
-            $data['departamento'] = $this->input->post('departamento');
-            $data['municipio'] = $this->input->post('municipio');
-            $data['email'] = $this->input->post('email');
+            $this->db->update('hs_estudiantes', $data);
             
-            $convenio = $this->input->post('convenio');
-            if ($convenio == 'convenio_sena') {
-                $data['sena'] = 1;
-                $data['cod_regional'] = $this->input->post('cod_regional');
-                $data['nom_regional'] = $this->input->post('nom_regional');
-                $data['cod_departamento'] = $this->input->post('cod_departamento');
-                $data['nom_departamento'] = $this->input->post('nom_departamento');
-                $data['cod_municipio'] = $this->input->post('cod_municipio');
-                $data['nom_municipio'] = $this->input->post('nom_municipio');
-                $data['emp_gremio'] = $this->input->post('emp_gremio');
-                $data['lin_formacion'] = $this->input->post('lin_formacion');
-                $data['nom_sector_eco'] = 'SERVICIOS'; //$this->input->post('nom_sector_eco');
-                $data['nom_subsector_eco'] = 'VIGILANCIA'; //$this->input->post('nom_subsector_eco');
-                $data['caracterizacion'] = $this->input->post('caracterizacion');
-            } else {
-                $data['sena'] = 0;
-                $data['cod_regional'] = null;
-                $data['nom_regional'] = null;
-                $data['cod_departamento'] = null;
-                $data['nom_departamento'] = null;
-                $data['cod_municipio'] = null;
-                $data['nom_municipio'] = null;
-                $data['emp_gremio'] = null;
-                $data['lin_formacion'] = null;
-                $data['nom_sector_eco'] = null;
-                $data['nom_subsector_eco'] = null;
-            }
-
-            $this->db->where('student_id', $param2);
-
-            $this->db->update('student', $data);
-
-            move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_image/' . $param2 . '.jpg');
-
-            $this->crud_model->clear_cache();
-            
-            redirect(base_url() . 'index.php?site/student/', 'refresh');
+            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
-            $page_data['edit_data'] = $this->db->get_where('student', array(
+            $page_data['edit_data'] = $this->db->get_where('hs_estudiantes', array(
 
-                'student_id' => $param2
+                'id' => $param2
 
             ))->result_array();
 
-        } else if ($param1 == 'personal_profile') {
+       // } else if ($param1 == 'personal_profile') {
 
-            $page_data['personal_profile'] = true;
+       //     $page_data['personal_profile'] = true;
 
-            $page_data['current_student_id'] = $param2;
+       //     $page_data['current_student_id'] = $param2;
 
-        }  else if ($param1 == 'academic_result') {
+       // }  else if ($param1 == 'academic_result') {
 
-            $page_data['academic_result'] = true;
+       //     $page_data['academic_result'] = true;
 
-            $page_data['current_student_id'] = $param3;
+       //     $page_data['current_student_id'] = $param3;
 
         }
 
         if ($param1 == 'delete') {
 
-            $this->db->where('student_id', $param3);
+            $this->db->where('id', $param2);
 
-            $this->db->delete('student');
+            $this->db->delete('hs_estudiantes');
 
-            redirect(base_url() . 'index.php?site/student/', 'refresh');
+            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 
         }
 
-        $page_data['students'] = $this->db->get('student')->result_array();
+        $page_data['estudiantes'] = $this->db->get('hs_estudiantes')->result_array();
 
-        $page_data['page_name'] = 'student';
+        $page_data['page_name'] = 'estudiantes';
 
         $page_data['page_title'] = get_phrase('manage_student');
 
@@ -563,6 +459,7 @@ class Site extends CI_Controller
             $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
             $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
             $data['cupo'] = $this->input->post('cupo');
+            $data['duracion'] = $this->input->post('duracion');
 
             $this->db->insert('hs_cursos', $data);
 
@@ -577,6 +474,7 @@ class Site extends CI_Controller
             $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
             $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
             $data['cupo'] = $this->input->post('cupo');
+            $data['duracion'] = $this->input->post('duracion');
 
             $this->db->where('id', $param2);
             $this->db->update('hs_cursos', $data);

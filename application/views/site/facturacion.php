@@ -30,7 +30,7 @@
                         <th>
                             <div>#</div>
                         </th>
-                        <th>
+                        <th width="11%">
                             <div><?php echo get_phrase('student'); ?></div>
                         </th>
                         <th width="20%">
@@ -188,9 +188,9 @@
                                     <select name="estudiante" id="estudiantes" class="uniform" onchange="ajaxEstudiantes(this.value);">
                                         <option value="0"><?= 'Seleccionar Estudiante' ?></option>
                                         <?php
-                                        $estudiantes = $this->db->get_where('hs_users', array('rol' => 2))->result_array();
+                                        $estudiantes = $this->db->get('hs_estudiantes')->result_array();
                                         foreach ($estudiantes as $row) {
-                                            echo '<option value="' . $row['user_id']. '">' .$this->crud_model->get_hs_student_nombre_by_id($row['user_id'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['user_id']) . '</option>';
+                                            echo '<option value="' . $row['id']. '">' .$this->crud_model->get_hs_student_nombre_by_id($row['id'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['id']) . '</option>';
                                         }
                                         ?>
                                     </select>

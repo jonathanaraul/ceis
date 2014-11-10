@@ -1,288 +1,144 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
 
-<div class="box-content">
+    <div class="box-content">
 
-<?php foreach ($edit_data as $row): ?>
+        <?php foreach ($edit_data as $row): ?>
 
-    <?php echo form_open('site/student/do_update/'. $row['student_id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+            <?php echo form_open('site/estudiantes/do_update/'. $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
-    <div class="padded">
+                <div class="padded">
+                    <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
 
-    <div class="control-group">
+                            <div class="controls">
+                                <input type="text" class="validate[required]" name="documento" value="<?= $row['documento'] ?>" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('primer_nombre'); ?></label>
 
-        <label class="control-label"></label>
+                            <div class="controls">
+                                <input type="text" class="validate[required]" name="nombre" value="<?= $row['nombre'] ?>"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('segundo_nombre'); ?></label>
 
-        <div class="controls" style="width:210px;">
+                            <div class="controls">
+                                <input type="text" name="snombre" value="<?= $row['snombre'] ?>"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('primer_apellido'); ?></label>
 
-            <div class="avatar">
+                            <div class="controls">
+                                <input type="text" class="validate[required]" name="papellido" value="<?=$row['papellido'] ?>"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('segundo_apellido'); ?></label>
 
-                <img id="blah" class="avatar-large"
-                     src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>" height="100"
-                     width="100"/>
-
-            </div>
-
-        </div>
-
-    </div>
-  
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('photo'); ?></label>
-
-        <div class="controls" style="width:210px;">
-
-            <input type="file" class="" name="userfile" id="imgInp"/>
-
-        </div>
-
-    </div>
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('tipo_de_documento'); ?></label>
-
-        <div class="controls">
-
-            <select name="documento" class="uniform" style="width:100%;">
-
-                <option
-                    value="CC" <?php if ($row['documento'] == 'CC') echo 'selected'; ?>><?php echo get_phrase('CEDULA_DE_CIUDADANIA'); ?></option>
-
-                <option
-                    value="CE" <?php if ($row['documento'] == 'CE') echo 'selected'; ?>><?php echo get_phrase('CEDULA_DE_EXTRANJERIA'); ?></option>
-                <option
-                    value="VISA" <?php if ($row['documento'] == 'VISA') echo 'selected'; ?>><?php echo get_phrase('VISA'); ?></option>
+                            <div class="controls">
+                                <input type="text" class="uniform" name="sapellido" value="<?= $row['sapellido'] ?>"/>
+                            </div>
+                        </div>
 
 
-            </select>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
 
-        </div>
+                            <div class="controls">
+                                <select name="tipodeingreso" class="uniform" style="width:100%;" onchange="mostrarEmpresas(this.value);">
+                                    <option value="">-- Seleccione Uno --</option>
+                                    <option value=""><?php echo get_phrase('particular'); ?></option>
+                                    <option value="empresa"><?php echo get_phrase('empresa'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" id="divTipoingreso" style="display: none;">
+                            <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
 
-    </div>
-    <div class="control-group">
+                            <div class="controls">
+                                <select name="empresa" class="uniform" style="width:100%;">
+                                    <option value="" selected>-- Seleccione Uno --</option>
+                                    <?php
+                                    $empresas = $this->db->get('hs_empresas')->result_array();
+                                    foreach ($empresas as $row2):
+                                        ?>
+                                        <option value="<?php echo $row2['nombre']; ?>"> <?php echo $row2['nombre']; ?> </option>
+                                    <?php
+                                    endforeach;
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
 
-        <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
+                            <div class="controls">
+                                <input type="text" class="datepicker fill-up" name="f_nacimiento"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('sex'); ?></label>
 
-        <div class="controls">
+                            <div class="controls">
+                                <select name="sexo" class="uniform" style="width:100%;">
+                                    <option value="0">-- Seleccione Uno --</option>
+                                    <option <?php if($row['sexo'] == "male"){ echo "selected";} ?> value="male"><?php echo get_phrase('male'); ?></option>
+                                    <option <?php if($row['sexo'] == "female"){ echo "selected";} ?> value="female"><?php echo get_phrase('female'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('Direccion de residencia'); ?></label>
 
-            <input type="text" class="validate[required]" name="ndocumento" value="<?php echo $row['ndocumento']; ?>"/>
+                            <div class="controls">
+                                <input type="text" class="uniform" name="direccion" value="<?= $row['direccion']?>"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('telefono_residencia'); ?></label>
 
-        </div>
+                            <div class="controls">
+                                <input type="text" class="uniform" name="telefono" value="<?=$row['telefono']?>"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('email'); ?></label>
 
-    </div>
+                            <div class="controls">
+                                <input type="text" class="uniform" name="email" value="<?= $row['email']?>"/>
+                            </div>
+                        </div>
 
-    <div class="control-group">
 
-        <label class="control-label"><?php echo get_phrase('lugar_de_expedicion'); ?></label>
 
-        <div class="controls">
+                </div>
 
-            <input type="text" class="validate[required]" name="lexpedicion"
-                   value="<?php echo $row['lexpedicion']; ?>"/>
+                <div class="form-actions">
 
-        </div>
+                    <button type="submit" class="btn btn-gray"><?php echo get_phrase('Actualizar_datos'); ?></button>
 
-    </div>
-    <div class="control-group">
+                </div>
 
-        <label class="control-label"><?php echo get_phrase('fecha_de_expedicion'); ?></label>
+            </form>
 
-        <div class="controls">
-
-            <input type="text" class="datepicker fill-up" name="fchaexp" value="<?php echo $row['fchaexp']; ?>"/>
-
-        </div>
-
-    </div>
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('name'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="validate[required]" name="name" value="<?php echo $row['name']; ?>"/>
-
-        </div>
-
-    </div>
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('segundo_nombre'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="validate[required]" name="snombre" value="<?php echo $row['snombre']; ?>"/>
-
-        </div>
-
-    </div>
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('primer_apellido'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="validate[required]" name="papellido" value="<?php echo $row['papellido']; ?>"/>
-
-        </div>
+        <?php endforeach; ?>
 
     </div>
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('segundo_apellido'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="validate[required]" name="sapellido" value="<?php echo $row['sapellido']; ?>"/>
-
-        </div>
-
-    </div>
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('birthday'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="datepicker fill-up" name="birthday" value="<?php echo $row['birthday']; ?>"/>
-
-        </div>
-
-    </div>
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('sex'); ?></label>
-
-        <div class="controls">
-
-            <select name="sex" class="uniform" style="width:100%;">
-
-                <option
-                    value="male" <?php if ($row['sex'] == 'male') echo 'selected'; ?>><?php echo get_phrase('male'); ?></option>
-
-                <option
-                    value="female" <?php if ($row['sex'] == 'female') echo 'selected'; ?>><?php echo get_phrase('female'); ?></option>
-
-            </select>
-
-        </div>
-
-    </div>
-
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('estado_civil'); ?></label>
-
-        <div class="controls">
-
-            <select name="estado_civil" class="uniform" style="width:100%;">
-
-                <option
-                    value="Soltero" <?php if ($row['estado_civil'] == 'Soltero') echo 'selected'; ?>><?php echo get_phrase('Soltero'); ?></option>
-
-                <option
-                    value="casado" <?php if ($row['estado_civil'] == 'casado') echo 'selected'; ?>><?php echo get_phrase('casado'); ?></option>
-                <option
-                    value="Separado" <?php if ($row['estado_civil'] == 'Separado') echo 'selected'; ?>><?php echo get_phrase('Separado'); ?></option>
-                <option
-                    value="Union_Libre" <?php if ($row['estado_civil'] == 'Union_Libre') echo 'selected'; ?>><?php echo get_phrase('Union_Libre'); ?></option>
-                <option
-                    value="Viudo" <?php if ($row['estado_civil'] == 'Viudo') echo 'selected'; ?>><?php echo get_phrase('Viudo'); ?></option>
-
-
-            </select>
-
-        </div>
-
-    </div>
-
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('address'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="" name="address" value="<?php echo $row['address']; ?>"/>
-
-        </div>
-
-    </div>
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('phone'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="" name="phone" value="<?php echo $row['phone']; ?>"/>
-
-        </div>
-
-    </div>
-
-    <div class="control-group">
-
-        <label class="control-label"><?php echo get_phrase('email'); ?></label>
-
-        <div class="controls">
-
-            <input type="text" class="" name="email" value="<?php echo $row['email']; ?>"/>
-
-        </div>
-
-    </div>
-
-
-    </div>
-
-    <div class="form-actions">
-
-        <button type="submit" class="btn btn-gray"><?php echo get_phrase('Actualizar_estudiante'); ?></button>
-
-    </div>
-
-    </form>
-
-<?php endforeach; ?>
-
-</div>
 
 </div>
 
 
 <script>
 
-    function readURL(input) {
-
-        if (input.files && input.files[0]) {
-
-            var reader = new FileReader();
-
-
-            reader.onload = function (e) {
-
-                $('#blah').attr('src', e.target.result);
-
-            }
-
-
-            reader.readAsDataURL(input.files[0]);
-
+    function mostrarEmpresas(valor) {
+        if (valor == 'empresa') {
+            $('#divTipoingreso').css('display', 'block');
+        }else{
+            $('#divTipoingreso').css('display', 'none');
         }
-
     }
-
-
-    $("#imgInp").change(function () {
-
-        readURL(this);
-
-    });
 
 </script>

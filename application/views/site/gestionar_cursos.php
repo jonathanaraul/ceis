@@ -188,7 +188,7 @@
                                     <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']) . '</option>';
+                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Seccion: '.$row['seccion'] . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -244,7 +244,7 @@
                                     <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']) . '</option>';
+                                        echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Seccion: '.$row['seccion']  . '</option>';
                                     }
                                     ?>
                                 </select>

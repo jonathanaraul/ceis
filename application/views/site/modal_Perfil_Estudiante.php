@@ -15,17 +15,9 @@ foreach ($student_info as $row):?>
                     <div
                         style="float:left;width:370px;height:147px;text-align:left;position:relative; margin-bottom:20px;">
 
-                        <div class="avatar" style="position:absolute;bottom:0px;left:20px;">
+                        <div style="position:absolute; bottom:10px;left:100px;">
 
-                            <img src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']); ?>"
-
-                                 class="avatar-big" style="max-height:130px;max-width:130px;"/>
-
-                        </div>
-
-                        <div style="position:absolute; bottom:10px;left:150px;">
-
-                            <h3 style=" color:#666;font-weight:100;"><?php echo $row['name']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></h3>
+                            <h3 style=" color:#666;font-weight:100;"><?php echo $row['nombre']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></h3>
 
                         </div>
 
@@ -40,13 +32,13 @@ foreach ($student_info as $row):?>
             <table class="table table-normal ">
 
 
-                <?php if ($row['roll'] != ''): ?>
+                <?php if ($row['documento'] != '' || $row['documento'] != 0): ?>
 
                     <tr>
 
                         <td>Documento</td>
 
-                        <td><b><?php echo $row['documento']; ?> : <?php echo $row['ndocumento']; ?></b></td>
+                        <td><b><?php echo $row['documento']; ?></b></td>
 
                     </tr>
 
@@ -54,13 +46,13 @@ foreach ($student_info as $row):?>
 
 
 
-                <?php if ($row['birthday'] != ''): ?>
+                <?php if ($row['f_nacimiento'] != '' || $row['f_nacimiento'] != 0): ?>
 
                     <tr>
 
                         <td>Fecha de Nacimiento</td>
 
-                        <td><b><?php echo $row['birthday']; ?></b></td>
+                        <td><b><?php echo $row['f_nacimiento']; ?></b></td>
 
                     </tr>
 
@@ -68,13 +60,13 @@ foreach ($student_info as $row):?>
 
 
 
-                <?php if ($row['sex'] != ''): ?>
+                <?php if ($row['sexo'] != '' || $row['sexo'] != 0): ?>
 
                     <tr>
 
                         <td>Sexo</td>
-
-                        <td><b><?php echo $row['sex']; ?></b></td>
+                        <?php if( $row['sexo']==male ){?><td><b>Masculino</b></td><?php }else{?><td><b>Femenino</b></td><?php } ?>
+                        
 
                     </tr>
 
@@ -84,13 +76,13 @@ foreach ($student_info as $row):?>
 
 
 
-                <?php if ($row['phone'] != ''): ?>
+                <?php if ($row['telefono'] != '' || $row['telefono'] != 0): ?>
 
                     <tr>
 
                         <td>Telefono de contacto</td>
 
-                        <td><b><?php echo $row['phone']; ?></b></td>
+                        <td><b><?php echo $row['telefono']; ?></b></td>
 
                     </tr>
 
@@ -98,7 +90,7 @@ foreach ($student_info as $row):?>
 
 
 
-                <?php if ($row['email'] != ''): ?>
+                <?php if ($row['email'] != '' || $row['email'] != 0): ?>
 
                     <tr>
 
@@ -116,13 +108,28 @@ foreach ($student_info as $row):?>
 
 
 
-                <?php if ($row['address'] != ''): ?>
+                <?php if ($row['direccion'] != '' || $row['direccion'] != 0): ?>
 
                     <tr>
 
                         <td style="vertical-align:top;">Direccion</td>
 
-                        <td><b><?php echo $row['address']; ?></b>
+                        <td><b><?php echo $row['direccion']; ?></b>
+
+
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+                <?php if ($row['empresa'] != ''): ?>
+
+                    <tr>
+
+                        <td style="vertical-align:top;">Empresa</td>
+
+                        <td><b><?php echo $row['empresa']; ?></b>
 
 
                         </td>

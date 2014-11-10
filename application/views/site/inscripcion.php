@@ -50,9 +50,9 @@
                             <td>
 
                                 <?php
-                                $this->db->select('name, snombre, papellido, sapellido');
-                                $query = $this->db->get_where('hs_users', array('user_id' => $row['estudiante']))->result_array();
-                                echo $query[0]['name']. ' ' . $query[0]['snombre']. ' ' . $query[0]['papellido'] . ' ' . $query[0]['sapellido'];
+                                $this->db->select('nombre, snombre, papellido, sapellido');
+                                $query = $this->db->get_where('hs_estudiantes', array('id' => $row['estudiante']))->result_array();
+                                echo $query[0]['nombre']. ' ' . $query[0]['snombre']. ' ' . $query[0]['papellido'] . ' ' . $query[0]['sapellido'];
                                 ?>
                             </td>
                             <td>

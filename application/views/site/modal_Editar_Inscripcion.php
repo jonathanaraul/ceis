@@ -9,12 +9,12 @@
                             <div class="controls">
                                 <select name="estudiante" class="uniform" style="width:100%;">
                                     <?php
-                                    $this->db->order_by("user_id", "desc");
-                                    $objects = $this->db->get_where('hs_users', array('rol' => 2))->result_array();
+                                    $this->db->order_by("id", "desc");
+                                    $objects = $this->db->get('hs_estudiantes')->result_array();
                                     foreach ($objects as $object):
                                         ?>
-                                        <option value="<?php echo $object['user_id']; ?>">
-                                            <?php echo $object['name'] . ' ' . $object['papellido'] . ' ' . $object['sapellido']; ?> </option>
+                                        <option value="<?php echo $object['id']; ?>">
+                                            <?php echo $object['nombre'] . ' ' . $object['papellido'] . ' ' . $object['sapellido']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>

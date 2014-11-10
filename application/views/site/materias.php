@@ -120,7 +120,7 @@
                             <div class="controls">
                                 <select name="profesor" class="uniform" style="width:100%;">
                                     <?php
-                                    $profesores = $this->db->get_where('hs_users', array('rol' => 3))->result_array();
+                                    $profesores = $this->db->get_where('hs_users', array('rol' => 2))->result_array();
                                     foreach ($profesores as $profesor){
                                         echo '<option value="'.$profesor['user_id'].'">'.$profesor['name'].' '.$profesor['papellido'].'</option>';
                                     }

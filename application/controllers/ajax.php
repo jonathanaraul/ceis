@@ -242,7 +242,7 @@ class ajax extends CI_Controller
                             
 
                             $dato['media']= $media;
-                            $this->load->view('ste/visualizar_certificado', $dato);
+                            $this->load->view('site/visualizar_certificado', $dato);
 
                         }
                     }else{
@@ -287,13 +287,13 @@ class ajax extends CI_Controller
 
         if($inscripcion == 1){
 
-        $dato['estudiantes'] = $this->db->get_where('hs_users', array('rol'=> 2))->result_array();
+        $dato['estudiantes'] = $this->db->get('hs_estudiantes')->result_array();
 
         $this->load->view('site/inscribir_indiv', $dato);            
 
         }else{
 
-        $dato['estudiantes'] = $this->db->get_where('hs_users', array('rol'=> 2))->result_array();
+        $dato['estudiantes'] = $this->db->get_where('hs_estudiantes')->result_array();
 
         $this->load->view('site/inscribir_lotes', $dato);
 

@@ -54,7 +54,7 @@ class Crud_model extends CI_Model {
 
 	{
 
-		$query	=	$this->db->get_where('student' , array('student_id' => $student_id));
+		$query	=	$this->db->get_where('hs_estudiantes' , array('id' => $student_id));
 
 		return $query->result_array();
 
@@ -206,22 +206,22 @@ class Crud_model extends CI_Model {
     }
 
     function get_hs_student_cedula_by_id($id){
-        $query	=	$this->db->get_where('student' , array('student_id' => $id));
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['ndocumento']);
+            return ucfirst($row['documento']);
     }
     function get_hs_student_nombre_by_id($id){
-        $query	=	$this->db->get_where('hs_users' , array('user_id' => $id));
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['name']);
+            return ucfirst($row['nombre'].' '.$row['snombre']);
     }
     function get_hs_student_apellido_by_id($id){
-        $query	=	$this->db->get_where('hs_users' , array('user_id' => $id));
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['papellido']);
+            return ucfirst($row['papellido'].' '.$row['sapellido']);
     }
     function get_hs_asistencias_presente($estudiante,$materia,$fecha){
 

@@ -58,6 +58,10 @@
             </th>
 
             <th>
+                <div>Duración</div>
+            </th>
+
+            <th>
                 <div>Cupo</div>
             </th>
 
@@ -89,6 +93,8 @@
                 <td><?= $this->crud_model->get_class_name($row['curso']); ?></td>
 
                 <td><?= $row['seccion']; ?></td>
+
+                <td><?= $row['duracion']; ?></td>                
 
                 <td><?= $row['cupo']; ?></td>
 
@@ -190,6 +196,12 @@
                 <label class="control-label"><?= 'Cupo Disponible' ?></label>
                 <div class="controls">
                     <input type="text" class="validate[required]" name="cupo"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><?= 'Duración (horas)' ?></label>
+                <div class="controls">
+                    <input type="text" class="validate[required]" name="duracion"/>
                 </div>
             </div>
             <!--aqui no ha guardado nada -->

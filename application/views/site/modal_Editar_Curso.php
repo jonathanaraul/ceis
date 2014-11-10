@@ -40,6 +40,12 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label"><?= 'Duración (horas)' ?></label>
+                    <div class="controls">
+                        <input type="text" class="validate[required]" name="duracion" value="<?php echo $row['duracion']?>" />
+                    </div>
+                </div>
+                <div class="control-group">
                 <label class="control-label"><?= 'Fecha de Inicio' ?></label>
                     <div class="controls">
                     <input type="text" class="datepicker fill-up" name="fecha_ini"/>

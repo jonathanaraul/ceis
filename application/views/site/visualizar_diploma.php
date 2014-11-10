@@ -28,5 +28,5 @@
     </div>
 
     <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
-                margin-top: 20px;"  onclick="actualizarNotas()"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
+                margin-top: 20px;"  onclick="imprimirDiploma()"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
     </div>

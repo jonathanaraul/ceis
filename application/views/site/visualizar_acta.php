@@ -20,5 +20,5 @@
 
     <div>
         <p style="text-align:center" ><button type="button" id="imprimir" class="btn btn-normal btn-gray" style="width: 59.4%;
-        margin-left: 7px; margin-top: 20px;"  onclick="actualizarNotas()">Imprimir Acta de Buena Conducta</button></p></td>
+        margin-left: 7px; margin-top: 20px;"  onclick="imprimirActa()">Imprimir Acta de Buena Conducta</button></p></td>
     </div>
