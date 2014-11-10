@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2014 a las 19:05:08
+-- Tiempo de generación: 10-11-2014 a las 12:20:33
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -392,15 +392,17 @@ CREATE TABLE IF NOT EXISTS `hs_asistencias` (
   KEY `curso` (`curso`,`materia`,`estudiante`),
   KEY `materia` (`materia`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `hs_asistencias`
 --
 
 INSERT INTO `hs_asistencias` (`id`, `curso`, `materia`, `estudiante`, `fecha`, `presente`, `create_at`) VALUES
-(28, 10, 29, 11, '2014-11-18', 1, '2014-11-09 20:20:33'),
-(29, 10, 29, 23, '2014-11-18', 1, '2014-11-09 20:20:33');
+(39, 10, 29, 3, '2014-11-12', 1, '2014-11-10 14:15:06'),
+(40, 10, 29, 2, '2014-11-12', 1, '2014-11-10 14:15:06'),
+(41, 10, 29, 3, '2014-11-25', 1, '2014-11-10 14:15:30'),
+(42, 10, 29, 2, '2014-11-25', 1, '2014-11-10 14:15:30');
 
 -- --------------------------------------------------------
 
@@ -412,6 +414,7 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) NOT NULL,
   `seccion` varchar(10) NOT NULL,
+  `duracion` int(11) NOT NULL,
   `cupo` int(11) NOT NULL,
   `fecha_ini` date NOT NULL,
   `fecha_cul` date NOT NULL,
@@ -423,9 +426,9 @@ CREATE TABLE IF NOT EXISTS `hs_cursos` (
 -- Volcado de datos para la tabla `hs_cursos`
 --
 
-INSERT INTO `hs_cursos` (`id`, `curso`, `seccion`, `cupo`, `fecha_ini`, `fecha_cul`) VALUES
-(10, 4, 'C', 40, '2014-11-19', '2014-11-28'),
-(11, 1, 'C', 40, '2014-11-20', '2014-11-26');
+INSERT INTO `hs_cursos` (`id`, `curso`, `seccion`, `duracion`, `cupo`, `fecha_ini`, `fecha_cul`) VALUES
+(10, 4, 'C', 20, 40, '2014-11-19', '2014-11-28'),
+(11, 1, 'C', 30, 40, '2014-11-20', '2014-11-26');
 
 -- --------------------------------------------------------
 
@@ -447,6 +450,36 @@ CREATE TABLE IF NOT EXISTS `hs_empresas` (
 
 INSERT INTO `hs_empresas` (`id`, `nit`, `nombre`, `contacto`) VALUES
 (1, 1234, 'Vendors', '1242-453565');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hs_estudiantes`
+--
+
+CREATE TABLE IF NOT EXISTS `hs_estudiantes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `snombre` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `papellido` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `sapellido` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `f_nacimiento` date NOT NULL,
+  `sexo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `documento` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `empresa` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `hs_estudiantes`
+--
+
+INSERT INTO `hs_estudiantes` (`id`, `nombre`, `snombre`, `papellido`, `sapellido`, `f_nacimiento`, `sexo`, `direccion`, `email`, `telefono`, `documento`, `empresa`) VALUES
+(2, 'Carlos', 'Luis', 'Oronoz', 'Cabello', '1990-11-28', 'male', 'Maturín', 'cloker19@gmail.com', '02916515895', '19446901', 'Vendors'),
+(3, 'Asdrubal', '', 'Oronoz', '', '1989-01-03', 'male', 'Maturín', 'asdru@gmail.com', '02916515895', '19446900', '');
 
 -- --------------------------------------------------------
 
@@ -490,14 +523,14 @@ CREATE TABLE IF NOT EXISTS `hs_facturacion` (
   PRIMARY KEY (`id`),
   KEY `estudiante` (`estudiante`,`curso`),
   KEY `curso` (`curso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `hs_facturacion`
 --
 
 INSERT INTO `hs_facturacion` (`id`, `estudiante`, `curso`, `descripcion`, `cantidad`, `monto`, `metodo_pago`, `estado`, `fecha`) VALUES
-(4, 11, 10, 'pago mes de Diciembre 2015', 1, 12344.00, 'Transferencia', 0, '2014-12-17');
+(5, 2, 10, 'Diciembre - 2014', 1, 12344.00, 'Deposito', 1, '2014-11-27');
 
 -- --------------------------------------------------------
 
@@ -561,15 +594,15 @@ CREATE TABLE IF NOT EXISTS `hs_inscripcion` (
   PRIMARY KEY (`id`),
   KEY `curso` (`curso`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Volcado de datos para la tabla `hs_inscripcion`
 --
 
 INSERT INTO `hs_inscripcion` (`id`, `estudiante`, `curso`, `status`, `create_at`) VALUES
-(33, 11, 10, 1, '2014-11-09 07:32:10'),
-(34, 23, 10, 1, '2014-11-09 07:32:10');
+(38, 3, 10, 1, '2014-11-10 13:57:56'),
+(39, 2, 10, 1, '2014-11-10 14:00:55');
 
 -- --------------------------------------------------------
 
@@ -614,15 +647,15 @@ CREATE TABLE IF NOT EXISTS `hs_notas` (
   KEY `materia` (`materia`),
   KEY `evaluacion` (`evaluacion`),
   KEY `estudiante` (`estudiante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Volcado de datos para la tabla `hs_notas`
 --
 
 INSERT INTO `hs_notas` (`id`, `curso`, `materia`, `evaluacion`, `estudiante`, `puntuacion`) VALUES
-(30, 10, 29, 16, 11, 6),
-(31, 10, 29, 16, 23, 7);
+(37, 10, 29, 16, 3, 6),
+(38, 10, 29, 16, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -643,8 +676,7 @@ CREATE TABLE IF NOT EXISTS `hs_role` (
 
 INSERT INTO `hs_role` (`rol_id`, `rol`, `back_name`) VALUES
 (1, 'Administrativo', 'admin'),
-(2, 'Estudiante', 'student'),
-(3, 'Profesor', 'teacher');
+(2, 'Profesor', 'teacher');
 
 -- --------------------------------------------------------
 
@@ -672,17 +704,15 @@ CREATE TABLE IF NOT EXISTS `hs_users` (
 --
 
 INSERT INTO `hs_users` (`user_id`, `name`, `snombre`, `papellido`, `sapellido`, `sex`, `address`, `phone`, `email`, `password`, `rol`) VALUES
-(11, 'bob', '', 'patiño', 'patiño', 'male', '', '', 'bob@gmail.com', '$2a$08$jua6UPoEaATw2oz.mX5Y/Od7mhtMPSZRAlowsU5DHQcCVjXORHezy', 2),
-(14, 'Rosa', 'Viginia', 'Carvajal', 'C', 'female', 'por alla', '02345654433', 'rosa@gmail.com', '$2a$08$y9icXptl/fjmgAeLmubquuooNNHBhSFq2eykB8a6xrE.E4wKA67De', 3),
-(15, 'Erika', 'D', 'Solano', 'L', 'female', 'por aqui', '092435554', 'erika@gmail.com', '$2a$08$HJ1Nz5WFgfciMN9mI6XWAuU2fuy.l8OBdO5i8fXHJmDN5eH0Ge4pe', 3),
-(16, 'Reinaldo', 'L', 'Anaya', 'M', 'male', 'Cerca de alli', '290455443', 'reinaldo@gmail.com', '$2a$08$L0eohlDki2kQLyaxP5HzuOqk/gDqvfzZ5cxQiz9mtZASaFBumjr5y', 3),
-(17, 'Luis', 'C', 'Velasquez', 'F', 'male', 'La piramide', '756448833', 'luis@gmail.com', '$2a$08$Ik1d7b2p8lDvN1nux8fI4O5T.M1/JOmu97DsvxPeczwxVae4qMeLG', 3),
-(18, 'German', 'C', 'Beltran', 'S', 'male', 'los montes', '23333454', 'german@gmail.com', '$2a$08$WT3AcxjwmE7D91t/DMJfuO.hixtFxihlSZJQD4HgklyzNS/T8aTTi', 3),
-(19, 'Efrain', 'D', 'Garcia', 'P', 'male', 'petare', '123332324', 'efrain@gmai.com', '$2a$08$BRnZuaKMF4mOIJfdwWa3TeV.aiBisSOy444pjOWDAnJdC.o5aDA3S', 3),
-(20, 'Frank', 'L', 'Insignares', 'B', 'male', 'lomas de por ahi', '02345654433', 'frank@gmail.com', '$2a$08$SzxZ9WRhYc9RCMtcijnA2ewDrSXele/H6iqs0mchWkzR/oa6Q.G6u', 3),
-(21, 'Luis', 'F', 'Garcia', 'S', 'male', 'La piramide', '02345654433', 'garcia@gmail.com', '$2a$08$jtLQAgHnuJXj2tr9P1VqNuSR/csU89SPeYQB6hFXG4ygn1t5mbRCC', 3),
-(22, 'Roger', 'A', 'Bertel', 'R', 'male', 'Cerca de alli', '092435554', 'roger@gmail.com', '$2a$08$ikJnBH.ZsW6YbRSswN8bJuhtjIsh2ORX.lqjI3Pu/oUUfoCFnIPva', 3),
-(23, 'John ', '', 'doe', 'palomino', 'male', 'por aqui', '092435554', 'john@gmail.com', '$2a$08$WSZHnG/WZ4i1JnPH1Ik5e.IFp7nV3nI9HQXbFytuj5mvSyZ/7Z7VC', 2),
+(14, 'Rosa', 'Viginia', 'Carvajal', 'C', 'female', 'por alla', '02345654433', 'rosa@gmail.com', '$2a$08$y9icXptl/fjmgAeLmubquuooNNHBhSFq2eykB8a6xrE.E4wKA67De', 2),
+(15, 'Erika', 'D', 'Solano', 'L', 'female', 'por aqui', '092435554', 'erika@gmail.com', '$2a$08$HJ1Nz5WFgfciMN9mI6XWAuU2fuy.l8OBdO5i8fXHJmDN5eH0Ge4pe', 2),
+(16, 'Reinaldo', 'L', 'Anaya', 'M', 'male', 'Cerca de alli', '290455443', 'reinaldo@gmail.com', '$2a$08$L0eohlDki2kQLyaxP5HzuOqk/gDqvfzZ5cxQiz9mtZASaFBumjr5y', 2),
+(17, 'Luis', 'C', 'Velasquez', 'F', 'male', 'La piramide', '756448833', 'luis@gmail.com', '$2a$08$Ik1d7b2p8lDvN1nux8fI4O5T.M1/JOmu97DsvxPeczwxVae4qMeLG', 2),
+(18, 'German', 'C', 'Beltran', 'S', 'male', 'los montes', '23333454', 'german@gmail.com', '$2a$08$WT3AcxjwmE7D91t/DMJfuO.hixtFxihlSZJQD4HgklyzNS/T8aTTi', 2),
+(19, 'Efrain', 'D', 'Garcia', 'P', 'male', 'petare', '123332324', 'efrain@gmai.com', '$2a$08$BRnZuaKMF4mOIJfdwWa3TeV.aiBisSOy444pjOWDAnJdC.o5aDA3S', 2),
+(20, 'Frank', 'L', 'Insignares', 'B', 'male', 'lomas de por ahi', '02345654433', 'frank@gmail.com', '$2a$08$SzxZ9WRhYc9RCMtcijnA2ewDrSXele/H6iqs0mchWkzR/oa6Q.G6u', 2),
+(21, 'Luis', 'F', 'Garcia', 'S', 'male', 'La piramide', '02345654433', 'garcia@gmail.com', '$2a$08$jtLQAgHnuJXj2tr9P1VqNuSR/csU89SPeYQB6hFXG4ygn1t5mbRCC', 2),
+(22, 'Roger', 'A', 'Bertel', 'R', 'male', 'Cerca de alli', '092435554', 'roger@gmail.com', '$2a$08$ikJnBH.ZsW6YbRSswN8bJuhtjIsh2ORX.lqjI3Pu/oUUfoCFnIPva', 2),
 (33, 'Mr.', '', 'Admin', '.', 'male', '', '', 'admin@admin.com', '$2a$08$XvBHE51RyN.FcNTNUf9..uA5SuBKDICLgA/mZbCd/rV9EVt6i9lkG', 1),
 (34, 'Cuenta', '', 'Operativa', '1', 'male', '', '', 'operativo@ceis.com.co', '$2a$08$XDZ2atlrxXK8Ajr6cXy5PeZdDuu03u4hzQ2EKiN5MsYkdAh9q9xg.', 1);
 
@@ -724,7 +754,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `phrase` longtext COLLATE utf8_unicode_ci NOT NULL,
   `english` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`phrase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4445 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4681 ;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -5177,7 +5207,243 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (4441, 'agregar_rss', ''),
 (4442, 'documentos_academicos', ''),
 (4443, 'RSS', ''),
-(4444, 'Estudiante', '');
+(4444, 'Estudiante', ''),
+(4445, 'documentos_academicos', ''),
+(4446, 'RSS', ''),
+(4447, 'documentos_academicos', ''),
+(4448, 'RSS', ''),
+(4449, 'documentos_academicos', ''),
+(4450, 'RSS', ''),
+(4451, 'documentos_academicos', ''),
+(4452, 'RSS', ''),
+(4453, 'documentos_academicos', ''),
+(4454, 'RSS', ''),
+(4455, 'documentos_academicos', ''),
+(4456, 'RSS', ''),
+(4457, 'documentos_academicos', ''),
+(4458, 'RSS', ''),
+(4459, 'documentos_academicos', ''),
+(4460, 'RSS', ''),
+(4461, 'documentos_academicos', ''),
+(4462, 'RSS', ''),
+(4463, 'documentos_academicos', ''),
+(4464, 'RSS', ''),
+(4465, 'documentos_academicos', ''),
+(4466, 'RSS', ''),
+(4467, 'direccion', ''),
+(4468, 'telefono', ''),
+(4469, 'documentos_academicos', ''),
+(4470, 'RSS', ''),
+(4471, 'documentos_academicos', ''),
+(4472, 'RSS', ''),
+(4473, 'documentos_academicos', ''),
+(4474, 'RSS', ''),
+(4475, 'documentos_academicos', ''),
+(4476, 'RSS', ''),
+(4477, 'documentos_academicos', ''),
+(4478, 'RSS', ''),
+(4479, 'documentos_academicos', ''),
+(4480, 'RSS', ''),
+(4481, 'documentos_academicos', ''),
+(4482, 'RSS', ''),
+(4483, 'documentos_academicos', ''),
+(4484, 'RSS', ''),
+(4485, 'documentos_academicos', ''),
+(4486, 'RSS', ''),
+(4487, 'documentos_academicos', ''),
+(4488, 'RSS', ''),
+(4489, 'documentos_academicos', ''),
+(4490, 'RSS', ''),
+(4491, 'Actualizar_datos', ''),
+(4492, 'documentos_academicos', ''),
+(4493, 'RSS', ''),
+(4494, 'documentos_academicos', ''),
+(4495, 'RSS', ''),
+(4496, 'documentos_academicos', ''),
+(4497, 'RSS', ''),
+(4498, 'documentos_academicos', ''),
+(4499, 'RSS', ''),
+(4500, 'documentos_academicos', ''),
+(4501, 'RSS', ''),
+(4502, 'documentos_academicos', ''),
+(4503, 'RSS', ''),
+(4504, 'documentos_academicos', ''),
+(4505, 'RSS', ''),
+(4506, 'documentos_academicos', ''),
+(4507, 'RSS', ''),
+(4508, 'documentos_academicos', ''),
+(4509, 'RSS', ''),
+(4510, 'documentos_academicos', ''),
+(4511, 'RSS', ''),
+(4512, 'documentos_academicos', ''),
+(4513, 'RSS', ''),
+(4514, 'documentos_academicos', ''),
+(4515, 'RSS', ''),
+(4516, 'documentos_academicos', ''),
+(4517, 'RSS', ''),
+(4518, 'documentos_academicos', ''),
+(4519, 'RSS', ''),
+(4520, 'documentos_academicos', ''),
+(4521, 'RSS', ''),
+(4522, 'documentos_academicos', ''),
+(4523, 'RSS', ''),
+(4524, 'documentos_academicos', ''),
+(4525, 'RSS', ''),
+(4526, 'documentos_academicos', ''),
+(4527, 'RSS', ''),
+(4528, 'documentos_academicos', ''),
+(4529, 'RSS', ''),
+(4530, 'documentos_academicos', ''),
+(4531, 'RSS', ''),
+(4532, 'documentos_academicos', ''),
+(4533, 'RSS', ''),
+(4534, 'documentos_academicos', ''),
+(4535, 'RSS', ''),
+(4536, 'documentos_academicos', ''),
+(4537, 'RSS', ''),
+(4538, 'documentos_academicos', ''),
+(4539, 'RSS', ''),
+(4540, 'documentos_academicos', ''),
+(4541, 'RSS', ''),
+(4542, 'documentos_academicos', ''),
+(4543, 'RSS', ''),
+(4544, 'documentos_academicos', ''),
+(4545, 'RSS', ''),
+(4546, 'documentos_academicos', ''),
+(4547, 'RSS', ''),
+(4548, 'documentos_academicos', ''),
+(4549, 'RSS', ''),
+(4550, 'documentos_academicos', ''),
+(4551, 'RSS', ''),
+(4552, 'documentos_academicos', ''),
+(4553, 'RSS', ''),
+(4554, 'documentos_academicos', ''),
+(4555, 'RSS', ''),
+(4556, 'documentos_academicos', ''),
+(4557, 'RSS', ''),
+(4558, 'documentos_academicos', ''),
+(4559, 'RSS', ''),
+(4560, 'documentos_academicos', ''),
+(4561, 'RSS', ''),
+(4562, 'documentos_academicos', ''),
+(4563, 'RSS', ''),
+(4564, 'documentos_academicos', ''),
+(4565, 'RSS', ''),
+(4566, 'documentos_academicos', ''),
+(4567, 'RSS', ''),
+(4568, 'documentos_academicos', ''),
+(4569, 'RSS', ''),
+(4570, 'ponderacion', ''),
+(4571, 'documentos_academicos', ''),
+(4572, 'RSS', ''),
+(4573, 'ponderacion', ''),
+(4574, 'documentos_academicos', ''),
+(4575, 'RSS', ''),
+(4576, 'ponderacion', ''),
+(4577, 'documentos_academicos', ''),
+(4578, 'RSS', ''),
+(4579, 'ponderacion', ''),
+(4580, 'documentos_academicos', ''),
+(4581, 'RSS', ''),
+(4582, 'ponderacion', ''),
+(4583, 'documentos_academicos', ''),
+(4584, 'RSS', ''),
+(4585, 'ponderacion', ''),
+(4586, 'documentos_academicos', ''),
+(4587, 'RSS', ''),
+(4588, 'ponderacion', ''),
+(4589, 'documentos_academicos', ''),
+(4590, 'RSS', ''),
+(4591, 'ponderacion', ''),
+(4592, 'documentos_academicos', ''),
+(4593, 'RSS', ''),
+(4594, 'ponderacion', ''),
+(4595, 'documentos_academicos', ''),
+(4596, 'RSS', ''),
+(4597, 'documentos_academicos', ''),
+(4598, 'RSS', ''),
+(4599, 'documentos_academicos', ''),
+(4600, 'RSS', ''),
+(4601, 'documentos_academicos', ''),
+(4602, 'RSS', ''),
+(4603, 'documentos_academicos', ''),
+(4604, 'RSS', ''),
+(4605, 'ponderacion', ''),
+(4606, 'documentos_academicos', ''),
+(4607, 'RSS', ''),
+(4608, 'ponderacion', ''),
+(4609, 'documentos_academicos', ''),
+(4610, 'RSS', ''),
+(4611, 'documentos_academicos', ''),
+(4612, 'RSS', ''),
+(4613, 'documentos_academicos', ''),
+(4614, 'RSS', ''),
+(4615, 'documentos_academicos', ''),
+(4616, 'RSS', ''),
+(4617, 'documentos_academicos', ''),
+(4618, 'RSS', ''),
+(4619, 'ponderacion', ''),
+(4620, 'documentos_academicos', ''),
+(4621, 'RSS', ''),
+(4622, 'documentos_academicos', ''),
+(4623, 'RSS', ''),
+(4624, 'documentos_academicos', ''),
+(4625, 'RSS', ''),
+(4626, 'Empresa', ''),
+(4627, 'cantidad', ''),
+(4628, 'documentos_academicos', ''),
+(4629, 'RSS', ''),
+(4630, 'Empresa', ''),
+(4631, 'cantidad', ''),
+(4632, 'documentos_academicos', ''),
+(4633, 'RSS', ''),
+(4634, 'Empresa', ''),
+(4635, 'cantidad', ''),
+(4636, 'cantidad', ''),
+(4637, 'documentos_academicos', ''),
+(4638, 'RSS', ''),
+(4639, 'Empresa', ''),
+(4640, 'cantidad', ''),
+(4641, 'documentos_academicos', ''),
+(4642, 'RSS', ''),
+(4643, 'Empresa', ''),
+(4644, 'cantidad', ''),
+(4645, 'documentos_academicos', ''),
+(4646, 'RSS', ''),
+(4647, 'Empresa', ''),
+(4648, 'cantidad', ''),
+(4649, 'documentos_academicos', ''),
+(4650, 'RSS', ''),
+(4651, 'Empresa', ''),
+(4652, 'cantidad', ''),
+(4653, 'documentos_academicos', ''),
+(4654, 'RSS', ''),
+(4655, 'Empresa', ''),
+(4656, 'cantidad', ''),
+(4657, 'documentos_academicos', ''),
+(4658, 'RSS', ''),
+(4659, 'Empresa', ''),
+(4660, 'cantidad', ''),
+(4661, 'documentos_academicos', ''),
+(4662, 'RSS', ''),
+(4663, 'ponderacion', ''),
+(4664, 'documentos_academicos', ''),
+(4665, 'RSS', ''),
+(4666, 'ponderacion', ''),
+(4667, 'documentos_academicos', ''),
+(4668, 'RSS', ''),
+(4669, 'documentos_academicos', ''),
+(4670, 'RSS', ''),
+(4671, 'documentos_academicos', ''),
+(4672, 'RSS', ''),
+(4673, 'documentos_academicos', ''),
+(4674, 'RSS', ''),
+(4675, 'documentos_academicos', ''),
+(4676, 'RSS', ''),
+(4677, 'documentos_academicos', ''),
+(4678, 'RSS', ''),
+(4679, 'documentos_academicos', ''),
+(4680, 'RSS', '');
 
 -- --------------------------------------------------------
 
@@ -6629,7 +6895,7 @@ ALTER TABLE `curso_materia`
 -- Filtros para la tabla `hs_asistencias`
 --
 ALTER TABLE `hs_asistencias`
-  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `hs_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_asistencias_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `hs_estudiantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_asistencias_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_asistencias_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -6649,7 +6915,7 @@ ALTER TABLE `hs_evaluaciones`
 -- Filtros para la tabla `hs_facturacion`
 --
 ALTER TABLE `hs_facturacion`
-  ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `hs_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_facturacion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `hs_estudiantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_facturacion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -6670,7 +6936,7 @@ ALTER TABLE `hs_horarios_materias`
 -- Filtros para la tabla `hs_inscripcion`
 --
 ALTER TABLE `hs_inscripcion`
-  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `hs_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_inscripcion_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `hs_estudiantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_inscripcion_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -6685,7 +6951,7 @@ ALTER TABLE `hs_materias`
 -- Filtros para la tabla `hs_notas`
 --
 ALTER TABLE `hs_notas`
-  ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `hs_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_notas_ibfk_4` FOREIGN KEY (`estudiante`) REFERENCES `hs_estudiantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_notas_ibfk_1` FOREIGN KEY (`curso`) REFERENCES `hs_cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_notas_ibfk_2` FOREIGN KEY (`materia`) REFERENCES `hs_materias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hs_notas_ibfk_3` FOREIGN KEY (`evaluacion`) REFERENCES `hs_evaluaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
