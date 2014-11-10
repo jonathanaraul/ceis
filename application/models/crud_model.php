@@ -76,7 +76,7 @@ class Crud_model extends CI_Model {
 
 	{
 
-		$query	=	$this->db->get_where('hs_users' , array('user_id' => $teacher_id, 'rol' => 3));
+		$query	=	$this->db->get_where('hs_users' , array('user_id' => $teacher_id, 'rol' => 2));
 
 		$res	=	$query->result_array();
 

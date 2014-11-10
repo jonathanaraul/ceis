@@ -7,10 +7,12 @@
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('lista_de_Inscripciones'); ?>
                 </a></li>
+            <?php if($this->session->userdata('rol') == 1){ ?>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
                     <?php echo get_phrase('agregar_inscripcion'); ?>
                 </a></li>
+            <?php } ?>
         </ul>
         <!--CONTROL TABS END-->
 
@@ -37,9 +39,11 @@
                         <th>
                             <div><?php echo get_phrase('fecha'); ?></div>
                         </th>
+                        <?php if($this->session->userdata('rol') == 1){ ?>
                         <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,6 +70,7 @@
                             <td><?php if ($row['status'] == 0) echo 'Preinscrito'; else echo 'Inscrito' ?></td>
 
                             <td><?php echo $row['create_at'] ?></td>
+                            <?php if($this->session->userdata('rol') == 1){ ?>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Inscripcion',<?php echo $row['id']; ?>)"
@@ -78,6 +83,7 @@
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

@@ -58,7 +58,7 @@
                                                onclick="modal('Perfil_Estudiante',<?php echo $row['id']; ?>)"
                                                class="btn btn-default btn-small"> <i
                                                     class="icon-user"></i> <?php echo get_phrase('profile'); ?> </a>
-
+                                        <?php if($this->session->userdata('rol') ==1){?>
                                             <a
                                                 data-toggle="modal" href="#modal-form"
                                                 onclick="modal('Editar_Estudiante',<?php echo $row['id']; ?>)"
@@ -70,6 +70,7 @@
                                                     onclick="modal_delete('<?php echo base_url(); ?>index.php?site/estudiantes/delete/<?php echo $row['id']; ?>')"
                                                     class="btn btn-red btn-small"> <i
                                                         class="icon-trash"></i> <?php echo get_phrase('delete'); ?> </a>
+                                        <?php } ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

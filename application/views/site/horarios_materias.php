@@ -68,6 +68,7 @@
                                                     $this->db->where('curso', $row['id']);
                                                     $routines = $this->db->get('hs_horarios_materias')->result_array();
                                                     foreach ($routines as $row2):
+                                                        
                                                         ?>
                                                         <div class="btn-group">
                                                             <button class="btn btn-gray btn-normal dropdown-toggle"
@@ -76,16 +77,24 @@
                                                                 $materia = $this->db->get_where('hs_materias', array('id' => $row2['materia']))->result_array();    
                                                                  echo $this->crud_model->get_nombre_materia_by_id($materia[0]['nombre']); ?>
                                                                 <?php echo '(' . $row2['hora_inicio'] . '-' . $row2['hora_fin'] . ')'; ?>
+                                                                <?php 
+                                                                    if($this->session->userdata('rol') == 1){
+                                                                ?>                                                                
                                                                 <span class="caret"></span>
+                                                                <?php } ?>
                                                             </button>
+                                                            <?php 
+                                                                if($this->session->userdata('rol') == 1){
+                                                            ?>
                                                             <ul class="dropdown-menu">
                                                                 <li><a data-toggle="modal" href="#modal-form"
                                                                        onclick="modal('Editar_Horario',<?php echo $row2['id']; ?>)"><i
-                                                                            class="icon-cog"></i> edit</a></li>
+                                                                            class="icon-cog"></i> Editar</a></li>
                                                                 <li><a data-toggle="modal" href="#modal-delete"
                                                                        onclick="modal_delete('<?php echo base_url(); ?>index.php?site/horarios_materias/delete/<?php echo $row2['id']; ?>')">
-                                                                        <i class="icon-trash"></i> delete</a></li>
+                                                                        <i class="icon-trash"></i> Eliminar</a></li>
                                                             </ul>
+                                                            <?php } ?>
                                                         </div>
                                                     <?php endforeach; ?>
 

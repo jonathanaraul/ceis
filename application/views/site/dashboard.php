@@ -5,36 +5,40 @@
     <div class="span30">
 
         <!-- find me in partials/action_nav_normal -->
-
+        <?php 
+            if ($this->session->userdata('rol') == 1){
+        ?>
         <!--big normal buttons-->
-
         <div class="action-nav-normal">
 
             <div class="row-fluid">
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?site/student">
+                    <a href="<?php echo base_url(); ?>index.php?site/estudiantes">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
                         <span><?php echo get_phrase('manage_student'); ?></span>
 
-                        <span class="label label-blue"><?php echo $this->db->count_all_results('student'); ?></span>
+                        <span class="label label-blue"><?php echo $this->db->count_all_results('hs_estudiantes'); ?></span>
 
                     </a>
 
                 </div>
-
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?site/teacher">
+                    <a href="<?php echo base_url(); ?>index.php?site/users/2">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/teacher.png"/>
 
                         <span><?php echo get_phrase('manage_teacher'); ?></span>
-
-                        <span class="label label-blue"><?php echo $this->db->count_all_results('teacher'); ?></span>
+                        <?php 
+                            $this->db->where('rol', 2);
+                            $this->db->from('hs_users');
+                            $profesores= $this->db->count_all_results(); 
+                        ?>
+                        <span class="label label-blue"><?php echo $profesores; ?></span>
 
                     </a>
 
@@ -42,11 +46,11 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?site/notas">
+                    <a href="<?php echo base_url(); ?>index.php?site/gestionar_cursos">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/marks.png"/>
 
-                        <span><?php echo get_phrase('marks-attendance'); ?></span>
+                        <span><?php echo get_phrase('gestionar_cursos'); ?></span>
 
                     </a>
 
@@ -54,11 +58,11 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?site/class_routine">
+                    <a href="<?php echo base_url(); ?>index.php?site/horarios_materias">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/routine.png"/>
 
-                        <span><?php echo get_phrase('class_routine'); ?></span>
+                        <span><?php echo get_phrase('horarios_materias'); ?></span>
 
                     </a>
 
@@ -87,11 +91,9 @@
                     </a>
 
                 </div>
-
             </div>
-
-
         </div>
+        <?php } ?>
 
     </div>
 
