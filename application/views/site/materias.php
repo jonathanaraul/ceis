@@ -55,7 +55,7 @@
                     foreach ($materias as $row): ?>
                         <?php   
 								$profesor= $this->session->userdata('user_id');
-								if($row['profesor']==$profesor){
+								if($row['profesor']==$profesor || $this->session->userdata('rol')==1){
                                 $cursos= $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
                         ?>                        
                         <tr>
