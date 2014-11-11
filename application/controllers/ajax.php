@@ -50,7 +50,7 @@ class ajax extends CI_Controller
 
                 $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';
             }else{
-                if($this->session->userdata('rol') == 3 && $this->session->userdata('user_id') == $element['profesor']){
+                if($this->session->userdata('rol') == 2 && $this->session->userdata('user_id') == $element['profesor']){
                     $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';      
                 }
             }

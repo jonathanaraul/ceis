@@ -1,16 +1,20 @@
 <div class="box">
     <div class="box-header">
 
-        <!------CONTROL TABS START------->
+        <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('lista_de_evaluaciones'); ?>
                 </a></li>
+            <?php 
+                if($this->session->userdata('rol') == 1){
+            ?>
             <li>
                 <a href="#add" data-toggle="tab"><i class="icon-plus"></i>
                     <?php echo get_phrase('agregar_evaluación'); ?>
                 </a></li>
+            <?php } ?>
             <li>
                 <a href="#notas" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('gestionar_notas'); ?>
@@ -20,12 +24,12 @@
                     <?php echo get_phrase('gestionar_asistencias'); ?>
                 </a></li>
         </ul>
-        <!------CONTROL TABS END------->
+        <!--CONTROL TABS END-->
 
     </div>
     <div class="box-content padded">
         <div class="tab-content">
-            <!----TABLE LISTING STARTS--->
+            <!--TABLE LISTING STARTS-->
             <div class="tab-pane box active" id="list">
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
@@ -45,9 +49,13 @@
                         <th>
                             <div><?php echo get_phrase('fecha'); ?></div>
                         </th>
+                        <?php 
+                            if($this->session->userdata('rol') == 1){
+                        ?>
                         <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +70,9 @@
                             <td><?php echo $this->crud_model->get_nombre_materia_by_id($materias[0]['nombre']).' -- Curso: '.$this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']). ' -- Seccion: ' . $cursos[0]['seccion']; ?></td>
                             <td><?php echo $row['ponderacion']; ?></td>
                             <td><?php echo $row['fecha'] ?></td>
+                            <?php 
+                                if($this->session->userdata('rol') == 1){
+                            ?>
                             <td align="center">
                                 <a data-toggle="modal" href="#modal-form"
                                    onclick="modal('Editar_Evaluacion',<?php echo $row['id']; ?>)"
@@ -74,15 +85,16 @@
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-            <!----TABLE LISTING ENDS--->
+            <!--TABLE LISTING ENDS-->
 
 
-            <!----CREATION FORM STARTS---->
+            <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
                     <?php echo form_open('site/gestionar_cursos/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
@@ -168,9 +180,9 @@
                     </form>
                 </div>
             </div>
-            <!----CREATION FORM ENDS--->
+            <!--CREATION FORM ENDS-->
         
-            <!---Notas-->
+            <!--NOTAS-->
             <div class="tab-pane box" id="notas" style="padding: 5px">
                 <center>
                     <?php echo form_open('site/marks'); ?>

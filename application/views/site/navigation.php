@@ -18,7 +18,7 @@
 <ul class="nav nav-collapse collapse nav-collapse-primary">
 
 
-<!------dashboard----->
+<!--dashboard-->
 
 <li class="<?php if ($page_name == 'dashboard') echo 'dark-nav active'; ?>">
 
@@ -26,7 +26,7 @@
 
     <a href="<?php echo base_url(); ?>" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('dashboard_help'); ?>">
+       data-original-title="<?php echo get_phrase('inicio'); ?>">
 
         <!--<i class="icon-desktop icon-1x"></i>-->
 
@@ -39,7 +39,7 @@
 </li>
 
 
-<!------estudiantes----->
+<!--estudiantes-->
 <?php 
 	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
  ?>
@@ -50,7 +50,7 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/estudiantes" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('student_help'); ?>">
+       data-original-title="<?php echo get_phrase('gestionar_estudiantes'); ?>">
 
         <!--<i class="icon-user icon-1x"></i>-->
 
@@ -85,34 +85,9 @@
 
 <?php } ?>
 
-<!------subject----->
+<!--classes-->
 <?php 
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
-?>
-
-<li class="<?php if ($page_name == 'materias') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/materias" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('ayuda_de_materias'); ?>">
-
-        <!--<i class="icon-tasks icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
-
-        <span><?php echo get_phrase('materias'); ?></span>
-
-    </a>
-
-</li>
-	
-
-<!------classes----->
-<?php 
-	} 
-	if($this->session->userdata('rol') == 1){
+    if($this->session->userdata('rol') == 1){
 ?>
 
 <li class="<?php if ($page_name == 'class') echo 'dark-nav active'; ?>">
@@ -121,7 +96,7 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/cursos" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('class_help'); ?>">
+       data-original-title="<?php echo get_phrase('cursos'); ?>">
 
         <!--<i class="icon-sitemap icon-1x"></i>-->
 
@@ -134,9 +109,33 @@
 </li>
 <?php } ?>
 
-<!------Gestionar Cursos----->
+<!--subject-->
 <?php 
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 3){
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
+?>
+
+<li class="<?php if ($page_name == 'materias') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?site/materias" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('gestionar_materias'); ?>">
+
+        <!--<i class="icon-tasks icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
+
+        <span><?php echo get_phrase('materias'); ?></span>
+
+    </a>
+
+</li>
+<?php } ?>
+
+<!--Gestionar Cursos-->
+<?php 
+	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
 ?>
 
 <li class="<?php if ($page_name == 'gestionar_cursos') echo 'dark-nav active'; ?>">
@@ -167,7 +166,7 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/horarios_materias" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo "Ayuda de horarios" ?>">
+       data-original-title="<?php echo "Horarios de Materias" ?>">
 
         <!--<i class="icon-indent-right icon-1x"></i>-->
 
@@ -180,7 +179,7 @@
 </li>
 
 
-<!------fcturacion----->
+<!--facturacion-->
 <?php 
 	if($this->session->userdata('rol') == 1){
 ?>
@@ -191,7 +190,7 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/facturacion" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('invoice_help'); ?>">
+       data-original-title="<?php echo get_phrase('facturación'); ?>">
 
         <!--<i class="icon-money icon-1x"></i>-->
 
@@ -204,7 +203,7 @@
 </li>
 
 
-<!------DOCUMENTOS----->
+<!--DOCUMENTOS-->
 
 <li class="<?php if ($page_name == 'documentos') echo 'dark-nav active'; ?>">
 
@@ -224,7 +223,7 @@
 
 </li>
 
-<!------Empresas----->
+<!--Empresas-->
 
 <li class="<?php if ($page_name == 'empresas') echo 'dark-nav active'; ?>">
 
@@ -245,7 +244,10 @@
 </li>
 <?php } ?>
 
-<!------noticeboard----->
+<!--noticeboard-->
+<?php 
+    if($this->session->userdata('rol') == 1){
+?>
 
 <li class="<?php if ($page_name == 'noticeboard') echo 'dark-nav active'; ?>">
 
@@ -253,7 +255,7 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/noticeboard" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('noticeboard_help'); ?>">
+       data-original-title="<?php echo get_phrase('noticias'); ?>">
 
         <!--<i class="icon-columns icon-1x"></i>-->
 
@@ -264,6 +266,7 @@
     </a>
 
 </li>
+<?php } ?>
 
 <!-- rss -->
 <?php 
@@ -290,7 +293,7 @@
 </li>
 
 
-<!------system settings------>
+<!--system settings-->
 
 <li class="dark-nav <?php if ($page_name == 'system_settings' ||
 
@@ -400,7 +403,7 @@
 </li>
 <?php } ?>
 
-<!------manage own profile--->
+<!--manage own profile-->
 
 <li class="<?php if ($page_name == 'manage_profile') echo 'dark-nav active'; ?>">
 
