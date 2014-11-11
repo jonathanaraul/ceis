@@ -53,8 +53,9 @@
                     <tbody>
                     <?php $count = 1;
                     foreach ($materias as $row): ?>
-                        <?php    
-                                if($this->session->userdata('rol') == 1){                             
+                        <?php   
+								$profesor= $this->session->userdata('user_id');
+								if($row['profesor']==$profesor){
                                 $cursos= $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
                         ?>                        
                         <tr>
@@ -62,7 +63,7 @@
                             <td><?php echo $this->crud_model->get_nombre_materia_by_id($row['nombre']); ?></td>
                             <td><?php echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
-                            <?php 
+                            <?php
                                 if($this->session->userdata('rol') == 1){
                             ?>
                             <td align="center">
@@ -77,7 +78,7 @@
                                     <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
                                 </a>
                             </td>
-                            <?php } } ?>
+                            <?php } }?>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

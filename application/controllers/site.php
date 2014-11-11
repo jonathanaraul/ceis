@@ -245,7 +245,7 @@ class Site extends CI_Controller
 
     {
 
-        if ($this->session->userdata('rol') != 1)
+        if ($this->session->userdata('rol') == false)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
