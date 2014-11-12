@@ -87,7 +87,7 @@
 
 					<li class="dropdown">
 
-						<a href="#" ><i class="icon-user"></i><?php
+						<a><i class="icon-user"></i><?php
 							$role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
 								
 								echo get_phrase('panel').' '.get_phrase($role[0]['rol']);

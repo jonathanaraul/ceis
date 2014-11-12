@@ -2014,67 +2014,6 @@ class Site extends CI_Controller
 
     }
  
- function manage_password($param1 = '', $param2 = '', $param3 = '')
-
-    {
-
-	   $phone = $this->input->post('phone');
-	  
-	   $check_phone = $this->db->get_where('hs_users', array( 'phone' => $phone ))->row()->phone;
-       
-       if ($phone != $check_phone ){
-
-           $this->session->set_flashdata('flash_message', get_phrase('Número Telefónico incorrecto'));
-		}else{
-			
-	
-	}
-
-            $data['email'] = $this->input->post('email');
-            
-            $data['password'] = $this->input->post('password');
-
-            $data['new_password'] = $this->input->post('new_password');
-			
-				$password = $this->bcrypt->hash_password($data['new_password']);
-            
-            $data['confirm_new_password'] = $this->input->post('confirm_new_password');
-
-            $check_phone = $this->db->get_where('hs_users', array( 'phone' => $data['phone'] ))->row()->phone;
-            $check_email = $this->db->get_where('hs_users', array( 'email' => $data['email'] ))->row()->email;
-            
-           
-            if ($check_phone && $check_email) {
-           
-				if ($data['new_password'] == $data['confirm_new_password']) {
-
-                $this->db->where('email', $data['email']);
-
-                $this->db->update('hs_users', array(
-
-                    'password' => $password
-
-                ));
-
-                $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
-
-				} else {
-
-                $this->session->set_flashdata('flash_message', get_phrase('password_mismatch'));
-
-				}
-			}else{
-				$this->session->set_flashdata('flash_message', get_phrase('Email o Teléfono incorrecto'));
-			}
-        
-        $page_data['page_name'] = 'manage_password';
-
-        $page_data['page_title'] = get_phrase('manage_password');
-
-        $this->load->view('index', $page_data);
-
-    }
- 
 }
 
 

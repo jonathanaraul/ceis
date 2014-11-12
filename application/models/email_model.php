@@ -5,33 +5,23 @@ class Email_model extends CI_Model {
 	function __construct()
     {
         parent::__construct();
+        $this->load->library('bcrypt');
     }
 
-	function account_opening_email($account_type = '' , $email = '')
+
+	function password_reset_email($email = '')
 	{
-		$system_name	=	$this->db->get_where('settings' , array('type' => 'system_name'))->row()->description;
-		
-		$email_msg		=	"Welcome to ".$system_name."<br />";
-		$email_msg		.=	"Your account type : ".$account_type."<br />";
-		$email_msg		.=	"Your login password : ".$this->db->get_where($account_type , array('email' => $email))->row()->password."<br />";
-		$email_msg		.=	"Login Here : ".base_url()."<br />";
-		
-		$email_sub		=	"Account opening email";
-		$email_to		=	$email;
-		
-		$this->do_email($email_msg , $email_sub , $email_to);
-	}
-	
-	function password_reset_email($account_type = '' , $email = '')
-	{
-		$query			=	$this->db->get_where($account_type , array('email' => $email));
+		$query			=	$this->db->get_where('hs_users' , array('email' => $email));
 		if($query->num_rows() > 0)
 		{
+			$system_name	=	$this->db->get_where('settings' , array('type' => 'system_name'))->row()->description;
+		
 			$password	=	$query->row()->password;
-			$email_msg	=	"Your account type is : ".$account_type."<br />";
-			$email_msg	.=	"Your password is : ".$password."<br />";
 			
-			$email_sub	=	"Password reset request";
+			$email_msg	=	"Bienvenido a ".$system_name."<br />";
+			$email_msg	.=	"Para restablecer tu contraseña, por favor dirígete hacia: <a href=".base_url().'index.php?password'."></a> e ingrese el siguiente código único de identificación: ";
+			$email_msg	.=	"apliceis.com.co.s3cur1ty";
+			$email_sub	=	"Envío de Contraseña";
 			$email_to	=	$email;
 			$this->do_email($email_msg , $email_sub , $email_to);
 			return true;
@@ -41,6 +31,7 @@ class Email_model extends CI_Model {
 			return false;
 		}
 	}
+	
 	
 	/***custom email sender****/
 	function do_email($msg=NULL, $sub=NULL, $to=NULL, $from=NULL)
