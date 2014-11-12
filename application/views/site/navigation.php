@@ -19,7 +19,7 @@
 
 <!--dashboard-->
 <?php 
-    if($this->session->userdata('rol')>2){
+    if($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2){
 ?>
 
 <li class="<?php if ($page_name == 'dashboard') echo 'dark-nav active'; ?>">
@@ -161,7 +161,7 @@
 </li>
 <?php 
 	} 
-	if($this->session->userdata('rol')>2){
+	if($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2){
 ?>
 
 <!--class routine-->
@@ -410,7 +410,7 @@
 </li>
 <?php 
 	}
-    if($this->session->userdata('rol')>2){
+    if($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2 ){
 ?>
 <!--manage own profile-->
 

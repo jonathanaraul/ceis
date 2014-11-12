@@ -18,12 +18,13 @@ class Email_model extends CI_Model {
 		
 			$password	=	$query->row()->password;
 			
-			$email_msg	=	"Bienvenido a ".$system_name."<br />";
-			$email_msg	.=	"Para restablecer tu contraseña, por favor diríjase hacia: ".base_url().'index.php?password'." 
-							e ingrese el siguiente código único de identificación que se le ha asignado: ";
-			$email_msg	.=	"apliceis.com.co.s3cur1ty";
+			$email_msg	=	"<center><img src='".base_url()."uploads/logo.png'  style='height:100px;width:150px;'></center><br>";
+			$email_msg	.=	"<center>Bienvenido a ".$system_name."</center><br />";
+			$email_msg	.=	"Para restablecer su contraseña, por favor diríjase hacia: ".base_url().'index.php?password'."<br>";
+			$email_msg	.=	"e ingrese el siguiente código único de identificación que se le ha asignado: ";
+			$email_msg	.=	"<strong>apliceis.com.co.s3cur1ty<strong>";
 			$email_sub	=	"Envío de Contraseña";
-			$email_to	=	$email;
+			$email_to	=	$email; 
 			$this->do_email($email_msg , $email_sub , $email_to);
 			return true;
 		}
@@ -41,9 +42,9 @@ class Email_model extends CI_Model {
 		$config = array();
         $config['useragent']	= "CodeIgniter";
         $config['mailpath']		= "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
-        $config['protocol']		= "smtp";
-        $config['smtp_host']	= "localhost";
-        $config['smtp_port']	= "25";
+        $config['protocol']		= "POP3";
+        $config['smtp_host']	= "kran.distriserver.org";
+        $config['smtp_port']	= "995";
         $config['mailtype']		= 'html';
         $config['charset']		= 'utf-8';
         $config['newline']		= "\r\n";
@@ -62,7 +63,7 @@ class Email_model extends CI_Model {
 		$this->email->to($to);
 		$this->email->subject($sub);
 		
-		$msg	=	$msg."<br /><br /><br /><br /><br /><br /><br /><hr /><center><a href=\"http://codecanyon.net/user/joyontaroy?ref=joyontaroy\">&copy; 2013 Bayanno Hospital Management System</a></center>";
+		$msg	=	$msg."<br /><br /><br /><br /><br /><br /><br /><hr /><center>&copy; 2014, Sercreativo inc</center>";
 		$this->email->message($msg);
 		
 		$this->email->send();

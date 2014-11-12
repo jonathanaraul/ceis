@@ -63,8 +63,11 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit"
-                                    class="btn btn-gray"><?php echo get_phrase('update_password'); ?></button>
+                            <button type="submit" class="btn btn-gray"><?php echo get_phrase('update_password'); ?></button>
+                            <a href="<?php echo base_url();?>index.php?password/logout">
+								<button class="btn btn-gray"><?php echo get_phrase('cancelar'); ?></button>
+							</a>
+                            
                         </div>
                     </form>
                    

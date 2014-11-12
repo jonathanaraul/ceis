@@ -47,19 +47,19 @@ class Password extends CI_Controller
 				
 			}else{
 					$this->session->set_flashdata('flash_message', get_phrase('Código de verificación incorrecto'));
+					redirect(base_url() . 'index.php?password', 'refresh');
+					return FALSE;
 				}
     }
     
 	function manage_password()
 
     {
-		if($this->session->userdata('password') == '')
+		if(!$this->session->userdata('password'))
         {
-			
-            redirect(base_url() . 'index.php?password', 'refresh');
+			$this->logout();
         }else{
         
-            $data['code'] = $this->input->post('code');
             
             $data['phone'] = $this->input->post('phone');
             
@@ -73,12 +73,6 @@ class Password extends CI_Controller
             
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
-            
-            $current_code = $this->db->get('hs_reset_pass')->row()->password;
-            
-			$decode= password_verify($data['code'] , $current_code);
-           
-            if ($decode == $data['code'] or $current_code== $data['code']){ 
 				
 				 $this->db->where('email',$data['email']);
 				 $this->db->where('phone',$data['phone']);
@@ -97,13 +91,11 @@ class Password extends CI_Controller
 						'password' => $password
 
 					));
-
-					
-					$this->session->unset_userdata();
-					$this->session->sess_destroy();
-					
+					$this->session->set_flashdata('flash_message', get_phrase('Contraseña restablecida exitosamente'));
+					$this->logout();
 					redirect(base_url() . 'index.php?login', 'refresh');
-					$this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+					return FALSE;
+					
 
 					} else {
 
@@ -112,9 +104,6 @@ class Password extends CI_Controller
 					}
 				}else{
 					$this->session->set_flashdata('flash_message', get_phrase('Email o Teléfono incorrecto'));
-				}
-			}else{
-					$this->session->set_flashdata('flash_message', get_phrase('Código de verificación incorrecto'));
 				}
         
 			$page_data['page_name'] = 'manage_password';
@@ -125,4 +114,12 @@ class Password extends CI_Controller
 
 		}
     }
+    
+    public function logout()
+	{
+		$this->session->unset_userdata();
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('logout_notification', 'logged_out');
+        redirect(base_url() . 'index.php?login', 'refresh');
+	}
 }
