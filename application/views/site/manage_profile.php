@@ -77,24 +77,24 @@
                         ?>
                         <?php echo form_open('site/manage_profile/change_password', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('password'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('contraseña_actual'); ?></label>
 
                             <div class="controls">
-                                <input type="password" class="" name="password" value=""/>
+                                <input type="password" class="uniform" name="password" value=""/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('new_password'); ?></label>
 
                             <div class="controls">
-                                <input type="password" class="" name="new_password" value=""/>
+                                <input type="password" class="uniform" name="new_password" value=""/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('confirm_new_password'); ?></label>
 
                             <div class="controls">
-                                <input type="password" class="" name="confirm_new_password" value=""/>
+                                <input type="password" class="uniform" name="confirm_new_password" value=""/>
                             </div>
                         </div>
                         <div class="form-actions">
