@@ -131,7 +131,7 @@
                             <div class="box-header">
 
                                 <span class="title"><?php echo get_phrase('Ingresar_al_sistema');?></span>
-
+                               
                             </div>
 
                             <div class="box-content padded">

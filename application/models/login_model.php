@@ -23,7 +23,7 @@ class Login_model extends CI_Model {
             {
                 return $query->row();
             }else{
-					$this->session->set_flashdata('flash_message', get_phrase('login_failed'));
+					$this->session->set_flashdata('flash_message', get_phrase('Contraseña incorrecta'));
 					redirect(base_url() . 'index.php?login', 'refresh');
 					return FALSE;
 					
