@@ -19,7 +19,8 @@ class Email_model extends CI_Model {
 			$password	=	$query->row()->password;
 			
 			$email_msg	=	"Bienvenido a ".$system_name."<br />";
-			$email_msg	.=	"Para restablecer tu contraseña, por favor dirígete hacia: <a href=".base_url().'index.php?password'."></a> e ingrese el siguiente código único de identificación: ";
+			$email_msg	.=	"Para restablecer tu contraseña, por favor diríjase hacia: ".base_url().'index.php?password'." 
+							e ingrese el siguiente código único de identificación que se le ha asignado: ";
 			$email_msg	.=	"apliceis.com.co.s3cur1ty";
 			$email_sub	=	"Envío de Contraseña";
 			$email_to	=	$email;
