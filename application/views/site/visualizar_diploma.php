@@ -1,51 +1,143 @@
-    <div  style="width: 1050px; height: 600px; background-color: white;">
-    
-    <div  style="width: 1050px; border: 20px solid #400000;">
-      </div>  
-         
-        
-			<br>
-			<br>
-			<br>
-			<center>
-				<img src="uploads/logo_ceis.png">
-			</center>
-		
-		<div style="float:left;margin-left:5%;width: 90px; height: 120px;border: 1px solid #000000; margin-top:-7%"></div>
-		
-		<div style="float:right; color:#400000;margin-top:-7%">
-		
-			<center>NUMERO DE ORDEN
+<style type="text/css">
+
+	#nombre {
+		width			:1000px;
+		height			:50px;
+		font-weight		:bold;
+		text-align		:center;
+		font-size		:40px;
+		color			:#000000;
+		padding-top		:370px;
+		margin-left		:35px;
+	}
+
+	#documento {
+		font-size		:17px;
+		float:left;
+		font-weight		:bold;
+		margin-top		:30px;
+		margin-left		:330px;
+		color			:#000000;
+	}
+
+	#departamento {
+		font-size		:17px;
+		float			:right;
+		font-weight		:bold;
+		margin-top		:30px;
+		margin-right	:220px;
+		color			:#000000;
+	}
+
+	#curso {
+		font-size		:17px;
+		margin-top		:123px; 
+		font-weight		:bold; 
+		text-align		:center; 
+		color			:#000000;
+	}
+
+	#duracion {
+		font-size		:17px; 
+		margin-top		:8px; 
+		margin-left		:580px; 
+		font-weight		:bold; 
+		color			:#000000;
+	}
+
+	#content {
+		width			:1056px; 
+		height			:50px; 
+		margin-top		:20px;
+	}
+
+	.same {
+		font-size		:17px; 
+		display			: inline;  
+		margin-left		:160px; 
+		font-weight		:bold; 
+		color			:#000000;
+	}
+	#mes{
+		font-size		:17px; 
+		display			: inline; 
+		margin-left		:245px; 
+		font-weight		:bold; 
+		color			:#000000;
+	}
+	#año{
+		font-size		:17px; 
+		display			: inline; 
+		margin-left		:95px; 
+		font-weight		:bold; 
+		color			:#000000;
+	}
+
+</style>
+<div  id="print_area_<?= $documento_nombre; ?>" style="width: 1056px; height: 816px; background-image: url(template/images/Diploma.png);">
+	    	<div id="nombre">
+						<?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
+			</div>
+			<div id="documento">
+				<?= $this->crud_model->get_hs_student_cedula_by_id($documento_nombre)?>
+			</div>
+
+			<div id="departamento">
+				<?= $this->crud_model->get_hs_student_departamento_by_id($documento_nombre)?>
+			</div>	
 			
-			<div style="width: 130px; height: 30px;background-color: white; border: 2px solid #000000;border-radius:5px"></div>
-		
-		<br>
-			<center>NUMERO DE REGISTRO OFICIAL
-			
-		
-			<div style="width: 190px; height: 30px;background-color: white; border: 2px solid #000000;border-radius:5px"></div>
-		</center>
-		</div>
-		
-        
-    
-    <div style="color:#6A1010;">
-       <div class="titulo" style="width:300px; height: 100px; font-size: 40px; margin-left: 400px; margin-top: 100px;">CERTIFICA QUE</div>
-			<center>
-				<h3 style="display: inline;"> 
-					<?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
-				</h3>
-			</center>
-			<br> 
-			<h3 style="margin-left:5%">Con C.C. No._ _ _ _ _ _ _ _  _ _ _ _ _ _  _ _ _ _  _ _ _ _ _ _ _ _ _ _
-												de_ _ _ _ _  _ _ _ _  _ _ _ _  _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ </h3>
-			<span style="font-size:15px; font-weight:bold;"><?= $this->crud_model->get_hs_cursos_nombre($elements[0]['curso'])?></span>.
+			<div id="curso">
+				<?php 
+					$cursos= $this->db->get_where('hs_cursos', array('id' => $elements[0]['curso']))->result_array();
+					echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']);
+				?>
+			</div>
+			<div id="duracion">
+				<?=
+					$cursos[0]['duracion'];
+				?>
+			</div>
+			<div id="content">
+				<div class="same">
+					Barranquilla
+				</div>
+				<div class="same">
+					<?= date("j"); ?>
+				</div>
+				<div id="mes">
+					<?php   $mes=date("n");
+							if ($mes=="1") $mes="Enero";
+							if ($mes=="2") $mes="Febrero";
+							if ($mes=="3") $mes="Marzo";
+							if ($mes=="4") $mes="Abril";
+							if ($mes=="5") $mes="Mayo";
+							if ($mes=="6") $mes="Junio";
+							if ($mes=="7") $mes="Julio";
+							if ($mes=="8") $mes="Agosto";
+							if ($mes=="9") $mes="Setiembre";
+							if ($mes=="10") $mes="Octubre";
+							if ($mes=="11") $mes="Noviembre";
+							if ($mes=="12") $mes="Diciembre"; 
+							echo $mes;
+					?>
+				</div>
+				<div id="año">
+					<?= date("Y"); ?>
+				</div>
+			</div>
+</div>
 
+<div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
+            margin-top: 20px;"  onclick="imprimirDiploma('print_area_<?= $documento_nombre;?>')"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
+</div>
 
+<script>
 
-  </div>
-    </div>
+function imprimirDiploma(div){
+	var div_id= "#"+div;
+	$(div_id).print();
+	return (false);
 
-    <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
-                margin-top: 20px;"  onclick="imprimirDiploma()"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
-    </div>
+}
+
+</script>
