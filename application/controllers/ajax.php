@@ -180,8 +180,9 @@ class ajax extends CI_Controller
                 foreach($query as $sum):
                     $suma+=$sum['puntuacion'];
                 endforeach;
-                $this->db->where('estudiante', $inscrito['estudiante']);
-                $this->db->from('hs_notas');
+                $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
+                $this->db->where('curso', $cursos[0]['curso']);
+                $this->db->from('curso_materia');
                 $nro_materias= $this->db->count_all_results();
                 $media= $suma/$nro_materias;
                 $dato['elements']= $query;
@@ -221,8 +222,8 @@ class ajax extends CI_Controller
                 foreach($query as $sum):
                     $suma+=$sum['puntuacion'];
                 endforeach;
-                $this->db->where('estudiante', $inscrito['estudiante']);
-                $this->db->from('hs_notas');
+                $this->db->where('curso', $curso);
+                $this->db->from('curso_materia');
                 $nro_materias= $this->db->count_all_results();
                 $media= $suma/$nro_materias;
                 $dato['elements']= $query;
