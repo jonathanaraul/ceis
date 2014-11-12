@@ -1,7 +1,6 @@
+
 </head>
 <body>
-
-
 <div class="sidebar-background">
 
     <div class="primary-sidebar-background">
@@ -19,6 +18,9 @@
 
 
 <!--dashboard-->
+<?php 
+    if($this->session->userdata('rol')>2){
+?>
 
 <li class="<?php if ($page_name == 'dashboard') echo 'dark-nav active'; ?>">
 
@@ -37,7 +39,9 @@
     </a>
 
 </li>
-
+<?php 
+	}
+?>
 
 <!--estudiantes-->
 <?php 
@@ -155,7 +159,9 @@
     </a>
 
 </li>
-<?php } 
+<?php 
+	} 
+	if($this->session->userdata('rol')>2){
 ?>
 
 <!--class routine-->
@@ -180,7 +186,8 @@
 
 
 <!--facturacion-->
-<?php 
+<?php
+	}
 	if($this->session->userdata('rol') == 1){
 ?>
 
@@ -401,8 +408,10 @@
     </ul>
 
 </li>
-<?php } ?>
-
+<?php 
+	}
+    if($this->session->userdata('rol')>2){
+?>
 <!--manage own profile-->
 
 <li class="<?php if ($page_name == 'manage_profile') echo 'dark-nav active'; ?>">
@@ -422,9 +431,11 @@
     </a>
 
 </li>
+<?php } ?>
 
 
 </ul>
 
-
 </div>
+
+

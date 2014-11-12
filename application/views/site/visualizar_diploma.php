@@ -1,30 +1,49 @@
-    <div  style="width: 1050px; height: 600px; background-color: white; border: 10px solid #400000;">
-        <div class="icono" style="float: left; max-width: 180px; margin-top: 20px;margin-left: 20px;"><img src="<?= base_url(); ?>uploads/logo_ceis.png"></div>
-        <div class="titulo" style="float: right; margin-right: 20px; margin-top: 20px; color: #EAEBEF; background-color: #400000;border: 
-    3px solid #400000; border-radius: 20px; width: 800px; font-size: 30px; text-align: center;">
-        CENTRO EDUCATIVO INTEGRAL DE SEGURIDAD
-        </div>
-        <div class="titulo" style=" width:300px; height: 100px; font-size: 40px; margin-left: 400px; margin-top: 100px;">CERTIFICADO</div>
-        <div style="width:850px; font-size: 15px; color:#000; margin-left: 130px; margin-top: 30px;">Certificado que es otorgado al ciudadano(a):<h3 style="display: inline;"> 
-        <?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?></h3>, 
-        por haber cumplido con todos los requisitos exigidos por esta institución, culminando con exito el curso 
-        <span style="font-size:15px; font-weight:bold;"><?= $this->crud_model->get_hs_cursos_nombre($elements[0]['curso'])?></span>.
-        </div>
-        <div style=" width: 200px; color: black; float: left; margin-left: 180px; margin-top: 60px; text-align: center; font-size:15px;">
-            Instructor <br><br> __________________________<br><br>Firma
-        </div>
-        <div style=" width: 200px; color: black; float: right; margin-right: 180px; margin-top: 60px; text-align: center; font-size:15px;">
-            Director CEIS <br><br> __________________________<br><br>Firma
-        </div>
-        <div style="width: 410px; height: 80px; margin-top: 210px; margin-left: 20px; font-size: 15px;">
-        <span style="float: left; padding-top:30px; color: black;">Con el respaldo de:</span>
-        <div style="float: right; max-height: 70px; max-width: 70px; margin-right: 10px"><img src="<?= base_url(); ?>uploads/camarabaq.png"></div>
-        <div style="float: right; max-height: 70px; max-width: 70px; margin-right: 10px"><img src="<?= base_url(); ?>uploads/fedeseguridad_logo.png"></div>
-        <div style="float: right; max-height: 70px; max-width: 70px; margin-right: 10px"><img src="<?= base_url(); ?>uploads/logo_asosec.png"></div>
-        </div>
+    <div  style="width: 1050px; height: 600px; background-color: white;">
+    
+    <div  style="width: 1050px; border: 20px solid #400000;">
+      </div>  
+         
+        
+			<br>
+			<br>
+			<br>
+			<center>
+				<img src="uploads/logo_ceis.png">
+			</center>
+		
+		<div style="float:left;margin-left:5%;width: 90px; height: 120px;border: 1px solid #000000; margin-top:-7%"></div>
+		
+		<div style="float:right; color:#400000;margin-top:-7%">
+		
+			<center>NUMERO DE ORDEN
+			
+			<div style="width: 130px; height: 30px;background-color: white; border: 2px solid #000000;border-radius:5px"></div>
+		
+		<br>
+			<center>NUMERO DE REGISTRO OFICIAL
+			
+		
+			<div style="width: 190px; height: 30px;background-color: white; border: 2px solid #000000;border-radius:5px"></div>
+		</center>
+		</div>
+		
+        
+    
+    <div style="color:#6A1010;">
+       <div class="titulo" style="width:300px; height: 100px; font-size: 40px; margin-left: 400px; margin-top: 100px;">CERTIFICA QUE</div>
+			<center>
+				<h3 style="display: inline;"> 
+					<?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
+				</h3>
+			</center>
+			<br> 
+			<h3 style="margin-left:5%">Con C.C. No._ _ _ _ _ _ _ _  _ _ _ _ _ _  _ _ _ _  _ _ _ _ _ _ _ _ _ _
+												de_ _ _ _ _  _ _ _ _  _ _ _ _  _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ </h3>
+			<span style="font-size:15px; font-weight:bold;"><?= $this->crud_model->get_hs_cursos_nombre($elements[0]['curso'])?></span>.
 
 
-  
+
+  </div>
     </div>
 
     <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;

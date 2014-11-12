@@ -1,4 +1,4 @@
-	<?php
+<?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller
@@ -55,7 +55,8 @@ class Login extends CI_Controller
 			);
             
 			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('required', 'Todos los campos son requeridos');
+			$this->form_validation->set_message('email', get_phrase('El campo Email es requerido'));
+			$this->form_validation->set_message('password',get_phrase( 'El campo Contraseña es requerido'));
            
 			if ($this->form_validation->run() == FALSE) {
 				 $this->index();
@@ -90,7 +91,7 @@ class Login extends CI_Controller
 	
 	public function token()
 	{
-		$token = md5(uniqid(rand(),true));
+		$token = $this->bcrypt->hash_password(uniqid(rand(),true));
 		$this->session->set_userdata('token',$token);
 		return $token;
 	}
@@ -106,12 +107,9 @@ class Login extends CI_Controller
     /***RESET AND SEND PASSWORD TO REQUESTED EMAIL****/
     function reset_password()
     {
-        $account_type = $this->input->post('account_type');
-        if ($account_type == "") {
-            redirect(base_url(), 'refresh');
-        }
+        
         $email = $this->input->post('email');
-        $result = $this->email_model->password_reset_email($account_type, $email); //SEND EMAIL ACCOUNT OPENING EMAIL
+        $result = $this->email_model->password_reset_email($email); //SEND EMAIL ACCOUNT OPENING EMAIL
         if ($result == true) {
             $this->session->set_flashdata('flash_message', get_phrase('password_sent'));
         } else if ($result == false) {

@@ -130,63 +130,29 @@
 
                             <div class="box-header">
 
-                                <span class="title"><?php echo get_phrase('Ingresar_al_sistema');?></span>
+                                <span class="title"><?php echo get_phrase('reset_password');?></span>
 
                             </div>
 
                             <div class="box-content padded">
 								<?php echo validation_errors(); ?>
-                                <?php echo form_open('login/new_user', array('class' => 'separate-sections'));?>
-
-
-                                    <div class="input-prepend">
-
-                                        <span class="add-on" href="#">
-
-                                        <i class="icon-envelope"></i>
-
-                                        </span>
-
-                                        <input name="email" type="text" placeholder="<?php echo get_phrase('email');?>" autocomplete="off" >
-
-                                    </div>
-
-                                    <div class="input-prepend">
-
-                                        <span class="add-on" href="#">
-
-                                        <i class="icon-key"></i>
-
-                                        </span>
-
-                                        <input name="password" type="password" placeholder="<?php echo get_phrase('password');?>" autocomplete="off">
-
-                                    </div>
-
+                               
                                     <div class="row-fluid">
-
-                                        <div class="span6">
-
+									
+                                        <div class="span7" style="margin-left:20%">
+										
                                             <a  data-toggle="modal" href="#modal-simple"  class="btn btn-blue btn-block" >
 
-                                                <?php echo get_phrase('forgot_password ?');?> 
+                                                <?php echo get_phrase('Ingrese código de verificación');?> 
 
                                             </a>
-
+ 
                                         </div>
-                                        
-                                        <?php echo form_hidden('token',$token);?>
-
-                                        <div class="span6">
-
-                                            <input type="submit" class="btn btn-gray btn-block "  value="<?php echo get_phrase('Entrar');?>"/>
-
-                                        </div>
-
+                                    
+                                       
                                     </div>
 
-                                </form>
-
+                               
                             </div>
 
                         </div>
@@ -223,18 +189,18 @@
 
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-            <h6 style="color:#FFFFFF"  id="modal-tablesLabel"><?php echo get_phrase('reset_password');?></h6>
+            <h6 style="color:#FFFFFF" id="modal-tablesLabel"><?php echo get_phrase('reset_password');?></h6>
 
           </div>
 
           <div class="modal-body" style="padding:20px;">
 
-            <?php echo form_open('login/reset_password');?>
+             <?php echo form_open('password/code'); ?>
 
             	
-                <input type="email" name="email"  placeholder="<?php echo get_phrase('email');?>"  style="margin-bottom: 0px !important;"/>
+                <input type="password" name="code" style="margin-bottom: 0px !important;"/>
 
-                <input type="submit" value="<?php echo get_phrase('reset');?>"  class="btn btn-blue btn-medium"/>
+                <input type="submit" value="<?php echo get_phrase('enviar_código');?>"  class="btn btn-blue btn-medium"/>
 
             <?php echo form_close();?>
 
