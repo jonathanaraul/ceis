@@ -90,7 +90,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('site/materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/materias/create', array('onsubmit' => 'return validateForm()','name' => 'crear_materias', 'class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
@@ -114,7 +114,7 @@
                             <label class="control-label"><?= 'Materia'?></label>
                             <div class="controls">
                                 <select name="materias" id="materias" class="uniform">
-                                    <option value="0"><?= 'Seleccionar materia' ?></option>
+                                    <option value="0"><?= 'Seleccionar Materia' ?></option>
                                 </select>
                             </div>
                         </div>
@@ -122,6 +122,7 @@
                             <label class="control-label"><?= 'Profesor(a)'?></label>
                             <div class="controls">
                                 <select name="profesor" class="uniform" style="width:100%;">
+                                    <option value="0"><?= 'Seleccionar Profesor' ?></option>
                                     <?php
                                     $profesores = $this->db->get_where('hs_users', array('rol' => 2))->result_array();
                                     foreach ($profesores as $profesor){
@@ -154,6 +155,24 @@
             function (data) {
                 $('#materias').html(data);
             });
+    }
+
+    function validateForm() {
+    var curso = document.forms["crear_materias"]["curso"].value;
+    var materias = document.forms["crear_materias"]["materias"].value;
+    var profesor = document.forms["crear_materias"]["profesor"].value;
+        if (curso == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
+        if (materias == 0) {
+            alert("Debe seleccionar una materia");
+            return false;
+        }
+        if (profesor == 0) {
+            alert("Debe seleccionar un profesor");
+            return false;
+        }
     }
 
 </script>

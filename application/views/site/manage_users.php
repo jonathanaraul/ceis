@@ -118,7 +118,7 @@
 										<i class="icon-user"></i> <?php echo get_phrase('profile'); ?> 
 									</a> 
 									<a data-toggle="modal" href="#modal-form"
-										onclick="modal('edit_user',<?php echo $row['user_id']; ?>)"
+										onclick="modal('Editar_Usuario',<?php echo $row['user_id']; ?>)"
 										class="btn btn-gray btn-small"> <i
                                         class="icon-wrench"></i> <?php echo get_phrase('edit'); ?> 
                                     </a>
@@ -143,7 +143,7 @@
 
 <div class="tab-pane box" id="add" style="padding: 5px">
 	
-	<div class="box-content"> <?php echo form_open('site/users/create', array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+	<div class="box-content"> <?php echo form_open('site/users/create', array('onsubmit' => 'return validateForm()','name' => 'crear_usuario','class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 					
 		<form method="post" action="<?php echo base_url(); ?>index.php?site/users/create/" 
 							class="form-horizontal validatable" enctype="multipart/form-data">
@@ -152,28 +152,28 @@
 					<label class="control-label"><?php echo get_phrase('name'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="validate[required]" name="name"/>
+						<input type="text" class="uniform" required name="name"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label"><?php echo get_phrase('segundo_nombre'); ?></label>
 
 					<div class="controls">
-						<input type="text" name="snombre"/>
+						<input type="text" class="uniform" name="snombre"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label"><?php echo get_phrase('primer_apellido'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="validate[required]" name="papellido"/>
+						<input type="text" class="uniform" required name="papellido"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label"><?php echo get_phrase('segundo_apellido'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="validate[required]" name="sapellido"/>
+						<input type="text" class="uniform" name="sapellido"/>
 					</div>
 				</div>
 			   
@@ -191,14 +191,14 @@
 					<label class="control-label"><?php echo get_phrase('address'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="" name="address"/>
+						<input type="text" class="uniform" name="address"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label"><?php echo get_phrase('phone'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="" name="phone"/>
+						<input type="text" class="uniform" name="phone"/>
 					</div>
 				</div>
 				<div class="control-group">
@@ -207,7 +207,7 @@
 					<div class="controls">
 						<select name="rol" class="uniform" style="width:100%;">
 								
-							<option value=""><?php echo get_phrase('seleccione'); ?></option>
+							<option value="0"><?php echo get_phrase('seleccione'); ?></option>
 							<?php
 
 							$role = $this->db->get('hs_role')->result_array();
@@ -231,14 +231,14 @@
 					<label class="control-label"><?php echo get_phrase('email'); ?></label>
 
 					<div class="controls">
-						<input type="text" class="" name="email"/>
+						<input type="email" class="uniform" required name="email"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label"><?php echo get_phrase('password'); ?></label>
 
 					<div class="controls">
-						<input type="password" class="" name="password"/>
+						<input type="password" class="uniform" required name="password"/>
 					</div>
 				</div>
 				
@@ -271,6 +271,14 @@
 </div>
 <?php endif; ?>
 <script>
+
+    function validateForm() {
+    var rol = document.forms["crear_usuario"]["rol"].value;
+        if (rol == 0) {
+            alert("Debe seleccionar un rol");
+            return false;
+        }
+    }
              
     function readURL(input) {
 

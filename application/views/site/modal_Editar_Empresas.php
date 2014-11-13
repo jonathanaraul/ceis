@@ -14,7 +14,7 @@
 
                         <div class="controls">
 
-                            <input type="text" class="uniform" name="nit" value="<?php echo $row['nit']; ?>"/>
+                            <input type="text" class="uniform" name="nit" required value="<?php echo $row['nit']; ?>"/>
 
                         </div>
 
@@ -26,7 +26,7 @@
 
                         <div class="controls">
 
-                            <input type="text" class="uniform" name="nombre" value="<?php echo $row['nombre']; ?>"/>
+                            <input type="text" class="uniform" name="nombre" required value="<?php echo $row['nombre']; ?>"/>
 
                         </div>
 
@@ -38,7 +38,7 @@
 
                         <div class="controls">
 
-                            <input type="text" class="uniform" name="contacto" value="<?php echo $row['contacto']; ?>"/>
+                            <input type="text" class="uniform" name="contacto" required value="<?php echo $row['contacto']; ?>"/>
 
                         </div>
 

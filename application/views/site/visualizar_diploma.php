@@ -128,16 +128,5 @@
 </div>
 
 <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
-            margin-top: 20px;"  onclick="imprimirDiploma('print_area_<?= $documento_nombre;?>')"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
+            margin-top: 20px;"  onclick="imprimirDocumento('print_area_<?= $documento_nombre;?>')"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
 </div>
-
-<script>
-
-function imprimirDiploma(div){
-	var div_id= "#"+div;
-	$(div_id).print();
-	return (false);
-
-}
-
-</script>

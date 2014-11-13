@@ -7,14 +7,14 @@
                     <label class="control-label"><?php echo get_phrase('name'); ?></label>
 
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="name" value="<?= $row['name'] ?>" />
+                        <input type="text" class="uniform" required name="name" value="<?= $row['name'] ?>" />
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label"><?php echo get_phrase('url'); ?></label>
 
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="url" value="<?= $row['url'] ?>"/>
+                        <input type="text" class="uniform" required name="url" value="<?= $row['url'] ?>"/>
                     </div>
                 </div>
             </div>

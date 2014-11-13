@@ -92,28 +92,28 @@
                             <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="documento"/>
+                                <input type="text" class="uniform" required name="documento"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('primer_nombre'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="nombre"/>
+                                <input type="text" class="uniform" required name="nombre"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('segundo_nombre'); ?></label>
 
                             <div class="controls">
-                                <input type="text" name="snombre"/>
+                                <input type="text" class="uniform" name="snombre"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('primer_apellido'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="papellido"/>
+                                <input type="text" class="uniform" required name="papellido"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -157,14 +157,14 @@
                             <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" name="f_nacimiento"/>
+                                <input type="text" class="datepicker fill-up" required name="f_nacimiento"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('sex'); ?></label>
 
                             <div class="controls">
-                                <select name="sexo" class="uniform" style="width:100%;">
+                                <select name="sexo" class="uniform" required style="width:100%;">
                                     <option value="0">-- Seleccione Uno --</option>
                                     <option value="male"><?php echo get_phrase('male'); ?></option>
                                     <option value="female"><?php echo get_phrase('female'); ?></option>
@@ -172,24 +172,38 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('departamento'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" required name="departamento"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('municipio'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" required name="municipio"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('Direccion de residencia'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="direccion"/>
+                                <input type="text" class="uniform" required name="direccion"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('telefono_residencia'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="telefono"/>
+                                <input type="text" class="uniform" required name="telefono"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('email'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="email"/>
+                                <input type="text" class="uniform" required name="email"/>
                             </div>
                         </div>
                     </div>

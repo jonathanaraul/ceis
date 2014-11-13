@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('site/horarios_materias/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/horarios_materias/do_update/' . $row['id'], array('onsubmit' => 'return validateForm()','name' => 'editar_horarios','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="control-group">
                     <label class="control-label"><?php echo get_phrase('class'); ?></label>
@@ -27,7 +27,7 @@
 
                     <div class="controls">
                         <select name="materias" id="materias" class="uniform" style="width:100%;">
-                            <option value="0">Seleccione un Curso</option>
+                            <option value="0">Seleccione una Materia</option>
                         </select>
                     </div>
                 </div>
@@ -135,15 +135,28 @@
 
 <script type="text/javascript">
 
- function ajaxMaterias(valor) {
+    function ajaxMaterias(valor) {
 
-        $('#materias').empty();
+            $('#materias').empty();
 
-        $.post('<?php echo site_url()?>ajax/obtenMaterias',
-            {'curso': valor },
-            function (data) {
-                $('#materias').html(data);
-            });
+            $.post('<?php echo site_url()?>ajax/obtenMaterias',
+                {'curso': valor },
+                function (data) {
+                    $('#materias').html(data);
+                });
+    }
+
+    function validateForm() {
+    var curso = document.forms["editar_horarios"]["cursos"].value;
+    var materias = document.forms["editar_horarios"]["materias"].value;
+        if (curso == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
+        if (materias == 0) {
+            alert("Debe seleccionar una materia");
+            return false;
+        }
     }
 
 </script>

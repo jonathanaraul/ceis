@@ -134,7 +134,7 @@ class Modal extends CI_Controller
 
             $page_data['edit_data'] = $this->db->get_where('noticeboard', array('notice_id' => $param2))->result_array();
 
-        }else if ($param1 == 'edit_user') {
+        }else if ($param1 == 'Editar_Usuario') {
 
             $page_data['edit_data'] = $this->db->get_where('hs_users', array('user_id' => $param2))->result_array();
 

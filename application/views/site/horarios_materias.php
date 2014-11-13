@@ -119,7 +119,7 @@
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('site/horarios_materias/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/horarios_materias/create', array('onsubmit' => 'return validateForm()','name' => 'crear_horarios','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('class'); ?></label>
@@ -212,6 +212,19 @@
             function (data) {
                 $('#materias').html(data);
             });
+    }
+
+    function validateForm() {
+    var curso = document.forms["crear_horarios"]["cursos"].value;
+    var materias = document.forms["crear_horarios"]["materias"].value;
+        if (curso == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
+        if (materias == 0) {
+            alert("Debe seleccionar una materia");
+            return false;
+        }
     }
 
 </script>

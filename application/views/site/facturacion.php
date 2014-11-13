@@ -178,7 +178,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?= form_open('site/facturacion/create_estudiante', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?= form_open('site/facturacion/create_estudiante', array('onsubmit' => 'return validateFormEstudiante()','name' => 'crear_factura','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('estudiante'); ?></label>
@@ -211,21 +211,21 @@
                             <label class="control-label"><?php echo get_phrase('description'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="descripcion"/>
+                                <input type="text" class="uniform" required name="descripcion"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('cantidad'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="cantidad"/>
+                                <input type="text" class="uniform" required name="cantidad"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('monto'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="monto" placeholder="Introduzca el monto de la factura"/>
+                                <input type="text" class="uniform" required name="monto" placeholder="Introduzca el monto de la factura"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -253,7 +253,7 @@
                             <label class="control-label"><?php echo get_phrase('date'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" name="fecha"/>
+                                <input type="text" class="datepicker fill-up" required name="fecha"/>
                             </div>
                         </div>
                     </div>
@@ -267,7 +267,7 @@
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add_empresa" style="padding: 5px">
                 <div class="box-content">
-                    <?= form_open('site/facturacion/create_empresa', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?= form_open('site/facturacion/create_empresa', array('onsubmit' => 'return validateFormEmpresa()','name' => 'crear_factura_empresa','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('empresa'); ?></label>
@@ -366,6 +366,32 @@
             function (data) {
                 $('#cursos').html(data);
             });
+    }
+
+    function validateFormEstudiante() {
+    var curso = document.forms["crear_factura"]["curso"].value;
+    var estudiante = document.forms["crear_factura"]["estudiante"].value;
+        if (estudiante == 0) {
+            alert("Debe seleccionar un estudiante");
+            return false;
+        }
+        if (curso == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
+    }
+
+    function validateFormEmpresa() {
+    var cursos = document.forms["crear_factura_empresa"]["curso"].value;
+    var empresa = document.forms["crear_factura_empresa"]["empresa"].value;
+        if (empresa == 0) {
+            alert("Debe seleccionar una empresa");
+            return false;
+        }
+        if (cursos == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
     }
 
 </script>

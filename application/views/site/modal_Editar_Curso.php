@@ -36,25 +36,25 @@
                 <div class="control-group">
                     <label class="control-label"><?= 'Cupo Disponible' ?></label>
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="cupo" value="<?php echo $row['cupo']?>" />
+                        <input type="text" class="uniform" required name="cupo" value="<?php echo $row['cupo']?>" />
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label"><?= 'Duración (horas)' ?></label>
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="duracion" value="<?php echo $row['duracion']?>" />
+                        <input type="text" class="uniform" required name="duracion" value="<?php echo $row['duracion']?>" />
                     </div>
                 </div>
                 <div class="control-group">
                 <label class="control-label"><?= 'Fecha de Inicio' ?></label>
                     <div class="controls">
-                    <input type="text" class="datepicker fill-up" name="fecha_ini"/>
+                    <input type="text" class="datepicker fill-up" required name="fecha_ini" value="<?php echo date('m/d/Y', $row['fecha_ini']); ?>"/>
                     </div>
                 </div>
                 <div class="control-group">
                 <label class="control-label"><?= 'Fecha de Culminación' ?></label>
                     <div class="controls">
-                    <input type="text" class="datepicker fill-up" name="fecha_cul"/>
+                    <input type="text" class="datepicker fill-up" required name="fecha_cul" value="<?php echo date('m/d/Y', $row['fecha_cul']); ?>"/>
                     </div>
                 </div>
             </div>

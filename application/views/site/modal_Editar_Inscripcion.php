@@ -1,13 +1,14 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('site/inscripcion/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/inscripcion/do_update/' . $row['id'], array('onsubmit' => 'return validateForm()','name' => 'editar_inscripcion','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('estudiante'); ?></label>
 
                             <div class="controls">
                                 <select name="estudiante" class="uniform" style="width:100%;">
+                                    <option value="0"><?= 'Seleccionar estudiante' ?></option>
                                     <?php
                                     $this->db->order_by("id", "desc");
                                     $objects = $this->db->get('hs_estudiantes')->result_array();
@@ -62,4 +63,17 @@
 $('select[name=estudiante]').val('<?php echo $row['estudiante']; ?>');
 $('select[name=curso]').val('<?php echo $row['curso']; ?>');
 $('select[name=status]').val('<?php echo $row['status']; ?>');
+
+    function validateForm() {
+    var curso = document.forms["editar_inscripcion"]["curso"].value;
+    var estudiante = document.forms["editar_inscripcion"]["estudiante"].value;
+        if (estudiante == 0) {
+            alert("Debe seleccionar un estudiante");
+            return false;
+        }
+        if (curso == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
+    }
 </script>

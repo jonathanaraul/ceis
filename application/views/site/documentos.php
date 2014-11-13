@@ -46,7 +46,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="button" class="btn btn-normal btn-gray" value="Visualizar Diplomas"
+                                <input type="button" class="btn btn-normal btn-gray" value="Visualizar Documento"
                                        onclick="verDiplomas(this.value)">
                             </td>
                         </tr>
@@ -105,5 +105,12 @@
                 $('#documento').css('display','block');
             });
     }
+
+function imprimirDocumento(div){
+    var div_id= "#"+div;
+    $(div_id).print();
+    return (false);
+
+}
 
 </script>

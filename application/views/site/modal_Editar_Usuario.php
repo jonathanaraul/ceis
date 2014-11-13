@@ -4,7 +4,7 @@
 
 <?php foreach ($edit_data as $row): ?>
 
-    <?php echo form_open('site/users/' . $row['rol'] . '/do_update/' . $row['user_id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+    <?php echo form_open('site/users/' . $row['rol'] . '/do_update/' . $row['user_id'], array('onsubmit' => 'return validateForm()','name' => 'editar_usuario','class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
     <div class="padded">
 
@@ -29,7 +29,7 @@
         <div class="controls">
 
             <select name="rol" class="uniform" style="width:100%;">
-
+            	<option value="0"><?= 'Seleccione Tipo de Cuenta' ?></option>
                 <?php
 
                 $role = $this->db->get('hs_role')->result_array();
@@ -62,7 +62,7 @@
 
         <div class="controls" style="width:210px;">
 
-            <input type="file" class="" name="userfile" id="imgInp"/>
+            <input type="file" class="uniform" name="userfile" id="imgInp"/>
 
         </div>
 	</div>
@@ -72,7 +72,7 @@
 
 			<div class="controls">
 
-				<input type="text" class="validate[required]" name="name" value="<?php echo $row['name']; ?>"/>
+				<input type="text" class="uniform" required name="name" value="<?php echo $row['name']; ?>"/>
 
 			</div>
 	</div>
@@ -82,7 +82,7 @@
 
 		<div class="controls">
 
-			<input type="text" name="snombre" value="<?php echo $row['snombre']; ?>"/>
+			<input type="text" name="snombre" class="uniform" value="<?php echo $row['snombre']; ?>"/>
 
 		</div>
 
@@ -94,7 +94,7 @@
 
 		<div class="controls">
 
-			<input type="text" class="validate[required]" name="papellido"
+			<input type="text" class="uniform" required name="papellido"
 				   value="<?php echo $row['papellido']; ?>"/>
 
 		</div>
@@ -106,7 +106,7 @@
 
 		<div class="controls">
 
-			<input type="text" class="validate[required]" name="sapellido"
+			<input type="text" class="uniform" name="sapellido"
 				   value="<?php echo $row['sapellido']; ?>"/>
 
 		</div>
@@ -139,7 +139,7 @@
 
 		<div class="controls">
 
-			<input type="text" class="" name="address" value="<?php echo $row['address']; ?>"/>
+			<input type="text" class="uniform" name="address" value="<?php echo $row['address']; ?>"/>
 
 		</div>
 
@@ -151,7 +151,7 @@
 
 		<div class="controls">
 
-			<input type="text" class="" name="phone" value="<?php echo $row['phone']; ?>"/>
+			<input type="text" class="uniform" name="phone" value="<?php echo $row['phone']; ?>"/>
 
 		</div>
 
@@ -163,7 +163,7 @@
 
 		<div class="controls">
 
-			<input type="text" class="" name="email" value="<?php echo $row['email']; ?>"/>
+			<input type="email" class="uniform" name="email" required value="<?php echo $row['email']; ?>"/>
 
 		</div>
 
@@ -188,6 +188,14 @@
 
 
 <script>
+
+    function validateForm() {
+    var rol = document.forms["editar_usuario"]["rol"].value;
+        if (rol == 0) {
+            alert("Debe seleccionar un rol");
+            return false;
+        }
+    }
 
     function readURL(input) {
 

@@ -77,14 +77,14 @@
                             <label class="control-label"><?php echo get_phrase('name'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="name"/>
+                                <input type="text" class="uniform" required name="name"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('url'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="url"/>
+                                <input type="text" class="uniform" required name="url"/>
                             </div>
                         </div>
                     </div>

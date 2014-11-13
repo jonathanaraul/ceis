@@ -7,7 +7,7 @@
                     <label class="control-label"><?php echo get_phrase('title'); ?></label>
 
                     <div class="controls">
-                        <input type="text" class="validate[required]" name="notice_title"
+                        <input type="text" class="uniform" required name="notice_title"
                                value="<?php echo $row['notice_title']; ?>"/>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <div class="box closable-chat-box">
                             <div class="box-content padded">
                                 <div class="chat-message-box">
-                                    <textarea name="notice" id="ttt" rows="5"
+                                    <textarea name="notice" class="validate[required]" id="ttt" rows="5"
                                               placeholder="<?php echo get_phrase('add_notice'); ?>"><?php echo $row['notice']; ?></textarea>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                     <label class="control-label"><?php echo get_phrase('date'); ?></label>
 
                     <div class="controls">
-                        <input type="text" class="datepicker fill-up" name="create_timestamp"
+                        <input type="text" class="datepicker fill-up" required name="create_timestamp"
                                value="<?php echo date('m/d/Y', $row['create_timestamp']); ?>"/>
                     </div>
                 </div>

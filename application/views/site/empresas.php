@@ -134,7 +134,7 @@
 
                             <div class="controls">
 
-                                <input type="text" class="validate[required]" name="nit_empresas"/>
+                                <input type="text" class="uniform" required name="nit_empresas"/>
 
                             </div>
 
@@ -146,7 +146,7 @@
 
                             <div class="controls">
 
-                                <input type="text" class="" name="nombre_empresas"/>
+                                <input type="text" class="uniform" required name="nombre_empresas"/>
 
                             </div>
 
@@ -158,7 +158,7 @@
 
                             <div class="controls">
 
-                                <input type="text" class="" name="contacto_empresa"/>
+                                <input type="text" class="uniform" required name="contacto_empresa"/>
 
                             </div>
 

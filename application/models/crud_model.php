@@ -215,7 +215,7 @@ class Crud_model extends CI_Model {
         $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
         $res	=	$query->result_array();
         foreach($res as $row)
-            return ucfirst($row['departamento'].' - '.$row['ciudad']);
+            return ucfirst($row['departamento'].' - '.$row['municipio']);
     }
     function get_hs_student_nombre_by_id($id){
         $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));

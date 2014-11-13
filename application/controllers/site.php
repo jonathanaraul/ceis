@@ -54,6 +54,8 @@ class Site extends CI_Controller
             $data['sapellido'] = $this->input->post('sapellido');
             $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
             $data['sexo'] = $this->input->post('sexo');
+            $data['departamento'] = $this->input->post('departamento');
+            $data['municipio'] = $this->input->post('municipio');
             $data['empresa'] = $this->input->post('empresa');
             $data['direccion'] = $this->input->post('direccion');
             $data['telefono'] = $this->input->post('telefono');
@@ -74,6 +76,8 @@ class Site extends CI_Controller
             $data['sapellido'] = $this->input->post('sapellido');
             $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
             $data['sexo'] = $this->input->post('sexo');
+            $data['departamento'] = $this->input->post('departamento');
+            $data['municipio'] = $this->input->post('municipio');
             $data['empresa'] = $this->input->post('empresa');
             $data['direccion'] = $this->input->post('direccion');
             $data['telefono'] = $this->input->post('telefono');
@@ -1585,8 +1589,6 @@ class Site extends CI_Controller
             $data['phone'] = $this->input->post('phone');
 
             $data['email'] = $this->input->post('email');
-
-			$data['email'] = $this->input->post('email');
 			
 			$password = $this->input->post('password');
             
@@ -1600,7 +1602,7 @@ class Site extends CI_Controller
 
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/user_image/' . $user_id . '.jpg');
 
-            $this->email_model->account_opening_email('hs_users', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
+            //$this->email_model->account_opening_email('hs_users', $data['email']); //SEND EMAIL ACCOUNT OPENING EMAIL
 
             redirect(base_url() . 'index.php?site/users/'.$data['rol'], 'refresh');
 
@@ -1621,7 +1623,7 @@ class Site extends CI_Controller
 
             $data['email'] = $this->input->post('email');
 			
-				$password = $this->input->post('password');
+			$password = $this->input->post('password');
             
 			$data['password'] = $this->bcrypt->hash_password($password);
            

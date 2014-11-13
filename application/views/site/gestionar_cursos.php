@@ -97,12 +97,12 @@
             <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                    <?php echo form_open('site/gestionar_cursos/create', array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+                    <?php echo form_open('site/gestionar_cursos/create', array('onsubmit' => 'return validateForm()','name' => 'crear_evaluacion','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('name'); ?></label>
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="nombre"/>
+                                <input type="text" class="uniform" required name="nombre"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -130,19 +130,20 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('ponderacion'); ?></label>
                             <div class="controls">
-                                <input type="text" class="validate[required]" name="ponderacion"/>
+                                <input type="text" class="uniform" required name="ponderacion"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha'); ?></label>
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" name="fecha"/>
+                                <input type="text" class="datepicker fill-up" required name="fecha"/>
                             </div>
                         </div>
                         <div class="control-group">           
                             <label class="control-label"><?php echo get_phrase('hora'); ?></label>
                             <div class="controls">
                                 <select name="hora" class="uniform" style="width:100%;">
+                                    
                                     <?php for ($i = 0; $i < 24; $i++){
                                         $hora = ($i<10) ? '0'.$i : $i;
                                         if(intval($hora)<12){
@@ -267,7 +268,7 @@
                                 </select>
                             </td>
                             <td>
-                                 <input type="text" class="datepicker fill-up" name="fecha" id="fecha"/>
+                                 <input type="text" class="datepicker fill-up" required name="fecha" id="fecha"/>
                             </td>
                             <td>
                                 <input type="button" class="btn btn-normal btn-gray" value="Consultar"
@@ -294,6 +295,14 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    function validateForm() {
+    var materia = document.forms["crear_evaluacion"]["materia"].value;
+        if (materia == 0) {
+            alert("Debe seleccionar una materia");
+            return false;
+        }
+    }
 
     function consultarNotas(valor) {
 

@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?= form_open('site/facturacion/do_update2/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?= form_open('site/facturacion/do_update2/' . $row['id'], array('onsubmit' => 'return validateFormEmpresa()','name' => 'editar_factura_empresa','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('empresa'); ?></label>
@@ -40,14 +40,14 @@
                             <label class="control-label"><?= get_phrase('description'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="descripcion" value="<?=$row['descripcion']?>" />
+                                <input type="text" class="uniform" name="descripcion" required value="<?=$row['descripcion']?>" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('monto'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="monto" value="<?=$row['monto']?>"/>
+                                <input type="text" class="uniform" name="monto" required value="<?=$row['monto']?>"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -78,7 +78,7 @@
                             <?php $f= strtotime($row['fecha']);
                               $date= date('m/d/Y',$f);
                             ?>
-                                <input type="text" class="datepicker fill-up" name="fecha" value="<?=$date?>"/>
+                                <input type="text" class="datepicker fill-up" name="fecha" required value="<?=$date?>"/>
                             </div>
                         </div>
                     </div>
@@ -100,6 +100,19 @@
             function (data) {
                 $('#cursos').html(data);
             });
+    }
+
+    function validateFormEmpresa() {
+    var cursos = document.forms["editar_factura_empresa"]["curso"].value;
+    var empresa = document.forms["editar_factura_empresa"]["empresa"].value;
+        if (empresa == 0) {
+            alert("Debe seleccionar una empresa");
+            return false;
+        }
+        if (cursos == 0) {
+            alert("Debe seleccionar un curso");
+            return false;
+        }
     }
 
 $('select[name=estado]').val('<?php echo $row['estado']; ?>');
