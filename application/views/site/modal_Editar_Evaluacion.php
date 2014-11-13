@@ -1,7 +1,7 @@
 <div class="tab-pane box active" id="edit" style="padding: 5px">
     <div class="box-content">
         <?php foreach ($edit_data as $row): ?>
-            <?php echo form_open('site/evaluaciones/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/gestionar_cursos/do_update/' . $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
 
                 <div class="control-group">
@@ -10,7 +10,7 @@
 
                     <div class="controls">
 
-                        <input type="text" class="validate[required]" name="nombre" value="<?php echo $row['nombre']; ?>"/>
+                        <input type="text" class="uniform" required name="nombre" value="<?php echo $row['nombre']; ?>"/>
 
                     </div>
 
@@ -42,7 +42,7 @@
 
                     <div class="controls">
 
-                        <input type="text" class="validate[required]" name="ponderacion" value="<?php echo $row['ponderacion']; ?>"/>
+                        <input type="text" class="uniform" required name="ponderacion" value="<?php echo $row['ponderacion']; ?>"/>
 
                     </div>
 
@@ -57,7 +57,7 @@
                               $date= date('m/d/Y',$fecha);
                         ?>
 
-                        <input type="text" class="datepicker fill-up" name="fecha" value="<?php echo $date; ?>"/>
+                        <input type="text" class="datepicker fill-up" required name="fecha" value="<?php echo $date; ?>"/>
 
                     </div>
 

@@ -48,13 +48,13 @@
                 <div class="control-group">
                 <label class="control-label"><?= 'Fecha de Inicio' ?></label>
                     <div class="controls">
-                    <input type="text" class="datepicker fill-up" required name="fecha_ini" value="<?php echo date('m/d/Y', $row['fecha_ini']); ?>"/>
+                    <input type="text" class="datepicker fill-up" required name="fecha_ini" />
                     </div>
                 </div>
                 <div class="control-group">
                 <label class="control-label"><?= 'Fecha de Culminación' ?></label>
                     <div class="controls">
-                    <input type="text" class="datepicker fill-up" required name="fecha_cul" value="<?php echo date('m/d/Y', $row['fecha_cul']); ?>"/>
+                    <input type="text" class="datepicker fill-up" required name="fecha_cul"/>
                     </div>
                 </div>
             </div>
