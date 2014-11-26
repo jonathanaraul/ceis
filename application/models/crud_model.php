@@ -229,6 +229,30 @@ class Crud_model extends CI_Model {
         foreach($res as $row)
             return ucfirst($row['papellido'].' '.$row['sapellido']);
     }
+    function get_hs_student_pnombre_by_id($id){
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['nombre']);
+    }
+    function get_hs_student_snombre_by_id($id){
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['snombre']);
+    }
+    function get_hs_student_papellido_by_id($id){
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['papellido']);
+    }
+    function get_hs_student_sapellido_by_id($id){
+        $query	=	$this->db->get_where('hs_estudiantes' , array('id' => $id));
+        $res	=	$query->result_array();
+        foreach($res as $row)
+            return ucfirst($row['sapellido']);
+    }
     function get_hs_asistencias_presente($estudiante,$materia,$fecha){
 
         $query	=	$this->db->get_where('hs_asistencias' , array('estudiante' => $estudiante,'materia'=>$materia,'fecha'=>$fecha));

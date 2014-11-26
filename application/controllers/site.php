@@ -1018,6 +1018,26 @@ class Site extends CI_Controller
 
     }
 
+    /**********GESTIONAR EGRESADOS********************/
+
+    function gestion_egresados($param1 = '', $param2 = '', $param3 = '')
+
+    {
+
+        if ($this->session->userdata('rol') != 1)
+
+            redirect(base_url() . 'index.php?login', 'refresh');
+
+
+        $page_data['page_name'] = 'gestion_egresados';
+
+        $page_data['page_title'] = get_phrase('gestion_de_egresados');
+
+        $this->load->view('index', $page_data);
+
+
+    }
+
     /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
 
     function transport($param1 = '', $param2 = '', $param3 = '')

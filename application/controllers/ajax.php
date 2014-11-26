@@ -263,6 +263,52 @@ class ajax extends CI_Controller
         }
     }
 
+    function obtenEstudiantesE()
+
+    {
+        $curso = $this->input->post('curso');
+
+        $elements = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
+
+        $cadena = '<option value="0">Seleccione un Estudiante</option>';
+
+        foreach ($elements as $element) {
+            
+            $cadena .= '<option value="' . $element['estudiante'] . '">' . $this->crud_model->get_hs_student_nombre_by_id($element['estudiante']) .' '. $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']) .'</option>';
+
+        }
+        echo $cadena;
+
+    }
+
+
+    function egresados()
+
+    {
+        $curso = $this->input->post('curso');
+        $estudiante = $this->input->post('estudiante');
+
+        $dato['curso']= $curso;
+        $dato['estudiante']= $estudiante;
+
+        $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $estudiante))->result_array();
+        $suma= 0;
+
+        foreach($query as $sum):
+            $suma+=$sum['puntuacion'];
+        endforeach;
+
+        $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
+
+        $this->db->where('curso', $cursos[0]['curso']);
+        $this->db->from('curso_materia');
+        $nro_materias= $this->db->count_all_results();
+        $media= $suma/$nro_materias;
+
+        $dato['media']= $media;
+        $this->load->view('site/procesar_egresado', $dato); 
+    }
+
 
     function listarNotas()
 
