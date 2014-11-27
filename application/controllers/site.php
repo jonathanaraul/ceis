@@ -1027,7 +1027,60 @@ class Site extends CI_Controller
         if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
+        
+        if ($param1 == 'create') {
 
+            $data['pnombre'] = $this->input->post('pnombre');
+            $data['snombre'] = $this->input->post('snombre');
+            $data['papellido'] = $this->input->post('papellido');
+            $data['sapellido'] = $this->input->post('sapellido');
+            $data['cedula'] = $this->input->post('cedula');
+            $data['empresa'] = $this->input->post('empresa');
+            $data['fecha_egreso'] = $this->input->post('fecha_egreso');
+            $data['curso'] = $this->input->post('curso');
+            $data['seccion'] = $this->input->post('seccion');
+            $data['estado'] = $this->input->post('estado');
+            $data['observacion'] = $this->input->post('observacion');
+            $data['nro_factura'] = $this->input->post('nro_factura');
+            $data['nro_recibo'] = $this->input->post('nro_recibo');
+            $tipo= $this->input->post('tipo');
+            
+            if($tipo== 'egresado'){
+                
+                $nro_anual = $this->db->get_where('hs_nro_anual', array('id' => 1))->result_array();
+
+                if(date(Y) == $nro_anual[0]['año_actual']){
+
+                    $data['nro_anual']= $nro_anual[0]['ult_nro'] + 1;
+
+                }else{
+
+                    $nuevo['año_actual']= date(Y);
+                    $nuevo['ult_nro']= 1;
+                    $this->db->where('id', 1);
+                    $this->db->update('hs_nro_anual', $nuevo);
+
+                    $data['nro_anual']= $nuevo['ult_nro'];
+
+                }
+
+                $this->db->insert('hs_control_egresados', $data);
+
+            }else{
+
+               if($tipo== 'egresado'){
+
+                    $this->db->insert('hs_control_no_egresados', $data);
+
+               } 
+
+            }
+
+
+
+            redirect(base_url() . 'index.php?site/gestion_egresados', 'refresh');
+
+        }
 
         $page_data['page_name'] = 'gestion_egresados';
 

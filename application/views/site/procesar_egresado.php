@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label"><?= 'Seccion' ?></label>
+                <label class="control-label"><?= 'Empresa' ?></label>
                 <div class="controls">
                     <input type="text" class="uniform" name="empresa" />
                 </div>
@@ -60,7 +60,7 @@
             <div class="control-group">
             <label class="control-label"><?= 'Fecha de Egreso' ?></label>
                 <div class="controls">
-                <input type="date" required name="fecha_egreso" placeholder="Fecha en formato: dd/mm/aaaa"/>
+                <input type="date" required name="fecha_egreso" placeholder="dd/mm/aaaa"/>
                 </div>
             </div>
             <div class="control-group">
@@ -87,6 +87,7 @@
                     <input type="text" class="uniform" name="nro_recibo" />
                 </div>
             </div>
+             <input type="hidden" name="tipo" value="<?php if($media < 7){echo "noegresa";}else{echo "egresa";}?>"> 
             <!--aqui no ha guardado nada -->
         </div>
         <div class="form-actions">

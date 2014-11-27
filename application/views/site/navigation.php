@@ -230,7 +230,7 @@
 
 </li>
 
-<!--DOCUMENTOS-->
+<!--Egresados-->
 
 <li class="<?php if ($page_name == 'gestion_egresados') echo 'dark-nav active'; ?>">
 
