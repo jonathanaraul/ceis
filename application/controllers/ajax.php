@@ -263,6 +263,37 @@ class ajax extends CI_Controller
         }
     }
 
+    function buscar()
+
+    {
+        $cedula = $this->input->post('cedula');
+
+        
+        $this->db->where('cedula',$cedula);
+        $this->db->from('hs_control_egresados'); 
+        $egre= $this->db->count_all_results();
+
+        $this->db->where('cedula',$cedula);
+        $this->db->from('hs_control_no_egresados'); 
+        $noegre= $this->db->count_all_results();
+
+        if($egre >= 1){
+            $egresa['egresado']= $this->db->get_where('hs_control_egresados', array('cedula' => $cedula))->result_array();
+
+            $this->load->view('site/ver_egresados', $egresa);
+        }
+
+        if($noegre >= 1){
+            $noegresa['noegresado'] = $this->db->get_where('hs_control_no_egresados', array('cedula' => $cedula))->result_array();
+            $this->load->view('site/ver_noegresados', $noegresa);
+        }
+
+        if($egre == 0 && $noegre == 0){
+          $this->load->view('site/busqueda_vacia');  
+        }
+
+    }
+
     function obtenEstudiantesE()
 
     {

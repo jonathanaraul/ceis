@@ -35,20 +35,20 @@
             <div class="control-group">
                 <label class="control-label"><?= 'Cedula' ?></label>
                 <div class="controls">
-                    <input type="text" class="uniform" name="cedula" value="<?= $this->crud_model->get_hs_student_cedula_by_id($estudiante); ?>" disabled/>
+                    <input type="text" class="uniform" name="cedula" value="<?= $this->crud_model->get_hs_student_cedula_by_id($estudiante); ?>" readonly/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"><?= 'Curso' ?></label>
                 <div class="controls">
                     <?php $course = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array(); ?>
-                    <input type="text" class="egre" name="curso" value="<?= $this->crud_model->get_hs_cursos_nombre($course[0]['curso']); ?>" disabled/>
+                    <input type="text" class="egre" name="curso" value="<?= $this->crud_model->get_hs_cursos_nombre($course[0]['curso']); ?>" readonly/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"><?= 'Seccion' ?></label>
                 <div class="controls">
-                    <input type="text" class="uniform" name="seccion" value="<?= $course[0]['seccion']; ?>" disabled/>
+                    <input type="text" class="uniform" name="seccion" value="<?= $course[0]['seccion']; ?>" readonly/>
                 </div>
             </div>
             <div class="control-group">
@@ -57,18 +57,21 @@
                     <input type="text" class="uniform" name="empresa" />
                 </div>
             </div>
+            
             <div class="control-group">
-            <label class="control-label"><?= 'Fecha de Egreso' ?></label>
+            <label class="control-label"><?php if($media >= 7){ echo 'Fecha de Egreso';}else{echo 'Fecha de Procesado';} ?></label>
                 <div class="controls">
-                <input type="date" required name="fecha_egreso" placeholder="dd/mm/aaaa"/>
+                <input type="date" required name="<?php if($media >= 7){ echo 'fecha_egreso'; }else{ echo 'fecha_procesado'; } ?>" placeholder="dd/mm/aaaa"/>
                 </div>
             </div>
+            <?php if($media >= 7){ ?>
             <div class="control-group">
                 <label class="control-label"><?= 'Estado' ?></label>
                 <div class="controls">
                     <input type="text" class="uniform" name="estado" />
                 </div>
             </div>
+            <?php } ?>
             <div class="control-group">
                 <label class="control-label"><?= 'Observación' ?></label>
                 <div class="controls">
@@ -87,7 +90,11 @@
                     <input type="text" class="uniform" name="nro_recibo" />
                 </div>
             </div>
-             <input type="hidden" name="tipo" value="<?php if($media < 7){echo "noegresa";}else{echo "egresa";}?>"> 
+            <div class="control-group">
+                <label class="control-label"><?php if($media < 7){ echo 'NOTA: El estudiante ha sido reprobado, por lo tanto será registrado en el sistema como no-egresado.'; }else{ echo 'Estudiante Aprobado con promedio de '.$media.' puntos.'; } ?></label>
+            </div>
+             <input type="hidden" name="tipo" value="<?php if($media < 7){echo "noegresa";}else{echo "egresa";}?>">
+             <input type="hidden" name="id_estudiante" value="<?php echo $estudiante; ?>"> 
             <!--aqui no ha guardado nada -->
         </div>
         <div class="form-actions">
