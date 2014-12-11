@@ -111,10 +111,34 @@
     </a>
 
 </li>
-<?php } ?>
+
+<!--Gestionar Cursos-->
+<?php 
+    }
+    if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
+?>
+
+<li class="<?php if ($page_name == 'gestionar_cursos') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?site/gestionar_cursos" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('Gestion de Evaluaciones, Notas y Asistencias'); ?>">
+
+        <!--<i class="icon-money icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
+
+        <span><?php echo get_phrase('gestion_de_cursos'); ?></span>
+
+    </a>
+
+</li>
 
 <!--subject-->
 <?php 
+    }
 	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
 ?>
 
@@ -135,32 +159,8 @@
     </a>
 
 </li>
-<?php } ?>
-
-<!--Gestionar Cursos-->
-<?php 
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
-?>
-
-<li class="<?php if ($page_name == 'gestionar_cursos') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/gestionar_cursos" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('Gestion de Evaluaciones, Notas y Asistencias'); ?>">
-
-        <!--<i class="icon-money icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
-
-        <span><?php echo get_phrase('gestion_de_cursos'); ?></span>
-
-    </a>
-
-</li>
-<?php 
-	} 
+<?php
+    }  
 	if($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2){
 ?>
 
