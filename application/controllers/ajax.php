@@ -294,6 +294,18 @@ class ajax extends CI_Controller
 
     }
 
+    function recuperarReporte()
+
+    {
+
+        $data['est_inscritos'] = $this->input->post('alum_insc');
+        $data['est_insc_emp'] = $this->input->post('alum_insc_empresa');
+        $data['est_insc_curso'] = $this->input->post('alum_por_curso');
+
+        $this->load->view('site/mostrarReporte', $data);  
+
+    }
+
     function obtenEstudiantesE()
 
     {
@@ -389,6 +401,7 @@ class ajax extends CI_Controller
 
         $existe = $this->db->get_where('hs_inscripcion', array('curso' => $curso,'estudiante' => $estudiante))->result_array();
 
+
         if (count($existe) > 0) {
             //Actualizar inscripcion
 
@@ -399,10 +412,12 @@ class ajax extends CI_Controller
             $this->db->update('hs_inscripcion', $data);
         } else {
             //Insertar inscripcion
+            $est_empresa= $this->db->get_where('hs_estudiantes', array( 'id' => $estudiante))->result_array();
             $data = array(
                 'estudiante' => $estudiante,
                 'curso' => $curso,
                 'status' => $status,
+                'empresa' => $est_empresa[0]['empresa'],
             );
 
             $this->db->insert('hs_inscripcion', $data);

@@ -269,6 +269,26 @@
     </a>
 
 </li>
+
+<!--Reportes-->
+
+<li class="<?php if ($page_name == 'reportes') echo 'dark-nav active'; ?>">
+
+    <span class="glow"></span>
+
+    <a href="<?php echo base_url(); ?>index.php?site/reportes" rel="tooltip" data-placement="right"
+
+       data-original-title="<?php echo get_phrase('reportes'); ?>">
+
+        <!--<i class="icon-book icon-1x"></i>-->
+
+        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
+
+        <span><?php echo get_phrase('reportes'); ?></span>
+
+    </a>
+
+</li>
 <?php } ?>
 
 <!--noticeboard-->

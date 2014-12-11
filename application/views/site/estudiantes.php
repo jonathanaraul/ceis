@@ -126,17 +126,6 @@
 
 
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
-
-                            <div class="controls">
-                                <select name="tipodeingreso" class="uniform" style="width:100%;" onchange="mostrarEmpresas(this.value);">
-                                    <option value="">-- Seleccione Uno --</option>
-                                    <option value=""><?php echo get_phrase('particular'); ?></option>
-                                    <option value="empresa"><?php echo get_phrase('empresa'); ?></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group" id="divTipoingreso" style="display: none;">
                             <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
 
                             <div class="controls">
@@ -146,7 +135,7 @@
                                     $empresas = $this->db->get('hs_empresas')->result_array();
                                     foreach ($empresas as $row2):
                                         ?>
-                                        <option value="<?php echo $row2['nombre']; ?>"> <?php echo $row2['nombre']; ?> </option>
+                                        <option value="<?php echo $row2['id']; ?>"> <?php echo $row2['nombre']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>
@@ -219,13 +208,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function mostrarEmpresas(valor) {
-        if (valor == 'empresa') {
-            $('#divTipoingreso').css('display', 'block');
-        }else{
-            $('#divTipoingreso').css('display', 'none');
-        }
-    }
-</script>

@@ -446,6 +446,73 @@ class Site extends CI_Controller
 
     }
 
+    /****MANAGE reportes*****/
+
+    function reportes($param1 = '', $param2 = '')
+
+    {
+
+        if ($this->session->userdata('rol') != 1)
+
+            redirect(base_url() . 'index.php?login', 'refresh');
+
+        if ($param1 == 'create') {
+
+            $data['nit'] = $this->input->post('nit_empresas');
+
+            $data['nombre'] = $this->input->post('nombre_empresas');
+
+            $data['contacto'] = $this->input->post('contacto_empresa');
+
+            $this->db->insert('hs_empresas', $data);
+
+            redirect(base_url() . 'index.php?site/empresas/', 'refresh');
+
+        }
+
+        if ($param1 == 'do_update') {
+
+            $data['nit'] = $this->input->post('nit');
+
+            $data['nombre'] = $this->input->post('nombre');
+
+            $data['contacto'] = $this->input->post('contacto');
+
+
+            $this->db->where('id', $param2);
+
+            $this->db->update('hs_empresas', $data);
+
+            redirect(base_url() . 'index.php?site/empresas/', 'refresh');
+
+        } else if ($param1 == 'edit') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_empresas', array(
+
+                'id' => $param2
+
+            ))->result_array();
+
+        }
+
+        if ($param1 == 'delete') {
+
+            $this->db->where('id', $param2);
+
+            $this->db->delete('hs_empresas');
+
+            redirect(base_url() . 'index.php?site/empresas/', 'refresh');
+
+        }
+
+        $page_data['page_name'] = 'reportes';
+
+        $page_data['page_title'] = get_phrase('gestionar_reportes');
+
+        $this->load->view('index', $page_data);
+
+    }
+
 	/****MANAGE CURSOS*****/
 
     function cursos($param1 = '', $param2 = '')
@@ -1619,6 +1686,11 @@ class Site extends CI_Controller
 
             $data['status'] = $this->input->post('status');
 
+            $est_empresa= $this->db->get_where('hs_estudiantes', array( 'id' => $data['estudiante']))->result_array();
+
+            $data['empresa']= $est_empresa['empresa'];
+
+
             $this->db->insert('hs_inscripcion', $data);
 
             redirect(base_url() . 'index.php?site/inscripcion/', 'refresh');
@@ -1632,6 +1704,10 @@ class Site extends CI_Controller
             $data['curso'] = $this->input->post('curso');
 
             $data['status'] = $this->input->post('status');
+
+            $est_empresa= $this->db->get_where('hs_estudiantes', array( 'id' => $data['estudiante']))->result_array();
+
+            $data['empresa']= $est_empresa['empresa'];
 
 
             $this->db->where('id', $param2);
