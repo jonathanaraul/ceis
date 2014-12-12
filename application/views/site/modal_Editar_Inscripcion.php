@@ -11,7 +11,7 @@
                                     <option value="0"><?= 'Seleccionar estudiante' ?></option>
                                     <?php
                                     $this->db->order_by("id", "desc");
-                                    $objects = $this->db->get('hs_estudiantes')->result_array();
+                                    $objects = $this->db->get_where('hs_estudiantes', array('activo' => 1))->result_array();
                                     foreach ($objects as $object):
                                         ?>
                                         <option value="<?php echo $object['id']; ?>">

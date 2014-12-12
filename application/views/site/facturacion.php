@@ -188,7 +188,7 @@
                                     <select name="estudiante" id="estudiantes" class="uniform" onchange="ajaxEstudiantes(this.value);">
                                         <option value="0"><?= 'Seleccionar Estudiante' ?></option>
                                         <?php
-                                        $estudiantes = $this->db->get('hs_estudiantes')->result_array();
+                                        $estudiantes = $this->db->get_where('hs_estudiantes', array('activo' => 1))->result_array();
                                         foreach ($estudiantes as $row) {
                                             echo '<option value="' . $row['id']. '">' .$this->crud_model->get_hs_student_nombre_by_id($row['id'])." ".$this->crud_model->get_hs_student_apellido_by_id($row['id']) . '</option>';
                                         }
@@ -277,6 +277,7 @@
                                     <select name="empresa"  class="uniform">
                                         <option value="0"><?= 'Seleccionar Empresa' ?></option>
                                         <?php
+                                        $this->db->not_like('nombre', 'Particular');
                                         $empresas = $this->db->get('hs_empresas')->result_array();
                                         foreach ($empresas as $empresa) {
                                             echo '<option value="' . $empresa['id']. '">' .$empresa['nombre']. '</option>';

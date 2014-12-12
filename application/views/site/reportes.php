@@ -3,7 +3,7 @@
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_documentos'); ?>
+                    <?php echo get_phrase('Reporte'); ?>
                 </a></li>
         </ul>
     </div>

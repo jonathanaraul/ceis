@@ -21,7 +21,11 @@
 
                         <span><?php echo get_phrase('manage_student'); ?></span>
 
-                        <span class="label label-blue"><?php echo $this->db->count_all_results('hs_estudiantes'); ?></span>
+                        <span class="label label-blue"><?php $this->db->where('activo', 1);
+                                                             $this->db->from('hs_estudiantes');
+                                                             echo $this->db->count_all_results();
+                                                        ?>
+                        </span>
 
                     </a>
 

@@ -270,25 +270,75 @@ class ajax extends CI_Controller
 
         
         $this->db->where('cedula',$cedula);
-        $this->db->from('hs_control_egresados'); 
+        $this->db->where('no_egresado', 0);
+        $this->db->where('activo', 0);
+        $this->db->from('hs_estudiantes'); 
         $egre= $this->db->count_all_results();
 
         $this->db->where('cedula',$cedula);
-        $this->db->from('hs_control_no_egresados'); 
+        $this->db->where('no_egresado', 1);
+        $this->db->where('activo', 0);
+        $this->db->from('hs_estudiantes'); 
         $noegre= $this->db->count_all_results();
 
+
         if($egre >= 1){
-            $egresa['egresado']= $this->db->get_where('hs_control_egresados', array('cedula' => $cedula))->result_array();
+            $egresa['egresado']= $this->db->get_where('hs_estudiantes', array('cedula' => $cedula, 'activo' => 0, 'no_egresado' => 0))->result_array();
 
             $this->load->view('site/ver_egresados', $egresa);
         }
 
         if($noegre >= 1){
-            $noegresa['noegresado'] = $this->db->get_where('hs_control_no_egresados', array('cedula' => $cedula))->result_array();
+            $noegresa['noegresado'] = $this->db->get_where('hs_estudiantes', array('cedula' => $cedula, 'activo' => 0, 'no_egresado' => 1))->result_array();
             $this->load->view('site/ver_noegresados', $noegresa);
         }
 
         if($egre == 0 && $noegre == 0){
+          $this->load->view('site/busqueda_vacia');  
+        }
+
+    }
+
+    function buscar_estudiante()
+
+    {
+        $cedula = $this->input->post('cedula');
+
+        
+        $this->db->where('cedula',$cedula);
+        $this->db->where('activo', 1);
+        $this->db->from('hs_estudiantes'); 
+        $stud= $this->db->count_all_results();
+
+        if($stud >= 1){
+            $result['res_busquedas']= $this->db->get_where('hs_estudiantes', array('cedula' => $cedula, 'activo' => 1))->result_array();
+
+            $this->load->view('site/est_res', $result);
+        }
+
+        if($stud == 0){
+          $this->load->view('site/busqueda_vacia');  
+        }
+
+    }
+
+    function buscar_nro()
+
+    {
+        $nro = $this->input->post('nro');
+
+        
+        $this->db->where('nro',$nro);
+        $this->db->from('hs_estudiantes'); 
+        $studiante= $this->db->count_all_results();
+
+        if($studiante >= 1){
+            $resultado['res']= $this->db->get_where('hs_estudiantes', array('nro' => $nro))->result_array();
+
+            $this->load->view('site/busqueda_nro', $resultado);
+        }
+
+        if($studiante == 0){
           $this->load->view('site/busqueda_vacia');  
         }
 
@@ -378,13 +428,13 @@ class ajax extends CI_Controller
 
         if($inscripcion == 1){
 
-        $dato['estudiantes'] = $this->db->get('hs_estudiantes')->result_array();
+        $dato['estudiantes'] = $this->db->get_where('hs_estudiantes', array('activo'=> 1))->result_array();
 
         $this->load->view('site/inscribir_indiv', $dato);            
 
         }else{
 
-        $dato['estudiantes'] = $this->db->get_where('hs_estudiantes')->result_array();
+        $dato['estudiantes'] = $this->db->get_where('hs_estudiantes', array('activo'=> 1))->result_array();
 
         $this->load->view('site/inscribir_lotes', $dato);
 

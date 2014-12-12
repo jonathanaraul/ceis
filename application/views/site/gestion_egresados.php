@@ -11,7 +11,7 @@
                 </a></li>
             <li>
                 <a href="#nro" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_nueva_serie_N.R.O'); ?>
+                    <?php echo get_phrase('Asignar_N.R.O'); ?>
                 </a></li>            
         </ul>
     </div>
@@ -105,25 +105,34 @@
                     <?php echo form_open('site/gestion_egresados/nro', array('name' => 'crear_materias', 'class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
-                            <label class="control-label"><?= 'Prefijo' ?></label>
+                            <label class="control-label"><?= 'Cedula' ?></label>
                             <div class="controls">
-                                <input type="text" class="uniform" name="prefijo" placeholder="Por ejemplo: ECSP4179_B"/>
+                                <input type="text" class="uniform" name="cedula" id="cedula_estudiante" placeholder="Ingrese nro de cedula del estudiante"/>
+                                <input type="button" class="btn btn-gray" value="Consultar cedula" onclick="consultar_estudiante(this.value)"/>
+                            </div>
+                        </div>
+                        </div>
+                            <div id="student_ced" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 500px;">
+                        </div>
+                        <br>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'NRO' ?></label>
+                            <div class="controls">
+                                <input type="text" class="uniform" name="nro" placeholder="Número NRO a asignar"/>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?= 'Serie numerica' ?></label>
-                            <div class="controls">
-                                <input type="text" class="uniform" name="serie" placeholder="Por ejemplo: 193000"/>
-                            </div>
+                            <?php $ultimo_nro = $this->db->get_where('hs_nro', array('id' => 1))->result_array(); ?>
+                            <label class="control-label">Ultimo NRO asignado: <?= $ultimo_nro[0]['ult_nro'] ?></label>
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('Inicializar N.R.O'); ?></button>
+                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('Asignar N.R.O'); ?></button>
                     </div>
                     </form>
                 </div>
             </div>
-            <!----CREATION FORM ENDS--->
+            <!--CREATION FORM ENDS-->
         </div>
     </div>
 </div>
@@ -191,6 +200,30 @@
                 $('#buscar').html(data);
                 $('#loader').css('display','none');
                 $('#buscar').css('display','block');
+            });
+    }
+
+    function consultar_estudiante(valor) {
+
+        var cedula = $('#cedula_estudiante').val();
+
+
+        if (cedula <= "") {
+            alert('Debe llenar el campo');
+            return false;
+        }
+
+        $('#student_ced').empty();
+
+        var data = 'cedula=' + cedula;
+
+
+        $.post('<?php echo site_url()?>ajax/buscar_estudiante',
+            data,
+            function (data) {
+
+                $('#student_ced').html(data);
+                $('#student_ced').css('display','block');
             });
     }
 

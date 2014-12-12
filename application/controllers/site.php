@@ -47,7 +47,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['documento'] = $this->input->post('documento');
+            $data['cedula'] = $this->input->post('documento');
             $data['nombre'] = $this->input->post('nombre');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
@@ -60,6 +60,7 @@ class Site extends CI_Controller
             $data['direccion'] = $this->input->post('direccion');
             $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
+            $data['activo'] = 1;
 
             $this->db->insert('hs_estudiantes', $data);
 
@@ -69,7 +70,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['documento'] = $this->input->post('documento');
+            $data['cedula'] = $this->input->post('documento');
             $data['nombre'] = $this->input->post('nombre');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
@@ -121,7 +122,7 @@ class Site extends CI_Controller
 
         }
 
-        $page_data['estudiantes'] = $this->db->get('hs_estudiantes')->result_array();
+        $page_data['estudiantes'] = $this->db->get_where('hs_estudiantes', array('activo' => 1))->result_array();
 
         $page_data['page_name'] = 'estudiantes';
 
@@ -436,7 +437,7 @@ class Site extends CI_Controller
 
         }
 
-        $page_data['empresas'] = $this->db->get('hs_empresas')->result_array();
+        $page_data['empresas'] = $this->db->not_like('nombre', 'Particular')->get('hs_empresas')->result_array();
 
         $page_data['page_name'] = 'empresas';
 
@@ -1085,6 +1086,20 @@ class Site extends CI_Controller
 
     }
 
+    function consult_nro($param1 = '', $param2 = '', $param3 = '')
+
+    {
+
+
+        $page_data['page_name'] = 'consult_nro';
+
+        $page_data['page_title'] = get_phrase('Consulta de NRO');
+
+        $this->load->view('index', $page_data);
+
+
+    }
+
     /**********GESTIONAR EGRESADOS********************/
 
     function gestion_egresados($param1 = '', $param2 = '', $param3 = '')
@@ -1099,18 +1114,9 @@ class Site extends CI_Controller
 
             $id_estudiante= $this->input->post('id_estudiante');
             $tipo= $this->input->post('tipo');
-            $data['pnombre'] = $this->input->post('pnombre');
-            $data['snombre'] = $this->input->post('snombre');
-            $data['papellido'] = $this->input->post('papellido');
-            $data['sapellido'] = $this->input->post('sapellido');
-            $data['cedula'] = $this->input->post('cedula');
-            $data['empresa'] = $this->input->post('empresa');
-            if($tipo == 'egresa'){
-                $data['fecha_egreso'] = $this->input->post('fecha_egreso');
-                $data['estado'] = $this->input->post('estado');
-            }else{
-                $data['fecha_procesado'] = $this->input->post('fecha_procesado');
-            }
+
+            $data['fecha_egreso'] = $this->input->post('fecha_egreso');
+            $data['estado'] = $this->input->post('estado');
             $data['curso'] = $this->input->post('curso');
             $data['seccion'] = $this->input->post('seccion');
 
@@ -1139,48 +1145,34 @@ class Site extends CI_Controller
 
                     $data['nro_anual']= $nuevo['ult_nro'];
 
+
                 }
 
-                $nro = $this->db->get_where('hs_nro', array('id' => 1))->result_array();
+                $data['activo']= 0;
+                $data['no_egresado']= 0;
 
-                if($nro[0]['serie'] == $nro[0]['ult_nro']){
-                    
-                    $ultn= strval($nro[0]['ult_nro']);                 
-                    $data['nro']= $nro[0]['prefijo'].$ultn;
-
-                    $ultnro['ult_nro']= $nro[0]['ult_nro'] + 1;
-                    $this->db->where('id', 1);
-                    $this->db->update('hs_nro', $ultnro);
-                }else{
-
-
-                    $ultn= strval($nro[0]['ult_nro']);
-                    $data['nro']= $nro[0]['prefijo'].$ultn;
-
-                    $ultnro['ult_nro']= $nro[0]['ult_nro'] + 1;
-                    $this->db->where('id', 1);
-                    $this->db->update('hs_nro', $ultnro);
-                
-                }
-
-
-                $this->db->insert('hs_control_egresados', $data);
-                //var_dump($data);
+                $this->db->where('id', $id_estudiante);
+                $this->db->update('hs_estudiantes', $data);
 
             }else{
 
                if($tipo == 'noegresa'){
 
-                    $this->db->insert('hs_control_no_egresados', $data);
-                    //var_dump($data);
+                $data['activo']= 0;
+                $data['no_egresado']= 1;
+
+                $this->db->where('id', $id_estudiante);
+                $this->db->update('hs_estudiantes', $data);
+
 
                } 
 
             }
+            $id_curso= $this->input->post('id_curso');
 
-                $this->db->where('id', $id_estudiante);
-                $this->db->delete('hs_estudiantes');
-
+            $this->db->delete('hs_inscripcion', array('estudiante' => $id_estudiante, 'curso' => $id_curso));
+            $this->db->delete('hs_notas', array('estudiante' => $id_estudiante, 'curso' => $id_curso));
+            $this->db->delete('hs_asistencias', array('estudiante' => $id_estudiante, 'curso' => $id_curso));
 
             redirect(base_url() . 'index.php?site/gestion_egresados', 'refresh');
 
@@ -1188,12 +1180,16 @@ class Site extends CI_Controller
 
         if ($param1 == 'nro') {
 
-            $data['prefijo'] = $this->input->post('prefijo');
-            $data['serie'] = $this->input->post('serie');
-            $data['ult_nro'] = $this->input->post('serie');
+            $cedula = $this->input->post('cedula');
+            $data['nro'] = $this->input->post('nro');
+            $data_nro['ult_nro'] = $this->input->post('nro');
 
             $this->db->where('id', 1);
-            $this->db->update('hs_nro', $data);          
+            $this->db->where('activo', 1);
+            $this->db->update('hs_nro', $data_nro);
+
+            $this->db->where('cedula', $cedula);
+            $this->db->update('hs_estudiantes', $data);                     
 
             redirect(base_url() . 'index.php?site/gestion_egresados', 'refresh');
         }

@@ -47,7 +47,7 @@
                                 <?php $count = 1;
                                 foreach ($estudiantes as $row): ?>
                                     <tr>
-                                        <td><?php echo $row['documento']; ?></td>
+                                        <td><?php echo $row['cedula']; ?></td>
                                         <td><?php echo $row['nombre']; ?> <?php echo $row['snombre']; ?> <?php echo $row['papellido']; ?> <?php echo $row['sapellido']; ?></td>
                                         <td><?php echo $row['direccion']; ?></td>
                                         <td><?php echo $row['email']; ?></td>

@@ -129,7 +129,7 @@ foreach ($student_info as $row):?>
 
                         <td style="vertical-align:top;">Empresa</td>
 
-                        <td><b><?php echo $row['empresa']; ?></b>
+                        <td><b><?php echo $this->crud_model->get_empresas_name($row['empresa']); ?></b>
 
 
                         </td>

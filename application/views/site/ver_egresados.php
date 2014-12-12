@@ -35,7 +35,7 @@
                         <?php foreach ($egresado as $egresa): ?>
                             <tr>
                                 <td style="text-align:center;"><?php echo $egresa['cedula']; ?></td>
-                                <td style="text-align:center;"><?php echo $egresa['pnombre']; ?></td>
+                                <td style="text-align:center;"><?php echo $egresa['nombre']; ?></td>
                                 <td style="text-align:center;" ><?php echo $egresa['papellido']; ?></td>
                                 <td style="text-align:center;" ><?php echo $egresa['fecha_egreso']; ?></td>
                                 <td style="text-align:center;" ><?php echo $egresa['curso']; ?></td>

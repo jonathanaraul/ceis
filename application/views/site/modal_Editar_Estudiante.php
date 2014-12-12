@@ -11,7 +11,7 @@
                             <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" required name="documento" value="<?= $row['documento'] ?>" />
+                                <input type="text" class="uniform" required name="documento" value="<?= $row['cedula'] ?>" />
                             </div>
                         </div>
                         <div class="control-group">
@@ -42,30 +42,17 @@
                                 <input type="text" class="uniform" name="sapellido" value="<?= $row['sapellido'] ?>"/>
                             </div>
                         </div>
-
-
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
-
-                            <div class="controls">
-                                <select name="tipodeingreso" class="uniform" style="width:100%;" onchange="mostrarEmpresas(this.value);">
-                                    <option value="">-- Seleccione Uno --</option>
-                                    <option value=""><?php echo get_phrase('particular'); ?></option>
-                                    <option value="empresa"><?php echo get_phrase('empresa'); ?></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group" id="divTipoingreso" style="display: none;">
                             <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
 
                             <div class="controls">
                                 <select name="empresa" class="uniform" style="width:100%;">
-                                    <option value="" selected>-- Seleccione Uno --</option>
+                                    <option value="">-- Seleccione Uno --</option>
                                     <?php
                                     $empresas = $this->db->get('hs_empresas')->result_array();
                                     foreach ($empresas as $row2):
                                         ?>
-                                        <option value="<?php echo $row2['nombre']; ?>"> <?php echo $row2['nombre']; ?> </option>
+                                        <option value="<?php echo $row2['id']; ?>"> <?php echo $row2['nombre']; ?> </option>
                                     <?php
                                     endforeach;
                                     ?>

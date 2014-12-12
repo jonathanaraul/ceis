@@ -7,7 +7,7 @@
         <div style="width:730px; font-size: 13px; color:#000; margin-left: 50px; margin-top: 30px; text-align:justify;">
             Por medio de la presente se hace constar que el(la) ciudadano(a):<span style="font-size:20px; font-weight:bold;"> 
             <?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
-            </span>, 
+            </span>, cedula N°: <span style="font-size:20px; font-weight:bold;"><?= $this->crud_model->get_hs_student_cedula_by_id($documento_nombre)?></span>
             cursó estudios en esta institucion, culminando con exito el curso: <span style="font-size:15px; font-weight:bold;">
             <?= $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso'])?></span>, con
             un promedio de notas de: <span style="font-size:15px; font-weight:bold;"><?= round($media, 0); ?> puntos</span>.

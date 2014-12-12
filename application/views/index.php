@@ -15,16 +15,23 @@
 <body>
 	<div id="main_body">
 		
-		<?php include 'header.php';?>
-        <?php include 'site/navigation.php';?>
-        <div class="main-content">
-            <?php include 'page_info.php';?>
-            <div class="container-fluid padded">
-                <?php include 'site/'.$page_name.'.php';?>
-            </div>       
-        <?php include 'footer.php';?>
-        </div>
-       
+        <?php if($page_name=="consult_nro"){ ?>
+            
+            <?php include 'site/'.$page_name.'.php';?>
+        
+        <?php }else{ ?>
+
+    		<?php include 'header.php';?>
+            <?php include 'site/navigation.php';?>
+            <div class="main-content">
+                <?php include 'page_info.php';?>
+                <div class="container-fluid padded">
+                    <?php include 'site/'.$page_name.'.php';?>
+                </div>       
+            <?php include 'footer.php';?>
+            </div>
+        
+       <?php } ?>
 	</div>
 </body>
 <?php include 'modal_hidden.php';?> 
