@@ -19,6 +19,16 @@ class ajax extends CI_Controller
 
     }
 
+    function obtenDocumento()
+
+    {
+        $documento = $this->input->post('documento');
+
+        $cadena = '<input type="text" name="nlibmilitar" value="' . $documento. '">';
+
+        echo $cadena;
+
+    }
     function obtenMunicipios()
 
     {
@@ -26,7 +36,7 @@ class ajax extends CI_Controller
 
         $elements = $this->db->get_where('municipio', array('departamento' => $departamento))->result_array();
 
-        $cadena = '';
+        $cadena = '<option>--</option>';
 
         foreach ($elements as $element) {
             $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';

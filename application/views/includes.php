@@ -15,8 +15,9 @@
 
         <script src="<?php echo base_url();?>template/js/controladorceis.js" type="text/javascript"></script>
         <script src="<?php echo base_url();?>template/js/select2/select2.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>template/js/jQuery.print.js" type="text/javascript"></script>
-
+        <script src="<?php echo base_url();?>template/js/jQuery.print.js" 	 type="text/javascript"></script>
+        <script src="<?php echo base_url();?>template/js/estudiantes-script.js" 	 type="text/javascript"></script>
+       
       
         
 

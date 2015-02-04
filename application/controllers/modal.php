@@ -156,7 +156,6 @@ class Modal extends CI_Controller
 
         }
 
-
         $page_data['page_name'] = $param1;
 
         $this->load->view('modal', $page_data);

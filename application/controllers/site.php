@@ -32,7 +32,7 @@ class Site extends CI_Controller
 
         $this->load->view('index', $page_data);
 
-    }
+    }    
 
 
     /****MANAGE STUDENTS CLASSWISE*****/
@@ -48,24 +48,82 @@ class Site extends CI_Controller
         if ($param1 == 'create') {
 
             $data['cedula'] = $this->input->post('documento');
-            $data['nombre'] = $this->input->post('nombre');
-            $data['snombre'] = $this->input->post('snombre');
-            $data['papellido'] = $this->input->post('papellido');
-            $data['sapellido'] = $this->input->post('sapellido');
-            $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
+            $data['nombre'] = strtoupper($this->input->post('nombre'));
+            $data['snombre'] = strtoupper($this->input->post('snombre'));
+            $data['papellido'] = strtoupper($this->input->post('papellido'));
+            $data['sapellido'] = strtoupper($this->input->post('sapellido'));
+            
+			$ingreso= $this->input->post('tipodeingreso');
+				if($ingreso != '4'){
+					$data['tipo_ingreso'] = $ingreso;
+				}else{
+					$data['tipo_ingreso'] = $this->input->post('helpertipodeingreso');
+				}
+            $data['empresa'] = $this->input->post('empresa');
+            $data['convenio'] = $this->input->post('convenio');
+            $data['nom_regional'] = $this->input->post('nom_regional');
+            $data['cod_regional'] = $this->input->post('cod_regional');
+            $data['nom_departamento'] = $this->input->post('nom_departamento');
+            $data['cod_departamento'] = $this->input->post('cod_departamento');
+            $data['nom_municipio'] = $this->input->post('nom_municipio');
+            $data['cod_municipio'] = $this->input->post('cod_municipio');
+            $data['emp_gremio'] = $this->input->post('emp_gremio');
+            $data['linea_formacion'] = $this->input->post('linea_formacion');
+            $data['sector_economico'] = $this->input->post('sector_eco');
+            $data['sub_sector_economico'] = $this->input->post('sub_sector_eco');
+            $data['caracterizacion'] = $this->input->post('caracterizacion');
+            $data['f_nacimiento'] = date("Y-m-d",strtotime($this->input->post('f_nacimiento')));
             $data['sexo'] = $this->input->post('sexo');
+            
+            if($data['sexo']=='1'){
+				$data['num_lib_militar'] = $this->input->post('nlibmilitar');
+			}else{
+				$data['num_lib_militar'] = 0;
+			}
+            $data['edo_civil'] = $this->input->post('edo_civil');
+            $data['hijos'] = $this->input->post('hijos');
+            $data['num_hijos'] = $this->input->post('num_hijos');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
-            $data['empresa'] = $this->input->post('empresa');
-            $data['direccion'] = $this->input->post('direccion');
+            
+            $data['residencia'] = $this->input->post('residencia');
+            $data['barrio'] = $this->input->post('barrio');
             $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
+            $data['talla_camisa'] = $this->input->post('camisa');
+			$data['check_cedula'] = ($this->input->post('check_cedula'))?1:0;
+            $data['check_lib_militar'] = ($this->input->post('check_lib_militar'))?1:0;
+            $data['check_certificado'] = ($this->input->post('check_cert_est'))?1:0;
+            $data['check_foto'] = ($this->input->post('check_foto'))?1:0;
             $data['activo'] = 1;
+			
+			$data['foto'] = $_FILES['foto_estudiante']['name'];
+            
+          
+			$cedula = $this->db->get_where('hs_estudiantes', array('cedula' => $this->input->post('documento')))->result_array();
+          
+				if($cedula){
 
-            $this->db->insert('hs_estudiantes', $data);
+					$this->session->set_flashdata('flash_message', 'Número de Documento ya registrado, por favor verifíque');
 
-            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+					redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 
+				}else{
+				 
+					$this->db->insert('hs_estudiantes', $data);
+					
+					$student_id = mysql_insert_id();
+					
+					$type= explode('.',$_FILES['foto_estudiante']['name']);
+					$type= $type[count($type)-1];
+					$url= 'uploads/student_image/' . $student_id . '.'.$type;
+
+					move_uploaded_file($_FILES['foto_estudiante']['tmp_name'],$url );
+					
+					$this->session->set_flashdata('flash_message', '¡Estudiante registrado con éxito!');
+					redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+				}
+			
         }
 
         if ($param1 == 'do_update') {
@@ -75,18 +133,70 @@ class Site extends CI_Controller
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
             $data['sapellido'] = $this->input->post('sapellido');
-            $data['f_nacimiento'] = formatDate($this->input->post('f_nacimiento'));
+            
+			$ingreso= $this->input->post('tipodeingreso');
+				if($ingreso != '4'){
+					$data['tipo_ingreso'] = $ingreso;
+				}else{
+					$data['tipo_ingreso'] = $this->input->post('helpertipodeingreso');
+				}
+            $data['empresa'] = $this->input->post('empresa');
+            $data['convenio'] = $this->input->post('convenio');
+            $data['nom_regional'] = $this->input->post('nom_regional');
+            $data['cod_regional'] = $this->input->post('cod_regional');
+            $data['nom_departamento'] = $this->input->post('nom_departamento');
+            $data['cod_departamento'] = $this->input->post('cod_departamento');
+            $data['nom_municipio'] = $this->input->post('nom_municipio');
+            $data['cod_municipio'] = $this->input->post('cod_municipio');
+            $data['emp_gremio'] = $this->input->post('emp_gremio');
+            $data['linea_formacion'] = $this->input->post('linea_formacion');
+            $data['sector_economico'] = $this->input->post('sector_eco');
+            $data['sub_sector_economico'] = $this->input->post('sub_sector_eco');
+            $data['caracterizacion'] = $this->input->post('caracterizacion');
+            $data['f_nacimiento'] = date("Y-m-d",strtotime($this->input->post('f_nacimiento')));
             $data['sexo'] = $this->input->post('sexo');
+            
+            if($data['sexo']=='1'){
+				$data['num_lib_militar'] = $this->input->post('nlibmilitar');
+			}else{
+				$data['num_lib_militar'] = 0;
+			}
+            $data['edo_civil'] = $this->input->post('edo_civil');
+            $data['hijos'] = $this->input->post('hijos');
+            $data['num_hijos'] = $this->input->post('num_hijos');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
-            $data['empresa'] = $this->input->post('empresa');
-            $data['direccion'] = $this->input->post('direccion');
+            $data['residencia'] = $this->input->post('residencia');
+            $data['barrio'] = $this->input->post('barrio');
             $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
+            $data['talla_camisa'] = $this->input->post('camisa');
+			$data['check_cedula'] = ($this->input->post('check_cedula'))?1:0;
+            $data['check_lib_militar'] = ($this->input->post('check_lib_militar'))?1:0;
+            $data['check_certificado'] = ($this->input->post('check_cert_est'))?1:0;
+            $data['check_foto'] = ($this->input->post('check_foto'))?1:0;
+           
+			$file= $_FILES['new_foto_estudiante'];
+			
+			if($file){
+				
+				$data['foto'] = $_FILES['new_foto_estudiante']['name'];
+				
+				$type= explode('.',$_FILES['new_foto_estudiante']['name']);
+				$type= $type[count($type)-1];
+				$url= 'uploads/student_image/' . $param2 . '.'.$type;
 
+				move_uploaded_file($_FILES['new_foto_estudiante']['tmp_name'],$url );
+			
+			}else{
+				$data['foto'] = $this->input->post('foto_estudiante');
+			}
+            
             $this->db->where('id', $param2);
 
             $this->db->update('hs_estudiantes', $data);
+            
+			
             
             redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 
@@ -131,7 +241,6 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-
     
 
     /****funcion profesores modificar*****/

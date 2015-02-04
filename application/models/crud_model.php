@@ -683,6 +683,98 @@ function get_empresas()
 
 	}
 
+	
+	////////EXTRAS ESTUDIANTES/////////////
+		
+	function get_linea_formacion($linea_id){
+
+		$query	=	$this->db->get_where('hs_linea_formacion' , array('id' => $linea_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['tipo'];
+	}
+	function get_caracterizacion($caracterizacion_id){
+
+		$query	=	$this->db->get_where('hs_caracterizacion' , array('id' => $caracterizacion_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['tipo'];
+	}
+	
+	function get_sex($sex_id){
+
+		$query	=	$this->db->get_where('hs_sex' , array('id' => $sex_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['tipo'];
+	}
+	
+	function get_edo_civil($edo_civil_id){
+
+		$query	=	$this->db->get_where('hs_edo_civil' , array('id' => $edo_civil_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['estado'];
+	}
+	
+	function get_departamento($departamento_id){
+
+		$query	=	$this->db->get_where('departamento' , array('id' => $departamento_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['nombre'];
+	}
+	
+	function get_municipio($municipio_id){
+
+		$query	=	$this->db->get_where('municipio' , array('id' => $municipio_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['nombre'];
+	}
+	
+	function get_tipo_ingreso($tipo_ingreso_id){
+
+		$query	=	$this->db->get_where('hs_tipo_ingreso' , array('id' => $tipo_ingreso_id));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['tipo'];
+	}
+	
+	function get_convenio($convenio){
+
+		$query	=	$this->db->get_where('hs_convenio' , array('id' => $convenio));
+
+		$res	=	$query->result_array();
+
+		foreach($res as $row)
+
+		return $row['convenio'];
+	}
+	
+	/////////////////////
+	
 	////////CALENDARIO/////////////
 	function get_datetimes_by_horario_curso_materias($fechaInicio,$fechaFin,$idCurso)
 
