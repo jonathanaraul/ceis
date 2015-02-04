@@ -129,10 +129,10 @@ class Site extends CI_Controller
         if ($param1 == 'do_update') {
 
             $data['cedula'] = $this->input->post('documento');
-            $data['nombre'] = $this->input->post('nombre');
-            $data['snombre'] = $this->input->post('snombre');
-            $data['papellido'] = $this->input->post('papellido');
-            $data['sapellido'] = $this->input->post('sapellido');
+            $data['nombre'] = strtoupper($this->input->post('nombre'));
+            $data['snombre'] = strtoupper($this->input->post('snombre'));
+            $data['papellido'] = strtoupper($this->input->post('papellido'));
+            $data['sapellido'] = strtoupper($this->input->post('sapellido'));
             
 			$ingreso= $this->input->post('tipodeingreso');
 				if($ingreso != '4'){
@@ -166,6 +166,7 @@ class Site extends CI_Controller
             $data['num_hijos'] = $this->input->post('num_hijos');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
+            
             $data['residencia'] = $this->input->post('residencia');
             $data['barrio'] = $this->input->post('barrio');
             $data['telefono'] = $this->input->post('telefono');
@@ -196,7 +197,7 @@ class Site extends CI_Controller
 
             $this->db->update('hs_estudiantes', $data);
             
-			
+			$this->session->set_flashdata('flash_message', '¡Registro editado con éxito!');
             
             redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
 

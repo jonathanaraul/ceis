@@ -170,7 +170,7 @@ foreach ($student_info as $row):?>
 				?>
                     <tr>
                         <td>Fecha de Nacimiento</td>
-                        <td><b><?php echo $row['f_nacimiento']; ?></b></td>
+                        <td><b><?php echo  date("d/m/Y",strtotime($row['f_nacimiento'])); ?></b></td>
                     </tr>
                 <?php 
 					endif;
@@ -275,50 +275,71 @@ foreach ($student_info as $row):?>
                     </tr>
                 <?php 
 					endif; 
-					
-					if ($row['check_cedula'] != ''): 
 				?>
-
+					
                     <tr>
                         <td>Checkeo de Cédula</td>
-                        <td><b><?php ($row['check_cedula']==1)?'Sí':'No'; ?></b></td>
+                        <td><b><?php echo ($row['check_cedula'] == '1')? 'Sí':'No'; ?></b></td>
                     </tr>
-                
-				
-				<?php 
-					endif; 
-					
-					if ($row['check_lib_militar'] != ''): 
-				?>
-
+               
                     <tr>
                         <td>Checkeo de Libreta Militar</td>
-                        <td><b><?php ($row['check_lib_militar']==1)?'Sí':'No'; ?></b></td>
+                        <td><b><?php echo ($row['check_lib_militar'] == '1')? 'Sí':'No'; ?></b></td>
                     </tr>
-                <?php 
-					endif; 
-					
-					if ($row['check_certificado'] != ''): 
-				?>
-
+               
                     <tr>
                         <td>Checkeo de Certificado de Estudio</td>
-                        <td><b><?php ($row['check_certificado']==1)?'Sí':'No'; ?></b></td>
+                       <td><b><?php echo ($row['check_certificado'] == '1')? 'Sí':'No'; ?></b></td>
+                    </tr>
+               
+                    <tr>
+                        <td>Checkeo de Fotografía</td>
+                        <td><b><?php echo ($row['check_foto'] == '1')? 'Sí':'No'; ?></b></td>
+                    </tr>
+                <?php 
+				
+					if ($row['seccion'] != 0): 
+				?>
+
+                    <tr>
+                        <td>Sección</td>
+                        <td><b><?php echo $this->crud_model->get_hs_cursos_seccion($row['seccion']); ?></b>
                     </tr>
                 <?php 
 					endif; 
 					
-					if ($row['check_foto'] != ''): 
+					if ($row['curso'] != 0): 
 				?>
-
-                    <tr>
-                        <td>Checkeo de Fotografía</td>
-                        <td><b><?php ($row['check_foto']==1)?'Sí':'No'; ?></b></td>
+					<tr>
+                        <td>Curso</td>
+                        <td><b><?php echo $row['curso']; ?></b></td>
                     </tr>
+					
                 <?php 
 					endif; 
 				?>
+					<tr>
+                        <td>Status</td>
+                         <td><b><?php echo ($row['activo'] == '1')? 'Activo':'Inactivo'; ?></b></td>
+                    </tr>
+                    <tr>
+                        <td>Egresado</td>
+                         <td><b><?php echo ($row['no_egresado'] == '1')? 'Egresado':'No Egresado'; ?></b></td>
+                    </tr>
+                <?php 
+					
+					if ($row['fecha_egreso'] != 0): 
+				?>
 
+                    <tr>
+                        <td>Fecha de Egreso</td>
+                        <td><b><?php echo date("d/m/Y",strtotime($row['fecha_egreso'])); ?></b>
+                    </tr>
+                <?php 
+					endif; 
+				 
+				?>
+                
             </table>
 
         </div>
