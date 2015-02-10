@@ -474,6 +474,8 @@
         </div>
     </div>
 </div>
+<script src="<?php echo base_url();?>template/js/estudiantes-script.js" 	 type="text/javascript"></script>
+       
 <script>
    function ajaxDepartamento(value) {
 		
