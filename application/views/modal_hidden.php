@@ -25,10 +25,10 @@
 </div>
 
 <script>
-function modal(param1 ,param2 ,param3)
+function modal(param1 ,param2 ,param3,param4,param5)
 {
 	document.getElementById('modal-body').innerHTML = 
-		'<iframe id="frame1" src="<?php echo base_url();?>index.php?modal/popup/'+param1+'/'+param2+'/'+param3+'" width="100%" height="400" frameborder="0"></iframe>';
+		'<iframe id="frame1" src="<?php echo base_url();?>index.php?modal/popup/'+param1+'/'+param2+'/'+param3+'/'+param4+'/'+param5+'" width="100%" height="400" frameborder="0"></iframe>';
 
 	document.getElementById('modal-tablesLabel').innerHTML = param1.replace("_"," ");
     if (param1 == 'student_profile') {

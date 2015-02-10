@@ -690,62 +690,59 @@ class Site extends CI_Controller
     
     /****MANAGE EXAM notas*****/
 
-    function notas($exam_id = '', $class_id = '', $subject_id = '')
+    function notas($param1 = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '')
 
     {
 
-        if ($this->session->userdata('rol') == FALSE)
+        if ($this->session->userdata('rol') != 1 && $this->session->userdata('rol') != 2)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
+        if ($param1 == 'evaluar') {
+            
+            $result = $this->db->get_where('hs_notas', array('estudiante' => $param5, 'curso' => $param2, 'materia' => $param3, 'evaluacion' => $param4))->num_rows();
+            
+            if ($result == 0) {
 
-        if ($this->input->post('operation') == 'selection') {
+                $data['curso'] = $param2;
 
-            $page_data['exam_id'] = $this->input->post('exam_id');
+                $data['materia'] = $param3;
 
-            $page_data['class_id'] = $this->input->post('class_id');
+                $data['evaluacion'] = $param4;
 
-            $page_data['subject_id'] = $this->input->post('subject_id');
+                $data['estudiante'] = $param5;
 
+                $data['nota1'] = $this->input->post('nota1');
 
-            if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0 && $page_data['subject_id'] > 0) {
+                $data['nota2'] = $this->input->post('nota2');
 
-                redirect(base_url() . 'index.php?site/marks/' . $page_data['exam_id'] . '/' . $page_data['class_id'] . '/' . $page_data['subject_id'], 'refresh');
+                $data['nota3'] = $this->input->post('nota3');
 
-            } else {
+                $data['def'] = $this->input->post('def');
 
-                $this->session->set_flashdata('mark_message', 'Choose exam, class and subject');
+                $this->db->insert('hs_notas', $data);
 
-                redirect(base_url() . 'index.php?site/notas/', 'refresh');
+                redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
 
+            }else{
+
+                $nota = $this->db->get_where('hs_notas', array('estudiante' => $param5, 'curso' => $param2, 'materia' => $param3, 'evaluacion' => $param4))->result_array();
+
+                $data['nota1'] = $this->input->post('nota1');
+
+                $data['nota2'] = $this->input->post('nota2');
+
+                $data['nota3'] = $this->input->post('nota3');
+
+                $data['def'] = $this->input->post('def');
+
+                $this->db->where('id', $nota[0]['id']);
+
+                $this->db->update('hs_notas', $data);
+
+                redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
             }
-
         }
-
-        if ($this->input->post('operation') == 'update') {
-
-            $data['mark_obtained'] = $this->input->post('mark_obtained');
-
-            $data['attendance'] = $this->input->post('attendance');
-
-            $data['comment'] = $this->input->post('comment');
-
-
-            $this->db->where('mark_id', $this->input->post('mark_id'));
-
-            $this->db->update('mark', $data);
-
-
-            redirect(base_url() . 'index.php?site/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
-
-        }
-
-        $page_data['exam_id'] = $exam_id;
-
-        $page_data['class_id'] = $class_id;
-
-        $page_data['subject_id'] = $subject_id;
-
 
         $page_data['page_info'] = 'Exam marks';
 

@@ -18,7 +18,7 @@ class Modal extends CI_Controller
     public function index(){}
 
 
-    function popup($param1 = '', $param2 = '', $param3 = '')
+    function popup($param1 = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '')
 
     {
 
@@ -125,6 +125,14 @@ class Modal extends CI_Controller
         } else if ($param1 == 'edit_transport') {
 
             $page_data['edit_data'] = $this->db->get_where('transport', array('transport_id' => $param2))->result_array();
+
+        } else if ($param1 == 'Evaluar_Estudiante') {
+
+            $page_data['edit_data'] = $this->db->get_where('hs_estudiantes', array('id' => $param2))->result_array();
+            $page_data['curso'] = $param3;
+            $page_data['materia'] = $param4;
+            $page_data['evaluacion'] = $param5;
+            $page_data['id_estudiante'] = $param2;
 
         } else if ($param1 == 'edit_dormitory') {
 

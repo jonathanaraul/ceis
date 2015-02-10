@@ -413,13 +413,14 @@ class ajax extends CI_Controller
     }
 
 
-    function listarNotas()
+    function listarEstudiantesNotas()
 
     {
         $curso = $this->input->post('curso');
         $materia = $this->input->post('materia');
         $evaluacion = $this->input->post('evaluacion');
 
+        $dato['curso']= $curso;
         $dato['materia']= $materia;
         $dato['evaluacion']= $evaluacion;
 

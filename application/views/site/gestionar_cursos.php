@@ -4,6 +4,14 @@
         <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
+                <a href="#notas" data-toggle="tab"><i class="icon-align-justify"></i>
+                    <?php echo get_phrase('gestionar_notas'); ?>
+                </a></li>
+            <li>
+                <a href="#asistencias" data-toggle="tab"><i class="icon-align-justify"></i>
+                    <?php echo get_phrase('gestionar_asistencias'); ?>
+                </a></li>        
+            <li>
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('lista_de_evaluaciones'); ?>
                 </a></li>
@@ -15,14 +23,6 @@
                     <?php echo get_phrase('agregar_evaluación'); ?>
                 </a></li>
             <?php } ?>
-            <li>
-                <a href="#notas" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_notas'); ?>
-                </a></li>
-            <li>
-                <a href="#asistencias" data-toggle="tab"><i class="icon-align-justify"></i>
-                    <?php echo get_phrase('gestionar_asistencias'); ?>
-                </a></li>
         </ul>
         <!--CONTROL TABS END-->
 
@@ -30,7 +30,7 @@
     <div class="box-content padded">
         <div class="tab-content">
             <!--TABLE LISTING STARTS-->
-            <div class="tab-pane box active" id="list">
+            <div class="tab-pane box" id="list">
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
                     <tr>
@@ -184,7 +184,7 @@
             <!--CREATION FORM ENDS-->
         
             <!--NOTAS-->
-            <div class="tab-pane box" id="notas" style="padding: 5px">
+            <div class="tab-pane box  active" id="notas" style="padding: 5px">
                 <center>
                     <?php echo form_open('site/marks'); ?>
                     <table border="0" cellspacing="0" cellpadding="0" class="table table-normal box">
@@ -320,7 +320,7 @@
         $('#loader').css('display','block');
         var data = 'curso=' + curso + '&materia=' + materia + '&evaluacion=' + evaluacion;
 
-        $.post('<?php echo site_url()?>ajax/listarNotas',
+        $.post('<?php echo site_url()?>ajax/listarEstudiantesNotas',
             data,
             function (data) {
 
