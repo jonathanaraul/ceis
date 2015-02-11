@@ -374,7 +374,7 @@ class Site extends CI_Controller
 
             $this->db->insert('hs_materias', $data);
 
-            redirect(base_url() . 'index.php?site/materias/', 'refresh');
+            redirect(base_url() . 'index.php?site/materias/0', 'refresh');
 
         }
 
@@ -391,7 +391,7 @@ class Site extends CI_Controller
 
             $this->db->update('hs_materias', $data);
 
-            redirect(base_url() . 'index.php?site/materias/', 'refresh');
+            redirect(base_url() . 'index.php?site/materias/' . $param1, 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -409,17 +409,27 @@ class Site extends CI_Controller
 
             $this->db->delete('hs_materias');
 
-            redirect(base_url() . 'index.php?site/materias/', 'refresh');
+            redirect(base_url() . 'index.php?site/materias/' . $param1, 'refresh');
 
         }
+        if($this->session->userdata('rol')==1){ 
+            $this->db->select('*');
+            $this->db->where('curso' , $param1);
+            $this->db->order_by('nombre', 'asc');
+            $this->db->from('hs_materias');
+            $query= $this->db->get();
+            $page_data['materias'] = $query->result_array();
+        }else{
+            if($this->session->userdata('rol')==2){
+                $page_data['materias'] = $this->db->get('hs_materias')->result_array();
+            }
+        }
 
-        $page_data['materias'] = $this->db->get('hs_materias')->result_array();
+            $page_data['page_name'] = 'materias';
 
-        $page_data['page_name'] = 'materias';
+            $page_data['page_title'] = get_phrase('gestionar_materias');
 
-        $page_data['page_title'] = get_phrase('gestionar_materias');
-
-        $this->load->view('index', $page_data);
+            $this->load->view('index', $page_data);
 
     }
 
@@ -700,7 +710,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'evaluar') {
             
-            $result = $this->db->get_where('hs_notas', array('estudiante' => $param5, 'curso' => $param2, 'materia' => $param3, 'evaluacion' => $param4))->num_rows();
+            $result = $this->db->get_where('hs_notas', array('estudiante' => $param4, 'curso' => $param2, 'materia' => $param3))->num_rows();
             
             if ($result == 0) {
 
@@ -708,9 +718,7 @@ class Site extends CI_Controller
 
                 $data['materia'] = $param3;
 
-                $data['evaluacion'] = $param4;
-
-                $data['estudiante'] = $param5;
+                $data['estudiante'] = $param4;
 
                 $data['nota1'] = $this->input->post('nota1');
 
@@ -726,7 +734,7 @@ class Site extends CI_Controller
 
             }else{
 
-                $nota = $this->db->get_where('hs_notas', array('estudiante' => $param5, 'curso' => $param2, 'materia' => $param3, 'evaluacion' => $param4))->result_array();
+                $nota = $this->db->get_where('hs_notas', array('estudiante' => $param4, 'curso' => $param2, 'materia' => $param3))->result_array();
 
                 $data['nota1'] = $this->input->post('nota1');
 
@@ -754,72 +762,62 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-    
-    /****GESTIONAR ASISTENCIAS*****/
 
-    function asistencias($exam_id = '', $class_id = '', $subject_id = '')
+
+    /****MANAGE EXAM notas*****/
+
+    function asistencias($param1 = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '')
 
     {
 
-       if ($this->session->userdata('rol') == FALSE)
+        if ($this->session->userdata('rol') != 1 && $this->session->userdata('rol') != 2)
 
             redirect(base_url() . 'index.php?login', 'refresh');
 
+        if ($param1 == 'anotar') {
 
-        if ($this->input->post('operation') == 'selection') {
+            $fecha = $this->input->post('fecha');
+            $fecha = explode('/', $fecha);
+            $fecha = $fecha[2] . '-' . $fecha[1] . '-' . $fecha[0];
 
-            $page_data['exam_id'] = $this->input->post('exam_id');
+            $existe = $this->db->get_where('hs_asistencias', array('fecha' => $fecha, 'estudiante' => $param4, 'materia' => $param3, 'curso' => $param2))->num_rows();
+            
+            if ($existe == 0) {
 
-            $page_data['class_id'] = $this->input->post('class_id');
+                $data['curso'] = $param2;
 
-            $page_data['subject_id'] = $this->input->post('subject_id');
+                $data['materia'] = $param3;
 
+                $data['estudiante'] = $param4;
 
-            if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0 && $page_data['subject_id'] > 0) {
+                $data['fecha'] = $fecha;
 
-                redirect(base_url() . 'index.php?site/marks/' . $page_data['exam_id'] . '/' . $page_data['class_id'] . '/' . $page_data['subject_id'], 'refresh');
+                $data['presente'] = $this->input->post('presente');
 
-            } else {
+                $this->db->insert('hs_asistencias', $data);
 
-                $this->session->set_flashdata('mark_message', 'Choose exam, class and subject');
+                redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
 
-                redirect(base_url() . 'index.php?site/notas/', 'refresh');
+            }else{
 
+                $asistencia = $this->db->get_where('hs_asistencias', array('estudiante' => $param4, 'curso' => $param2, 'materia' => $param3))->result_array();
+
+                $data['presente'] = $this->input->post('presente');
+
+                $this->db->where('id', $asistencia[0]['id']);
+
+                $this->db->update('hs_asistencias', $data);
+
+                redirect(base_url() . 'index.php?site/gestionar_cursos/', 'refresh');
             }
-
         }
-
-        if ($this->input->post('operation') == 'update') {
-
-            $data['mark_obtained'] = $this->input->post('mark_obtained');
-
-            $data['attendance'] = $this->input->post('attendance');
-
-            $data['comment'] = $this->input->post('comment');
-
-
-            $this->db->where('mark_id', $this->input->post('mark_id'));
-
-            $this->db->update('mark', $data);
-
-
-            redirect(base_url() . 'index.php?site/marks/' . $this->input->post('exam_id') . '/' . $this->input->post('class_id') . '/' . $this->input->post('subject_id'), 'refresh');
-
-        }
-
-        $page_data['exam_id'] = $exam_id;
-
-        $page_data['class_id'] = $class_id;
-
-        $page_data['subject_id'] = $subject_id;
-
 
         $page_data['page_info'] = 'Asistencias';
 
 
         $page_data['page_name'] = 'asistencias';
 
-        $page_data['page_title'] = get_phrase('gestionar_asistencias');
+        $page_data['page_title'] = get_phrase('Gestionar Asistencias');
 
         $this->load->view('index', $page_data);
 
@@ -1291,10 +1289,10 @@ class Site extends CI_Controller
             $data['nro'] = $this->input->post('nro');
             $data_nro['ult_nro'] = $this->input->post('nro');
 
-            $this->db->where('id', 1);
-            $this->db->where('activo', 1);
+            $this->db->where('id', 1);           
             $this->db->update('hs_nro', $data_nro);
 
+            $this->db->where('activo', 1);
             $this->db->where('cedula', $cedula);
             $this->db->update('hs_estudiantes', $data);                     
 
@@ -1764,8 +1762,6 @@ class Site extends CI_Controller
         $page_data['page_name'] = 'gestionar_cursos';
 
         $page_data['page_title'] = get_phrase('Gestionar Cursos');
-
-        $page_data['evaluaciones'] = $this->db->get('hs_evaluaciones')->result_array();
 
         $this->load->view('index', $page_data);
 

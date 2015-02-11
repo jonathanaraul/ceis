@@ -19,22 +19,18 @@
             <td>    
                 <?= $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']); ?>
             </td>
-
-            <td>
-                <input type="checkbox" <?php
-                if($this->crud_model->get_hs_asistencias_presente($element['estudiante'],$materia,$fecha)){
-                    echo ' checked';
-                }
-                ?> name="presente_<?= $element['estudiante'] ?>" id="presente_<?= $element['estudiante'] ?>" class="recopila" >
-            </td>
-                      
+            <td align="center">
+                <center>
+                <a data-toggle="modal" href="#modal-form"
+                   onclick="modal('Asistencia_Estudiante', <?php echo $element['estudiante']; ?>,<?php echo $curso; ?>,<?php echo $materia; ?>)"
+                   class="btn btn-gray btn-small">
+                    <i class="icon-wrench"></i> <?php echo get_phrase('Asistencia_estudiante'); ?>
+                </a>
+                </center>
+            </td>                     
         </tr>
     <?php
     }
     ?>
-    <tr>
-     <td colspan="4"><p style="text-align:center" ><button class="btn btn-normal btn-gray" style="width: 100%;
-margin-top: 20px;"  onclick="actualizarAsistencias()">Actualizar</button></p></td>
-    </tr>
     </tbody>
 </table>

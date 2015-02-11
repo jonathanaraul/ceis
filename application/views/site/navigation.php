@@ -146,7 +146,7 @@
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/materias" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/materias/0" rel="tooltip" data-placement="right"
 
        data-original-title="<?php echo get_phrase('gestionar_materias'); ?>">
 

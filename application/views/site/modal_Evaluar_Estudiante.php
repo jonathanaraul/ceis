@@ -4,7 +4,7 @@
 
         <?php foreach ($edit_data as $row): ?>
 
-            <?php echo form_open('site/notas/evaluar/'.$curso.'/'.$materia.'/'.$evaluacion.'/'.$id_estudiante, array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
+            <?php echo form_open('site/notas/evaluar/'.$curso.'/'.$materia.'/'.$id_estudiante, array('class' => 'form-horizontal validatable', 'target' => '_top')); ?>
 
             <div class="padded">
                 <div class="control-group">
@@ -66,9 +66,9 @@
 
 </div>
 <?php
-    $result = $this->db->get_where('hs_notas', array('estudiante' => $id_estudiante, 'curso' => $curso, 'materia' => $materia, 'evaluacion' => $evaluacion))->num_rows();
+    $result = $this->db->get_where('hs_notas', array('estudiante' => $id_estudiante, 'curso' => $curso, 'materia' => $materia))->num_rows();
     if ($result > 0) {
-    $notas = $this->db->get_where('hs_notas', array('estudiante' => $id_estudiante, 'curso' => $curso, 'materia' => $materia, 'evaluacion' => $evaluacion))->result_array();
+    $notas = $this->db->get_where('hs_notas', array('estudiante' => $id_estudiante, 'curso' => $curso, 'materia' => $materia))->result_array();
 ?>
 <script type="text/javascript">
 $("[name='nota1']").val('<?php echo $notas[0]['nota1']; ?>');

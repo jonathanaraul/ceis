@@ -22,7 +22,7 @@
             <td align="center">
                 <center>
                 <a data-toggle="modal" href="#modal-form"
-                   onclick="modal('Evaluar_Estudiante', <?php echo $element['estudiante']; ?>,<?php echo $curso; ?>,<?php echo $materia; ?>,<?php echo $evaluacion; ?>)"
+                   onclick="modal('Evaluar_Estudiante', <?php echo $element['estudiante']; ?>,<?php echo $curso; ?>,<?php echo $materia; ?>)"
                    class="btn btn-gray btn-small">
                     <i class="icon-wrench"></i> <?php echo get_phrase('evaluar_estudiante'); ?>
                 </a>

@@ -50,15 +50,20 @@ class ajax extends CI_Controller
 
     {
         $curso = $this->input->post('curso');
-
-        $elements = $this->db->get_where('hs_materias', array('curso' => $curso))->result_array();
+        
+        $this->db->select('*');
+        $this->db->where('curso' , $curso);
+        $this->db->order_by('nombre', 'asc');
+        $this->db->from('hs_materias');
+        $query= $this->db->get();
+        $elements = $query->result_array();
 
         $cadena = '<option value="0">Seleccionar materia</option>';
 
         foreach ($elements as $element) {
             if($this->session->userdata('rol') == 1){
 
-                $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';
+                $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']).' --- Profesor(a): '.$this->crud_model->get_teacher_name($element['profesor']) . '</option>';
             }else{
                 if($this->session->userdata('rol') == 2 && $this->session->userdata('user_id') == $element['profesor']){
                     $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';      
@@ -81,8 +86,17 @@ class ajax extends CI_Controller
         $cadena = '<option value="0">Seleccionar materia</option>';
 
         foreach ($elements as $element) {
-
+            $existe= true;
+            $materias= $this->db->get_where('hs_materias', array('curso' => $curso))->result_array();
+            foreach ($materias as $materia) {
+                if($materia['nombre']==$element['materia']){
+                    $existe= false;
+                }
+            }
+            if($existe){
                 $cadena .= '<option value="' . $element['materia'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['materia']) . '</option>';
+            }
+
         }
         echo $cadena;
 
@@ -135,17 +149,17 @@ class ajax extends CI_Controller
     }
 
 
-    function obtenEvaluaciones()
+    function obtenProfesores()
 
     {
         $materia = $this->input->post('materia');
 
-        $elements = $this->db->get_where('hs_evaluaciones', array('materia' => $materia))->result_array();
+        $elements = $this->db->get_where('hs_materias', array('nombre' => $materia))->result_array();
 
-        $cadena = '<option value="0">Seleccionar evaluacion</option>';
+        $cadena = '<option value="0">Seleccionar profesor</option>';
 
         foreach ($elements as $element) {
-            $cadena .= '<option value="' . $element['id'] . '">' . $element['nombre'] . '</option>';
+            $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_teacher_name($element['id']) . '</option>';
 
         }
         echo $cadena;
@@ -398,7 +412,7 @@ class ajax extends CI_Controller
         $suma= 0;
 
         foreach($query as $sum):
-            $suma+=$sum['puntuacion'];
+            $suma+=$sum['def'];
         endforeach;
 
         $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
@@ -418,11 +432,9 @@ class ajax extends CI_Controller
     {
         $curso = $this->input->post('curso');
         $materia = $this->input->post('materia');
-        $evaluacion = $this->input->post('evaluacion');
 
         $dato['curso']= $curso;
         $dato['materia']= $materia;
-        $dato['evaluacion']= $evaluacion;
 
         $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
 
@@ -591,12 +603,9 @@ class ajax extends CI_Controller
     {
         $curso = $this->input->post('curso');
         $materia = $this->input->post('materia');
-        $fecha = $this->input->post('fecha');
-        $fecha = explode('/', $fecha);
-        $fecha = $fecha[2] . '-' . $fecha[0] . '-' . $fecha[1];
 
+        $dato['curso']= $curso;
         $dato['materia']= $materia;
-        $dato['fecha']= $fecha;
 
         $dato['elements'] = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1))->result_array();
 

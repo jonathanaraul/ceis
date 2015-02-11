@@ -1,7 +1,7 @@
 <div class="box">
     <div class="box-header">
 
-        <!------CONTROL TABS START------->
+        <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
@@ -18,14 +18,29 @@
             </li>
             <?php } ?>
         </ul>
-        <!------CONTROL TABS END------->
+        <!--CONTROL TABS END-->
 
     </div>
     <div class="box-content padded">
         <div class="tab-content">
-            <!----TABLE LISTING STARTS--->
+            <!--TABLE LISTING STARTS-->
             <div class="tab-pane box active" id="list">
-
+            <?php if($this->session->userdata('rol')==1){ ?>
+                <center>
+                        <br>
+                        <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?site/materias/'+this.value">
+                            <option value="">Seleccione <?php echo get_phrase('Curso'); ?></option>
+                            <?php
+                                    $classes = $this->db->get('hs_cursos')->result_array();
+                                    foreach ($classes as $row) {
+                                            echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Seccion: '.$row['seccion'] . '</option>';
+                                    } 
+                            ?>
+                        </select>
+                        <br/>
+                        <br/>
+                </center>
+            <?php } ?>
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
                     <tr>
@@ -34,9 +49,6 @@
                         </th>
                         <th>
                             <div><?php echo get_phrase('subject_name'); ?></div>
-                        </th>
-                        <th>
-                            <div><?php echo get_phrase('class'); ?></div>
                         </th>
                         <th>
                             <div><?php echo get_phrase('Profesor(a)'); ?></div>
@@ -61,7 +73,6 @@
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?php echo $this->crud_model->get_nombre_materia_by_id($row['nombre']); ?></td>
-                            <td><?php echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($row['curso']); ?></td>
                             <td><?php echo $this->crud_model->get_teacher_name($row['profesor']); ?></td>
                             <?php
                                 if($this->session->userdata('rol') == 1){
@@ -84,10 +95,10 @@
                     </tbody>
                 </table>
             </div>
-            <!----TABLE LISTING ENDS--->
+            <!--TABLE LISTING ENDS-->
 
 
-            <!----CREATION FORM STARTS---->
+            <!--CREATION FORM STARTS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
                     <?php echo form_open('site/materias/create', array('onsubmit' => 'return validateForm()','name' => 'crear_materias', 'class' => 'form-horizontal validatable', 'target' => '_top')); ?>
@@ -139,7 +150,7 @@
                     </form>
                 </div>
             </div>
-            <!----CREATION FORM ENDS--->
+            <!--CREATION FORM ENDS-->
 
         </div>
     </div>
