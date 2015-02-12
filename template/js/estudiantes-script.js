@@ -13,9 +13,8 @@
         if (value != '1')
             $('#divtMilitar').css('display', 'none');
         else if(documento != ''){
-			
-				$('#divtMilitar').css('display', 'block');
-			}
+			$('#divtMilitar').css('display', 'block');
+		}
     }
     
     function mostrarTipoingreso(value) {
@@ -44,6 +43,13 @@
         else
             $('.divconvenio_sena').css('display', 'block');
     }
+    
+    $(document).ready(function(){
+		if($('#convenio_value').val() == 1){
+			$('.divconvenio_sena').css('display', 'block');	
+		}
+	});
+    
     function mostrarCodRegional(valor) {
         if (valor == 'Atlantico') {
             $('#cod_regional').val(8);
@@ -69,7 +75,12 @@
             $('#cod_regional').val('');
             $('#cod_regional').attr('readonly', false);
             $('#label-codigo-regional-sena').html('Codigo Regional ¿Cual?');
-        }
+        }else if(valor == $('#nom_regional_value').val() ){
+			var cod_value= $('#cod_regional_value').val();
+			$('#cod_regional').val(cod_value);
+            $('#cod_regional').attr('readonly');
+            $('#label-codigo-regional-sena').html('Codigo Regional');
+		}
     }
     function mostrarCodDepartamento(valor) {
         if (valor == 'Atlantico') {
@@ -96,7 +107,12 @@
             $('#cod_departamento').val('');
             $('#cod_departamento').attr('readonly', false);
             $('#label-codigo-departamento-sena').html('Codigo Departamento ¿Cual?');
-        }
+        }else if(valor == $('#nom_departamento_value').val() ){
+			var cod_value= $('#cod_departamento_value').val();
+			$('#cod_departamento').val(cod_value);
+            $('#cod_departamento').attr('readonly');
+            $('#label-codigo-departamento-sena').html('Codigo Departamento');
+		}
     }
     function mostrarCodMunicipio(valor) {
         if (valor == 'Barranquilla') {
@@ -124,6 +140,12 @@
             $('#cod_municipio').attr('readonly', false);
             $('#label-codigo-municipio-sena').html('Codigo Municipio ¿Cual?');
         }
+        else if(valor == $('#nom_municipio_value').val() ){
+			var cod_value= $('#cod_municipio_value').val();
+			$('#cod_municipio').val(cod_value);
+            $('#cod_municipio').attr('readonly');
+            $('#label-codigo-municipio-sena').html('Codigo Municipio');
+		}
     }
     
 
