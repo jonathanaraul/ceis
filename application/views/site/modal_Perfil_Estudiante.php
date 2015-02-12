@@ -347,3 +347,4 @@ foreach ($student_info as $row):?>
     </center>
 
 <?php endforeach; ?>
+
