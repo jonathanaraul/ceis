@@ -375,11 +375,11 @@
         $page_name == 'backup_restore'
     ) echo 'in';?>">
 
-        <li class="<?php if ($page_name == 'system_settings') echo 'active'; ?>">
+        <!--<li class="<?php if ($page_name == 'system_settings') echo 'active'; ?>">
 
             <a href="<?php echo base_url(); ?>index.php?site/system_settings">
 
-                <!--<i class="icon-h-sign"></i>-->
+                <i class="icon-h-sign"></i>
 
                 <img src="<?php echo base_url(); ?>template/images/icons/system_settings.png"/>
 
@@ -388,13 +388,12 @@
             </a>
 
         </li>
-
+        
         <li class="<?php if ($page_name == 'manage_language') echo 'active'; ?>">
 
             <a href="<?php echo base_url(); ?>index.php?site/manage_language">
 
-                <!--<i class="icon-globe"></i>-->
-
+                <i class="icon-globe"></i>
                 <img src="<?php echo base_url(); ?>template/images/icons/language.png"/>
 
                 <?php echo get_phrase('manage_language'); ?>
@@ -402,7 +401,7 @@
             </a>
 
         </li>
-        
+        -->
         <li class="<?php if ($page_name == 'manage_users') echo 'active'; ?>">
 
             <a href="<?php echo base_url(); ?>index.php?site/users/0">
@@ -430,12 +429,12 @@
             </a>
 
         </li>
-
+        <!--
         <li class="<?php if ($page_name == 'backup_restore') echo 'active'; ?>">
 
             <a href="<?php echo base_url(); ?>index.php?site/backup_restore">
 
-                <!--<i class="icon-download-alt"></i>-->
+                <i class="icon-download-alt"></i>
 
                 <img src="<?php echo base_url(); ?>template/images/icons/backup.png"/>
 
@@ -444,7 +443,7 @@
             </a>
 
         </li>
-
+        -->
     </ul>
 
 </li>

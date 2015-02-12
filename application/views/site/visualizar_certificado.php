@@ -10,7 +10,7 @@
             </span>, cedula N°: <span style="font-size:20px; font-weight:bold;"><?= $this->crud_model->get_hs_student_cedula_by_id($documento_nombre)?></span>
             cursó estudios en esta institucion, culminando con exito el curso: <span style="font-size:15px; font-weight:bold;">
             <?= $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso'])?></span>, con
-            un promedio de notas de: <span style="font-size:15px; font-weight:bold;"><?= round($media, 0); ?> puntos</span>.
+            un promedio de notas de: <span style="font-size:15px; font-weight:bold;"><?= $media; ?> puntos</span>.
         </div>
         <div style=" width: 730px; color: black; margin-left: 50px; margin-top: 50px; text-align: jutify; font-size:13px;">
             <?php $mes=date("n");

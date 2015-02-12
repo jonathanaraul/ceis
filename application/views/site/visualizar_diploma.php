@@ -88,7 +88,7 @@
 			
 			<div id="curso">
 				<?php 
-					$cursos= $this->db->get_where('hs_cursos', array('id' => $elements[0]['curso']))->result_array();
+					$cursos= $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
 					echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']);
 				?>
 			</div>

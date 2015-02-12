@@ -486,8 +486,11 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?site/configurar_cursos/', 'refresh');
 
         }
-        $this->db->order_by("id", "asc");
-        $page_data['configurar_cursos'] = $this->db->get('curso_materia')->result_array();
+            $this->db->select('*');
+            $this->db->order_by('curso', 'asc');
+            $this->db->from('curso_materia');
+            $query= $this->db->get();
+            $page_data['configurar_cursos'] = $query->result_array();
 
         $page_data['page_name'] = 'configurar_cursos';
 
@@ -1841,7 +1844,11 @@ class Site extends CI_Controller
 
         $page_data['page_title'] = get_phrase('Inscripciones/Preinscripciones');
 
-        $page_data['hs_inscripcion'] = $this->db->get('hs_inscripcion')->result_array();
+        $this->db->select('*');
+        $this->db->order_by('curso', 'asc');
+        $this->db->from('hs_inscripcion');
+        $query= $this->db->get();
+        $page_data['hs_inscripcion'] = $query->result_array();
 
         $this->load->view('index', $page_data);
 

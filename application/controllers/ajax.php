@@ -202,7 +202,7 @@ class ajax extends CI_Controller
                 $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
                 $suma= 0;
                 foreach($query as $sum):
-                    $suma+=$sum['puntuacion'];
+                    $suma+=$sum['def'];
                 endforeach;
                 $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
                 $this->db->where('curso', $cursos[0]['curso']);
@@ -244,7 +244,7 @@ class ajax extends CI_Controller
                 $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
                 $suma= 0;
                 foreach($query as $sum):
-                    $suma+=$sum['puntuacion'];
+                    $suma+=$sum['def'];
                 endforeach;
                 $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
                 $this->db->where('curso', $cursos[0]['curso']);
