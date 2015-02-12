@@ -232,7 +232,12 @@ class Site extends CI_Controller
 
         }
 
-        $page_data['estudiantes'] = $this->db->get_where('hs_estudiantes', array('activo' => 1))->result_array();
+        $this->db->select('*');
+        $this->db->where('activo' , 1);
+        $this->db->order_by('nombre', 'asc');
+        $this->db->from('hs_estudiantes');
+        $query= $this->db->get();
+        $page_data['estudiantes'] = $query->result_array();
 
         $page_data['page_name'] = 'estudiantes';
 
@@ -691,7 +696,12 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?site/cursos/', 'refresh');
         }
 
-        $page_data['cursos'] = $this->db->get('hs_cursos')->result_array();
+        $this->db->select('*');
+        $this->db->order_by('curso', 'asc');
+        $this->db->from('hs_cursos');
+        $query= $this->db->get();
+        $page_data['cursos'] = $query->result_array();
+
         $page_data['page_name'] = 'cursos';
         $page_data['page_title'] = get_phrase('manage_class');
 

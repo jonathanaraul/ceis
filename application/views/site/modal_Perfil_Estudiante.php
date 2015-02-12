@@ -317,29 +317,7 @@ foreach ($student_info as $row):?>
 					
                 <?php 
 					endif; 
-				?>
-					<tr>
-                        <td>Status</td>
-                         <td><b><?php echo ($row['activo'] == '1')? 'Activo':'Inactivo'; ?></b></td>
-                    </tr>
-                    <tr>
-                        <td>Egresado</td>
-                         <td><b><?php echo ($row['no_egresado'] == '1')? 'Egresado':'No Egresado'; ?></b></td>
-                    </tr>
-                <?php 
-					
-					if ($row['fecha_egreso'] != 0): 
-				?>
-
-                    <tr>
-                        <td>Fecha de Egreso</td>
-                        <td><b><?php echo date("d/m/Y",strtotime($row['fecha_egreso'])); ?></b>
-                    </tr>
-                <?php 
-					endif; 
-				 
-				?>
-                
+				?>                
             </table>
 
         </div>
