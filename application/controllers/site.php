@@ -172,8 +172,8 @@ class Site extends CI_Controller
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = ($this->input->post('municipio_') != 0)? $this->input->post('municipio_'): $this->input->post('municipio');
             
-            $data['residencia'] = $this->input->post('residencia');
-            $data['barrio'] = $this->input->post('barrio');
+            $data['residencia'] = ucwords($this->input->post('residencia'));
+            $data['barrio'] = ucwords($this->input->post('barrio'));
             $data['telefono'] = $this->input->post('telefono');
             $data['email'] = $this->input->post('email');
             $data['talla_camisa'] = $this->input->post('camisa');
@@ -184,14 +184,17 @@ class Site extends CI_Controller
   
 			$foto= $this->input->post('foto_estudiante');
 			
-			$type= explode('.',$_FILES['new_foto_estudiante']['name']);
+			$type= ($_FILES['new_foto_estudiante']['type'] == '')? explode('.',$foto) : explode('.',$_FILES['new_foto_estudiante']['name']);
+			
 			$type= $type[count($type)-1];
+			
 			$url= 'uploads/student_image/' . $param2 . '.'.$type;
 			
 			move_uploaded_file($_FILES['new_foto_estudiante']['tmp_name'],$url );
 			
-			$data['foto'] = ($_FILES['new_foto_estudiante'])? $param2.'.'.$type:$foto;
-			
+			$data['foto'] = $param2.'.'.$type;
+		
+            
             $this->db->where('id', $param2);
 
             $this->db->update('hs_estudiantes', $data);
