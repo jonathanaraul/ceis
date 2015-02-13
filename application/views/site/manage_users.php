@@ -9,11 +9,6 @@
         <li><a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('añadir_usuarios'); ?> </a>
         </li>
     </ul>
-    
-	<a class="btn btn-black" style="float:right;height:27px" href="index.php?site/manage_role">
-		<i class="icon-info-sign"></i>
-			Manejar Roles
-	</a>
     <!--CONTROL TABS END-->
 </div>
 <div class="box-content">

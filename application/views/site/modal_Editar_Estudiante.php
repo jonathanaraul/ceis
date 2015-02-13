@@ -330,7 +330,7 @@
                             <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" required name="f_nacimiento" data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y",strtotime($row['f_nacimiento']));?>">
+                                <input type="text" class="datepicker fill-up" required name="f_nacimiento" value="<?php echo date("d/m/Y",strtotime($row['f_nacimiento']));?>">
                                
 									<i class="icon-calendar"></i>
                             </div>

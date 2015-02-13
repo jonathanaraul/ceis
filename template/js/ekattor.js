@@ -9517,12 +9517,12 @@ function (e, t) {
         show: function () {
 			//blurring body
 			//document.body.style.cssText	=	"-webkit-filter: blur(2px);";
-			var blur_filter_amount	=	1.5;
-			document.getElementById("main_body").style.cssText	=	"-webkit-filter: blur("+blur_filter_amount+"px);\
-																		-moz-filter: blur("+blur_filter_amount+"px);\
-																		-o-filter: blur("+blur_filter_amount+"px);\
-																		-ms-filter: blur("+blur_filter_amount+"px);\
-																		filter: blur("+blur_filter_amount+"px);";
+			//var blur_filter_amount	=	1.5;
+			//document.getElementById("main_body").style.cssText	=	"-webkit-filter: blur("+blur_filter_amount+"px);\
+			//															-moz-filter: blur("+blur_filter_amount+"px);\
+			//															-o-filter: blur("+blur_filter_amount+"px);\
+			//															-ms-filter: blur("+blur_filter_amount+"px);\
+			//															filter: blur("+blur_filter_amount+"px);";
 			
 
 

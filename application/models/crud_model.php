@@ -140,6 +140,18 @@ class Crud_model extends CI_Model {
 
 	}
 
+	function get_subject_name_by_id2($materia_id)
+
+	{
+
+		$query	=	$this->db->get_where('hs_materias' , array('id' => $materia_id))->row();
+
+		$clase	=	$this->db->get_where('nombre_materias' , array('id' => $query->nombre))->row();
+
+		return $clase->materia;
+
+	}
+
 	function get_nombre_materia_by_id($materia_id)
 
 	{

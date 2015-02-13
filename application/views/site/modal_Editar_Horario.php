@@ -4,7 +4,10 @@
             <?php echo form_open('site/horarios_materias/do_update/' . $row['id'], array('onsubmit' => 'return validateForm()','name' => 'editar_horarios','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
             <div class="padded">
                 <div class="control-group">
-                    <label class="control-label"><?php echo get_phrase('class'); ?></label>
+                    <label class="control-label"><?php echo get_phrase('Curso Actual'); ?></label><span style="font-weight: bold;"><?= $this->crud_model->get_hs_cursos_nombre($row['curso']); ?></span>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><?php echo get_phrase('nuevo_curso'); ?></label>
 
                     <div class="controls">
                         <select name="cursos" class="uniform" onchange="ajaxMaterias(this.value)" style="width:100%;">
@@ -23,7 +26,10 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label"><?php echo get_phrase('subject'); ?></label>
+                    <label class="control-label"><?php echo get_phrase('Materia Actual'); ?></label><span style="font-weight: bold;"><?= $this->crud_model->get_subject_name_by_id2($row['materia']); ?></span>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><?php echo get_phrase('Nueva Materia'); ?></label>
 
                     <div class="controls">
                         <select name="materias" id="materias" class="uniform" style="width:100%;">
