@@ -31,7 +31,7 @@ foreach ($student_info as $row):?>
             <table class="table table-normal ">
 
 
-                <?php if ($row['cedula'] != 0):  ?>
+                <?php if ($row['cedula'] != '0'):  ?>
 
                     <tr>
                         <td>Documento</td>
@@ -41,7 +41,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['tipo_ingreso'] != 0): 
+					if ($row['tipo_ingreso'] != ''): 
 				?>
 
                     <tr>
@@ -51,7 +51,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['empresa'] != 0): 
+					if ($row['empresa'] != '0'): 
 				?>
 
                     <tr>
@@ -61,7 +61,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['convenio'] != 0): 
+					if ($row['convenio'] != '0'): 
 				?>
 
                     <tr>
@@ -71,7 +71,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['nom_regional'] != 0): 
+					if ($row['nom_regional'] != '0'): 
 				?>
 
                     <tr>
@@ -86,7 +86,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['nom_departamento'] != 0): 
+					if ($row['nom_departamento'] != '0'): 
 				?>
 
                     <tr>
@@ -101,7 +101,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['nom_municipio'] != 0): 
+					if ($row['nom_municipio'] != '0'): 
 				?>
 
                     <tr>
@@ -116,7 +116,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['emp_gremio'] != 0): 
+					if ($row['emp_gremio'] != ''): 
 				?>
 
                     <tr>
@@ -126,7 +126,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['linea_formacion'] != 0): 
+					if ($row['linea_formacion'] != '0'): 
 				?>
 
                     <tr>
@@ -136,7 +136,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['sector_economico'] != 0): 
+					if ($row['sector_economico'] != ''): 
 				?>
 
                     <tr>
@@ -146,7 +146,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['sub_sector_economico'] != 0): 
+					if ($row['sub_sector_economico'] != ''): 
 				?>
 
                     <tr>
@@ -156,7 +156,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['caracterizacion'] != 0): 
+					if ($row['caracterizacion'] != '0'): 
 				?>
 
                     <tr>
@@ -166,7 +166,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['f_nacimiento'] != 0): 
+					if ($row['f_nacimiento'] != '0'): 
 				?>
                     <tr>
                         <td>Fecha de Nacimiento</td>
@@ -175,7 +175,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif;
 					
-					if ($row['sexo'] != 0): 
+					if ($row['sexo'] != '0'): 
 				?>
 
                     <tr>
@@ -186,7 +186,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['num_lib_militar'] != 0): 
+					if ($row['num_lib_militar'] != '0'): 
 				?>
 
                     <tr>
@@ -196,7 +196,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['edo_civil'] != 0): 
+					if ($row['edo_civil'] != '0'): 
 				?>
 
                     <tr>
@@ -206,7 +206,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['hijos'] != 0): 
+					if ($row['hijos'] == 'si'): 
 				?>
 
                     <tr>
@@ -216,7 +216,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['departamento'] != 0): 
+					if ($row['departamento'] != '0'): 
 				?>
 
                     <tr>
@@ -226,7 +226,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['municipio'] != 0): 
+					if ($row['municipio'] != '0'): 
 				?>
 
                     <tr>
@@ -236,7 +236,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['residencia'] != 0): 
+					if ($row['residencia'] != '0'): 
 				?>
 
                     <tr>
@@ -246,7 +246,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['telefono'] != 0): 
+					if ($row['telefono'] != '0'): 
 				?>
 
                     <tr>
@@ -256,7 +256,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['email'] != 0): 
+					if ($row['email'] != '0'): 
 				?>
 
                     <tr>
@@ -266,7 +266,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['talla_camisa'] != 0): 
+					if ($row['talla_camisa'] != '0'): 
 				?>
 
                     <tr>
@@ -298,7 +298,7 @@ foreach ($student_info as $row):?>
                     </tr>
                 <?php 
 				
-					if ($row['seccion'] != 0): 
+					if ($row['seccion'] != ''): 
 				?>
 
                     <tr>
@@ -308,7 +308,7 @@ foreach ($student_info as $row):?>
                 <?php 
 					endif; 
 					
-					if ($row['curso'] != 0): 
+					if ($row['curso'] != ''): 
 				?>
 					<tr>
                         <td>Curso</td>
