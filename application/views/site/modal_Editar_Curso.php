@@ -9,17 +9,7 @@
             <div class="padded">
 
                 <div class="control-group">
-                    <label class="control-label"><?= 'Nombre'?></label>
-                    <div class="controls">
-                        <select name="curso" id="nombre_curso" class="uniform" style="width:100%;">
-                            <?php
-                            $elements = $this->db->get('class_name')->result_array();
-                            foreach ($elements as $element){
-                                echo '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    <label class="control-label"><?php echo get_phrase('Curso'); ?></label><span style="font-weight: bold;"><?= $this->crud_model->get_hs_cursos_nombre($row['curso']); ?></span>
                 </div>
                 <div class="control-group">
                     <label class="control-label">Sección</label>

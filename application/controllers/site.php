@@ -668,7 +668,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            $data['curso'] = $this->input->post('curso');
+
             $data['seccion'] = $this->input->post('seccion');
             $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
             $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
