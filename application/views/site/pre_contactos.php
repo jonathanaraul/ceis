@@ -68,7 +68,7 @@
                                           
                                                 <a
                                                     data-toggle="modal" href="#modal-delete"
-                                                    onclick="modal_delete('<?php echo base_url(); ?>index.php?site/estudiantes/delete/<?php echo $row['id']; ?>')"
+                                                    onclick="modal_delete('<?php echo base_url(); ?>index.php?site/pre_contactos/delete/<?php echo $row['id']; ?>')"
                                                     class="btn btn-red btn-small"> <i
                                                         class="icon-trash"></i> <?php echo get_phrase('delete'); ?> </a>
                                         <?php } ?>
@@ -82,12 +82,12 @@
                 </div>
             </div>
 
-            <!----TABLE LISTING ENDS--->
+            <!--TABLE LISTING ENDS->
 
-            <!----CREATION FORM STARTS---->
+            <!CREATION FORM STARTS-->
 
             <div class="tab-pane box" id="add" style="padding: 5px">
-                <div class="box-content"> <?php echo form_open('site/estudiantes/create/', array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data')); ?>
+                <div class="box-content"> <?php echo form_open('site/pre_contactos/create/', array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
@@ -124,8 +124,17 @@
                                 <input type="text" class="uniform" name="sapellido"/>
                             </div>
                         </div>
-						
-						<div class="control-group">
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="datepicker fill-up"required name="f_nacimiento" />
+                                    <i class="icon-calendar"></i>
+                            </div>
+                        </div>
+
+						<!--<div class="control-group">
 							<label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
 
 							<div class="controls">
@@ -186,15 +195,10 @@
 								</select>
 							</div>
 						</div>
-						<?php include('complementos/convenio_sena.php');?>
-                        <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
+						<?php //include('complementos/convenio_sena.php');?>-->
+                        
+                        
 
-                            <div class="controls">
-                                <input type="text" class="datepicker fill-up"required name="f_nacimiento" />
-									<i class="icon-calendar"></i>
-                            </div>
-                        </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('sex'); ?></label>
 

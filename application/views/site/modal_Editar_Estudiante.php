@@ -8,7 +8,7 @@
 
     <div class="box-content">
 
-            <?php echo form_open('site/estudiantes/do_update/'. $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
+            <?php echo form_open('site/pre_contactos/do_update/'. $row['id'], array('class' => 'form-horizontal validatable', 'target' => '_top', 'enctype' => 'multipart/form-data')); ?>
 
                 <div class="padded">
 						<div class="control-group">

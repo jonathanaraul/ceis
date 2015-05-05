@@ -37,7 +37,7 @@ class Site extends CI_Controller
 
     /****MANAGE STUDENTS CLASSWISE*****/
 
-    function estudiantes($param1 = '', $param2 = '', $param3 = '')
+    function pre_contactos($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -103,7 +103,7 @@ class Site extends CI_Controller
 
 					$this->session->set_flashdata('flash_message', 'Número de Documento ya registrado, por favor verifíque');
 
-					redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+					redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
 				}else{
 				 
@@ -124,7 +124,7 @@ class Site extends CI_Controller
 					$this->db->update('hs_estudiantes', $avatar);
 					
 					$this->session->set_flashdata('flash_message', '¡Estudiante registrado con éxito!');
-					redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+					redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 				}
 			
         }
@@ -201,7 +201,7 @@ class Site extends CI_Controller
             
 			$this->session->set_flashdata('flash_message', '¡Registro editado con éxito!');
             
-            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+            redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -231,7 +231,7 @@ class Site extends CI_Controller
 
             $this->db->delete('hs_estudiantes');
 
-            redirect(base_url() . 'index.php?site/estudiantes/', 'refresh');
+            redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
         }
 
@@ -242,7 +242,7 @@ class Site extends CI_Controller
         $query= $this->db->get();
         $page_data['estudiantes'] = $query->result_array();
 
-        $page_data['page_name'] = 'estudiantes';
+        $page_data['page_name'] = 'pre_contactos';
 
         $page_data['page_title'] = get_phrase('manage_student');
 
@@ -1783,7 +1783,7 @@ class Site extends CI_Controller
     }
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
 
-    function inscripcion($param1 = '', $param2 = '', $param3 = '')
+    function matriculas($param1 = '', $param2 = '', $param3 = '')
 
     {
 
@@ -1807,7 +1807,7 @@ class Site extends CI_Controller
 
             $this->db->insert('hs_inscripcion', $data);
 
-            redirect(base_url() . 'index.php?site/inscripcion/', 'refresh');
+            redirect(base_url() . 'index.php?site/matriculas/', 'refresh');
 
         }
 
@@ -1830,7 +1830,7 @@ class Site extends CI_Controller
 
             $this->session->set_flashdata('flash_message', get_phrase('Registro procesado'));
 
-            redirect(base_url() . 'index.php?site/inscripcion/', 'refresh');
+            redirect(base_url() . 'index.php?site/matriculas/', 'refresh');
 
         } else if ($param1 == 'edit') {
 
@@ -1848,13 +1848,13 @@ class Site extends CI_Controller
 
             $this->db->delete('hs_inscripcion');
 
-            redirect(base_url() . 'index.php?site/inscripcion/', 'refresh');
+            redirect(base_url() . 'index.php?site/matriculas/', 'refresh');
 
         }
 
-        $page_data['page_name'] = 'inscripcion';
+        $page_data['page_name'] = 'matriculas';
 
-        $page_data['page_title'] = get_phrase('Inscripciones/Preinscripciones');
+        $page_data['page_title'] = get_phrase('MATRICULAR');
 
         $this->db->select('*');
         $this->db->order_by('curso', 'asc');

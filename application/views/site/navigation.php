@@ -48,13 +48,13 @@
 	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
  ?>
 
-<li class="<?php if ($page_name == 'estudiantes') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'pre-contactos') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/estudiantes" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/pre_contactos" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('gestionar_estudiantes'); ?>">
+       data-original-title="<?php echo get_phrase('Pre-contactos'); ?>">
 
         <!--<i class="icon-user icon-1x"></i>-->
 
@@ -69,19 +69,19 @@
 <!-- inscripciones -->
 
 	
-<li class="<?php if ($page_name == 'inscripcion') echo 'dark-nav active'; ?>">
+<li class="<?php if ($page_name == 'matriculas') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/inscripcion" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/matriculas" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('Inscripciones/Preinscripciones'); ?>">
+       data-original-title="<?php echo get_phrase('MATRICULAR'); ?>">
 
         <!--<i class="icon-columns icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
 
-        <span><?php echo get_phrase('Inscripciones'); ?></span>
+        <span><?php echo get_phrase('Matrículas'); ?></span>
 
     </a>
 
@@ -100,13 +100,13 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/cursos" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('cursos'); ?>">
+       data-original-title="<?php echo get_phrase('Creación de cursos'); ?>">
 
         <!--<i class="icon-sitemap icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/class.png"/>
 
-        <span><?= 'Cursos'?></span>
+        <span><?= 'Creación de Cursos'?></span>
 
     </a>
 

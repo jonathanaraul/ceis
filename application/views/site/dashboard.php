@@ -15,7 +15,7 @@
 
                 <div class="span2 action-nav-button">
 
-                    <a href="<?php echo base_url(); ?>index.php?site/estudiantes">
+                    <a href="<?php echo base_url(); ?>index.php?site/pre_contactos">
 
                         <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
