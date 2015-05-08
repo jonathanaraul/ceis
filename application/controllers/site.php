@@ -74,6 +74,12 @@ class Site extends CI_Controller
             $data['caracterizacion'] = $this->input->post('caracterizacion');
             $data['f_nacimiento'] = date("Y-m-d",strtotime($this->input->post('f_nacimiento')));
             $data['sexo'] = $this->input->post('sexo');
+            $data['observacion_1'] = $this->input->post('observacion_1');
+            $data['observacion_2'] = $this->input->post('observacion_2');
+            $data['observacion_3'] = $this->input->post('observacion_3');
+            $data['observacion_4'] = $this->input->post('observacion_4');
+            $data['expedicion'] = $this->input->post('expedicion');
+            $data['curso_interes'] = $this->input->post('curso');
             
             if($data['sexo']=='1'){
 				$data['num_lib_militar'] = $this->input->post('nlibmilitar');
@@ -181,6 +187,13 @@ class Site extends CI_Controller
             $data['check_lib_militar'] = ($this->input->post('check_lib_militar'))?1:0;
             $data['check_certificado'] = ($this->input->post('check_cert_est'))?1:0;
             $data['check_foto'] = ($this->input->post('check_foto'))?1:0;
+            
+            $data['observacion_1'] = $this->input->post('observacion_1');
+            $data['observacion_2'] = $this->input->post('observacion_2');
+            $data['observacion_3'] = $this->input->post('observacion_3');
+            $data['observacion_4'] = $this->input->post('observacion_4');
+            $data['expedicion'] = $this->input->post('expedicion');
+            $data['curso_interes'] = $this->input->post('curso');
   
 			$foto= $this->input->post('foto_estudiante');
 			
@@ -234,12 +247,9 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
         }
-
-        $this->db->select('*');
         $this->db->where('activo' , 1);
         $this->db->order_by('nombre', 'asc');
-        $this->db->from('hs_estudiantes');
-        $query= $this->db->get();
+        $query= $this->db->get('hs_estudiantes');
         $page_data['estudiantes'] = $query->result_array();
 
         $page_data['page_name'] = 'pre_contactos';

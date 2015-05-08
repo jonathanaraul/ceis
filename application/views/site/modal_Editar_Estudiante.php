@@ -530,6 +530,56 @@
 						</div>
                     </div>
 
+                    <div class="control-group">
+                            <label class="control-label"><?= 'Procedencia'?></label>
+                            <div class="controls">
+                                <select name="procedencia" class="uniform" style="width:100%;">
+                                    <option value="Llamada telefonica">Llamada telefonica</option>
+                                    <option value="Página web">Página web</option>
+                                    <option value="Redes Sociales">Redes Sociales</option>
+                                    <option value="E-Mail Directo">E-Mail Directo</option>
+                                    <option value="Punto de Venta">Punto de Venta</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'Curso'?></label>
+                            <div class="controls">
+                                <select name="curso" class="uniform" style="width:100%;">
+                                    <?php
+                                    $elements = $this->db->get('class_name')->result_array();
+                                    foreach ($elements as $element){
+                                        echo '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 1'?></label>
+                            <div class="controls">
+                               <textarea name="observacion_1"><?php echo $row['observacion_1']?></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 2'?><?php echo $row['observacion_2']?></label>
+                            <div class="controls">
+                               <textarea name="observacion_2"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 3'?><?php echo $row['observacion_3']?></label>
+                            <div class="controls">
+                               <textarea name="observacion_3"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 4'?><?php echo $row['observacion_4']?></label>
+                            <div class="controls">
+                               <textarea name="observacion_4"></textarea>
+                            </div>
+                        </div>
+
 					<div class="form-actions">
 						<button type="submit" class="btn btn-gray"><?php echo get_phrase('Actualizar_datos'); ?></button>
 					</div>

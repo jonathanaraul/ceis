@@ -60,7 +60,7 @@
 
         <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
-        <span><?php echo get_phrase('student'); ?></span>
+        <span>Pre-Contáctos</span>
 
     </a>
 
@@ -75,13 +75,13 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/matriculas" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('MATRICULAR'); ?>">
+       data-original-title="Matrículas">
 
         <!--<i class="icon-columns icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/grade.png"/>
 
-        <span><?php echo get_phrase('Matrículas'); ?></span>
+        <span>Matrículas</span>
 
     </a>
 
@@ -100,13 +100,13 @@
 
     <a href="<?php echo base_url(); ?>index.php?site/cursos" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('Creación de cursos'); ?>">
+       data-original-title="Creación de Cursos">
 
         <!--<i class="icon-sitemap icon-1x"></i>-->
 
         <img src="<?php echo base_url(); ?>template/images/icons/class.png"/>
 
-        <span><?= 'Creación de Cursos'?></span>
+        <span>Creación de Cursos</span>
 
     </a>
 
@@ -130,64 +130,17 @@
 
         <img src="<?php echo base_url(); ?>template/images/icons/exam.png"/>
 
-        <span><?php echo get_phrase('gestion_de_cursos'); ?></span>
+        <span>Área Docente</span>
 
     </a>
 
 </li>
 
-<!--subject-->
 <?php 
     }
-	if($this->session->userdata('rol') == 1 || $this->session->userdata('rol') == 2){
 ?>
-
-<li class="<?php if ($page_name == 'materias') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/materias/0" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('gestionar_materias'); ?>">
-
-        <!--<i class="icon-tasks icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
-
-        <span><?php echo get_phrase('materias'); ?></span>
-
-    </a>
-
-</li>
-<?php
-    }  
-	if($this->session->userdata('rol')>0 && $this->session->userdata('rol')<=2){
-?>
-
-<!--class routine-->
-
-<li class="<?php if ($page_name == 'horarios_materias') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/horarios_materias" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo "Horarios de Materias" ?>">
-
-        <!--<i class="icon-indent-right icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/routine.png"/>
-
-        <span><?php echo get_phrase('horarios_materias'); ?></span>
-
-    </a>
-
-</li>
-
-
 <!--facturacion-->
 <?php
-	}
 	if($this->session->userdata('rol') == 1){
 ?>
 
@@ -232,19 +185,23 @@
 
 <!--Egresados-->
 
-<li class="<?php if ($page_name == 'gestion_egresados') echo 'dark-nav active'; ?>">
+
+
+<!--Reportes-->
+
+<li class="<?php if ($page_name == 'reportes') echo 'dark-nav active'; ?>">
 
     <span class="glow"></span>
 
-    <a href="<?php echo base_url(); ?>index.php?site/gestion_egresados" rel="tooltip" data-placement="right"
+    <a href="<?php echo base_url(); ?>index.php?site/reportes" rel="tooltip" data-placement="right"
 
-       data-original-title="<?php echo get_phrase('gestion_de_egresados'); ?>">
+       data-original-title="<?php echo get_phrase('reportes'); ?>">
 
         <!--<i class="icon-book icon-1x"></i>-->
 
-        <img src="<?php echo base_url(); ?>template/images/icons/book.png"/>
+        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
 
-        <span><?php echo get_phrase('gestion_de_egresados'); ?></span>
+        <span><?php echo get_phrase('reportes'); ?></span>
 
     </a>
 
@@ -265,26 +222,6 @@
         <img src="<?php echo base_url(); ?>template/images/icons/dormitory.png"/>
 
         <span><?php echo get_phrase('empresas'); ?></span>
-
-    </a>
-
-</li>
-
-<!--Reportes-->
-
-<li class="<?php if ($page_name == 'reportes') echo 'dark-nav active'; ?>">
-
-    <span class="glow"></span>
-
-    <a href="<?php echo base_url(); ?>index.php?site/reportes" rel="tooltip" data-placement="right"
-
-       data-original-title="<?php echo get_phrase('reportes'); ?>">
-
-        <!--<i class="icon-book icon-1x"></i>-->
-
-        <img src="<?php echo base_url(); ?>template/images/icons/subject.png"/>
-
-        <span><?php echo get_phrase('reportes'); ?></span>
 
     </a>
 

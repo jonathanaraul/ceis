@@ -19,7 +19,7 @@
 
                         <img src="<?php echo base_url(); ?>template/images/icons/user.png"/>
 
-                        <span><?php echo get_phrase('manage_student'); ?></span>
+                        <span>Pre-Contáctos</span>
 
                         <span class="label label-blue"><?php $this->db->where('activo', 1);
                                                              $this->db->from('hs_estudiantes');

@@ -3,11 +3,11 @@
         <!--CONTROL TABS START-->
         <ul class="nav nav-tabs nav-tabs-left">
             <li class="active"><a href="#list" data-toggle="tab"><i
-                        class="icon-align-justify"></i> <?php echo get_phrase('student_list'); ?> </a></li>
+                        class="icon-align-justify"></i>Lista de Estudiantes</a></li>
         <?php 
             if($this->session->userdata('rol') == 1){
         ?>
-            <li><a href="#add" data-toggle="tab"><i class="icon-plus"></i> <?php echo get_phrase('add_student'); ?> </a>
+            <li><a href="#add" data-toggle="tab"><i class="icon-plus"></i>Agregar Precontácto </a>
             </li>
         <?php } ?>
         </ul>
@@ -82,64 +82,52 @@
                 </div>
             </div>
 
-            <!--TABLE LISTING ENDS->
-
-            <!CREATION FORM STARTS-->
-
+            <!--TABLE LISTING ENDS-->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content"> <?php echo form_open('site/pre_contactos/create/', array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data')); ?>
                     <div class="padded">
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('numero_de_documento'); ?></label>
-
                             <div class="controls">
                                 <input type="text" class="uniform" required name="documento" id="documento" oninput="ajaxDocumento()">
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('primer_nombre'); ?></label>
+                            <label class="control-label">Lugar de expedición</label>
+                            <div class="controls">
+                                <input type="text" class="uniform"  name="expedicion">
+                            </div>
+                        </div>
 
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('primer_nombre'); ?></label>
                             <div class="controls">
                                 <input type="text" class="uniform" required name="nombre"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('segundo_nombre'); ?></label>
-
                             <div class="controls">
                                 <input type="text" class="uniform" name="snombre"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('primer_apellido'); ?></label>
-
                             <div class="controls">
                                 <input type="text" class="uniform" required name="papellido"/>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('segundo_apellido'); ?></label>
-
                             <div class="controls">
                                 <input type="text" class="uniform" name="sapellido"/>
                             </div>
                         </div>
-
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
-
+                            <label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up"required name="f_nacimiento" />
-                                    <i class="icon-calendar"></i>
-                            </div>
-                        </div>
-
-						<!--<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('tipo_de_ingreso'); ?></label>
-
-							<div class="controls">
-								<select name="tipodeingreso" class="uniform" onchange="mostrarTipoingreso(this.value);">
-									<option value="">-- Seleccione Uno --</option>
+                                <select name="tipodeingreso" class="uniform" onchange="mostrarTipoingreso(this.value);">
+                                    <option value="">-- Seleccione Uno --</option>
                                     <?php
                                     $ingreso = $this->db->get('hs_tipo_ingreso')->result_array();
                                     foreach ($ingreso as $row):
@@ -148,18 +136,15 @@
                                     <?php
                                     endforeach;
                                     ?>
-								</select>
-							</div>
-						</div>
-
-						<div class="control-group" id="divHelpertipodeingreso" style="display: none;">
-							<label class="control-label"><?php echo get_phrase('¿Cual tipo de ingreso?'); ?></label>
-
-							<div class="controls">
-								<input type="text" class="" name="helpertipodeingreso"/>
-							</div>
-						</div>
-
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" id="divHelpertipodeingreso" style="display: none;">
+                            <label class="control-label"><?php echo get_phrase('¿Cual tipo de ingreso?'); ?></label>
+                            <div class="controls">
+                                <input type="text" class="" name="helpertipodeingreso"/>
+                            </div>
+                        </div>
                         <div class="control-group" id="divTipoingreso" style="display: none;">
                             <label class="control-label"><?php echo get_phrase('empresa'); ?></label>
 
@@ -178,12 +163,12 @@
                             </div>
                         </div>
                         <div class="control-group">
-							<label class="control-label"><?php echo get_phrase('convenio'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('convenio'); ?></label>
 
-							<div class="controls">
-								<select name="convenio" class="uniform" style="width:100%;" onchange="mostrarTipoingresoSena(this.value);">
-									<option value="">-- Seleccione Uno --</option>
-									<?php
+                            <div class="controls">
+                                <select name="convenio" class="uniform" style="width:100%;" onchange="mostrarTipoingresoSena(this.value);">
+                                    <option value="">-- Seleccione Uno --</option>
+                                    <?php
                                     $convenio = $this->db->get('hs_convenio')->result_array();
                                     foreach ($convenio as $row):
                                         ?>
@@ -192,77 +177,85 @@
                                     endforeach;
                                     ?>
 
-								</select>
-							</div>
-						</div>
-						<?php //include('complementos/convenio_sena.php');?>-->
-                        
-                        
-
+                                </select>
+                            </div>
+                        </div>
+                        <?php 
+                        $convenio = $this->load->view('site/complementos/convenio_sena', true);
+                        echo $convenio;
+                        ?>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_de_nacimiento'); ?></label>
+                            <div class="controls">
+                                <input type="text" class="datepicker fill-up"required name="f_nacimiento" />
+                                    <i class="icon-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="control-group" id="divtMilitar" style="display: none;">
+                            <label class="control-label"><?php echo get_phrase('Número_de_Libreta_Militar'); ?></label>
+                            <div class="controls" id="nlibmilitar"></div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('sex'); ?></label>
 
                             <div class="controls">
                                 <select name="sexo" class="uniform" required onchange="mostrarTmilitar(this.value);">
                                      <option value="">-- Seleccione--</option>
-									<?php  
-										$sex = $this->db->get('hs_sex')->result_array();
-										foreach ($sex as $row):
-									?>
-										
-										<option value="<?php echo $row['id']; ?>"><?php echo $row['tipo']; ?></option>
-									 
-									 <?php endforeach; ?>
+                                    <?php  
+                                        $sex = $this->db->get('hs_sex')->result_array();
+                                        foreach ($sex as $row):
+                                    ?>
+                                        
+                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['tipo']; ?></option>
+                                     
+                                     <?php endforeach; ?>
                                 
                                 </select>
                             </div>
                         </div>
-                        <div class="control-group" id="divtMilitar" style="display: none;">
-							<label class="control-label"><?php echo get_phrase('Número_de_Libreta_Militar'); ?></label>
+                        
+                        
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('estado_civil'); ?></label>
 
-							<div class="controls" id="nlibmilitar"></div>
-						</div>
-						<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('estado_civil'); ?></label>
+                            <div class="controls">
+                                <select name="edo_civil" class="uniform" style="width:100%;">
+                                     <option value="">-- Seleccione--</option>
+                                    <?php  
+                                        $edo = $this->db->get('hs_edo_civil')->result_array();
+                                        foreach ($edo as $row):
+                                    ?>
+                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['estado']; ?></option>
+                                        <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('tiene_hijos'); ?></label>
 
-							<div class="controls">
-								<select name="edo_civil" class="uniform" style="width:100%;">
-									 <option value="">-- Seleccione--</option>
-									<?php  
-										$edo = $this->db->get('hs_edo_civil')->result_array();
-										foreach ($edo as $row):
-									?>
-										<option value="<?php echo $row['id']; ?>"><?php echo $row['estado']; ?></option>
-									 	<?php endforeach; ?>
-								</select>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('tiene_hijos'); ?></label>
+                            <div class="controls">
+                                <select name="hijos" class="uniform" style="width:100%;" onchange="mostrarTieneHijos(this.value);">
+                                    <option value="0">-- Seleccione Uno --</option>
+                                    <option value="si"><?php echo get_phrase('si'); ?></option>
+                                    <option value="no"><?php echo get_phrase('no'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" id="divTienehijos" style="display: none;">
+                            <label class="control-label"><?php echo get_phrase('numero_de_hijos'); ?></label>
 
-							<div class="controls">
-								<select name="hijos" class="uniform" style="width:100%;" onchange="mostrarTieneHijos(this.value);">
-									<option value="0">-- Seleccione Uno --</option>
-									<option value="si"><?php echo get_phrase('si'); ?></option>
-									<option value="no"><?php echo get_phrase('no'); ?></option>
-								</select>
-							</div>
-						</div>
-						<div class="control-group" id="divTienehijos" style="display: none;">
-							<label class="control-label"><?php echo get_phrase('numero_de_hijos'); ?></label>
-
-							<div class="controls">
-								<select name="num_hijos" class="uniform" style="width:100%;">
-									<option value="0">-- Seleccione Uno --</option>
-									<option value="1"><?php echo get_phrase('1'); ?></option>
-									<option value="2"><?php echo get_phrase('2'); ?></option>
-									<option value="3"><?php echo get_phrase('3'); ?></option>
-									<option value="4"><?php echo get_phrase('4'); ?></option>
-									<option value="5"><?php echo get_phrase('5'); ?></option>
-									<option value="6"><?php echo get_phrase('6'); ?></option>
-								</select>
-							</div>
-						</div>
+                            <div class="controls">
+                                <select name="num_hijos" class="uniform" style="width:100%;">
+                                    <option value="0">-- Seleccione Uno --</option>
+                                    <option value="1"><?php echo get_phrase('1'); ?></option>
+                                    <option value="2"><?php echo get_phrase('2'); ?></option>
+                                    <option value="3"><?php echo get_phrase('3'); ?></option>
+                                    <option value="4"><?php echo get_phrase('4'); ?></option>
+                                    <option value="5"><?php echo get_phrase('5'); ?></option>
+                                    <option value="6"><?php echo get_phrase('6'); ?></option>
+                                </select>
+                            </div>
+                        </div>
 
 
                         <div class="control-group">
@@ -270,17 +263,17 @@
 
                             <div class="controls">
                                 <select class="uniform" required name="departamento" id="departamento" onchange="ajaxDepartamento(this.value)">
-									
-									 <option value="">-- Seleccione--</option>
-									
-									<?php  
-										$departamentos = $this->db->get('departamento')->result_array();
-										foreach ($departamentos as $dep):
-									?>
-										
-										<option value="<?php echo $dep['id']; ?>"><?php echo $dep['nombre']; ?></option>
-									 
-									 <?php endforeach; ?>
+                                    
+                                     <option value="">-- Seleccione--</option>
+                                    
+                                    <?php  
+                                        $departamentos = $this->db->get('departamento')->result_array();
+                                        foreach ($departamentos as $dep):
+                                    ?>
+                                        
+                                        <option value="<?php echo $dep['id']; ?>"><?php echo $dep['nombre']; ?></option>
+                                     
+                                     <?php endforeach; ?>
                                 
                                 </select>
                                
@@ -290,9 +283,9 @@
                             <label class="control-label"><?php echo get_phrase('municipio'); ?></label>
 
                             <div class="controls">
-								<select class="uniform" required name="municipio" id="municipio" disabled title="Seleccione primero un departamento">
-									<option>Seleccione un Municipio</option>
-								</select>
+                                <select class="uniform" required name="municipio" id="municipio" disabled title="Seleccione primero un departamento">
+                                    <option>Seleccione un Municipio</option>
+                                </select>
                             </div>
                         </div>
                         <div class="control-group">
@@ -302,13 +295,13 @@
                                 <input type="text" class="uniform" required name="residencia"/>
                             </div>
                         </div>
-						<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('Barrio'); ?></label>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('Barrio'); ?></label>
 
-							<div class="controls">
-								<input type="text" class="" name="barrio"/>
-							</div>
-						</div>
+                            <div class="controls">
+                                <input type="text" class="" name="barrio"/>
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('telefono_residencia'); ?></label>
 
@@ -324,43 +317,97 @@
                             </div>
                         </div>
                         <div class="control-group">
-							<label class="control-label"><?php echo get_phrase('photo'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('photo'); ?></label>
 
-							<div class="controls" style="width:210px;">
-								<input type="file" class="" name="foto_estudiante" id="imgInp"/>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('talla_camisa'); ?></label>
+                            <div class="controls" style="width:210px;">
+                                <input type="file" class="" name="foto_estudiante" id="imgInp"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('talla_camisa'); ?></label>
 
-							<div class="controls">
-								<input type="text" name="camisa" value="">
-							</div>
-							
-						</div>
-						<div class="control-group">
-							<label class="control-label"><?php echo get_phrase('Documentacion'); ?></label>
+                            <div class="controls">
+                                <input type="text" name="camisa" value="">
+                            </div>
+                            
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('Documentacion'); ?></label>
 
-							<div class="controls">
-								<input type="checkbox" name="check_cedula"><?php echo get_phrase('Cedula'); ?>
-								</br>
-								<input type="checkbox" name="check_lib_militar"><?php echo get_phrase('Libreta_Militar'); ?>
-								</br>
-								<input type="checkbox" name="check_cert_est"><?php echo get_phrase('Certificado_de_Estudios'); ?>
-								</br>
-								<input type="checkbox" name="check_foto"><?php echo get_phrase('Foto'); ?>
-								</br>
-							</div>
-						</div>
-                    </div>
-                    <div class="form-actions">
+                            <div class="controls">
+                                <input type="checkbox" name="check_cedula"><?php echo get_phrase('Cedula'); ?>
+                                </br>
+                                <input type="checkbox" name="check_lib_militar"><?php echo get_phrase('Libreta_Militar'); ?>
+                                </br>
+                                <input type="checkbox" name="check_cert_est"><?php echo get_phrase('Certificado_de_Estudios'); ?>
+                                </br>
+                                <input type="checkbox" name="check_foto"><?php echo get_phrase('Foto'); ?>
+                                </br>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'Procedencia'?></label>
+                            <div class="controls">
+                                <select name="procedencia" class="uniform" style="width:100%;">
+                                    <option value="Llamada telefonica">Llamada telefonica</option>
+                                    <option value="Página web">Página web</option>
+                                    <option value="Redes Sociales">Redes Sociales</option>
+                                    <option value="E-Mail Directo">E-Mail Directo</option>
+                                    <option value="Punto de Venta">Punto de Venta</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'Curso'?></label>
+                            <div class="controls">
+                                <select name="curso" class="uniform" style="width:100%;">
+                                    <?php
+                                    $elements = $this->db->get('class_name')->result_array();
+                                    foreach ($elements as $element){
+                                        echo '<option value="'.$element['id'].'">'.$element['nombre'].'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 1'?></label>
+                            <div class="controls">
+                               <textarea name="observacion_1"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 2'?></label>
+                            <div class="controls">
+                               <textarea name="observacion_2"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 3'?></label>
+                            <div class="controls">
+                               <textarea name="observacion_3"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><?= 'observacion 4'?></label>
+                            <div class="controls">
+                               <textarea name="observacion_4"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
                         <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_student'); ?></button>
-                    </div>
+                        </div>
                         <?php echo form_close(); ?> </div>
+                    </div>
+
+
+
+
+
+
+                        
                 </div>
             </div>
-
-            <!--CREATION FORM ENDS-->
 
         </div>
     </div>
