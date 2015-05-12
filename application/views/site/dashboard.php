@@ -106,39 +106,131 @@
 </div>
 
 
-<div class="row-fluid">
-
-    <div class="span12">
-
-        <div class="box" >
-
-            <div class="box-header">
-
-                <div class="title">
-
-                    <i class="icon-calendar"></i>
-
-                    <?php echo get_phrase('calendar_schedule'); ?>
-
-                </div>
-
-            </div>
-
-            <div class="box-content" style="max-height: 500px; overflow-y: auto">
-
-                <div id="calendar2">
-
-                </div>
-
-            </div>
-
-        </div>
-
+<div class="box">
+    <div class="box-header">
+        <!--CONTROL TABS START-->
+        <ul class="nav nav-tabs nav-tabs-left">
+            <li class="active"><a href="#calendario" data-toggle="tab"><i class="icon-calendar"></i>Horario</a></li>
+            <li><a href="#materias" data-toggle="tab"><i class="icon-calendar"></i>Horario de Materias</a></li>
+        </ul>
+        <!--CONTROL TABS END-->
     </div>
 
+
+    <div class="box-content">
+        <div class="tab-content">
+            <!--TABLE LISTING STARTS-->
+            <div class="tab-pane  active" id="calendario">
+                <div class="box">
+                    <div class="box-content" style="max-height: 500px; overflow-y: auto">
+                        <div id="calendar2">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
     <!---CALENDAR ENDS-->
 
+        <div class="tab-pane box" id="materias">
+                <div class="box-content">
+                    <div class="accordion" id="accordion2">
+                    <?php
+                    $toggle = true;
+                    $classes = $this->db->get('hs_cursos')->result_array();
+                    foreach ($classes as $row):
+                        ?>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapse<?php echo $row['id']; ?>">
+                                    <i class="icon-rss icon-1x"></i> Curso: <?php echo $this->crud_model->get_class_name($row['curso']).' -- Seccion: '.$row['seccion']; ?>
+                                </a>
+                            </div>
+                            <div id="collapse<?php echo $row['id']; ?>"
+                                 class="accordion-body collapse <?php if ($toggle) {
+                                     echo 'in';
+                                     $toggle = false;
+                                 } ?>">
+                                <div class="accordion-inner">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="table table-normal">
+                                        <tbody>
+                                        <?php
+                                        for ($d = 0; $d < 7; $d++):
+
+                                            if ($d == 0) $day = 'Domingo';
+                                            else if ($d == 1) $day = 'Lunes';
+                                            else if ($d == 2) $day = 'Martes';
+                                            else if ($d == 3) $day = 'Miercoles';
+                                            else if ($d == 4) $day = 'Jueves';
+                                            else if ($d == 5) $day = 'Viernes';
+                                            else if ($d == 6) $day = 'Sabado';
+                                            ?>
+                                            <tr class="gradeA">
+                                                <td width="100"><?php echo strtoupper($day); ?></td>
+                                                <td>
+                                                    <?php
+                                                    $this->db->order_by("hora_inicio", "asc");
+                                                    $this->db->where('dia', $d);
+                                                    $this->db->where('curso', $row['id']);
+                                                    $routines = $this->db->get('hs_horarios_materias')->result_array();
+                                                    foreach ($routines as $row2):
+                                                        
+                                                        ?>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-gray btn-normal dropdown-toggle"
+                                                                    data-toggle="dropdown">
+                                                                <?php
+                                                                $materia = $this->db->get_where('hs_materias', array('id' => $row2['materia']))->result_array();    
+                                                                 echo $this->crud_model->get_nombre_materia_by_id($materia[0]['nombre']); ?>
+                                                                <?php echo '(' . $row2['hora_inicio'] . '-' . $row2['hora_fin'] . ')'; ?>
+                                                                <?php 
+                                                                    if($this->session->userdata('rol') == 1){
+                                                                ?>                                                                
+                                                                <span class="caret"></span>
+                                                                <?php } ?>
+                                                            </button>
+                                                            <?php 
+                                                                if($this->session->userdata('rol') == 1){
+                                                            ?>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a data-toggle="modal" href="#modal-form"
+                                                                       onclick="modal('Editar_Horario',<?php echo $row2['id']; ?>)"><i
+                                                                            class="icon-cog"></i> Editar</a></li>
+                                                                <li><a data-toggle="modal" href="#modal-delete"
+                                                                       onclick="modal_delete('<?php echo base_url(); ?>index.php?site/horarios_materias/delete/<?php echo $row2['id']; ?>')">
+                                                                        <i class="icon-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                            <?php } ?>
+                                                        </div>
+                                                    <?php endforeach; ?>
+
+                                                </td>
+                                            </tr>
+                                        <?php endfor; ?>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+            </div>
+            <!--TABLE LISTING ENDS-->
+        </div>
+    </div>
 </div>
+</div>
+
+
+
+
+
+
+
 <div class="row-fluid">
     <!---TO DO LIST STARTS-->
 
