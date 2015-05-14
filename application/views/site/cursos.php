@@ -205,26 +205,26 @@
             <div class="control-group">
             <label class="control-label"><?= 'Fecha de Inicio' ?></label>
                 <div class="controls">
-                <input type="text" class="datepicker fill-up" required name="fecha_ini"/>
+                <input type="text" class="datepicker fill-up" required name="fecha_ini">
                 </div>
             </div>
             <div class="control-group">
             <label class="control-label"><?= 'Fecha de Culminación' ?></label>
                 <div class="controls">
-                <input type="text" class="datepicker fill-up" required name="fecha_cul"/>
+                <input type="text" class="datepicker fill-up" required name="fecha_cul">
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label"><?= 'Cupo Disponible' ?></label>
                 <div class="controls">
-                    <input type="text" class="uniform" required name="cupo"/>
+                    <input type="text" class="uniform" required name="cupo">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"><?= 'Duración (horas)' ?></label>
                 <div class="controls">
-                    <input type="text" class="uniform" required name="duracion"/>
+                    <input type="text" class="uniform" required name="duracion">
                 </div>
             </div>
             <!--aqui no ha guardado nada -->
