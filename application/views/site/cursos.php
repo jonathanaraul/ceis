@@ -77,7 +77,11 @@
             <th>
                 <div>Duración</div>
             </th>
-
+			
+			<th>
+                <div>Matriculados</div>
+            </th>
+			
             <th>
                 <div>Cupo</div>
             </th>
@@ -113,6 +117,8 @@
 
                 <td><?= $row['duracion']; ?></td>                
 
+				<td><?= $this->crud_model->get_count_inscripcion($row['curso']); ?></td>
+				
                 <td><?= $row['cupo']; ?></td>
 
                 <td>
