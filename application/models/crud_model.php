@@ -191,8 +191,9 @@ class Crud_model extends CI_Model {
 
 	function get_count_inscripcion($curso_id)
 	{
-
-		$query	=	$this->db->get_where('hs_inscripcion' , array('curso' => $curso_id));
+		$this->db->like('curso', $curso_id);
+		
+		$this->db->from('hs_inscripcion');
 
 		$res	=	$this->db->count_all_results();
 		
