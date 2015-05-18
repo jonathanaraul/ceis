@@ -669,11 +669,13 @@ class Site extends CI_Controller
         if ($param1 == 'create') {
 
             $data['curso'] = $this->input->post('curso');
-            $data['seccion'] = $this->input->post('seccion');      
-            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
-            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
+            $data['seccion'] = $this->input->post('seccion');    
+            $data['fecha_ini']= date('y-m-d',strtotime(str_replace('/', '-', $this->input->post('fecha_ini'))));
+            $data['fecha_cul']=  date('y-m-d',strtotime(str_replace('/', '-', $this->input->post('fecha_cul'))));
             $data['cupo'] = $this->input->post('cupo');
             $data['duracion'] = $this->input->post('duracion');
+            
+			
 
             $this->db->insert('hs_cursos', $data);
 
@@ -685,8 +687,8 @@ class Site extends CI_Controller
 
 
             $data['seccion'] = $this->input->post('seccion');
-            $data['fecha_ini']= formatDate($this->input->post('fecha_ini'));
-            $data['fecha_cul']= formatDate($this->input->post('fecha_cul'));
+			$data['fecha_ini']= date('y-m-d',strtotime(str_replace('/', '-', $this->input->post('fecha_ini'))));
+            $data['fecha_cul']=  date('y-m-d',strtotime(str_replace('/', '-', $this->input->post('fecha_cul'))));
             $data['cupo'] = $this->input->post('cupo');
             $data['duracion'] = $this->input->post('duracion');
 
