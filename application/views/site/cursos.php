@@ -51,7 +51,7 @@
 
 <div class="tab-content">
 
-<!----TABLE LISTING STARTS--->
+<!----TABLE LISTING STARTS (LISTA DE CURSOS)--->
 
 <div class="tab-pane box <?php if (!isset($edit_data)) echo 'active'; ?>" id="list">
 
@@ -117,7 +117,7 @@
 
                 <td><?= $row['duracion']; ?></td>                
 
-				<td><?= $this->crud_model->get_count_inscripcion($row['curso']); ?></td>
+				<td><?= $this->crud_model->get_count_inscripcion($row['id']); ?></td>
 				
                 <td><?= $row['cupo']; ?></td>
 
@@ -140,7 +140,7 @@
                     <a data-toggle="modal" href="#modal-form"
                        onclick="modal('Editar_Curso',<?php echo $row['id']; ?>)" class="btn btn-gray btn-small">
 
-                        <i class="icon-wrench"></i> <?php echo get_phrase('edit'); ?>
+                        <i class="icon-wrench"></i> Editar
 
                     </a>
 
@@ -148,7 +148,7 @@
                        onclick="modal_delete('<?php echo base_url(); ?>index.php?site/cursos/delete/<?php echo $row['id']; ?>')"
                        class="btn btn-red btn-small">
 
-                        <i class="icon-trash"></i> <?php echo get_phrase('delete'); ?>
+                        <i class="icon-trash"></i> Borrar
 
                     </a>
 
@@ -167,7 +167,7 @@
 <!----TABLE LISTING ENDS--->
 
 
-<!----CREATION FORM STARTS---->
+<!----CREATION FORM STARTS (FORM para crear un curso)---->
 
 <div class="tab-pane box" id="add" style="padding: 5px">
 
@@ -178,7 +178,7 @@
         <div class="padded">
 
             <div class="control-group">
-                <label class="control-label"><?= 'Curso'?></label>
+                <label class="control-label"> Curso </label>
                 <div class="controls">
                     <select name="curso" class="uniform" style="width:100%;">
                         <?php
@@ -191,7 +191,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Sección</label>
+                <label class="control-label"> Sección </label>
                 <div class="controls">
                     <select name="seccion" class="uniform" style="width:100%;">
                         <option value="A"> A</option>
@@ -203,26 +203,26 @@
                 </div>
             </div>
             <div class="control-group">
-            <label class="control-label"><?= 'Fecha de Inicio' ?></label>
+            <label class="control-label"> Fecha de Inicio </label>
                 <div class="controls">
                 <input type="text" class="datepicker fill-up" required name="fecha_ini">
                 </div>
             </div>
             <div class="control-group">
-            <label class="control-label"><?= 'Fecha de Culminación' ?></label>
+            <label class="control-label"> Fecha de Culminación </label>
                 <div class="controls">
                 <input type="text" class="datepicker fill-up" required name="fecha_cul">
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label"><?= 'Cupo Disponible' ?></label>
+                <label class="control-label"> Cupo Disponible </label>
                 <div class="controls">
                     <input type="text" class="uniform" required name="cupo">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label"><?= 'Duración (horas)' ?></label>
+                <label class="control-label"> Duración (horas) </label>
                 <div class="controls">
                     <input type="text" class="uniform" required name="duracion">
                 </div>
@@ -230,29 +230,29 @@
             <!--aqui no ha guardado nada -->
         </div>
         <div class="form-actions">
-            <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_class'); ?></button>
+            <button type="submit" class="btn btn-gray">Agregar Cursos</button>
         </div>
         </form>
     </div>
 </div>
 
 
-            <!--TABLE LISTING STARTS materias-->
-            <div class="tab-pane box " id="list_materia">
+            <!--TABLE LISTING STARTS (lista de materias)-->
+            <div class="tab-pane box" id="list_materia">
             <?php if($this->session->userdata('rol')==1){ ?>
                 <center>
                         <br>
                         <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?site/materias/'+this.value">
-                            <option value="">Seleccione <?php echo get_phrase('Curso'); ?></option>
+                            <option value="">Seleccione Curso</option>
                             <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                            echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Seccion: '.$row['seccion'] . '</option>';
+                                            echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Sección: '.$row['seccion'] . '</option>';
                                     } 
                             ?>
                         </select>
-                        <br/>
-                        <br/>
+                        <br>
+                        <br>
                 </center>
             <?php } ?>
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
@@ -262,16 +262,16 @@
                             <div>#</div>
                         </th>
                         <th>
-                            <div><?php echo get_phrase('subject_name'); ?></div>
+                            <div>Nombre de Materias</div>
                         </th>
                         <th>
-                            <div><?php echo get_phrase('Profesor(a)'); ?></div>
+                            <div>Profesor(a)</div>
                         </th>                        
                         <?php 
                             if($this->session->userdata('rol') == 1){
                         ?>
                         <th>
-                            <div><?php echo get_phrase('options'); ?></div>
+                            <div>Opciones</div>
                         </th>
                         <?php } ?>
                     </tr>
@@ -313,33 +313,33 @@
 
 
             <!--CREATION FORM STARTS Materias-->
-<div class="tab-pane box" id="add_materia" style="padding: 5px">
+			<div class="tab-pane box" id="add_materia" style="padding: 5px">
                 <div class="box-content">
                     <?php echo form_open('site/materias/create', array('onsubmit' => 'return validateForm()','name' => 'crear_materias', 'class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('curso'); ?></label>
+                            <label class="control-label"> Curso </label>
 
                             <div class="controls">
                                 <select name="curso" class="uniform" style="width:100%;" onchange="ajaxMaterias(this.value);">
-                                    <option value="0"><?= 'Seleccionar Curso' ?></option>
+                                    <option value="0"> Seleccionar Curso </option>
                                     <?php
                                     $cursos = $this->db->get('hs_cursos')->result_array();
                                     foreach ($cursos as $row):
                                         ?>
                                         <option
-                                            value="<?php echo $row['id']; ?>"><?php echo $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion']; ?></option>
-                                    <?php
+                                            value="<?php echo $row['id']; ?>"><?php echo $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion'].' - Fecha Inicio: '.date_format(date_create($row['fecha_ini']), 'd/m/Y'); ?></option>
+                                    <?php                    
                                     endforeach;
                                     ?>
                                 </select>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?= 'Materia'?></label>
+                            <label class="control-label"> Materia </label>
                             <div class="controls">
                                 <select name="materias" id="materias_pestana" class="uniform">
-                                    <option value="0"><?= 'Seleccionar Materia' ?></option>
+								 <option value="0"> Seleccionar materia </option>
                                 </select>
                             </div>
                         </div>
@@ -374,15 +374,13 @@
 
  $(document).ready(function() { $("#materias").select2(); });
 
- function ajaxMaterias(valor) {
+	function ajaxMaterias(valor) {
         $('#materias_pestana').empty();
 
         $.post('<?php echo site_url()?>ajax/obtenCursosMaterias',
-            {'curso': valor },
-            function (data) {
-                $('#materias_pestaña').html(data);
-            });
-    }
+            {'curso': valor },function (data) { $('#materias_pestana').html(data);
+            });  	
+	}
 
     function validateForm() {
     var curso = document.forms["crear_materias"]["curso"].value;

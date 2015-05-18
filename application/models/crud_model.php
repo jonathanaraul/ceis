@@ -202,7 +202,6 @@ class Crud_model extends CI_Model {
 	}
 	
     function get_hs_cursos_nombre($class_id)
-
     {
 
         $query	=	$this->db->get_where('class_name' , array('id' => $class_id));
@@ -214,7 +213,7 @@ class Crud_model extends CI_Model {
             return $row['nombre'];
 
     }
-
+	
     function get_hs_cursos_seccion($class_id)
 
     {

@@ -5,10 +5,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div id="modal-tablesLabel" style="color:#fff; font-size:16px;">&nbsp; </div>
 	</div>
-    <div class="modal-body" id="modal-body">loading data..</div>
+    <div class="modal-body" id="modal-body">Cargando datos..</div>
     <div class="modal-footer">
-        <button  id="miboton"class="btn btn-gray" onclick="custom_print('frame1')">Print</button>
-        <button class="btn btn-default" data-dismiss="modal">Close</button>
+        <button  id="miboton"class="btn btn-gray" onclick="custom_print('frame1')">Imprimir</button>
+        <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
     </div>
 </div>
 <!-----------HIDDEN MODAL DELETE CONFIRMATION - COMMON IN ALL PAGES ------>
@@ -17,15 +17,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h6 id="modal-tablesLabel"> <i class="icon-info-sign"></i></h6>
 	</div>
-    <div class="modal-delete-body" id="modal-body-delete">Delete data ?</div>
+    <div class="modal-delete-body" id="modal-body-delete">Desea borrar el registro ?</div>
     <div class="modal-footer">
-    	<a href="" id="delete_link" class="btn btn-red" >Confirm</a>
-        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+    	<a href="" id="delete_link" class="btn btn-red" >Confirmar</a>
+        <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
     </div>
 </div>
 
 <script>
-function modal(param1 ,param2 ,param3,param4,param5)
+function modal(param1, param2, param3, param4, param5)
 {
 	document.getElementById('modal-body').innerHTML = 
 		'<iframe id="frame1" src="<?php echo base_url();?>index.php?modal/popup/'+param1+'/'+param2+'/'+param3+'/'+param4+'/'+param5+'" width="100%" height="400" frameborder="0"></iframe>';

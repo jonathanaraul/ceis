@@ -374,7 +374,6 @@ class Site extends CI_Controller
     /****GESTIONAR MATERIAS*****/
 
     function materias($param1 = '', $param2 = '')
-
     {
 
         if ($this->session->userdata('rol') == false)
@@ -382,16 +381,18 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'create') {
+			
+			$curso            = $this->input->post('curso');
+			
+            $data['nombre']   = $this->input->post('materias');
 
-            $data['nombre'] = $this->input->post('materias');
-
-            $data['curso'] = $this->input->post('curso');
+            $data['curso']    = $curso;
 
             $data['profesor'] = $this->input->post('profesor');
 
             $this->db->insert('hs_materias', $data);
 
-            redirect(base_url() . 'index.php?site/materias/0', 'refresh');
+            redirect(base_url() . 'index.php?site/materias/'.$curso, 'refresh');
 
         }
 
@@ -441,7 +442,8 @@ class Site extends CI_Controller
                 $page_data['materias'] = $this->db->get('hs_materias')->result_array();
             }
         }
-
+			$page_data['curso'] = $param1;
+			 
             $page_data['page_name'] = 'materias';
 
             $page_data['page_title'] = get_phrase('gestionar_materias');

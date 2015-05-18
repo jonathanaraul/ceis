@@ -29,18 +29,28 @@
                 <center>
                         <br>
                         <select name="rol" onchange="window.location='<?php echo base_url(); ?>index.php?site/materias/'+this.value">
-                            <option value="">Seleccione <?php echo get_phrase('Curso'); ?></option>
+                            <option value=""> Seleccione Curso </option>
                             <?php
                                     $classes = $this->db->get('hs_cursos')->result_array();
                                     foreach ($classes as $row) {
-                                            echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Seccion: '.$row['seccion'] . '</option>';
+                                            echo '<option value="' . $row['id'] . '">' . $this->crud_model->get_class_name($row['curso']).' Sección: '.$row['seccion'] .' - Fecha Inicio: '.date_format(date_create($row['fecha_ini']), 'd/m/Y'). '</option>';
                                     } 
                             ?>
-                        </select>
-                        <br/>
-                        <br/>
-                </center>
+                        </select>											
+                        <br>
+						<br> 
+				</center>
             <?php } ?>
+			
+					<?php 
+					$curso_materia = $this->db->get_where('hs_cursos', array('id'=> $curso))->result_array();
+					foreach ($curso_materia as $row) {	 
+					echo 'CURSO: ' . $this->crud_model->get_class_name($row['curso']).' Sección: '.$row['seccion'] .' - Fecha Inicio: '.date_format(date_create($row['fecha_ini']), 'd/m/Y');
+                    } 	 
+					?>
+					
+				<br>
+				
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                     <thead>
                     <tr>
@@ -114,7 +124,7 @@
                                     foreach ($cursos as $row):
                                         ?>
                                         <option
-                                            value="<?php echo $row['id']; ?>"><?php echo $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion']; ?></option>
+                                            value="<?php echo $row['id']; ?>"><?php echo $this->crud_model->get_class_name($row['curso']).' - Sección '. $row['seccion'] .'- Fecha Inicio: '.date_format(date_create($row['fecha_ini']), 'd/m/Y'); ?></option>
                                     <?php
                                     endforeach;
                                     ?>
@@ -145,7 +155,7 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-gray"><?php echo get_phrase('agregar_materia'); ?></button>
+                        <button type="submit" class="btn btn-gray"> Agregar_materia </button>
                     </div>
                     </form>
                 </div>

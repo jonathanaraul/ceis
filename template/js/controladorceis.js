@@ -32696,23 +32696,23 @@ function (X, l, n) {
                     sSortDescending: ": activate to sort column descending"
                 },
                 oPaginate: {
-                    sFirst: "First",
-                    sLast: "Last",
-                    sNext: "Next",
-                    sPrevious: "Previous"
+                    sFirst: "Primero",
+                    sLast: "Último",
+                    sNext: "Siguiente",
+                    sPrevious: "Anterior"
                 },
-                sEmptyTable: "No data available in table",
-                sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
-                sInfoEmpty: "Showing 0 to 0 of 0 entries",
-                sInfoFiltered: "(filtered from _MAX_ total entries)",
+                sEmptyTable: "No hay registros",
+                sInfo: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                sInfoEmpty: "Mostrando 0 a 0 de 0 registros",
+                sInfoFiltered: "(Filtrado desde _MAX_ registros totales)",
                 sInfoPostFix: "",
                 sInfoThousands: ",",
-                sLengthMenu: "Show _MENU_ entries",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Search:",
+                sLengthMenu: "Mostrar _MENU_ registros",
+                sLoadingRecords: "Cargando...",
+                sProcessing: "Procesando...",
+                sSearch: "Buscar:",
                 sUrl: "",
-                sZeroRecords: "No matching records found"
+                sZeroRecords: "No hay registros que coinciden"
             },
             oSearch: h.extend({}, j.models.oSearch),
             sAjaxDataProp: "aaData",

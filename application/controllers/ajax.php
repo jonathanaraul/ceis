@@ -75,7 +75,6 @@ class ajax extends CI_Controller
     }
 
     function obtenCursosMaterias()
-
     {
         $curso = $this->input->post('curso');
 
@@ -83,7 +82,7 @@ class ajax extends CI_Controller
 
         $elements = $this->db->get_where('curso_materia', array('curso' => $cursos[0]['curso']))->result_array();
 
-        $cadena = '<option value="0">Seleccionar materia</option>';
+        $cadena = '<option value="0">Seleccionar Materia</option>';
 
         foreach ($elements as $element) {
             $existe= true;
