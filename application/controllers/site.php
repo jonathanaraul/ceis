@@ -1083,7 +1083,7 @@ class Site extends CI_Controller
         }
 
         if ($param1 == 'do_update1') {
-            
+
 
             if ( $this->input->post('numero_cheque') === false )
             {
@@ -1107,7 +1107,7 @@ class Site extends CI_Controller
                     'fecha_pago'         => formatDate( str_replace( "/", "-", $this->input->post('fecha_pago') ) )
                 ]; 
 
-            $this->db->where('id', $param2);
+            $this->db->where('id', $param2); 
 
             $this->db->update('hs_facturacion', $data);
 
