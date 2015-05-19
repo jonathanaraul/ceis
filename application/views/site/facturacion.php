@@ -1,8 +1,8 @@
 <div class="box">
-    <div class="box-header">
+    <div class="box-header"> 
 
-        <!------CONTROL TABS START------->
-        <ul class="nav nav-tabs nav-tabs-left">
+        <!------CONTROL TABS START----- -->
+        <ul class="nav nav-tabs nav-tabs-left" style="width:1000%;">
             <li class="active">
                 <a href="#list" data-toggle="tab"><i class="icon-align-justify"></i>
                     <?php echo get_phrase('lista_de_facturas'); ?>
@@ -16,15 +16,15 @@
                     <?php echo get_phrase('agregar_factura_empresas'); ?>
                 </a></li>
         </ul>
-        <!------CONTROL TABS END------->
+        <!------CONTROL TABS END----- -->
 
     </div>
     <div class="box-content padded">
         <div class="tab-content">
-            <!----TABLE LISTING STARTS--->
+            <!----TABLE LISTING STARTS- -->
             <div class="tab-pane box active" id="list">
                 <label class="control-label"><h3><?php echo get_phrase('listado_facturas_de_estudiantes'); ?></h3></label>
-                <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
+                <table cellpadding="0" cellspacing="0" border="0"  class="dTable responsive">
                     <thead>
                     <tr>
                         <th>
@@ -73,7 +73,7 @@
                                     class="label label-<?php if ($row['estado'] == '1') echo 'green'; else echo 'dark-red'; ?>"><?php if($row['estado']==1) echo 'Cancelado'; else echo 'No Cancelado' ?></span>
                             </td>
                             <td>
-                                <?php $f= date_create($row['fecha']);
+                                <?php $f= date_create($row['fecha_pago']);
                                       $date= date_format($f, 'd/m/Y');
                                       echo $date; 
                                 ?>
@@ -180,11 +180,12 @@
                 <div class="box-content">
                     <?= form_open('site/facturacion/create_estudiante', array('onsubmit' => 'return validateFormEstudiante()','name' => 'crear_factura','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
                     <div class="padded">
+
                         <div class="control-group">
                             <label class="control-label"><?= get_phrase('estudiante'); ?></label>
 
                             <div class="controls">
-                                <td>
+                                <td> 
                                     <select name="estudiante" id="estudiantes" class="uniform" onchange="ajaxEstudiantes(this.value);">
                                         <option value="0"><?= 'Seleccionar Estudiante' ?></option>
                                         <?php
@@ -197,30 +198,58 @@
                                 </td>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
                                 <td>
-                                    <select name="curso" id="cursos" class="uniform">
+                                    <select name="curso" id="cursos" class="uniform" onchange="ajaxCurso(this.value);">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
                                     </select>
                                 </td>
                             </div>
                         </div>
+
                         <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" readonly  required name="fecha_inicio_curso" id="fecha_inicio_curso" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_del_fin_del_curso'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" readonly required  name="fecha_fin_curso" id="fecha_fin_curso" />
+                            </div>
+                        </div>
+
+                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('description'); ?></label>
 
                             <div class="controls">
                                 <input type="text" class="uniform" required name="descripcion"/>
                             </div>
                         </div>
+                        
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('cantidad'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('número_de_factura'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" required name="cantidad"/>
+                                <input type="text" class="uniform" required name="numero_factura"/>
                             </div>
                         </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('número_de_recibo_de caja'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" required name="numero_recibo_caja"/>
+                            </div>
+                        </div>
+                        
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('monto'); ?></label>
 
@@ -228,35 +257,52 @@
                                 <input type="text" class="uniform" required name="monto" placeholder="Introduzca el monto de la factura"/>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('metodo_de_pago'); ?></label>
 
                             <div class="controls">
-                                <select name="metodo_pago" class="uniform" style="width:100%;">
-                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>
+                                <select name="metodo_pago" class="uniform" onchange="cheque(this.value);" style="width:100%;">
+                                    <option value=""><?php echo get_phrase('seleccionar_metodo_de_pago'); ?></option>
+                                    <option value="Cheque"><?php echo get_phrase('cheque'); ?></option>
                                     <option value="Deposito"><?php echo get_phrase('deposito'); ?></option>
+                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>                                    
                                     <option value="Transferencia"><?php echo get_phrase('transferencia'); ?></option>
+
                                 </select>
                             </div>
                         </div>
+
+                        <div class="control-group" id="div_num_cheque" style="display:none;">
+                            <label class="control-label"><?php echo get_phrase('número_de_cheque'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" disabled required name="numero_cheque" id="numero_cheque" />
+                            </div>
+                        </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('status'); ?></label>
 
                             <div class="controls">
                                 <select name="estado" class="uniform" style="width:100%;">
+                                    <option value=""><?php echo get_phrase('seleccionar_estado'); ?></option>
                                     <option value="1"><?php echo get_phrase('cancelado'); ?></option>
                                     <option value="0"><?php echo get_phrase('no_cancelado'); ?></option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('date'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('fecha_de_pago'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" required name="fecha"/>
+                                <input type="text" class="datepicker fill-up" required name="fecha_pago"/>
                             </div>
                         </div>
+
                     </div>
+
                     <div class="form-actions">
                         <button type="submit" class="btn btn-gray"><?php echo get_phrase('add_invoice'); ?></button>
                     </div>
@@ -264,6 +310,7 @@
                 </div>
             </div>
             <!----CREATION FORM ENDS--->
+
             <!----CREATION FORM STARTS---->
             <div class="tab-pane box" id="add_empresa" style="padding: 5px">
                 <div class="box-content">
@@ -352,7 +399,7 @@
                     </form>
                 </div>
             </div>
-            <!----CREATION FORM ENDS--->
+            <!----CREATION FORM ENDS- -->
 
         </div>
     </div>
@@ -362,13 +409,23 @@
 
     function ajaxEstudiantes(valor) {
 
-        $.post('<?php echo site_url()?>ajax/obtenCursosFacturaEstudiantes',
-            {'estudiante': valor },
-            function (data) {
-                $('#cursos').html(data);
-            });
+        if (valor > 0)
+         {
+            $.post('<?php echo site_url()?>ajax/obtenCursosFacturaEstudiantes',
+                {'estudiante': valor },
+                function (data) {
+                    $('#cursos').html(data);
+                });
+         }
+         else
+         {
+            $('#cursos').html(' <option value="0">Seleccionar Curso</option>');
+         }
+
+        
     }
 
+    
     function validateFormEstudiante() {
     var curso = document.forms["crear_factura"]["curso"].value;
     var estudiante = document.forms["crear_factura"]["estudiante"].value;
@@ -394,5 +451,43 @@
             return false;
         }
     }
+
+
+    function ajaxCurso(valor) {
+
+
+        if ( valor > 0 )
+            {
+
+                $.getJSON('<?php echo site_url()?>ajax/get_curso/' + valor,                                                             
+                    function(data) {                     
+                        $("#fecha_inicio_curso").val(data.fecha_ini);
+                        $("#fecha_fin_curso").val(data.fecha_cul);
+                     
+                });
+            }
+            else
+                {
+                    $("#fecha_inicio_curso").val('');
+                    $("#fecha_fin_curso").val('');
+                }
+    }
+
+    function cheque(valor) {
+    
+            if (valor === "Cheque") 
+                {
+                    $("#div_num_cheque").css( { 'display' : 'block' });
+                    $("#numero_cheque").removeAttr('disabled');
+                     $("#numero_cheque").focus();
+                }
+            else
+                {
+                    $("#div_num_cheque").css( { 'display' : 'none' });
+                    $("#numero_cheque").attr('disabled', 'disabled');
+                } 
+
+    }
+
 
 </script>

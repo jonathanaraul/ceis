@@ -102,7 +102,7 @@ $db['default']['hostname'] = 'localhost';
 
 $db['default']['username'] = 'root';
 
-$db['default']['password'] = '';
+$db['default']['password'] = '123';
 
 $db['default']['database'] = 'ceiscomc_ceisc';
 

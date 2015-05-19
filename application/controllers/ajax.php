@@ -75,6 +75,7 @@ class ajax extends CI_Controller
     }
 
     function obtenCursosMaterias()
+
     {
         $curso = $this->input->post('curso');
 
@@ -82,7 +83,7 @@ class ajax extends CI_Controller
 
         $elements = $this->db->get_where('curso_materia', array('curso' => $cursos[0]['curso']))->result_array();
 
-        $cadena = '<option value="0">Seleccionar Materia</option>';
+        $cadena = '<option value="0">Seleccionar materia</option>';
 
         foreach ($elements as $element) {
             $existe= true;
@@ -664,6 +665,26 @@ class ajax extends CI_Controller
                 }
             }
         }
+    }
+
+    function get_curso()
+    {
+        $idCurso = $this->uri->segment(3);
+        
+        $curso = $this->db->get_where('hs_cursos', array('id' => $idCurso) )->result_object();
+        if ($curso) {
+            
+            $fecha_ini= date_create($curso[0]->fecha_ini);
+            $fecha_ini = date_format($fecha_ini, 'd/m/Y');
+            $fecha_cul= date_create($curso[0]->fecha_cul);
+            $fecha_cul = date_format($fecha_cul, 'd/m/Y');
+            $data=[
+                'fecha_ini' => $fecha_ini,
+                'fecha_cul' => $fecha_cul
+                ];
+            echo  json_encode( $data );
+        }
+        
     }
 
 }

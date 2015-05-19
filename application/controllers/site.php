@@ -1021,26 +1021,41 @@ class Site extends CI_Controller
 
         if ($param1 == 'create_estudiante') {
 
-            $data['estudiante'] = $this->input->post('estudiante');
-
-            $data['curso'] = $this->input->post('curso');
-
-            $data['descripcion'] = $this->input->post('descripcion');
-
-            $data['cantidad'] = $this->input->post('cantidad');
-
-            $data['monto'] = $this->input->post('monto');
-
-            $data['metodo_pago'] = $this->input->post('metodo_pago');
-
-            $data['estado'] = $this->input->post('estado');
-
-            $data['fecha']= formatDate($this->input->post('fecha'));
+            if ( $this->input->post('numero_cheque') === false )
+            {
+                $numero_cheque = NULL;
+            }
+            else
+            {
+                $numero_cheque = $this->input->post('numero_cheque');
+            }
 
 
-            $this->db->insert('hs_facturacion', $data);
+            $factura = $this->db->get_where('hs_facturacion', array( 'numero_factura' => $this->input->post('numero_factura') ) );
+            
+            if ( $factura->num_rows() > 0) {
+                
+                $this->session->set_flashdata('flash_message', 'Ya existe una Factura con el número '. $this->input->post("numero_factura") );
+                redirect(base_url() . 'index.php?site/facturacion');
 
-            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+            } else {
+                    $data=[
+                            'numero_factura'     => $this->input->post('numero_factura'),
+                            'numero_recibo_caja' => $this->input->post('numero_recibo_caja'),
+                            'descripcion'        => $this->input->post('descripcion'),
+                            'numero_cheque'      => $numero_cheque,
+                            'estudiante'         => $this->input->post('estudiante'),
+                            'curso'              => $this->input->post('curso'),
+                            'monto'              => $this->input->post('monto'),
+                            'metodo_pago'        => $this->input->post('metodo_pago'),
+                            'estado'             => $this->input->post('estado'),
+                            'fecha_pago'         => formatDate( str_replace( "/", "-", $this->input->post('fecha_pago') ) )
+                    ];
+           
+                    $this->db->insert('hs_facturacion', $data);
+
+                    redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+            }
 
         }
 
@@ -1068,23 +1083,29 @@ class Site extends CI_Controller
         }
 
         if ($param1 == 'do_update1') {
+            
 
-            $data['estudiante'] = $this->input->post('estudiante');
+            if ( $this->input->post('numero_cheque') === false )
+            {
+                $numero_cheque = NULL;
+            }
+            else
+            {
+                $numero_cheque = $this->input->post('numero_cheque');
+            }
 
-            $data['curso'] = $this->input->post('curso');
-
-            $data['descripcion'] = $this->input->post('descripcion');
-
-            $data['cantidad'] = $this->input->post('cantidad');
-
-            $data['monto'] = $this->input->post('monto');
-
-            $data['metodo_pago'] = $this->input->post('metodo_pago');
-
-            $data['estado'] = $this->input->post('estado');
-
-            $data['fecha']= formatDate($this->input->post('fecha'));
-
+           $data=[
+                    'numero_factura'     => $this->input->post('numero_factura'),
+                    'numero_recibo_caja' => $this->input->post('numero_recibo_caja'),
+                    'descripcion'        => $this->input->post('descripcion'),
+                    'numero_cheque'      => $numero_cheque,
+                    'estudiante'         => $this->input->post('estudiante'),
+                    'curso'              => $this->input->post('curso'),
+                    'monto'              => $this->input->post('monto'),
+                    'metodo_pago'        => $this->input->post('metodo_pago'),
+                    'estado'             => $this->input->post('estado'),
+                    'fecha_pago'         => formatDate( str_replace( "/", "-", $this->input->post('fecha_pago') ) )
+                ]; 
 
             $this->db->where('id', $param2);
 
@@ -1192,7 +1213,7 @@ class Site extends CI_Controller
 
         $page_data['page_title'] = get_phrase('gestionar_facturas');
 
-        $this->db->order_by('fecha', 'desc');
+        $this->db->order_by('fecha_pago', 'desc');
 
         $page_data['facturacion'] = $this->db->get('hs_facturacion')->result_array();
 
