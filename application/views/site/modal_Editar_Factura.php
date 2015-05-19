@@ -202,6 +202,7 @@
                 } 
 
     }
+
     
 $('select[name=estado]').val('<?php echo $row['estado']; ?>');
 $('select[name=metodo_pago]').val('<?php echo $row['metodo_pago']; ?>');
