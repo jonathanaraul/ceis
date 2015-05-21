@@ -721,4 +721,11 @@ class ajax extends CI_Controller
 
     }
 
+    function obtenListaEstudiantes()
+    {
+        $idEmpresa = $this->input->post("id_empresa");
+        $idCurso = $this->input->post("id_curso");
+        
+    }
+
 }
