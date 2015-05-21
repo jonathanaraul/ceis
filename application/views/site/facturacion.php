@@ -175,7 +175,7 @@
             <!----TABLE LISTING ENDS--->
 
 
-            <!----CREATION FORM STARTS---->
+            <!----CREATION FORM STARTS STUDENT ---->
             <div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
                     <?= form_open('site/facturacion/create_estudiante', array('onsubmit' => 'return validateFormEstudiante()','name' => 'crear_factura','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
@@ -203,7 +203,7 @@
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
                                 <td>
-                                    <select name="curso" id="cursos" class="uniform" onchange="ajaxCurso(this.value);">
+                                    <select name="curso" id="cursos" class="uniform" onchange="ajaxCurso(this.value,this.id);">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
                                     </select>
                                 </td>
@@ -311,7 +311,7 @@
             </div>
             <!----CREATION FORM ENDS--->
 
-            <!----CREATION FORM STARTS---->
+            <!----CREATION FORM STARTS EMPRESA ---->
             <div class="tab-pane box" id="add_empresa" style="padding: 5px">
                 <div class="box-content">
                     <?= form_open('site/facturacion/create_empresa', array('onsubmit' => 'return validateFormEmpresa()','name' => 'crear_factura_empresa','class' => 'form-horizontal validatable', 'target' => '_top')); ?>
@@ -334,11 +334,12 @@
                                 </td>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
                                 <td>
-                                    <select name="curso" id="cursos" class="uniform">
+                                    <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
                                         <?php
                                             $curso2 = $this->db->get('hs_cursos')->result_array();
@@ -350,6 +351,25 @@
                                 </td>
                             </div>
                         </div>
+
+                        
+                         <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" readonly  required name="fecha_inicio_curso" id="fecha_inicio_cursoe" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('fecha_del_fin_del_curso'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" readonly required  name="fecha_fin_curso" id="fecha_fin_cursoe" />
+                            </div>
+                        </div>
+
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('description'); ?></label>
 
@@ -357,6 +377,24 @@
                                 <input type="text" class="uniform" name="descripcion"/>
                             </div>
                         </div>
+
+                        
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('número_de_factura'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" required name="numero_factura"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('número_de_recibo_de caja'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" required name="numero_recibo_caja"/>
+                            </div>
+                        </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('monto'); ?></label>
 
@@ -453,23 +491,44 @@
     }
 
 
-    function ajaxCurso(valor) {
+    function ajaxCurso(valor,id) {
 
 
         if ( valor > 0 )
             {
 
                 $.getJSON('<?php echo site_url()?>ajax/get_curso/' + valor,                                                             
-                    function(data) {                     
-                        $("#fecha_inicio_curso").val(data.fecha_ini);
-                        $("#fecha_fin_curso").val(data.fecha_cul);
+                    function(data) {    
+                        
+                        if (id =="cursos")
+                         {
+                            $("#fecha_inicio_curso").val(data.fecha_ini);
+                            $("#fecha_fin_curso").val(data.fecha_cul);
+                         } 
+
+                         if (id =="cursose")
+                         {
+                            $("#fecha_inicio_cursoe").val(data.fecha_ini);
+                            $("#fecha_fin_cursoe").val(data.fecha_cul);
+                         }                 
+                        
                      
                 });
             }
             else
                 {
-                    $("#fecha_inicio_curso").val('');
-                    $("#fecha_fin_curso").val('');
+                    
+                    if (id =="cursos")
+                         {
+                            $("#fecha_inicio_curso").val('');
+                            $("#fecha_fin_curso").val('');
+                         } 
+
+                         if (id =="cursose")
+                         {
+                            $("#fecha_inicio_cursoe").val('');
+                            $("#fecha_fin_cursoe").val('');
+                         } 
                 }
     }
 
