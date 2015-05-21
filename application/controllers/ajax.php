@@ -713,7 +713,7 @@ class ajax extends CI_Controller
                         $count++;
             }
 
-            if ($count <= 0) {
+            if ( $count <= 0) {
                 $cadena = '<option value="0" selected>La Empresa No Tiene Cursos Actualmente </option>';
             }
 
