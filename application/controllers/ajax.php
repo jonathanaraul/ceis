@@ -687,4 +687,38 @@ class ajax extends CI_Controller
         
     }
 
+    function obtenCursosFacturaEmpresas()
+    {
+            $id_empresa = $this->input->post('id_empresa');
+
+            $this->db->select('cl.nombre as nombre_curso, em.id , c.id as curso, c.seccion as seccion ');  
+            $this->db->from('hs_empresas as em');  
+
+            $this->db->join('hs_estudiantes as es',  'em.id = es.empresa', 'INNER');
+
+            $this->db->join('hs_inscripcion as i', 'i.estudiante = es.id', 'INNER');  
+
+            $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
+
+            $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
+
+            $this->db->where('em.id',$id_empresa);
+
+            $result = $this->db->get();
+            $cadena = '<option value="0" selected> Seleccionar Curso</option>';
+            $count=0;
+            foreach ( $result->result_array() as  $value) {
+                                             
+                        $cadena .= '<option value="' . $value['curso'] . '">' . $value['nombre_curso'].' - Sección '.$value['seccion']. '</option>';
+                        $count++;
+            }
+
+            if ($count <= 0) {
+                $cadena = '<option value="0" selected>La Empresa No Tiene Cursos Actualmente </option>';
+            }
+
+             echo $cadena;
+
+    }
+
 }
