@@ -321,7 +321,7 @@
 
                             <div class="controls">
                                 <td>
-                                    <select name="empresa"  class="uniform">
+                                    <select name="empresa" id="empresa"  class="uniform" onchange="ajaxCursosEmpresas(this.value);">
                                         <option value="0"><?= 'Seleccionar Empresa' ?></option>
                                         <?php
                                         $this->db->not_like('nombre', 'Particular');
@@ -339,19 +339,34 @@
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
                                 <td>
-                                    <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);">
+                                    <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);ajaxDatosEstudianres();">
                                         <option value="0"><?= 'Seleccionar Curso' ?></option>
-                                        <?php
-                                            $curso2 = $this->db->get('hs_cursos')->result_array();
-                                            foreach ($curso2 as $curso2) {
-                                                echo '<option value="' . $curso2['id']. '">' .$this->crud_model->get_hs_cursos_nombre($curso2['curso']).' - Sección '.$this->crud_model->get_hs_cursos_seccion($curso2['id']). '</option>';
-                                            }
-                                        ?>
                                     </select>
                                 </td>
                             </div>
                         </div>
 
+                        <div class="control-group">
+                                <label class="control-label"><?php echo get_phrase('listado_de_estudiantes'); ?></label>
+                                <table cellpadding="0" cellspacing="0" border="0" style="width: 50%;" class="table" id="listEstudiante">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <div>#</div>
+                                        </th>
+                                        <th>
+                                            <div><?php echo get_phrase('student'); ?></div>
+                                        </th>
+                                        <th width="30%">
+                                            <div><?php echo get_phrase('cedula'); ?></div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                            
+                                    </tbody>
+                                </table>
+                         </div>
                         
                          <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
@@ -549,5 +564,46 @@
     }
 
 
+    function ajaxCursosEmpresas(valor) {
+
+        if (valor > 0)
+         {
+            $.post('<?php echo site_url()?>ajax/obtenCursosFacturaEmpresas',
+                {'id_empresa': valor },
+                function (data) {
+                    $('#cursose').html(data);
+                });
+         }
+         else
+         {
+            $('#cursose').html(' <option value="0">Seleccionar Curso</option>');
+         }
+
+        
+    }
+
+  
+  function ajaxDatosEstudianres() {
+
+        var id_empresa = $("#empresa").val();
+        var id_curso = $("#cursose").val();
+
+        
+         if (id_empresa > 0 && id_curso > 0)
+         { 
+
+             
+            $.post('<?php echo site_url()?>ajax/obtenListaEstudiantes',
+                {'id_empresa': id_empresa, 'id_curso' : id_curso },
+                function (data) {
+                    $('#listEstudiante').html(data);
+                });
+         }
+         else
+         {
+            $('#listEstudiante').html('');
+         }
+        
+    }
 
 </script>
