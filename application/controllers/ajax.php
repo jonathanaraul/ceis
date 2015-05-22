@@ -726,6 +726,30 @@ class ajax extends CI_Controller
         $idEmpresa = $this->input->post("id_empresa");
         $idCurso = $this->input->post("id_curso");
         
+        $this->db->select('es.nombre,es.cedula');  
+        $this->db->from('hs_inscripcion as i');  
+
+        $this->db->join('hs_estudiantes as es',  'es.id = i.estudiante', 'INNER');
+
+        $this->db->join('hs_empresas as em', 'i.empresa = em.id', 'INNER');  
+
+        $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
+
+        $this->db->where('es.empresa',$idEmpresa);
+        $this->db->where('i.curso',$idCurso);
+
+        $result = $this->db->get();
+
+            
+        $cadena="";
+        $i=1;
+        foreach ($result->result_array() as $value){ 
+            
+                    
+                $cadena.="<tr><td>".$i++."</td><td>".$value["nombre"]."</td><td>".$value["cedula"]."</td></tr>";
+        }
+
+        echo $cadena;
     }
 
 }
