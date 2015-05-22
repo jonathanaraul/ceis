@@ -320,7 +320,7 @@
                             <label class="control-label"><?= get_phrase('empresa'); ?></label>
 
                             <div class="controls">
-                                <td>
+                                
                                     <select name="empresa" id="empresa"  class="uniform" onchange="ajaxCursosEmpresas(this.value);">
                                         <option value="0"><?= 'Seleccionar Empresa' ?></option>
                                         <?php
@@ -331,20 +331,20 @@
                                         }
                                         ?>
                                     </select>
-                                </td>
+                               
                             </div>
                         </div>
 
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
-                                <td>
-                                    <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);ajaxDatosEstudianres();">
-                                        <option value="0"><?= 'Seleccionar Curso' ?></option>
+                                   <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);ajaxDatosEstudianres();">
+
+                                           <option value="0"><?= 'Seleccionar Curso' ?></option>
                                     </select>
-                                </td>
                             </div>
                         </div>
+
 
                         <div class="control-group">
                                 <label class="control-label"><?php echo get_phrase('listado_de_estudiantes'); ?></label>
@@ -367,6 +367,8 @@
                                     </tbody>
                                 </table>
                          </div>
+
+
                         
                          <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
@@ -612,3 +614,24 @@
     }
 
 </script>
+
+<?php
+            $this->db->select('cl.nombre as nombre_curso, em.id ');  
+            $this->db->from('hs_empresas as em');  
+
+            $this->db->join('hs_estudiantes as es',  'em.id = es.empresa', 'INNER');
+
+            $this->db->join('hs_inscripcion as i', 'i.estudiante = es.id', 'INNER');  
+
+            $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
+
+            $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
+
+            $this->db->where('em.id','3');
+
+            $result = $this->db->get();
+
+            var_dump($result->result_array());
+
+
+?>
