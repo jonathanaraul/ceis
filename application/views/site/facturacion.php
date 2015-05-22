@@ -576,7 +576,12 @@
          }
          else
          {
+
             $('#cursose').html(' <option value="0">Seleccionar Curso</option>');
+            $('#listEstudiante tbody').html('');
+            $("#fecha_inicio_cursoe").val('');
+            $("#fecha_fin_cursoe").val('');
+            $("#cursose").focus();
          }
 
         
@@ -588,20 +593,20 @@
         var id_empresa = $("#empresa").val();
         var id_curso = $("#cursose").val();
 
-        
          if (id_empresa > 0 && id_curso > 0)
          { 
 
-             
+              $('#listEstudiante tbody').html('');
             $.post('<?php echo site_url()?>ajax/obtenListaEstudiantes',
                 {'id_empresa': id_empresa, 'id_curso' : id_curso },
                 function (data) {
-                    $('#listEstudiante').html(data);
+                    console.log(data);
+                    $('#listEstudiante tbody ').append(data);
                 });
          }
          else
          {
-            $('#listEstudiante').html('');
+            $('#listEstudiante tbody').html('');
          }
         
     }
