@@ -2,8 +2,7 @@
 
 <div class="box-header">
 
-
-    <!------CONTROL TABS START------->
+    <!-- ----CONTROL TABS START----- -->
 
     <ul class="nav nav-tabs nav-tabs-left">
 
@@ -25,24 +24,32 @@
             </a>
         </li>
 
-        <li class=>
+        <li>
                 <a href="#list_materia" data-toggle="tab"><i class="icon-plus"></i>
                     <?php echo get_phrase('subject_list'); ?>
                 </a>
-            </li>
+        </li>
+            
             <?php 
                 if($this->session->userdata('rol') == 1){
             ?>
-            <li>
-                <a href="#add_materia" data-toggle="tab"><i class="icon-plus"></i>
-                    <?php echo get_phrase('add_subject'); ?>
-                </a>
-            </li><?php } ?>
+                    <li>
+                            <a href="#add_materia" data-toggle="tab"><i class="icon-plus"></i>
+                                <?php echo get_phrase('add_subject'); ?>
+                            </a>
+                    </li>
+           <?php } ?>
+
+        <li>
+            <a href="<?php echo site_url()?>site/horarios_materias" ><i class="icon-plus" ></i>
+                <?php echo get_phrase('agregar_horario_de_materia'); ?>
+            </a>
+        </li>
 
 
     </ul>
 
-    <!------CONTROL TABS END------->
+    <!------CONTROL TABS END----- -->
 
 
 </div>
@@ -51,7 +58,7 @@
 
 <div class="tab-content">
 
-<!----TABLE LISTING STARTS (LISTA DE CURSOS)--->
+<!----TABLE LISTING STARTS (LISTA DE CURSOS)- -->
 
 <div class="tab-pane box <?php if (!isset($edit_data)) echo 'active'; ?>" id="list">
 
@@ -164,10 +171,10 @@
 
 </div>
 
-<!----TABLE LISTING ENDS--->
+<!-- --TABLE LISTING ENDS- -->
 
 
-<!----CREATION FORM STARTS (FORM para crear un curso)---->
+<!-- --CREATION FORM STARTS (FORM para crear un curso)-- -->
 
 <div class="tab-pane box" id="add" style="padding: 5px">
 
