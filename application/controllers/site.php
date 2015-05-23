@@ -945,14 +945,20 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
+
+
             $data['curso'] = $this->input->post('cursos');
 
             $data['materia'] = $this->input->post('materias');
 
             $data['hora_inicio'] = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
 
+            $data['minutos_hora_inicio'] = $this->input->post('minutos_hora_inicio');
+
             $data['hora_fin'] = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
 
+            $data['minutos_hora_fin'] = $this->input->post('minutos_hora_fin');
+                       
             $data['dia'] = $this->input->post('dia');
 
             $this->db->insert('hs_horarios_materias', $data);
