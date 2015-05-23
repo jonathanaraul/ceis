@@ -76,7 +76,7 @@
                                                                 <?php
                                                                 $materia = $this->db->get_where('hs_materias', array('id' => $row2['materia']))->result_array();    
                                                                  echo $this->crud_model->get_nombre_materia_by_id($materia[0]['nombre']); ?>
-                                                                <?php echo '(' . $row2['hora_inicio'] . '-' . $row2['hora_fin'] . ')'; ?>
+                                                                <?php echo '(' . $row2['hora_inicio'].':' .$row2['minutos_hora_inicio']. '-' . $row2['hora_fin'] .':' .$row2['minutos_hora_fin']. ')'; ?>
                                                                 <?php 
                                                                     if($this->session->userdata('rol') == 1){
                                                                 ?>                                                                
@@ -166,10 +166,20 @@
                             <label class="control-label"><?php echo get_phrase('starting_time'); ?></label>
 
                             <div class="controls">
-                                <select name="time_start" class="uniform" style="width:100%;">
+                                Hora: <select name="time_start" class="uniform" style="width:100%;">
                                     <?php for ($i = 0; $i <= 12; $i++): ?>
                                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                     <?php endfor; ?>
+                                </select>
+                                Minutos: <select name="minutos_hora_inicio" class="uniform" style="width:100%;">
+                                     <?php for($i=0;$i<=5;$i++)
+                                                {
+                                                     for($ii=0;$ii<=9;$ii++)
+                                                            {
+                                                                  echo "<option value='".$i,$ii."'>".$i,$ii."</option>";
+                                                             }
+                                                }
+                                    ?>
                                 </select>
                                 <select name="starting_ampm" class="uniform" style="width:100%">
                                     <option value="1">am</option>
@@ -181,10 +191,20 @@
                             <label class="control-label"><?php echo get_phrase('ending_time'); ?></label>
 
                             <div class="controls">
-                                <select name="time_end" class="uniform" style="width:100%;">
+                                Hora: <select name="time_end" class="uniform" style="width:100%;">
                                     <?php for ($i = 0; $i <= 12; $i++): ?>
                                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                     <?php endfor; ?>
+                                </select>
+                                Minutos: <select name="minutos_hora_fin" class="uniform" style="width:100%;">
+                                    <?php for($i=0;$i<=5;$i++)
+                                                {
+                                                     for($ii=0;$ii<=9;$ii++)
+                                                            {
+                                                                  echo "<option value='".$i,$ii."'>".$i,$ii."</option>";
+                                                             }
+                                                }
+                                    ?>
                                 </select>
                                 <select name="ending_ampm" class="uniform" style="width:100%">
                                     <option value="1">am</option>
@@ -228,3 +248,5 @@
     }
 
 </script>
+
+
