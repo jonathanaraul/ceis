@@ -213,6 +213,14 @@ class ajax extends CI_Controller
 
                 if($documento == 1){
 
+                    $verificarFactura=$this->db->get_where('hs_facturacion', [ 'estudiante' => $inscrito['estudiante'], 'curso' => $curso ])->num_rows();
+
+
+                    if( $verificarFactura  == 0)
+                    {
+                      continue;
+                    }
+
                     $dato['media']= $media;
                     $this->load->view('site/visualizar_diploma', $dato);
 
