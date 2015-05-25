@@ -50,7 +50,7 @@ class ajax extends CI_Controller
 
     {
         $curso = $this->input->post('curso');
-        
+
         $this->db->select('*');
         $this->db->where('curso' , $curso);
         $this->db->order_by('nombre', 'asc');
@@ -66,7 +66,7 @@ class ajax extends CI_Controller
                 $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']).' --- Profesor(a): '.$this->crud_model->get_teacher_name($element['profesor']) . '</option>';
             }else{
                 if($this->session->userdata('rol') == 2 && $this->session->userdata('user_id') == $element['profesor']){
-                    $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';      
+                    $cadena .= '<option value="' . $element['id'] . '">' . $this->crud_model->get_nombre_materia_by_id($element['nombre']) . '</option>';
                 }
             }
         }
@@ -120,7 +120,7 @@ class ajax extends CI_Controller
 
     }
 
-    
+
     function obtenCursosFacturaEstudiantes()
 
     {
@@ -210,7 +210,7 @@ class ajax extends CI_Controller
                 $nro_materias= $this->db->count_all_results();
                 $media= $suma/$nro_materias;
                 $dato['elements']= $query;
-                
+
                 if($documento == 1){
 
                     $dato['media']= $media;
@@ -231,16 +231,17 @@ class ajax extends CI_Controller
                         $this->load->view('site/visualizar_acta', $dato);
                     }
                 }
-                
+
 
             endforeach;
- 
+
 
         }else{
 
+
             foreach($inscritos as $inscrito):
 
-                $dato['documento_nombre']= $estudiante;                
+                $dato['documento_nombre']= $estudiante;
                 $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
                 $suma= 0;
                 foreach($query as $sum):
@@ -255,17 +256,26 @@ class ajax extends CI_Controller
 
                 if($documento == 1){
 
+                    $verificarFactura=$this->db->get_where('hs_facturacion', [ 'estudiante' => $estudiante, 'curso' => $curso ])->num_rows();
+
+
+                    if( $verificarFactura  == 0)
+                    {
+                      echo "<h3> El Estudiante no Tiene Factura de este curso!. </h3>";
+                      exit();
+                    }
+
                     if($inscrito['estudiante'] == $estudiante){
 
                         $dato['media']= $media;
-                        $this->load->view('site/visualizar_diploma', $dato); 
+                        $this->load->view('site/visualizar_diploma', $dato);
                     }
                 }else{
 
                     if($documento == 2 && $inscrito['estudiante'] == $estudiante){
 
                         if($media >=7){
-                            
+
 
                             $dato['media']= $media;
                             $this->load->view('site/visualizar_certificado', $dato);
@@ -276,14 +286,14 @@ class ajax extends CI_Controller
                         if($documento == 3 && $inscrito['estudiante'] == $estudiante){
 
                             $this->load->view('site/visualizar_acta', $dato);
-                            
+
                         }
                     }
 
                 }
 
             endforeach;
-            
+
         }
     }
 
@@ -292,17 +302,17 @@ class ajax extends CI_Controller
     {
         $cedula = $this->input->post('cedula');
 
-        
+
         $this->db->where('cedula',$cedula);
         $this->db->where('no_egresado', 0);
         $this->db->where('activo', 0);
-        $this->db->from('hs_estudiantes'); 
+        $this->db->from('hs_estudiantes');
         $egre= $this->db->count_all_results();
 
         $this->db->where('cedula',$cedula);
         $this->db->where('no_egresado', 1);
         $this->db->where('activo', 0);
-        $this->db->from('hs_estudiantes'); 
+        $this->db->from('hs_estudiantes');
         $noegre= $this->db->count_all_results();
 
 
@@ -318,7 +328,7 @@ class ajax extends CI_Controller
         }
 
         if($egre == 0 && $noegre == 0){
-          $this->load->view('site/busqueda_vacia');  
+          $this->load->view('site/busqueda_vacia');
         }
 
     }
@@ -328,10 +338,10 @@ class ajax extends CI_Controller
     {
         $cedula = $this->input->post('cedula');
 
-        
+
         $this->db->where('cedula',$cedula);
         $this->db->where('activo', 1);
-        $this->db->from('hs_estudiantes'); 
+        $this->db->from('hs_estudiantes');
         $stud= $this->db->count_all_results();
 
         if($stud >= 1){
@@ -341,7 +351,7 @@ class ajax extends CI_Controller
         }
 
         if($stud == 0){
-          $this->load->view('site/busqueda_vacia');  
+          $this->load->view('site/busqueda_vacia');
         }
 
     }
@@ -351,9 +361,9 @@ class ajax extends CI_Controller
     {
         $nro = $this->input->post('nro');
 
-        
+
         $this->db->where('nro',$nro);
-        $this->db->from('hs_estudiantes'); 
+        $this->db->from('hs_estudiantes');
         $studiante= $this->db->count_all_results();
 
         if($studiante >= 1){
@@ -363,7 +373,7 @@ class ajax extends CI_Controller
         }
 
         if($studiante == 0){
-          $this->load->view('site/busqueda_vacia');  
+          $this->load->view('site/busqueda_vacia');
         }
 
     }
@@ -376,7 +386,7 @@ class ajax extends CI_Controller
         $data['est_insc_emp'] = $this->input->post('alum_insc_empresa');
         $data['est_insc_curso'] = $this->input->post('alum_por_curso');
 
-        $this->load->view('site/mostrarReporte', $data);  
+        $this->load->view('site/mostrarReporte', $data);
 
     }
 
@@ -390,7 +400,7 @@ class ajax extends CI_Controller
         $cadena = '<option value="0">Seleccione un Estudiante</option>';
 
         foreach ($elements as $element) {
-            
+
             $cadena .= '<option value="' . $element['estudiante'] . '">' . $this->crud_model->get_hs_student_nombre_by_id($element['estudiante']) .' '. $this->crud_model->get_hs_student_apellido_by_id($element['estudiante']) .'</option>';
 
         }
@@ -423,7 +433,7 @@ class ajax extends CI_Controller
         $media= $suma/$nro_materias;
 
         $dato['media']= $media;
-        $this->load->view('site/procesar_egresado', $dato); 
+        $this->load->view('site/procesar_egresado', $dato);
     }
 
 
@@ -453,7 +463,7 @@ class ajax extends CI_Controller
 
         $dato['estudiantes'] = $this->db->get_where('hs_estudiantes', array('activo'=> 1))->result_array();
 
-        $this->load->view('site/inscribir_indiv', $dato);            
+        $this->load->view('site/inscribir_indiv', $dato);
 
         }else{
 
@@ -670,10 +680,10 @@ class ajax extends CI_Controller
     function get_curso()
     {
         $idCurso = $this->uri->segment(3);
-        
+
         $curso = $this->db->get_where('hs_cursos', array('id' => $idCurso) )->result_object();
         if ($curso) {
-            
+
             $fecha_ini= date_create($curso[0]->fecha_ini);
             $fecha_ini = date_format($fecha_ini, 'd/m/Y');
             $fecha_cul= date_create($curso[0]->fecha_cul);
@@ -684,19 +694,19 @@ class ajax extends CI_Controller
                 ];
             echo  json_encode( $data );
         }
-        
+
     }
 
     function obtenCursosFacturaEmpresas()
     {
             $id_empresa = $this->input->post('id_empresa');
 
-            $this->db->select('cl.nombre as nombre_curso, em.id , c.id as curso, c.seccion as seccion ');  
-            $this->db->from('hs_empresas as em');  
+            $this->db->select('cl.nombre as nombre_curso, em.id , c.id as curso, c.seccion as seccion ');
+            $this->db->from('hs_empresas as em');
 
             $this->db->join('hs_estudiantes as es',  'em.id = es.empresa', 'INNER');
 
-            $this->db->join('hs_inscripcion as i', 'i.estudiante = es.id', 'INNER');  
+            $this->db->join('hs_inscripcion as i', 'i.estudiante = es.id', 'INNER');
 
             $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
 
@@ -708,7 +718,7 @@ class ajax extends CI_Controller
             $cadena = '<option value="0" selected> Seleccionar Curso</option>';
             $count=0;
             foreach ( $result->result_array() as  $value) {
-                                             
+
                         $cadena .= '<option value="' . $value['curso'] . '">' . $value['nombre_curso'].' - Sección '.$value['seccion']. '</option>';
                         $count++;
             }
@@ -725,13 +735,13 @@ class ajax extends CI_Controller
     {
         $idEmpresa = $this->input->post("id_empresa");
         $idCurso = $this->input->post("id_curso");
-        
-        $this->db->select('es.nombre,es.cedula');  
-        $this->db->from('hs_inscripcion as i');  
+
+        $this->db->select('es.nombre,es.cedula');
+        $this->db->from('hs_inscripcion as i');
 
         $this->db->join('hs_estudiantes as es',  'es.id = i.estudiante', 'INNER');
 
-        $this->db->join('hs_empresas as em', 'i.empresa = em.id', 'INNER');  
+        $this->db->join('hs_empresas as em', 'i.empresa = em.id', 'INNER');
 
         $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
 
@@ -740,12 +750,12 @@ class ajax extends CI_Controller
 
         $result = $this->db->get();
 
-            
+
         $cadena="";
         $i=1;
-        foreach ($result->result_array() as $value){ 
-            
-                    
+        foreach ($result->result_array() as $value){
+
+
                 $cadena.="<tr><td>".$i++."</td><td>".$value["nombre"]."</td><td>".$value["cedula"]."</td></tr>";
         }
 
