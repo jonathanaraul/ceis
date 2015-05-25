@@ -31,45 +31,45 @@
 
 	#curso {
 		font-size		:17px;
-		margin-top		:123px; 
-		font-weight		:bold; 
-		text-align		:center; 
+		margin-top		:123px;
+		font-weight		:bold;
+		text-align		:center;
 		color			:#000000;
 	}
 
 	#duracion {
-		font-size		:17px; 
-		margin-top		:8px; 
-		margin-left		:580px; 
-		font-weight		:bold; 
+		font-size		:17px;
+		margin-top		:8px;
+		margin-left		:580px;
+		font-weight		:bold;
 		color			:#000000;
 	}
 
 	#content {
-		width			:1056px; 
-		height			:50px; 
+		width			:1056px;
+		height			:50px;
 		margin-top		:20px;
 	}
 
 	.same {
-		font-size		:17px; 
-		display			: inline;  
-		margin-left		:160px; 
-		font-weight		:bold; 
+		font-size		:17px;
+		display			: inline;
+		margin-left		:160px;
+		font-weight		:bold;
 		color			:#000000;
 	}
 	#mes{
-		font-size		:17px; 
-		display			: inline; 
-		margin-left		:245px; 
-		font-weight		:bold; 
+		font-size		:17px;
+		display			: inline;
+		margin-left		:245px;
+		font-weight		:bold;
 		color			:#000000;
 	}
 	#año{
-		font-size		:17px; 
-		display			: inline; 
-		margin-left		:95px; 
-		font-weight		:bold; 
+		font-size		:17px;
+		display			: inline;
+		margin-left		:95px;
+		font-weight		:bold;
 		color			:#000000;
 	}
 
@@ -84,10 +84,10 @@
 
 			<div id="departamento">
 				<?= $this->crud_model->get_hs_student_departamento_by_id($documento_nombre)?>
-			</div>	
-			
+			</div>
+
 			<div id="curso">
-				<?php 
+				<?php
 					$cursos= $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
 					echo $this->crud_model->get_hs_cursos_nombre($cursos[0]['curso']);
 				?>
@@ -117,7 +117,7 @@
 							if ($mes=="9") $mes="Setiembre";
 							if ($mes=="10") $mes="Octubre";
 							if ($mes=="11") $mes="Noviembre";
-							if ($mes=="12") $mes="Diciembre"; 
+							if ($mes=="12") $mes="Diciembre";
 							echo $mes;
 					?>
 				</div>
