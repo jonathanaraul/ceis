@@ -22,7 +22,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <select name="documentos" id="documentos" >
+                                <select name="documentos" id="documentos" onchange="clear_dom();">
                                     <option value="0"><?= 'Seleccionar Documento' ?></option>
                                     <option value="1"><?= 'Diplomas' ?></option>
                                     <option value="2"><?= 'Certificado de Estudio' ?></option>
@@ -106,11 +106,25 @@
             });
     }
 
-function imprimirDocumento(div){
+    function imprimirDocumento(div){
     var div_id= "#"+div;
     $(div_id).print();
     return (false);
 
-}
+    }
+
+    function clear_dom()
+    {
+      $('#documento').empty();
+      $('#documento').css({
+        'background-color' :  '#eaebef',
+        'padding'          : '7px 11px',
+        'display'          : 'none',
+        'margin'           : 'auto',
+        'width'            : '1057px'
+      });
+    }
+
+
 
 </script>
