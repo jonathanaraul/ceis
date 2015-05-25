@@ -74,6 +74,7 @@
 	}
 
 </style>
+
 <div  id="print_area_<?= $documento_nombre; ?>" style="width: 1056px; height: 816px; background-image: url(template/images/Diploma.png);">
 	    	<div id="nombre">
 						<?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
