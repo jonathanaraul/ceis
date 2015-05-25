@@ -195,6 +195,7 @@ class ajax extends CI_Controller
 
         if($estudiante == 0){
 
+
             foreach($inscritos as $inscrito):
 
 
@@ -222,7 +223,7 @@ class ajax extends CI_Controller
                     }
 
                     $dato['media']= $media;
-                    $this->load->view('site/visualizar_diploma', $dato);
+                    $this->load->view('site/visualizar_diploma',$dato);
 
                 }else{
 
@@ -242,6 +243,7 @@ class ajax extends CI_Controller
 
 
             endforeach;
+            echo '<input type="button" class="btn btn-normal btn-gray" value="Imprimir Todos" onclick="print_all()"> <br><br><br>';
 
 
         }else{
