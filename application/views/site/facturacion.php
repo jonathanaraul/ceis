@@ -1,5 +1,5 @@
 <div class="box">
-    <div class="box-header"> 
+    <div class="box-header">
 
         <!------CONTROL TABS START----- -->
         <ul class="nav nav-tabs nav-tabs-left" style="width:1000%;">
@@ -58,7 +58,7 @@
                     </thead>
                     <tbody>
                     <?php $count = 1;
-                    foreach ($facturacion as $row): 
+                    foreach ($facturacion as $row):
                         $cursos= $this->db->get_where('hs_cursos', array('id' => $row['curso']))->result_array();
                     ?>
                         <tr>
@@ -75,7 +75,7 @@
                             <td>
                                 <?php $f= date_create($row['fecha_pago']);
                                       $date= date_format($f, 'd/m/Y');
-                                      echo $date; 
+                                      echo $date;
                                 ?>
                             </td>
                             <td align="center">
@@ -135,13 +135,13 @@
                     <tbody>
                     <?php $count = 1;
                     $empresas= $this->db->get('hs_facturacion_empresas')->result_array();
-                    foreach ($empresas as $empresa): 
+                    foreach ($empresas as $empresa):
                         $cursos_empresas= $this->db->get_where('hs_cursos', array('id' => $empresa['curso']))->result_array();
                     ?>
                         <tr>
                             <td><?= $count++; ?></td>
                             <td><?= $this->crud_model->get_empresas_name($empresa['empresa']); ?></td>
-                            <td><?= $this->crud_model->get_empresas_nit($empresa['empresa']); ?></td>                            
+                            <td><?= $this->crud_model->get_empresas_nit($empresa['empresa']); ?></td>
                             <td><?= $this->crud_model->get_hs_cursos_nombre($cursos_empresas[0]['curso']).' - Sección: '.$this->crud_model->get_hs_cursos_seccion($empresa['curso']); ?></td>
                             <td><?= $empresa['descripcion']; ?></td>
                             <td><?= $empresa['monto']; ?></td>
@@ -185,7 +185,7 @@
                             <label class="control-label"><?= get_phrase('estudiante'); ?></label>
 
                             <div class="controls">
-                                <td> 
+                                <td>
                                     <select name="estudiante" id="estudiantes" class="uniform" onchange="ajaxEstudiantes(this.value);">
                                         <option value="0"><?= 'Seleccionar Estudiante' ?></option>
                                         <?php
@@ -233,7 +233,7 @@
                                 <input type="text" class="uniform" required name="descripcion"/>
                             </div>
                         </div>
-                        
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('número_de_factura'); ?></label>
 
@@ -249,7 +249,7 @@
                                 <input type="text" class="uniform" required name="numero_recibo_caja"/>
                             </div>
                         </div>
-                        
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('monto'); ?></label>
 
@@ -266,7 +266,7 @@
                                     <option value=""><?php echo get_phrase('seleccionar_metodo_de_pago'); ?></option>
                                     <option value="Cheque"><?php echo get_phrase('cheque'); ?></option>
                                     <option value="Deposito"><?php echo get_phrase('deposito'); ?></option>
-                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>                                    
+                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>
                                     <option value="Transferencia"><?php echo get_phrase('transferencia'); ?></option>
 
                                 </select>
@@ -320,7 +320,7 @@
                             <label class="control-label"><?= get_phrase('empresa'); ?></label>
 
                             <div class="controls">
-                                
+
                                     <select name="empresa" id="empresa"  class="uniform" onchange="ajaxCursosEmpresas(this.value);">
                                         <option value="0"><?= 'Seleccionar Empresa' ?></option>
                                         <?php
@@ -331,7 +331,7 @@
                                         }
                                         ?>
                                     </select>
-                               
+
                             </div>
                         </div>
 
@@ -363,13 +363,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                            
+
                                     </tbody>
                                 </table>
                          </div>
 
 
-                        
+
                          <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
 
@@ -395,7 +395,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('número_de_factura'); ?></label>
 
@@ -477,10 +477,10 @@
             $('#cursos').html(' <option value="0">Seleccionar Curso</option>');
          }
 
-        
+
     }
 
-    
+
     function validateFormEstudiante() {
     var curso = document.forms["crear_factura"]["curso"].value;
     var estudiante = document.forms["crear_factura"]["estudiante"].value;
@@ -514,44 +514,44 @@
         if ( valor > 0 )
             {
 
-                $.getJSON('<?php echo site_url()?>ajax/get_curso/' + valor,                                                             
-                    function(data) {    
-                        
+                $.getJSON('<?php echo site_url()?>ajax/get_curso/' + valor,
+                    function(data) {
+
                         if (id =="cursos")
                          {
                             $("#fecha_inicio_curso").val(data.fecha_ini);
                             $("#fecha_fin_curso").val(data.fecha_cul);
-                         } 
+                         }
 
                          if (id =="cursose")
                          {
                             $("#fecha_inicio_cursoe").val(data.fecha_ini);
                             $("#fecha_fin_cursoe").val(data.fecha_cul);
-                         }                 
-                        
-                     
+                         }
+
+
                 });
             }
             else
                 {
-                    
+
                     if (id =="cursos")
                          {
                             $("#fecha_inicio_curso").val('');
                             $("#fecha_fin_curso").val('');
-                         } 
+                         }
 
                          if (id =="cursose")
                          {
                             $("#fecha_inicio_cursoe").val('');
                             $("#fecha_fin_cursoe").val('');
-                         } 
+                         }
                 }
     }
 
     function cheque(valor) {
-    
-            if (valor === "Cheque") 
+
+            if (valor === "Cheque")
                 {
                     $("#div_num_cheque").css( { 'display' : 'block' });
                     $("#numero_cheque").removeAttr('disabled');
@@ -561,7 +561,7 @@
                 {
                     $("#div_num_cheque").css( { 'display' : 'none' });
                     $("#numero_cheque").attr('disabled', 'disabled');
-                } 
+                }
 
     }
 
@@ -586,17 +586,17 @@
             $("#cursose").focus();
          }
 
-        
+
     }
 
-  
+
   function ajaxDatosEstudianres() {
 
         var id_empresa = $("#empresa").val();
         var id_curso = $("#cursose").val();
 
          if (id_empresa > 0 && id_curso > 0)
-         { 
+         {
 
               $('#listEstudiante tbody').html('');
             $.post('<?php echo site_url()?>ajax/obtenListaEstudiantes',
@@ -610,7 +610,7 @@
          {
             $('#listEstudiante tbody').html('');
          }
-        
+
     }
 
 </script>
