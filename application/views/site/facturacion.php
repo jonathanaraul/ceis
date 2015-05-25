@@ -24,8 +24,8 @@
             <!----TABLE LISTING STARTS- -->
             <div class="tab-pane box active" id="list">
                 <label class="control-label"><h3><?php echo get_phrase('listado_facturas_de_estudiantes'); ?></h3></label>
-                <table cellpadding="0" cellspacing="0" border="0"  class="dTable responsive">
-                    <thead>
+                <table cellpadding="0" cellspacing="0" border="0"    class="dTable responsive">
+                    <thead >
                     <tr>
                         <th>
                             <div>#</div>
