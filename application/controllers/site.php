@@ -8,31 +8,31 @@ class Site extends CI_Controller
         $this->load->library(array('session'));
         $this->load->library('bcrypt');
         $this->load->helper(array('url'));
-        
+
         $this->load->database('default');
         $this->load->model('inscripcion_model');
         $this->load->helper('date');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
     }
-    
+
     public function index()
     {
         if($this->session->userdata('rol') == FALSE)
         {
-			
+
             redirect(base_url() . 'index.php?login', 'refresh');
         }
-        
+
         $role = $this->db->get_where('hs_role', array('rol_id' => $this->session->userdata('rol')))->result_array();
-				
+
         $page_data['page_name'] = 'dashboard';
 
         $page_data['page_title'] = 'Escritorio'.' '.$role[0]['rol'];
 
         $this->load->view('index', $page_data);
 
-    }    
+    }
 
 
     /****MANAGE STUDENTS CLASSWISE*****/
@@ -52,7 +52,7 @@ class Site extends CI_Controller
             $data['snombre'] = strtoupper($this->input->post('snombre'));
             $data['papellido'] = strtoupper($this->input->post('papellido'));
             $data['sapellido'] = strtoupper($this->input->post('sapellido'));
-            
+
 			$ingreso= $this->input->post('tipodeingreso');
 				if($ingreso != '4'){
 					$data['tipo_ingreso'] = $ingreso;
@@ -80,7 +80,7 @@ class Site extends CI_Controller
             $data['observacion_4'] = $this->input->post('observacion_4');
             $data['expedicion'] = $this->input->post('expedicion');
             $data['curso_interes'] = $this->input->post('curso');
-            
+
             if($data['sexo']=='1'){
 				$data['num_lib_militar'] = $this->input->post('nlibmilitar');
 			}else{
@@ -91,7 +91,7 @@ class Site extends CI_Controller
             $data['num_hijos'] = $this->input->post('num_hijos');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = $this->input->post('municipio');
-            
+
             $data['residencia'] = $this->input->post('residencia');
             $data['barrio'] = $this->input->post('barrio');
             $data['telefono'] = $this->input->post('telefono');
@@ -102,9 +102,9 @@ class Site extends CI_Controller
             $data['check_certificado'] = ($this->input->post('check_cert_est'))?1:0;
             $data['check_foto'] = ($this->input->post('check_foto'))?1:0;
             $data['activo'] = 1;
-          
+
 			$cedula = $this->db->get_where('hs_estudiantes', array('cedula' => $this->input->post('documento')))->result_array();
-          
+
 				if($cedula){
 
 					$this->session->set_flashdata('flash_message', 'Número de Documento ya registrado, por favor verifíque');
@@ -112,27 +112,27 @@ class Site extends CI_Controller
 					redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
 				}else{
-				 
+
 					$this->db->insert('hs_estudiantes', $data);
-					
+
 					$student_id = mysql_insert_id();
-					
+
 					$type= explode('.',$_FILES['foto_estudiante']['name']);
 					$type= $type[count($type)-1];
 					$url= 'uploads/student_image/' . $student_id . '.'.$type;
 
 					move_uploaded_file($_FILES['foto_estudiante']['tmp_name'],$url );
-					
+
 					$avatar['foto'] = $student_id .'.'.$type;
-            
+
 					$this->db->where('id', $student_id);
 
 					$this->db->update('hs_estudiantes', $avatar);
-					
+
 					$this->session->set_flashdata('flash_message', '¡Estudiante registrado con éxito!');
 					redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 				}
-			
+
         }
 
         if ($param1 == 'do_update') {
@@ -142,7 +142,7 @@ class Site extends CI_Controller
             $data['snombre'] = strtoupper($this->input->post('snombre'));
             $data['papellido'] = strtoupper($this->input->post('papellido'));
             $data['sapellido'] = strtoupper($this->input->post('sapellido'));
-            
+
 			$ingreso= $this->input->post('tipodeingreso');
 				if($ingreso != '4'){
 					$data['tipo_ingreso'] = $ingreso;
@@ -151,7 +151,7 @@ class Site extends CI_Controller
 				}
             $data['empresa'] = $this->input->post('empresa');
             $data['convenio'] = $this->input->post('convenio');
-            
+
             $data['nom_regional'] = 	($data['convenio'] == 1)? $this->input->post('nom_regional'): 0;
             $data['cod_regional'] = 	($data['convenio'] == 1)? $this->input->post('cod_regional'): '';
             $data['nom_departamento'] = ($data['convenio'] == 1)? $this->input->post('nom_departamento'): 0;
@@ -163,10 +163,10 @@ class Site extends CI_Controller
             $data['sector_economico'] = ($data['convenio'] == 1)? $this->input->post('sector_eco'): '';
             $data['sub_sector_economico'] = ($data['convenio'] == 1)? $this->input->post('sub_sector_eco'): '';
             $data['caracterizacion'] = 	($data['convenio'] == 1)? $this->input->post('caracterizacion'): '';
-			
+
             $data['f_nacimiento'] = date("Y-m-d",strtotime($this->input->post('f_nacimiento')));
             $data['sexo'] = $this->input->post('sexo');
-            
+
             if($data['sexo']=='1'){
 				$data['num_lib_militar'] = $this->input->post('nlibmilitar');
 			}else{
@@ -177,7 +177,7 @@ class Site extends CI_Controller
             $data['num_hijos'] = $this->input->post('num_hijos');
             $data['departamento'] = $this->input->post('departamento');
             $data['municipio'] = ($this->input->post('municipio_') != 0)? $this->input->post('municipio_'): $this->input->post('municipio');
-            
+
             $data['residencia'] = ucwords($this->input->post('residencia'));
             $data['barrio'] = ucwords($this->input->post('barrio'));
             $data['telefono'] = $this->input->post('telefono');
@@ -187,33 +187,33 @@ class Site extends CI_Controller
             $data['check_lib_militar'] = ($this->input->post('check_lib_militar'))?1:0;
             $data['check_certificado'] = ($this->input->post('check_cert_est'))?1:0;
             $data['check_foto'] = ($this->input->post('check_foto'))?1:0;
-            
+
             $data['observacion_1'] = $this->input->post('observacion_1');
             $data['observacion_2'] = $this->input->post('observacion_2');
             $data['observacion_3'] = $this->input->post('observacion_3');
             $data['observacion_4'] = $this->input->post('observacion_4');
             $data['expedicion'] = $this->input->post('expedicion');
             $data['curso_interes'] = $this->input->post('curso');
-  
+
 			$foto= $this->input->post('foto_estudiante');
-			
+
 			$type= ($_FILES['new_foto_estudiante']['type'] == '')? explode('.',$foto) : explode('.',$_FILES['new_foto_estudiante']['name']);
-			
+
 			$type= $type[count($type)-1];
-			
+
 			$url= 'uploads/student_image/' . $param2 . '.'.$type;
-			
+
 			move_uploaded_file($_FILES['new_foto_estudiante']['tmp_name'],$url );
-			
+
 			$data['foto'] = $param2.'.'.$type;
-		
-            
+
+
             $this->db->where('id', $param2);
 
             $this->db->update('hs_estudiantes', $data);
-            
+
 			$this->session->set_flashdata('flash_message', '¡Registro editado con éxito!');
-            
+
             redirect(base_url() . 'index.php?site/pre_contactos/', 'refresh');
 
         } else if ($param1 == 'edit') {
@@ -259,7 +259,7 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-    
+
 
     /****funcion profesores modificar*****/
 
@@ -289,7 +289,7 @@ class Site extends CI_Controller
             $data['email'] = $this->input->post('email');
 
             $password = $this->input->post('password');
-            
+
 			$data['password'] = $this->bcrypt->hash_password($password);
 
             $this->db->insert('teacher', $data);
@@ -322,7 +322,7 @@ class Site extends CI_Controller
             $data['email'] = $this->input->post('email');
 
             $password = $this->input->post('password');
-            
+
 			$data['password'] = $this->bcrypt->hash_password($password);
 
 
@@ -381,9 +381,9 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'create') {
-			
+
 			$curso            = $this->input->post('curso');
-			
+
             $data['nombre']   = $this->input->post('materias');
 
             $data['curso']    = $curso;
@@ -430,7 +430,7 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?site/materias/' . $param1, 'refresh');
 
         }
-        if($this->session->userdata('rol')==1){ 
+        if($this->session->userdata('rol')==1){
             $this->db->select('*');
             $this->db->where('curso' , $param1);
             $this->db->order_by('nombre', 'asc');
@@ -443,7 +443,7 @@ class Site extends CI_Controller
             }
         }
 			$page_data['curso'] = $param1;
-			 
+
             $page_data['page_name'] = 'materias';
 
             $page_data['page_title'] = get_phrase('gestionar_materias');
@@ -463,11 +463,11 @@ class Site extends CI_Controller
         if ($param1 == 'create') {
 
             $materias= $this->input->post('materias');
-            
+
             foreach ($materias as $materia) {
                 $data['curso'] = $this->input->post('curso');
                 $data['materia']=$materia;
-                
+
                 $this->db->insert('curso_materia', $data);
             }
 
@@ -669,13 +669,13 @@ class Site extends CI_Controller
         if ($param1 == 'create') {
 
             $data['curso'] = $this->input->post('curso');
-            $data['seccion'] = $this->input->post('seccion');    
+            $data['seccion'] = $this->input->post('seccion');
             $data['fecha_ini']=  formatDate(str_replace('/', '-', $this->input->post('fecha_ini')));
             $data['fecha_cul']=   formatDate(str_replace('/', '-', $this->input->post('fecha_cul')));
             $data['cupo'] = $this->input->post('cupo');
             $data['duracion'] = $this->input->post('duracion');
-            
-			
+
+
 
             $this->db->insert('hs_cursos', $data);
 
@@ -726,7 +726,7 @@ class Site extends CI_Controller
 
     }
 
-    
+
     /****MANAGE EXAM notas*****/
 
     function notas($param1 = '', $param2 = '', $param3 = '', $param4 = '', $param5 = '')
@@ -738,9 +738,9 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'evaluar') {
-            
+
             $result = $this->db->get_where('hs_notas', array('estudiante' => $param4, 'curso' => $param2, 'materia' => $param3))->num_rows();
-            
+
             if ($result == 0) {
 
                 $data['curso'] = $param2;
@@ -810,7 +810,7 @@ class Site extends CI_Controller
             $fecha = $fecha[2] . '-' . $fecha[1] . '-' . $fecha[0];
 
             $existe = $this->db->get_where('hs_asistencias', array('fecha' => $fecha, 'estudiante' => $param4, 'materia' => $param3, 'curso' => $param2))->num_rows();
-            
+
             if ($existe == 0) {
 
                 $data['curso'] = $param2;
@@ -958,7 +958,7 @@ class Site extends CI_Controller
             $data['hora_fin'] = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
 
             $data['minutos_hora_fin'] = $this->input->post('minutos_hora_fin');
-                       
+
             $data['dia'] = $this->input->post('dia');
 
             $this->db->insert('hs_horarios_materias', $data);
@@ -1038,9 +1038,9 @@ class Site extends CI_Controller
 
 
             $factura = $this->db->get_where('hs_facturacion', array( 'numero_factura' => $this->input->post('numero_factura') ) );
-            
+
             if ( $factura->num_rows() > 0) {
-                
+
                 $this->session->set_flashdata('flash_message', 'Ya existe una Factura con el número '. $this->input->post("numero_factura") );
                 redirect(base_url() . 'index.php?site/facturacion');
 
@@ -1057,7 +1057,7 @@ class Site extends CI_Controller
                             'estado'             => $this->input->post('estado'),
                             'fecha_pago'         => formatDate( str_replace( "/", "-", $this->input->post('fecha_pago') ) )
                     ];
-           
+
                     $this->db->insert('hs_facturacion', $data);
 
                     redirect(base_url() . 'index.php?site/facturacion', 'refresh');
@@ -1111,9 +1111,9 @@ class Site extends CI_Controller
                     'metodo_pago'        => $this->input->post('metodo_pago'),
                     'estado'             => $this->input->post('estado'),
                     'fecha_pago'         => formatDate( str_replace( "/", "-", $this->input->post('fecha_pago') ) )
-                ]; 
+                ];
 
-            $this->db->where('id', $param2); 
+            $this->db->where('id', $param2);
 
             $this->db->update('hs_facturacion', $data);
 
@@ -1270,7 +1270,7 @@ class Site extends CI_Controller
         if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
-        
+
         if ($param1 == 'create') {
 
             $id_estudiante= $this->input->post('id_estudiante');
@@ -1285,9 +1285,9 @@ class Site extends CI_Controller
             $data['nro_factura'] = $this->input->post('nro_factura');
             $data['nro_recibo'] = $this->input->post('nro_recibo');
 
-            
+
             if($tipo == 'egresa'){
-                
+
                 $nro_anual = $this->db->get_where('hs_nro_anual', array('id' => 1))->result_array();
 
                 if(date(Y) == $nro_anual[0]['año_actual']){
@@ -1326,7 +1326,7 @@ class Site extends CI_Controller
                 $this->db->update('hs_estudiantes', $data);
 
 
-               } 
+               }
 
             }
             $id_curso= $this->input->post('id_curso');
@@ -1345,12 +1345,12 @@ class Site extends CI_Controller
             $data['nro'] = $this->input->post('nro');
             $data_nro['ult_nro'] = $this->input->post('nro');
 
-            $this->db->where('id', 1);           
+            $this->db->where('id', 1);
             $this->db->update('hs_nro', $data_nro);
 
             $this->db->where('activo', 1);
             $this->db->where('cedula', $cedula);
-            $this->db->update('hs_estudiantes', $data);                     
+            $this->db->update('hs_estudiantes', $data);
 
             redirect(base_url() . 'index.php?site/gestion_egresados', 'refresh');
         }
@@ -1956,8 +1956,8 @@ class Site extends CI_Controller
 
 	/****Manage USUARIOS*****/
 
-	
-    
+
+
 	function users($param1 = '', $param2 = '', $param3 = '')
 
     {
@@ -1966,7 +1966,7 @@ class Site extends CI_Controller
             redirect(base_url() . 'index.php?login', 'refresh');
 
         if ($param1 == 'create') {
-           
+
             $data['name'] = $this->input->post('name');
             $data['snombre'] = $this->input->post('snombre');
             $data['papellido'] = $this->input->post('papellido');
@@ -1979,11 +1979,11 @@ class Site extends CI_Controller
             $data['phone'] = $this->input->post('phone');
 
             $data['email'] = $this->input->post('email');
-			
+
 			$password = $this->input->post('password');
-            
+
 			$data['password'] = $this->bcrypt->hash_password($password);
-            
+
             $data['rol'] = $this->input->post('rol');
 
 			$this->db->insert('hs_users', $data);
@@ -2012,13 +2012,13 @@ class Site extends CI_Controller
             $data['phone'] = $this->input->post('phone');
 
             $data['email'] = $this->input->post('email');
-			
+
 			$password = $this->input->post('password');
-            
+
 			$data['password'] = $this->bcrypt->hash_password($password);
-           
+
             $data['rol'] = $this->input->post('rol');
-            
+
             $this->db->where('user_id', $param3);
 
             $this->db->update('hs_users', $data);
@@ -2028,8 +2028,8 @@ class Site extends CI_Controller
             $this->crud_model->clear_cache();
 
             redirect(base_url() . 'index.php?site/users/' . $param1, 'refresh');
-            
-            
+
+
 
         } else if ($param2 == 'edit') {
 
@@ -2045,7 +2045,7 @@ class Site extends CI_Controller
 
             $page_data['current_user_id'] = $param3;
 
-        } 
+        }
 
         if ($param2 == 'delete') {
 
@@ -2072,14 +2072,14 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-    
-    
+
+
     /*****ROLE SETTINGS*********/
-    
+
       function manage_role($param1 = '', $param2 = '', $param3 = '')
 
     {
-		
+
         if ($this->session->userdata('rol') != 1)
 
             redirect(base_url() . 'index.php?login', 'refresh');
@@ -2099,7 +2099,7 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update') {
 
-            
+
             $data['rol'] = $this->input->post('rol');
 
 
@@ -2132,7 +2132,7 @@ class Site extends CI_Controller
             $this->db->delete('hs_role');
 
             redirect(base_url() . 'index.php?site/manage_role/', 'refresh');
-            
+
 
         }
         $page_data['page_name'] = 'manage_role';
@@ -2141,7 +2141,7 @@ class Site extends CI_Controller
 
         $this->load->view('index', $page_data);
     }
-    
+
     /*****LANGUAGE SETTINGS*********/
 
     function manage_language($param1 = '', $param2 = '', $param3 = '')
@@ -2256,7 +2256,7 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
-    
+
     /*****USERS SETTINGS*********/
 	 function manage_users($param1 = '', $param2 = '', $param3 = '')
 
@@ -2269,7 +2269,7 @@ class Site extends CI_Controller
             'student_id' => $this->session->userdata('student_id')
         ))->row();
         $student_class_id = $student_profile->class_id;
-       
+
 
         $page_data['page_name'] = 'manage_users';
 
@@ -2362,13 +2362,13 @@ class Site extends CI_Controller
             $data['password'] = $this->input->post('password');
 
             $data['new_password'] = $this->input->post('new_password');
-			
+
 				$password = $this->bcrypt->hash_password($data['new_password']);
-            
+
             $data['confirm_new_password'] = $this->input->post('confirm_new_password');
 
             $current_password = $this->db->get_where('hs_users', array( 'user_id' => $this->session->userdata('user_id') ))->row()->password;
-            
+
 				$decode_pass= password_verify($data['password'] , $current_password);
 
             if ($decode_pass == $data['password'] or $current_password == $data['password'] && $data['new_password'] == $data['confirm_new_password']) {
@@ -2397,7 +2397,7 @@ class Site extends CI_Controller
             'user_id' => $this->session->userdata('user_id')
 
         ))->result_array();
-        
+
         $page_data['page_name'] = 'manage_profile';
 
         $page_data['page_title'] = get_phrase('manage_profile');
@@ -2405,8 +2405,5 @@ class Site extends CI_Controller
         $this->load->view('index', $page_data);
 
     }
- 
+
 }
-
-
-
