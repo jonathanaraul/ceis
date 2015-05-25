@@ -58,7 +58,12 @@
                         <img src="<?php echo base_url();?>template/images/loader.gif">
                     </p>
                 </div>
-                    <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 1057px;">
+                <?php if($input){
+
+                			echo $input;
+                }  ?>
+                <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 1057px;">
+
                 </div>
             </div>
         </div>
@@ -123,6 +128,11 @@
         'margin'           : 'auto',
         'width'            : '1057px'
       });
+    }
+
+    function print_all(){
+
+      //$('#documento').print();
     }
 
 
