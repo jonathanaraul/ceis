@@ -338,7 +338,7 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('curso'); ?></label>
                             <div class="controls">
-                                   <select name="curso" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);ajaxDatosEstudianres();">
+                                   <select name="cursos_empresa" id="cursose" class="uniform" onchange="ajaxCurso(this.value,this.id);ajaxDatosEstudianres();">
 
                                            <option value="0"><?= 'Seleccionar Curso' ?></option>
                                     </select>
@@ -374,7 +374,7 @@
                             <label class="control-label"><?php echo get_phrase('fecha_de_inicio_del_curso'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" readonly  required name="fecha_inicio_curso" id="fecha_inicio_cursoe" />
+                                <input type="text" class="uniform" readonly  required name="fecha_inicio_curso_empresa" id="fecha_inicio_cursoe" />
                             </div>
                         </div>
 
@@ -382,7 +382,7 @@
                             <label class="control-label"><?php echo get_phrase('fecha_del_fin_del_curso'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" readonly required  name="fecha_fin_curso" id="fecha_fin_cursoe" />
+                                <input type="text" class="uniform" readonly required  name="fecha_fin_curso_empresa" id="fecha_fin_cursoe" />
                             </div>
                         </div>
 
@@ -391,7 +391,23 @@
                             <label class="control-label"><?php echo get_phrase('description'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="descripcion"/>
+                                <input type="text" class="uniform" name="descripcion_empresa"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('ciudad'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" name="ciudad"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><?php echo get_phrase('cantidad'); ?></label>
+
+                            <div class="controls">
+                                <input type="number" min="0" class="uniform" name="cantidad"/>
                             </div>
                         </div>
 
@@ -400,7 +416,7 @@
                             <label class="control-label"><?php echo get_phrase('número_de_factura'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" required name="numero_factura"/>
+                                <input type="text" class="uniform" required name="numero_factura_empresa"/>
                             </div>
                         </div>
 
@@ -408,7 +424,7 @@
                             <label class="control-label"><?php echo get_phrase('número_de_recibo_de caja'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" required name="numero_recibo_caja"/>
+                                <input type="text" class="uniform" required name="numero_recibo_caja_empresa"/>
                             </div>
                         </div>
 
@@ -416,35 +432,49 @@
                             <label class="control-label"><?php echo get_phrase('monto'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="uniform" name="monto" placeholder="Introduzca el monto de la factura"/>
+                                <input type="text" class="uniform" name="monto_empresa" placeholder="Introduzca el monto de la factura"/>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('metodo_de_pago'); ?></label>
 
                             <div class="controls">
-                                <select name="metodo_pago" class="uniform" style="width:100%;">
-                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>
+                                <select name="metodo_pago_empresa" class="uniform" onchange="cheque_empresa(this.value);" style="width:100%;">
+                                    <option value=""><?php echo get_phrase('seleccionar_metodo_de_pago'); ?></option>
+                                    <option value="Cheque"><?php echo get_phrase('cheque'); ?></option>
                                     <option value="Deposito"><?php echo get_phrase('deposito'); ?></option>
+                                    <option value="Efectivo"><?php echo get_phrase('efectivo'); ?></option>
                                     <option value="Transferencia"><?php echo get_phrase('transferencia'); ?></option>
+
                                 </select>
                             </div>
                         </div>
+
+                        <div class="control-group" id="div_num_cheque_empresa" style="display:none;">
+                            <label class="control-label"><?php echo get_phrase('número_de_cheque'); ?></label>
+
+                            <div class="controls">
+                                <input type="text" class="uniform" disabled required name="numero_cheque_empresa" id="numero_cheque_empresa" />
+                            </div>
+                        </div>
+
+
                         <div class="control-group">
                             <label class="control-label"><?php echo get_phrase('status'); ?></label>
 
                             <div class="controls">
-                                <select name="estado" class="uniform" style="width:100%;">
+                                <select name="estado_empresa" class="uniform" style="width:100%;">
                                     <option value="1"><?php echo get_phrase('cancelado'); ?></option>
                                     <option value="0"><?php echo get_phrase('no_cancelado'); ?></option>
                                 </select>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label"><?php echo get_phrase('date'); ?></label>
+                            <label class="control-label"><?php echo get_phrase('fecha_de_pago'); ?></label>
 
                             <div class="controls">
-                                <input type="text" class="datepicker fill-up" name="fecha"/>
+                                <input type="text" class="datepicker fill-up" name="fecha_empresa"/>
                             </div>
                         </div>
                     </div>
@@ -610,6 +640,24 @@
          {
             $('#listEstudiante tbody').html('');
          }
+
+    }
+
+
+
+    function cheque_empresa(valor) {
+
+            if (valor === "Cheque")
+                {
+                    $("#div_num_cheque_empresa").css( { 'display' : 'block' });
+                    $("#numero_cheque_empresa").removeAttr('disabled');
+                     $("#numero_cheque_empresa").focus();
+                }
+            else
+                {
+                    $("#div_num_cheque_empresa").css( { 'display' : 'none' });
+                    $("#numero_cheque_empresa").attr('disabled', 'disabled');
+                }
 
     }
 
