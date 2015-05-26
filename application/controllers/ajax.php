@@ -722,7 +722,7 @@ class ajax extends CI_Controller
 
             $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
 
-            $this->db->where('em.id',$id_empresa);
+            $this->db->where('i.empresa',$id_empresa);
 
             $result = $this->db->get();
             $cadena = '<option value="0" selected> Seleccionar Curso</option>';
@@ -746,7 +746,7 @@ class ajax extends CI_Controller
         $idEmpresa = $this->input->post("id_empresa");
         $idCurso = $this->input->post("id_curso");
 
-        $this->db->select('es.nombre,es.cedula');
+        $this->db->select('es.nombre,es.snombre,es.papellido,es.sapellido,es.cedula');
         $this->db->from('hs_inscripcion as i');
 
         $this->db->join('hs_estudiantes as es',  'es.id = i.estudiante', 'INNER');
@@ -755,7 +755,7 @@ class ajax extends CI_Controller
 
         $this->db->join('hs_cursos as c', 'c.id = i.curso', 'INNER');
 
-        $this->db->where('es.empresa',$idEmpresa);
+        $this->db->where('i.empresa',$idEmpresa);
         $this->db->where('i.curso',$idCurso);
 
         $result = $this->db->get();
@@ -766,7 +766,7 @@ class ajax extends CI_Controller
         foreach ($result->result_array() as $value){
 
 
-                $cadena.="<tr><td>".$i++."</td><td>".$value["nombre"]."</td><td>".$value["cedula"]."</td></tr>";
+                $cadena.="<tr><td>".$i++."</td><td>".$value["papellido"]." ".$value["sapellido"]." ".$value["nombre"]." ".$value["snombre"]."</td><td>".$value["cedula"]."</td></tr>";
         }
 
         echo $cadena;
