@@ -1067,24 +1067,45 @@ class Site extends CI_Controller
 
         if ($param1 == 'create_empresa') {
 
-            $data['empresa'] = $this->input->post('empresa');
+						if ( $this->input->post('numero_cheque_empresa') === false )
+            {
+                $numero_cheque = NULL;
+            }
+            else
+            {
+                $numero_cheque = $this->input->post('numero_cheque_empresa');
+            }
 
-            $data['curso'] = $this->input->post('curso');
+						$factura_empresa = $this->db->get_where('hs_facturacion_empresas', array( 'numero_factura' => $this->input->post('numero_factura_empresa') ) );
 
-            $data['descripcion'] = $this->input->post('descripcion');
+						if ( $factura_empresa->num_rows() > 0) {
 
-            $data['monto'] = $this->input->post('monto');
+								$this->session->set_flashdata('flash_message', 'Ya existe una Factura con el número '. $this->input->post("numero_factura_empresa") );
+								redirect(base_url() . 'index.php?site/facturacion');
 
-            $data['metodo_pago'] = $this->input->post('metodo_pago');
+						}
+						else{
+									$data= [
+													'empresa'            => $this->input->post('empresa'),
+													'curso'              => $this->input->post('cursos_empresa'),
+													'descripcion'        => $this->input->post('descripcion_empresa'),
+													'ciudad'             => $this->input->post('ciudad'),
+													'cantidad'           => $this->input->post('cantidad'),
+													'numero_factura'     => $this->input->post('numero_factura_empresa'),
+													'numero_recibo_caja' => $this->input->post('numero_recibo_caja_empresa'),
+													'monto'              => $this->input->post('monto_empresa'),
+													'metodo_pago'        => $this->input->post('metodo_pago_empresa'),
+													'numero_cheque'      => $this->input->post('numero_cheque_empresa'),
+													'estado'             => $this->input->post('estado_empresa'),
+													'fecha'              => formatDate( str_replace( "/", "-", $this->input->post('fecha_empresa') ) )
+										];
 
-            $data['estado'] = $this->input->post('estado');
 
-            $data['fecha']= formatDate($this->input->post('fecha'));
+										$this->db->insert('hs_facturacion_empresas', $data);
 
+				            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
 
-            $this->db->insert('hs_facturacion_empresas', $data);
-
-            redirect(base_url() . 'index.php?site/facturacion', 'refresh');
+						}
 
         }
 
