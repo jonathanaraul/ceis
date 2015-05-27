@@ -1152,20 +1152,29 @@ class Site extends CI_Controller
 
         if ($param1 == 'do_update2') {
 
-            $data['empresa'] = $this->input->post('empresa');
+					if ( $this->input->post('numero_cheque_empresa') === false )
+					{
+							$numero_cheque = NULL;
+					}
+					else
+					{
+							$numero_cheque = $this->input->post('numero_cheque_empresa');
+					}
 
-            $data['curso'] = $this->input->post('curso');
-
-            $data['descripcion'] = $this->input->post('descripcion');
-
-            $data['monto'] = $this->input->post('monto');
-
-            $data['metodo_pago'] = $this->input->post('metodo_pago');
-
-            $data['estado'] = $this->input->post('estado');
-
-            $data['fecha']= formatDate($this->input->post('fecha'));
-
+					$data= [
+									'empresa'            => $this->input->post('empresa'),
+									'curso'              => $this->input->post('curso'),
+									'descripcion'        => $this->input->post('descripcion'),
+									'ciudad'             => $this->input->post('ciudad'),
+									'cantidad'           => $this->input->post('cantidad'),
+									'numero_factura'     => $this->input->post('numero_factura_empresa'),
+									'numero_recibo_caja' => $this->input->post('numero_recibo_caja_empresa'),
+									'monto'              => $this->input->post('monto'),
+									'metodo_pago'        => $this->input->post('metodo_pago_empresa'),
+									'numero_cheque'      => $numero_cheque,
+									'estado'             => $this->input->post('estado'),
+									'fecha'              => formatDate( str_replace( "/", "-", $this->input->post('fecha') ) )
+						];
 
             $this->db->where('id', $param2);
 
