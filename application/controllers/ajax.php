@@ -772,4 +772,14 @@ class ajax extends CI_Controller
         echo $cadena;
     }
 
+    function cursos()
+    {
+      //$cadena='<option value="0" selected> Seleccionar Curso</option>';
+      $classes = $this->db->get('hs_cursos')->result_array();
+      foreach ($classes as $row) {
+          $cadena .= '<option value="' . $row['id'] . '">' . $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección: '. $row['seccion'] . '</option>';
+      }
+      echo $cadena;
+    }
+
 }
