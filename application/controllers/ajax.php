@@ -189,13 +189,14 @@ class ajax extends CI_Controller
         $curso = $this->input->post('curso');
         $estudiante = $this->input->post('estudiante');
         $documento= $this->input->post('documento');
-
+        $verificar=0;
         $dato['curso']= $curso;
         $inscritos = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1 ))->result_array();
 
         if($estudiante == 0){
 
-
+            $countStudent=0;
+            $list="";
             foreach($inscritos as $inscrito):
 
 
@@ -211,7 +212,7 @@ class ajax extends CI_Controller
                 $nro_materias= $this->db->count_all_results();
                 $media= $suma/$nro_materias;
                 $dato['elements']= $query;
-
+                $verificar=1;
                 if($documento == 1){
 
                     $verificarFactura=$this->db->get_where('hs_facturacion', [ 'estudiante' => $inscrito['estudiante'], 'curso' => $curso ])->num_rows();
@@ -219,31 +220,40 @@ class ajax extends CI_Controller
 
                     if( $verificarFactura  == 0)
                     {
+                      $countStudent++;
+                      $student=$this->db->get_where('hs_estudiantes', [ 'id' => $inscrito['estudiante'] ])->result_array();
+                      $list.='<tr><td>'.$countStudent.'</td><td>'.$student[0]["nombre"].'</td><td>'.$student[0]["papellido"].'</td></tr>';
                       continue;
                     }
 
                     $dato['media']= $media;
+                    $dato['verificar'] = $verificar;
                     $this->load->view('site/visualizar_diploma',$dato);
 
-                }else{
 
-                    if($documento == 2){
-
-                        if($media >=7){
-
-                            $dato['media']= $media;
-                            $this->load->view('site/visualizar_certificado', $dato);
-                        }
-
-                    }else{
-
-                        $this->load->view('site/visualizar_acta', $dato);
-                    }
                 }
 
 
             endforeach;
-            echo '<input type="button" class="btn btn-normal btn-gray" value="Imprimir Todos" onclick="print_all()"> <br><br><br>';
+            if( $countStudent > 0 )
+              {
+                 echo '<br><div id="borrar">
+
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-normal box" style="width: 80%;font-size : 14px;">
+                           <caption>Lista de Estudiantes que no se le puede generar su Diploma por no tener facturas del curso</caption>
+                           <thead>
+                                   <tr>
+                                       <td>#</td>
+                                       <td>Nombre</td>
+                                       <td>Apellido</td>
+                                   </tr>
+                           </thead>
+                           <tbody>';
+                 echo $list;
+                 echo '   </tbody>
+                       </table><br><br>';
+                 echo '<input type="button" class="btn btn-normal btn-gray" value="Imprimir Todos Diplomas" onclick="print_all()"> <br><br></div>';
+              }
 
 
         }else{
@@ -780,6 +790,46 @@ class ajax extends CI_Controller
           $cadena .= '<option value="' . $row['id'] . '">' . $this->crud_model->get_hs_cursos_nombre($row['curso']).' - Sección: '. $row['seccion'] . '</option>';
       }
       echo $cadena;
+    }
+
+
+    function imprimirDiplomasAll(){
+
+      $curso = $this->input->post('curso');
+      $inscritos = $this->db->get_where('hs_inscripcion', array('curso' => $curso, 'status' => 1 ))->result_array();
+      foreach($inscritos as $inscrito):
+
+
+          $dato['documento_nombre']= $inscrito['estudiante'];
+          $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
+          $suma= 0;
+          foreach($query as $sum):
+              $suma+=$sum['def'];
+          endforeach;
+          $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
+          $this->db->where('curso', $cursos[0]['curso']);
+          $this->db->from('curso_materia');
+          $nro_materias= $this->db->count_all_results();
+          $media= $suma/$nro_materias;
+          $dato['elements']= $query;
+
+              $verificarFactura=$this->db->get_where('hs_facturacion', [ 'estudiante' => $inscrito['estudiante'], 'curso' => $curso ])->num_rows();
+
+
+              if( $verificarFactura  == 0)
+              {
+                continue;
+              }
+
+              $dato['media']= $media;
+              $dato['verificar'] = 1;
+              $this->load->view('site/visualizar_diploma',$dato);
+
+
+
+
+      endforeach;
+
     }
 
 }
