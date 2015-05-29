@@ -72,6 +72,9 @@
 		font-weight		:bold;
 		color			:#000000;
 	}
+	@page{
+		size: A4 landscape;
+	}
 
 </style>
 
@@ -127,7 +130,8 @@
 				</div>
 			</div>
 </div>
-
+<?php if ( $verificar == 0) { ?>
 <div><p style="text-align:center" ><button type="button" id="imprimir" <?php if($media < 7){echo "disabled";}?> class="btn btn-normal btn-gray" style="width: 100%;
             margin-top: 20px;"  onclick="imprimirDocumento('print_area_<?= $documento_nombre;?>')"><?php if($media < 7){echo "Estudiante Reprobado";}else{echo "Imprimir Diploma";}?></button></p></td>
 </div>
+<?php }  ?>
