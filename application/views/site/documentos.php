@@ -35,27 +35,29 @@
                                     <option value="3"><?= 'Actas' ?></option>
                                 </select>
                             </td>
-                            <td id="input_1">
-                              <div id="1">
+                            <td>
+                              <div id="div_cursos">
                                 <select class="uniform"  name="cursos" id="cursos" onchange="ajaxEstudiantes(this.value);">
                                     <option value="0"><?= 'Seleccionar Curso' ?></option>
 
                                 </select>
                               </div>
-                              <div id="2" style="display:none;" >
+                              <div id="div_cedula" style="display:none;" >
                                 <input type="text" disabled  class="uniform" required name="cedula" id="cedula"/>
                               </div>
 
 
                             </td>
                             <td>
-                                <select class="uniform" name="estudiantes" id="estudiante" >
-                                    <option value="0"><?= 'Visualizar Todos' ?></option>
-                                </select>
+                                  <div id="div_estudiante">
+                                        <select class="uniform" name="estudiantes" id="estudiante" >
+                                            <option value="0"><?= 'Visualizar Todos' ?></option>
+                                        </select>
+                                  </div>
+
                             </td>
                             <td>
-                                <input type="button" class="btn btn-normal btn-gray" value="Visualizar Documento"
-                                       onclick="verDiplomas(this.value)">
+                                <input type="button" id="ver_docemento" class="btn btn-normal btn-gray" value="Visualizar Documento" onclick="verDiplomas()">
                             </td>
                         </tr>
                     </tbody>
@@ -76,11 +78,15 @@
             </div>
             <!-- aqui va el div de la otra pestaña -->
             <div class="tab-pane" id="gestionar_egresados">
-              ROLO DE PAJUDO
+              
             </div>
         </div>
 
     </div>
+</div>
+
+<div id="allDocumentos" style="display: none; margin: auto; width: 1057px;">
+
 </div>
 
 <script type="text/javascript">
@@ -96,7 +102,7 @@
             });
     }
 
-    function verDiplomas(valor) {
+    function verDiplomas() {
 
         var curso = $('#cursos').val();
         var estudiante = $('#estudiante').val();
@@ -145,34 +151,80 @@
 
 
     function print_all(){
+      var clon=$("#borrar").clone();
+      $("#borrar").empty();
 
-      //$('#documento').print();
+      $('#documento').print();
+      $("#borrar").html(clon);
+
+      // var curso = $("#cursos").val();
+      // $.post('<?php echo site_url()?>ajax/imprimirDiplomasAll',
+      //     { 'curso' : curso},
+      //     function (data) {
+      //         $("#allDocumentos").html(data);
+      //     });
+      //     $("#allDocumentos").print();
+      //     $("#allDocumentos").html('');
     }
 
     $("#documentos").change(function(){
 
+
+        if ( $(this).val() == '0' ){
+            $("#cedula").val('');
+            $("#div_cedula").css( { 'display' : 'none' } );
+            $("thead > tr > td[id=title_1]").text('Seleccionar Curso');
+            $("#cedula").attr('disabled' , 'disabled');
+            $("#cursos").removeAttr('disabled');
+            $("#div_cursos").css( { 'display' : 'block' } );
+            $("#div_estudiante").css( { 'display' : 'block' } );
+            $("#estudiante").removeAttr('disabled');
+            $("thead > tr > td[id=title_2]").text('Seleccionar Estudiante');
+            $("#ver_docemento").attr('onclick','verDiplomas()');
+        }
+
         if ( $(this).val() == '1' ){
 
           $("thead > tr > td[id=title_1]").text('Seleccionar Curso');
-          //$.post('<?php echo site_url()?>ajax/cursos',
-          //    function (data) {
-          //      $("tbody > tr > td[id=input_1]").html('<select class="uniform" name="documentos" id="documentos" onchange="clear_dom();">' + data + '</select>');
-          //    });
-
+          $("#div_cedula").css( { 'display' : 'none' } );
+          $("#cedula").val('');
+          $("#cedula").attr('disabled' , 'disabled');
+          $("#div_cursos").css( { 'display' : 'block' } );
+          $("#cursos").removeAttr('disabled');
+          $("#div_estudiante").css( { 'display' : 'block' } );
+          $("#estudiante").removeAttr('disabled');
+          $("thead > tr > td[id=title_2]").text('Seleccionar Estudiante');
+          $("#ver_docemento").attr('onclick','verDiplomas()');
 
         }
 
         if ( $(this).val() == '2' ){
-            $("#1").css( { 'display' : 'none' } );
+            $("#div_cursos").css( { 'display' : 'none' } );
             $("#cursos").attr('disabled' , 'disabled');
+            $("#div_estudiante").css( { 'display' : 'none' } );
+            $("#estudiante").attr('disabled' , 'disabled');
+            $("thead > tr > td[id=title_2]").text('');
             $("thead > tr > td[id=title_1]").text('Ingresar No. De Cédula');
-            $("#2").css( { 'display' : 'block' } );
+            $("#div_cedula").css( { 'display' : 'block' } );
             $("#cedula").removeAttr('disabled');
+            $("#cedula").val('');
+            $("#ver_docemento").attr('onclick','verCertificados()');
 
 
         }
 
         if ( $(this).val() == '3' ){
+
+            $("#div_cursos").css( { 'display' : 'none' } );
+            $("#cursos").attr('disabled' , 'disabled');
+            $("#div_estudiante").css( { 'display' : 'none' } );
+            $("#estudiante").attr('disabled' , 'disabled');
+            $("thead > tr > td[id=title_2]").text('');
+            $("thead > tr > td[id=title_1]").text('Ingresar No. De Cédula');
+            $("#div_cedula").css( { 'display' : 'block' } );
+            $("#cedula").removeAttr('disabled');
+            $("#cedula").val('');
+            $("#ver_docemento").attr('onclick','verActas()');
 
         }
 
@@ -187,6 +239,15 @@
 
 
     });
+
+    function verCertificados(){
+
+      alert( $("#cedula").val() + " Cedula para buscar Certificados" );
+    }
+
+    function verActas(){
+      alert( $("#cedula").val()  + " Cedula para buscar Actas" );
+    }
 
 
 </script>
