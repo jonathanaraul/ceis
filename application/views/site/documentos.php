@@ -78,7 +78,7 @@
             </div>
             <!-- aqui va el div de la otra pestaña -->
             <div class="tab-pane" id="gestionar_egresados">
-              
+
             </div>
         </div>
 
@@ -241,8 +241,23 @@
     });
 
     function verCertificados(){
+        var cedula = $("#cedula").val();
+        if( cedula == ''){
 
-      alert( $("#cedula").val() + " Cedula para buscar Certificados" );
+              alert('Debe Ingresar la Cedula');
+              return false;
+        }else{
+
+          $.post('<?php echo site_url()?>ajax/generarCertificadoEstudio',
+                { 'cedula' : cedula },
+              function (data) {
+                $('#documento').html(data);
+                $('#loader').css('display','none');
+                $('#documento').css('display','block');
+              });
+        }
+
+
     }
 
     function verActas(){
