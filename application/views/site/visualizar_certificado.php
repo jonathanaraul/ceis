@@ -3,9 +3,9 @@
             <img style="width:240px; height:100px;" src="<?= base_url(); ?>uploads/logo.png">
         </div>
         <div style=" width:816px; color: #CFD1DA; height: 50px; text-align:center; font-size: 30px; margin-top: 250px;">CERTIFICACIÓN DE ESTUDIOS</div>
-            <?php $cursos= $this->db->get_where('hs_cursos', array('id' => $elements[0]['curso']))->result_array(); ?>
+            <?php $cursos= $this->db->get_where('hs_cursos', array('id' => $curso ) )->result_array(); ?>
         <div style="width:730px; font-size: 13px; color:#000; margin-left: 50px; margin-top: 30px; text-align:justify;">
-            Por medio de la presente se hace constar que el(la) ciudadano(a):<span style="font-size:20px; font-weight:bold;"> 
+            Por medio de la presente se hace constar que el(la) ciudadano(a):<span style="font-size:20px; font-weight:bold;">
             <?= $this->crud_model->get_hs_student_nombre_by_id($documento_nombre).' '.$this->crud_model->get_hs_student_apellido_by_id($documento_nombre); ?>
             </span>, cedula N°: <span style="font-size:20px; font-weight:bold;"><?= $this->crud_model->get_hs_student_cedula_by_id($documento_nombre)?></span>
             cursó estudios en esta institucion, culminando con exito el curso: <span style="font-size:15px; font-weight:bold;">
@@ -27,12 +27,12 @@
                             if ($mes=="11") $mes="Noviembre";
                             if ($mes=="12") $mes="Diciembre";
             ?>
-            Constancia que se expide a peticion de la parte interesada a los <span style="font-size:15px; font-weight:bold;"><?= date("d");?></span> 
+            Constancia que se expide a peticion de la parte interesada a los <span style="font-size:15px; font-weight:bold;"><?= date("d");?></span>
             días del mes de <span style="font-size:15px; font-weight:bold;"><?= $mes;?></span> de <span style="font-size:15px; font-weight:bold;"><?= date("Y");?></span>.
         </div>
         <div style=" width: 200px; color: black; margin-left: 310px; margin-top: 200px; text-align: center; font-size:13px;">
             Director <br><br> __________________________<br><br>Firma
-        </div> 
+        </div>
     </div>
 
     <div>
