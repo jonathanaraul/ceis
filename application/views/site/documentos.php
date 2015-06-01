@@ -72,6 +72,9 @@
 
                 			echo $input;
                 }  ?>
+                <div id="lista">
+
+                </div>
                 <div id="documento" style="background-color:  #eaebef;padding: 7px 11px;display: none; margin: auto; width: 1057px;">
 
                 </div>
@@ -171,6 +174,9 @@
 
 
         if ( $(this).val() == '0' ){
+
+            $('#documento').empty();
+            $('#lista').empty();
             $("#cedula").val('');
             $("#div_cedula").css( { 'display' : 'none' } );
             $("thead > tr > td[id=title_1]").text('Seleccionar Curso');
@@ -181,10 +187,13 @@
             $("#estudiante").removeAttr('disabled');
             $("thead > tr > td[id=title_2]").text('Seleccionar Estudiante');
             $("#ver_docemento").attr('onclick','verDiplomas()');
+            $("#ver_docemento").val('Visualizar Documento');
+
         }
 
         if ( $(this).val() == '1' ){
-
+          $('#documento').empty();
+          $('#lista').empty();
           $("thead > tr > td[id=title_1]").text('Seleccionar Curso');
           $("#div_cedula").css( { 'display' : 'none' } );
           $("#cedula").val('');
@@ -195,10 +204,13 @@
           $("#estudiante").removeAttr('disabled');
           $("thead > tr > td[id=title_2]").text('Seleccionar Estudiante');
           $("#ver_docemento").attr('onclick','verDiplomas()');
+          $("#ver_docemento").val('Visualizar Documento');
 
         }
 
         if ( $(this).val() == '2' ){
+            $('#documento').empty();
+            $('#lista').empty();
             $("#div_cursos").css( { 'display' : 'none' } );
             $("#cursos").attr('disabled' , 'disabled');
             $("#div_estudiante").css( { 'display' : 'none' } );
@@ -209,12 +221,15 @@
             $("#cedula").removeAttr('disabled');
             $("#cedula").val('');
             $("#ver_docemento").attr('onclick','verCertificados()');
+            $("#ver_docemento").val('Buscar');
 
 
         }
 
         if ( $(this).val() == '3' ){
 
+            $('#documento').empty();
+            $('#lista').empty();
             $("#div_cursos").css( { 'display' : 'none' } );
             $("#cursos").attr('disabled' , 'disabled');
             $("#div_estudiante").css( { 'display' : 'none' } );
@@ -225,6 +240,7 @@
             $("#cedula").removeAttr('disabled');
             $("#cedula").val('');
             $("#ver_docemento").attr('onclick','verActas()');
+            $("#ver_docemento").val('Buscar');
 
         }
 
@@ -241,6 +257,7 @@
     });
 
     function verCertificados(){
+
         var cedula = $("#cedula").val();
         if( cedula == ''){
 
@@ -248,16 +265,29 @@
               return false;
         }else{
 
-          $.post('<?php echo site_url()?>ajax/generarCertificadoEstudio',
-                { 'cedula' : cedula },
-              function (data) {
-                $('#documento').html(data);
-                $('#loader').css('display','none');
-                $('#documento').css('display','block');
-              });
+                  $.post('<?php echo site_url()?>ajax/listCertificadoEstudio',
+                        { 'cedula' : cedula },
+                      function (data) {
+                        $('#lista').html(data);
+                        $('#loader').css('display','none');
+                        $('#lista').css('display','block');
+                        $('#documento').css('display','none');
+                        $('#documento').empty();
+                      });
+
         }
 
 
+    }
+
+    function certificado(inscripcion_id){
+      $.post('<?php echo site_url()?>ajax/generarCertificadoEstudio',
+              { 'inscripcion_id' : inscripcion_id },
+          function (data) {
+            $('#documento').html(data);
+            $('#loader').css('display','none');
+            $('#documento').css('display','block');
+          });
     }
 
     function verActas(){
