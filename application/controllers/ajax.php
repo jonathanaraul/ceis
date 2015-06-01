@@ -829,12 +829,12 @@ class ajax extends CI_Controller
 
     }
 
-    function generarCertificadoEstudio(){
+    function listCertificadoEstudio(){
 
 
             $cedula = $this->input->post('cedula');
             $estudiante = $this->db->get_where('hs_estudiantes', array('cedula' => $cedula) )->row();
-
+            $item = $this->input->post('item');
 
            if( !$estudiante ) {
               echo "No Hay Resgistro Con la Cédula: ".$cedula;
@@ -843,48 +843,63 @@ class ajax extends CI_Controller
                       $incripciones = $this->db->get_where('hs_inscripcion', array('estudiante' => $estudiante->id) );
                       if(   $incripciones->num_rows() == 0 ){
 
-                        echo "El Estudiante No Tiene Cursos Realizados";
+                        echo "El Estudiante No Tiene Cursos Realizados ";
 
 
                       }else{
+                        $i=1;
+                          echo '<table cellpadding="0" cellspacing="0" border="0" class="table table-normal box" style="width: 80%;font-size : 14px;">
+                                    <caption>Listado de Curso(s) Realizado(S) por el Estudiantes: </caption>
+                                    <thead>
+                                            <tr>
+                                                <td>#</td>
+                                                <td>Curso</td>
+                                                <td>Ver</td>
+                                            </tr>
+                                    </thead>
+                                    <tbody>';
                           foreach ($incripciones->result_array() as $inscripcion) {
-                            echo $inscripcion['id']."<br>";
+
+                            $this->db->select('*');
+                            $this->db->from('hs_cursos as c');
+
+                            $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
+
+                            $this->db->where('c.id',$inscripcion['curso']);
+
+                            $result = $this->db->get()->row();
+                            echo '<tr><td>'.$i++.'</td><td>'.$result->nombre.'</td><td>  <input type="button" id="ver_docemento" class="btn btn-normal btn-gray" value="Visualizar Documento" onclick="certificado('.$inscripcion['id'].')"></td></tr>';
+
                           }
 
-                          // $dato['documento_nombre']= $estudiante[0]['id'];
-                          // $query = $this->db->get_where('hs_notas', array('curso' => $curso, 'estudiante' => $inscrito['estudiante']))->result_array();
-                          // $suma= 0;
-                          // foreach($query as $sum):
-                          //     $suma+=$sum['def'];
-                          // endforeach;
-                          // $cursos = $this->db->get_where('hs_cursos', array('id' => $curso))->result_array();
-                          // $this->db->where('curso', $cursos[0]['curso']);
-                          // $this->db->from('curso_materia');
-                          // $nro_materias= $this->db->count_all_results();
-                          // $media= $suma/$nro_materias;
-                          // $dato['elements']= $query;
-                          //
-                          //     $verificarFactura=$this->db->get_where('hs_facturacion', [ 'estudiante' => $inscrito['estudiante'], 'curso' => $curso ])->num_rows();
-                          //
-                          //
-                          //     if( $verificarFactura  == 0)
-                          //     {
-                          //       continue;
-                          //     }
-                          //
-                          //     $dato['media']= $media;
-                          //     $dato['verificar'] = 1;
-                          //     $this->load->view('site/visualizar_diploma',$dato);
+                          echo '</tbody></table><br><br>';
 
-
-
-                        }//FIN del else del if(   $incripciones->num_rows() == 0 )
-
-
-
+                      }//FIN del else del if(   $incripciones->num_rows() == 0 )
             }//FIN del else del   if($estudiante)
 
+    }//FIN function listCertificadoEstudio()
 
+
+    function generarCertificadoEstudio(){
+
+
+      $inscripcion = $this->db->get_where('hs_inscripcion', array('id' => $this->input->post('inscripcion_id') ) )->row();
+
+      $dato['curso']= $inscripcion->curso;
+      $dato['documento_nombre']= $inscripcion->estudiante;
+      $query = $this->db->get_where('hs_notas', array('curso' => $inscripcion->curso, 'estudiante' => $inscripcion->estudiante) )->result_array();
+      $suma= 0;
+      foreach($query as $sum):
+                    $suma+=$sum['def'];
+      endforeach;
+      $cursos = $this->db->get_where('hs_cursos', array( 'id' => $inscripcion->curso ) )->result_array();
+      $this->db->where('curso', $cursos[0]['curso']);
+      $this->db->from('curso_materia');
+      $nro_materias= $this->db->count_all_results();
+      $media= $suma/$nro_materias;
+      $dato['elements']= $query;
+      $dato['media']= $media;
+      $this->load->view('site/visualizar_certificado', $dato);
 
 
     }//FIN function generarCertificadoEstudio()
