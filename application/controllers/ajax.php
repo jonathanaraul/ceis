@@ -900,7 +900,7 @@ class ajax extends CI_Controller
       $media= $suma/$nro_materias;
       $dato['elements']= $query;
       $dato['media']= $media;
-      if( $documento == 2 ){
+      if( $documento == 2 ){ 
             $this->load->view('site/visualizar_certificado', $dato);
        }
 
