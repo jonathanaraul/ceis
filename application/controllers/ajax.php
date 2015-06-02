@@ -834,7 +834,7 @@ class ajax extends CI_Controller
 
             $cedula = $this->input->post('cedula');
             $estudiante = $this->db->get_where('hs_estudiantes', array('cedula' => $cedula) )->row();
-            $item = $this->input->post('item');
+            $documento = $this->input->post('documento');
 
            if( !$estudiante ) {
               echo "No Hay Resgistro Con la Cédula: ".$cedula;
@@ -848,29 +848,30 @@ class ajax extends CI_Controller
 
                       }else{
                         $i=1;
-                          echo '<table cellpadding="0" cellspacing="0" border="0" class="table table-normal box" style="width: 80%;font-size : 14px;">
-                                    <caption>Listado de Curso(s) Realizado(S) por el Estudiantes: </caption>
-                                    <thead>
-                                            <tr>
-                                                <td>#</td>
-                                                <td>Curso</td>
-                                                <td>Ver</td>
-                                            </tr>
-                                    </thead>
-                                    <tbody>';
-                          foreach ($incripciones->result_array() as $inscripcion) {
 
-                            $this->db->select('*');
-                            $this->db->from('hs_cursos as c');
+                                      echo '<table cellpadding="0" cellspacing="0" border="0" class="table table-normal box" style="width: 80%;font-size : 14px;">
+                                                <caption>Listado de Curso(s) Realizado(S) por el Estudiantes: </caption>
+                                                <thead>
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Curso</td>
+                                                            <td>Ver</td>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>';
+                                      foreach ($incripciones->result_array() as $inscripcion) {
 
-                            $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
+                                        $this->db->select('*');
+                                        $this->db->from('hs_cursos as c');
 
-                            $this->db->where('c.id',$inscripcion['curso']);
+                                        $this->db->join('class_name as cl', 'cl.id = c.curso', 'INNER');
 
-                            $result = $this->db->get()->row();
-                            echo '<tr><td>'.$i++.'</td><td>'.$result->nombre.'</td><td>  <input type="button" id="ver_docemento" class="btn btn-normal btn-gray" value="Visualizar Documento" onclick="certificado('.$inscripcion['id'].')"></td></tr>';
+                                        $this->db->where('c.id',$inscripcion['curso']);
 
-                          }
+                                        $result = $this->db->get()->row();
+                                        echo '<tr><td>'.$i++.'</td><td>'.$result->nombre.'</td><td>  <input type="button" id="ver_docemento" class="btn btn-normal btn-gray" value="Visualizar Documento" onclick="certificado('.$inscripcion['id'].','.$documento.')"></td></tr>';
+
+                                      }
 
                           echo '</tbody></table><br><br>';
 
@@ -882,7 +883,7 @@ class ajax extends CI_Controller
 
     function generarCertificadoEstudio(){
 
-
+      $documento = $this->input->post('documento');
       $inscripcion = $this->db->get_where('hs_inscripcion', array('id' => $this->input->post('inscripcion_id') ) )->row();
 
       $dato['curso']= $inscripcion->curso;
@@ -899,8 +900,13 @@ class ajax extends CI_Controller
       $media= $suma/$nro_materias;
       $dato['elements']= $query;
       $dato['media']= $media;
-      $this->load->view('site/visualizar_certificado', $dato);
+      if( $documento == 2 ){
+            $this->load->view('site/visualizar_certificado', $dato);
+       }
 
+      if ( $documento == 3 ) {
+          $this->load->view('site/visualizar_acta', $dato);
+      }
 
     }//FIN function generarCertificadoEstudio()
 
