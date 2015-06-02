@@ -81,6 +81,21 @@
             </div>
             <!-- aqui va el div de la otra pestaña -->
             <div class="tab-pane" id="gestionar_egresados">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width:60%;" class="table table-normal box">
+                        <thead>
+                            <tr>
+                                <td><?= 'Ingresar No. De Cédula'; ?></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text"   class="uniform" required name="cedula_egresado" id="cedula_egresado"/> </td>
+                                <td><input type="button" id="buscar_egresado" class="btn btn-normal btn-gray" value="Buscar" onclick="verEgrasado()"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
 
             </div>
         </div>
@@ -273,7 +288,7 @@
     }
 
     function certificado(inscripcion_id,documento){
-    
+
       $.post('<?php echo site_url()?>ajax/generarCertificadoEstudio',
               { 'inscripcion_id' : inscripcion_id, 'documento' : documento },
           function (data) {
@@ -283,8 +298,8 @@
           });
     }
 
-    function verActas(){
-      alert( $("#cedula").val()  + " Cedula para buscar Actas" );
+    function verEgrasado(){
+      alert( $("#cedula_egresado").val()  + " Cedula para buscar Egresado" );
     }
 
 
