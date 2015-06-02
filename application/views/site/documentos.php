@@ -160,14 +160,6 @@
       $('#documento').print();
       $("#borrar").html(clon);
 
-      // var curso = $("#cursos").val();
-      // $.post('<?php echo site_url()?>ajax/imprimirDiplomasAll',
-      //     { 'curso' : curso},
-      //     function (data) {
-      //         $("#allDocumentos").html(data);
-      //     });
-      //     $("#allDocumentos").print();
-      //     $("#allDocumentos").html('');
     }
 
     $("#documentos").change(function(){
@@ -220,7 +212,7 @@
             $("#div_cedula").css( { 'display' : 'block' } );
             $("#cedula").removeAttr('disabled');
             $("#cedula").val('');
-            $("#ver_docemento").attr('onclick','verCertificados()');
+            $("#ver_docemento").attr('onclick','verCertificados(2)');
             $("#ver_docemento").val('Buscar');
 
 
@@ -239,7 +231,7 @@
             $("#div_cedula").css( { 'display' : 'block' } );
             $("#cedula").removeAttr('disabled');
             $("#cedula").val('');
-            $("#ver_docemento").attr('onclick','verActas()');
+            $("#ver_docemento").attr('onclick','verCertificados(3)');
             $("#ver_docemento").val('Buscar');
 
         }
@@ -256,7 +248,7 @@
 
     });
 
-    function verCertificados(){
+    function verCertificados(varlor){
 
         var cedula = $("#cedula").val();
         if( cedula == ''){
@@ -266,7 +258,7 @@
         }else{
 
                   $.post('<?php echo site_url()?>ajax/listCertificadoEstudio',
-                        { 'cedula' : cedula },
+                        { 'cedula' : cedula, 'documento' : varlor },
                       function (data) {
                         $('#lista').html(data);
                         $('#loader').css('display','none');
@@ -280,9 +272,10 @@
 
     }
 
-    function certificado(inscripcion_id){
+    function certificado(inscripcion_id,documento){
+    
       $.post('<?php echo site_url()?>ajax/generarCertificadoEstudio',
-              { 'inscripcion_id' : inscripcion_id },
+              { 'inscripcion_id' : inscripcion_id, 'documento' : documento },
           function (data) {
             $('#documento').html(data);
             $('#loader').css('display','none');
