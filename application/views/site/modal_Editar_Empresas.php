@@ -44,6 +44,18 @@
 
                     </div>
 
+                    <div class="control-group">
+
+                        <label class="control-label"><?php echo get_phrase('direccion_empresa'); ?></label>
+
+                        <div class="controls">
+
+                            <input type="text" class="uniform" required name="direccion" value="<?php echo $row['direccion']; ?>"/>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 
