@@ -532,17 +532,26 @@ class Site extends CI_Controller
 
         if ($param1 == 'create') {
 
-            $data['nit'] = $this->input->post('nit_empresas');
+						$empresa = $this->db->get_where( 'hs_empresas', [ 'nit' => $this->input->post('nit_empresas') ] )->num_rows();
 
-            $data['nombre'] = $this->input->post('nombre_empresas');
+						if (	$empresa > 0){
 
-            $data['contacto'] = $this->input->post('contacto_empresa');
+							$this->session->set_flashdata('flash_message', 'Ya existe una Empresa con el NIT '. $this->input->post('nit_empresas') );
+							redirect(base_url() . 'index.php?site/empresas/');
+						}else{
+							$data['nit'] = $this->input->post('nit_empresas');
 
-						$data['direccion'] = $this->input->post('direccion');
+	            $data['nombre'] = $this->input->post('nombre_empresas');
 
-					  $this->db->insert('hs_empresas', $data);
+	            $data['contacto'] = $this->input->post('contacto_empresa');
 
-            redirect(base_url() . 'index.php?site/empresas/', 'refresh');
+							$data['direccion'] = $this->input->post('direccion');
+
+						  $this->db->insert('hs_empresas', $data);
+
+	            redirect(base_url() . 'index.php?site/empresas/', 'refresh');
+						}
+
 
         }
 
