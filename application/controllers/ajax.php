@@ -900,7 +900,7 @@ class ajax extends CI_Controller
       $media= $suma/$nro_materias;
       $dato['elements']= $query;
       $dato['media']= $media;
-      if( $documento == 2 ){ 
+      if( $documento == 2 ){
             $this->load->view('site/visualizar_certificado', $dato);
        }
 
@@ -909,5 +909,15 @@ class ajax extends CI_Controller
       }
 
     }//FIN function generarCertificadoEstudio()
+
+
+    function listEgresado(){
+
+      $cedula = $this->input->post('cedula');
+      $estudiante = $this->db->get_where('hs_estudiantes', array('cedula' => $cedula) )->row();
+
+      var_dump($estudiante);
+
+    }
 
 }
