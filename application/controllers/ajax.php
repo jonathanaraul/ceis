@@ -126,7 +126,7 @@ class ajax extends CI_Controller
     {
         $estudiante = $this->input->post('estudiante');
 
-        $elements = $this->db->get_where('hs_inscripcion', array('estudiante' => $estudiante))->result_array();
+        $elements = $this->db->get_where('hs_inscripcion', array('estudiante' => $estudiante) )->result_array();
 
         $cadena = '<option value="0" selected>Seleccionar Curso</option>';
 
@@ -134,7 +134,7 @@ class ajax extends CI_Controller
             $existe= true;
             $cursos= $this->db->get('hs_facturacion_empresas')->result_array();
             foreach ($cursos as $curso) {
-                if($curso['curso']==$element['curso']){
+                if( $curso['curso'] == $element['curso'] and $curso['empresa'] == $element['empresa']){
                     $existe= false;
                 }
             }
