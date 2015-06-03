@@ -3,7 +3,7 @@
     <div class="box-header">
 
 
-        <!------CONTROL TABS START------->
+        <!------CONTROL TABS START----- -->
 
         <ul class="nav nav-tabs nav-tabs-left">
 
@@ -25,7 +25,7 @@
 
         </ul>
 
-        <!------CONTROL TABS END------->
+        <!------CONTROL TABS END----- -->
 
 
     </div>
@@ -34,7 +34,7 @@
 
         <div class="tab-content">
 
-            <!----TABLE LISTING STARTS--->
+            <!----TABLE LISTING STARTS- -->
 
             <div class="tab-pane box <?php if (!isset($edit_data)) echo 'active'; ?>" id="list">
 
@@ -61,6 +61,9 @@
                             <div><?php echo get_phrase('contacto_empresa'); ?></div>
                         </th>
                         <th>
+                            <div><?php echo get_phrase('direccion_empresa'); ?></div>
+                        </th>
+                        <th>
                             <div><?php echo get_phrase('options'); ?></div>
                         </th>
 
@@ -83,6 +86,8 @@
 
 
                             <td><?php echo $row['contacto']; ?></td>
+
+                            <td><?php echo $row['direccion']; ?></td>
 
 
                             <td align="center">
@@ -164,6 +169,18 @@
 
                         </div>
 
+                        <div class="control-group">
+
+                            <label class="control-label"><?php echo get_phrase('direccion_empresa'); ?></label>
+
+                            <div class="controls">
+
+                                <input type="text" class="uniform" required name="direccion"/>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div class="form-actions">
@@ -178,7 +195,7 @@
 
             </div>
 
-            <!----CREATION FORM ENDS--->
+            <!----CREATION FORM ENDS- -->
 
 
         </div>
