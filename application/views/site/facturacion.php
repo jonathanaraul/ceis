@@ -632,7 +632,7 @@
             $.post('<?php echo site_url()?>ajax/obtenListaEstudiantes',
                 {'id_empresa': id_empresa, 'id_curso' : id_curso },
                 function (data) {
-                    console.log(data);
+
                     $('#listEstudiante tbody ').append(data);
                 });
          }
