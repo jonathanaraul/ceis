@@ -538,7 +538,9 @@ class Site extends CI_Controller
 
             $data['contacto'] = $this->input->post('contacto_empresa');
 
-            $this->db->insert('hs_empresas', $data);
+						$data['direccion'] = $this->input->post('direccion');
+
+					  $this->db->insert('hs_empresas', $data);
 
             redirect(base_url() . 'index.php?site/empresas/', 'refresh');
 
@@ -551,6 +553,8 @@ class Site extends CI_Controller
             $data['nombre'] = $this->input->post('nombre');
 
             $data['contacto'] = $this->input->post('contacto');
+
+						$data['direccion'] = $this->input->post('direccion');
 
 
             $this->db->where('id', $param2);
