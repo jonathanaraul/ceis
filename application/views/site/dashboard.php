@@ -182,7 +182,7 @@
                                                                 <?php
                                                                 $materia = $this->db->get_where('hs_materias', array('id' => $row2['materia']))->result_array();    
                                                                  echo $this->crud_model->get_nombre_materia_by_id($materia[0]['nombre']); ?>
-                                                                <?php echo '(' . $row2['hora_inicio'] . '-' . $row2['hora_fin'] . ')'; ?>
+                                                                <?php echo '(' . $row2['hora_inicio'].':' .$row2['minutos_hora_inicio']. '-' . $row2['hora_fin'] .':'.$row2['minutos_hora_fin']. ')'; ?>
                                                                 <?php 
                                                                     if($this->session->userdata('rol') == 1){
                                                                 ?>                                                                
