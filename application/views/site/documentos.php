@@ -303,7 +303,7 @@
             $.post('<?php echo site_url()?>ajax/listEgresado',
                     { 'cedula' : $("#cedula_egresado").val() },
                 function (data) {
-                  alert(data);
+                  //alert(data);
                   // $('#documento').html(data);
                   // $('#loader').css('display','none');
                   // $('#documento').css('display','block');
