@@ -94,6 +94,20 @@
                                     <?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
+                        Minutos: <select name="minutos_hora_inicio" class="uniform" style="width:100%;">
+                                    <?php for($i=0;$i<=5;$i++)
+                                                {
+                                                     for($ii=0;$ii<=9;$ii++)
+                                                            {
+                                                                $iii=$i.$ii;
+                                                                if ($iii == $row['minutos_hora_inicio']) {
+                                                                    echo "<option value='".$i,$ii."' selected='selected'>".$i,$ii."</option>";
+                                                                }
+                                                                  echo "<option value='".$i,$ii."'>".$i,$ii."</option>";
+                                                             }
+                                                }
+                                    ?>
+                                </select>
                         <select name="starting_ampm" class="uniform" style="width:100%">
                             <option value="1" <?php if ($starting_ampm == '1') echo 'selected="selected"'; ?>>am
                             </option>
@@ -123,6 +137,20 @@
                                     <?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
+                        Minutos: <select name="minutos_hora_fin" class="uniform" style="width:100%;">
+                                    <?php for($i=0;$i<=5;$i++)
+                                                {
+                                                     for($ii=0;$ii<=9;$ii++)
+                                                            {
+                                                                 $iii=$i.$ii;
+                                                                 if ($iii == $row['minutos_hora_fin']) {
+                                                                            echo "<option value='".$i,$ii."' selected='selected'>".$i,$ii."</option>";
+                                                                 }
+                                                                 echo "<option value='".$i,$ii."'>".$i,$ii."</option>";
+                                                             }
+                                                }
+                                    ?>
+                                </select>
                         <select name="ending_ampm" class="uniform" style="width:100%">
                             <option value="1" <?php if ($ending_ampm == '1') echo 'selected="selected"'; ?>>am</option>
                             <option value="2" <?php if ($ending_ampm == '2') echo 'selected="selected"'; ?>>pm</option>
