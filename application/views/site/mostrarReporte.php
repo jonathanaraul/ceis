@@ -104,8 +104,9 @@
 											    <td>
 											    	<?php
 													    $this->db->where('curso', $curso['id']);
-														$this->db->from('hs_inscripcion');
-														echo $this->db->count_all_results();
+															$this->db->where("DATE(create_at) BETWEEN '".$fechaDesde."'	AND '".$fechaHasta."'");
+															$this->db->from('hs_inscripcion');
+															echo $this->db->count_all_results();
 													?>
 												</td>
 											</tr>
